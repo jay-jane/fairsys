@@ -11,10 +11,10 @@
       <ul>
         <!-- 로고 -->
         <li><img src="#"></li>
-        <li><a href="http://localhost:8081/page14">채용정보</a></li>
-        <li><a href="http://localhost:8081/page15">기업/연봉</a></li>
-        <li><a href="http://localhost:8081/page12">마이페이지</a></li>
-        <li><a href="http://localhost:8081/page2">로그인</a></li>
+        <li><a href="page14">채용정보</a></li>
+        <li><a href="page15">기업/연봉</a></li>
+        <li><a href="page12">마이페이지</a></li>
+        <li><a href="page2">로그인</a></li>
       </ul> 
     </div>
       
@@ -30,10 +30,10 @@
       <li>탈퇴</li>
       <!-- 회원정보 수정 및 탈퇴를 위해서는 비밀번호 입력을 하게 해야할듯? -->
       
-      <li><a href="http://localhost:8081/page13">이력서 작성</a></li>
+      <li><a href="page13">이력서 작성</a></li>
       <li><a href="지원 현황 확인 페이지">지원 현황 확인</a></li>
 
-      <li><a href="http://localhost:8081/page16">Q&A</a></li>
+      <li><a href="page16">Q&A</a></li>
       <li><a href="쪽지함 페이지 ">쪽지함</a></li>
     
       

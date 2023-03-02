@@ -11,7 +11,7 @@
   <input type="text" name="id"  placeholder="id" ><br>
   <input type="password" name="pw"  placeholder="pw" ><br><br><br>
   <input type="submit" value="로그인">
-<a href="http://localhost:8081/page11">회원가입하기</a><br>
+<a href="page11">회원가입하기</a><br>
   <a href="아이디 찾기링크">아이디 찾기</a> /
   <a href="비밀번호 찾기 찾기링크">비밀번호 찾기</a>
 

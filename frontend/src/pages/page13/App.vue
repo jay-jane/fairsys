@@ -11,10 +11,10 @@
       <ul>
         <!-- 로고 -->
         <li><img src="#"></li>
-        <li><a href="http://localhost:8081/page14">채용정보</a></li>
-        <li><a href="http://localhost:8081/page15">기업/연봉</a></li>
-        <li><a href="http://localhost:8081/page12">마이페이지</a></li>
-        <li><a href="http://localhost:8081/page2">로그인</a></li>
+        <li><a href="page14">채용정보</a></li>
+        <li><a href="page15">기업/연봉</a></li>
+        <li><a href="page12">마이페이지</a></li>
+        <li><a href="page2">로그인</a></li>
       </ul> 
     </div>
       

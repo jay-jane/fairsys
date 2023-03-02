@@ -1,19 +1,27 @@
 
 const path = require("path");
-const devpath ='';    //개발환경 사용시 설정
+let devpath ='';    //개발환경 사용시 설정
 // const devpath = '../templates/'; //최종빌드 패스
 
+if(process.env.NODE_ENV==='production'){
+  devpath='../templates/';
+}
 module.exports = {
+
+  productionSourceMap: process.env.NODE_ENV !== 'production',
+
+
 
   //개발환경 사용시에는 주석처리
   // //vue 프로젝트 실행시 프록시 설정을 통해 vue개발용 서버가 처리하지 못하는 요청을 백엔드 포트로 요청
-  // devServer:{
-  //   port: 8081, //vue의 기본포트
-  //   Proxy: 'http://localhost:8787' //백엔드 포트주소
-
-  // },
+  devServer:{
+    port: 8081, //vue의 기본포트
+    //Proxy: 'http://localhost:8787' //백엔드 포트주소
+    proxy: 'http://localhost:8787'
+  },
 
   //vue 프로젝트 빌드 경로(css,js파일)
+
   outputDir: path.resolve(__dirname, "../backend/src/main/resources/static"),
 
   pages:{
@@ -97,6 +105,26 @@ module.exports = {
       entry: 'src/pages/page16/main.js',
       template: 'public/templates/page16.html',
       filename: devpath + 'page16.html',
+    },
+    page17:{
+      entry: 'src/pages/page17/main.js',
+      template: 'public/templates/page17.html',
+      filename: devpath + 'page17.html',
+    },
+    page18:{
+      entry: 'src/pages/page18/main.js',
+      template: 'public/templates/page18.html',
+      filename: devpath + 'page18.html',
+    },
+    page19:{
+      entry: 'src/pages/page19/main.js',
+      template: 'public/templates/page19.html',
+      filename: devpath + 'page19.html',
+    },
+    page20:{
+      entry: 'src/pages/page20/main.js',
+      template: 'public/templates/page20.html',
+      filename: devpath + 'page20.html',
     }
   }
 }
