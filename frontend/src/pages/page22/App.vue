@@ -13,7 +13,7 @@
   <section>
     <h3>쪽지 작성하기</h3>
     <div>
-      <h3>Contact Us</h3>
+      <h3>쪽지 작성</h3>
       <form action="" method="post">
         <div>
           <label for="name">이름 </label>
