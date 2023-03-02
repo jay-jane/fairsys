@@ -2,7 +2,7 @@
   <form action="">
   
     <section>
-    <h3>기업회원가입</h3>
+    <h3>회원정보수정</h3>
     <div>
       <label for="com_name">회사명: <input v-model="com_name" required type="text" placeholder="회사이름을 입력하세요"></label>
     </div>
@@ -41,7 +41,8 @@
     </div>
 
 
-    <button type="submit">가입하기</button>
+    <button type="submit">수정</button> 
+    <button type="submit">회원탈퇴</button>
   </section>
     <h4>푸터</h4>
   </form>
@@ -95,12 +96,12 @@ button {
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #0077cc;
+  background-color: #0ed683;
   color: #fff;
   font-weight: bold;
   cursor: pointer;
   margin-top: 10px;
-  width: 100%;
+  width: 30%;
 }
 
 button:hover {

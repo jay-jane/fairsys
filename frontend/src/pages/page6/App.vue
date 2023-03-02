@@ -1,6 +1,6 @@
 
 <template>
-  <h2>채용공고 목록조회</h2>
+  <h2>지원자 목록조회</h2>
   <div>
 <table>
  <thead>
@@ -24,10 +24,17 @@
 </table>        
   </div>
 </template>
+
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+      return {
+        userId: '',
+        passWd: ''
+      }
+  }
 }
 </script>
 
