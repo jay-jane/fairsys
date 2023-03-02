@@ -10,9 +10,9 @@
     </ul>
   </header>
 
-  <body>
+  <section>
     <h3 style="text-align: center;">채용 공고 등록 페이지</h3>
-    <form action="">
+    <form action="" method="post">
       <div id="">
         제목 <input type="text"><br>
       </div>
@@ -32,7 +32,7 @@
         업종 <input type="text"><br>
       </div>
       <div id="">
-        대표 근무지역 <input type="text"><br>
+        대표 근무지역 <div class="kakaoAPI">카카오맵api</div><br>
       </div>
       <div id="">
         연봉/급여 <input type="text"><br>
@@ -62,7 +62,7 @@
         <input type="reset" value="취소">
       </div>
     </form>
-  </body>
+  </section>
 
   <footer style="text-align: center;">
     푸푸푸푸<br>
