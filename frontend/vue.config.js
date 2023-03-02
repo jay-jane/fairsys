@@ -1,17 +1,14 @@
 
 const path = require("path");
-let devpath = '';    //개발환경 사용시 설정
+let devpath ='';    //개발환경 사용시 설정
 // const devpath = '../templates/'; //최종빌드 패스
 
-if (process.env.NODE_ENV === 'production') {
-  devpath = '../templates/';
-  console.log(process.env.NODE_EN);
+if(process.env.NODE_ENV==='production'){
+  devpath='../templates/';
 }
 module.exports = {
 
   productionSourceMap: process.env.NODE_ENV !== 'production',
-
-
 
   //개발환경 사용시에는 주석처리
   // //vue 프로젝트 실행시 프록시 설정을 통해 vue개발용 서버가 처리하지 못하는 요청을 백엔드 포트로 요청
@@ -77,6 +74,56 @@ module.exports = {
       template: 'public/templates/page10.html',
       filename: devpath + 'page10.html',
     },
+    page11:{
+      entry: 'src/pages/page11/main.js',
+      template: 'public/templates/page11.html',
+      filename: devpath + 'page11.html',
+    },
+    page12:{
+      entry: 'src/pages/page12/main.js',
+      template: 'public/templates/page12.html',
+      filename: devpath + 'page12.html',
+    },
+    page13:{
+      entry: 'src/pages/page13/main.js',
+      template: 'public/templates/page13.html',
+      filename: devpath + 'page13.html',
+    },
+    page14:{
+      entry: 'src/pages/page14/main.js',
+      template: 'public/templates/page14.html',
+      filename: devpath + 'page14.html',
+    },
+    page15:{
+      entry: 'src/pages/page15/main.js',
+      template: 'public/templates/page15.html',
+      filename: devpath + 'page15.html',
+    },
+    page16:{
+      entry: 'src/pages/page16/main.js',
+      template: 'public/templates/page16.html',
+      filename: devpath + 'page16.html',
+    },
+    page17:{
+      entry: 'src/pages/page17/main.js',
+      template: 'public/templates/page17.html',
+      filename: devpath + 'page17.html',
+    },
+    page18:{
+      entry: 'src/pages/page18/main.js',
+      template: 'public/templates/page18.html',
+      filename: devpath + 'page18.html',
+    },
+    page19:{
+      entry: 'src/pages/page19/main.js',
+      template: 'public/templates/page19.html',
+      filename: devpath + 'page19.html',
+    },
+    page20:{
+      entry: 'src/pages/page20/main.js',
+      template: 'public/templates/page20.html',
+      filename: devpath + 'page20.html',
+    }
     page21: {
       entry: 'src/pages/page21/main.js',
       template: 'public/templates/page21.html',
@@ -86,6 +133,6 @@ module.exports = {
       entry: 'src/pages/page22/main.js',
       template: 'public/templates/page22.html',
       filename: devpath + 'page22.html',
-    },
+    }
   }
 }
