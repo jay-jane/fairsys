@@ -1,6 +1,6 @@
 
 const path = require("path");
-const devpath ='';    //개발환경사용시 설정
+const devpath ='';    //개발환경 사용시 설정
 // const devpath = '../templates/'; //최종빌드 패스
 
 module.exports = {
@@ -67,6 +67,36 @@ module.exports = {
       entry: 'src/pages/page10/main.js',
       template: 'public/templates/page10.html',
       filename: devpath + 'page10.html',
+    },
+    page11:{
+      entry: 'src/pages/page11/main.js',
+      template: 'public/templates/page11.html',
+      filename: devpath + 'page11.html',
+    },
+    page12:{
+      entry: 'src/pages/page12/main.js',
+      template: 'public/templates/page12.html',
+      filename: devpath + 'page12.html',
+    },
+    page13:{
+      entry: 'src/pages/page13/main.js',
+      template: 'public/templates/page13.html',
+      filename: devpath + 'page13.html',
+    },
+    page14:{
+      entry: 'src/pages/page14/main.js',
+      template: 'public/templates/page14.html',
+      filename: devpath + 'page14.html',
+    },
+    page15:{
+      entry: 'src/pages/page15/main.js',
+      template: 'public/templates/page15.html',
+      filename: devpath + 'page15.html',
+    },
+    page16:{
+      entry: 'src/pages/page16/main.js',
+      template: 'public/templates/page16.html',
+      filename: devpath + 'page16.html',
     }
   }
 }
