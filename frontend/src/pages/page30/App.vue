@@ -71,9 +71,10 @@
     }
   }
 }
-</script>
+  </script>
 
 <style>
+
 body{
   margin:0;
   color:#6a6f8c;
