@@ -87,5 +87,10 @@ module.exports = {
       template: 'public/templates/page22.html',
       filename: devpath + 'page22.html',
     },
+    page23: {
+      entry: 'src/pages/page23/main.js',
+      template: 'public/templates/page23.html',
+      filename: devpath + 'page23.html',
+    },
   }
 }
