@@ -1,10 +1,29 @@
 
 <template>
+  <h2>채용공고 목록조회</h2>
+  <div>
+<table>
+ <thead>
+   <tr>
+     <th>번호</th>
+     <th>공고제목</th>
+     <th>이름</th>
+     <th>등록일</th>
+   </tr>
+ </thead>
+ <tbody>
+  
+   <tr> 
+     <td>1</td>
+     <td>2</td>
+     <td>3</td>
+     <td>4</td>
 
-  <h3>화면2. 이곳에서 html 작업을 진행하면 됩니다.</h3>
-
+   </tr>
+ </tbody>
+</table>        
+  </div>
 </template>
-
 <script>
 
 export default {
@@ -12,7 +31,18 @@ export default {
 }
 </script>
 
-<style>
+
+<style scoped>
+table {
+ font-family: arial, sans-serif;
+ border-collapse: collapse;
+ width: 100%;
+}
+ 
+td, th {
+ border-bottom: 1px solid #dddddd;
+ text-align: left;
+ padding: 8px;
+}
 
 </style>
-
