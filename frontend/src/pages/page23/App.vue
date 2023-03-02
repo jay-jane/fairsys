@@ -41,7 +41,7 @@
     </div>
     <div id="content_wrap">
       <div id="img_wrap">
-        <img src="#" alt="">
+        <img src="" alt="">
       </div>
       <div id="">
         이메일 주소 <input type="text"><br>
@@ -189,4 +189,3 @@ footer {
   font-size: 14px;
 }
 </style>
-
