@@ -30,7 +30,7 @@
 
       <div v-if="isQnaActive" class="list-container">
         <h2>문의하기</h2>
-        <button class="btn-write" @click="goToWrite">글 작성하기</button>
+        <a href="page10">글 작성하기</A>
         <ul>
           <li v-for="(qna, index) in qnas" :key="index">
             <span class="num">{{ index + 1 }}</span>
@@ -77,9 +77,6 @@ export default {
     showQna() {
       this.isNoticeActive = false;
       this.isQnaActive = true;
-    },
-    goToWrite() {
-      // 글 작성 페이지로 이동하는 코드
     }
   }
 };
