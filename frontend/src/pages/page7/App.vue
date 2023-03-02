@@ -57,6 +57,10 @@
           <input type="radio" id="process" value="최종합격" checked>최종합격
         </div>
       </div>
+      <div>
+        <input type="submit" value="등록">
+        <input type="reset" value="취소">
+      </div>
     </form>
   </body>
 
