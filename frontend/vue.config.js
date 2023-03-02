@@ -5,73 +5,72 @@ let devpath ='';    //개발환경 사용시 설정
 
 if(process.env.NODE_ENV==='production'){
   devpath='../templates/';
-  console.log(process.env.NODE_EN);
 }
-
 
 module.exports = {
 
   productionSourceMap: process.env.NODE_ENV !== 'production',
-  
+
   //개발환경 사용시에는 주석처리
   // //vue 프로젝트 실행시 프록시 설정을 통해 vue개발용 서버가 처리하지 못하는 요청을 백엔드 포트로 요청
-  devServer:{
+  devServer: {
     port: 8081, //vue의 기본포트
     //Proxy: 'http://localhost:8787' //백엔드 포트주소
     proxy: 'http://localhost:8787'
   },
 
   //vue 프로젝트 빌드 경로(css,js파일)
+
   outputDir: path.resolve(__dirname, "../backend/src/main/resources/static"),
 
-  pages:{
+  pages: {
 
-    page1:{
-      entry: 'src/pages/page1/main.js', 
+    page1: {
+      entry: 'src/pages/page1/main.js',
       template: 'public/templates/page1.html',  //html 파일의 경로
       filename: devpath + 'page1.html'          //html 파일 생성경로
     },
-    page2:{
+    page2: {
       entry: 'src/pages/page2/main.js',
       template: 'public/templates/page2.html',
       filename: devpath + 'page2.html',
     },
-    page3:{
+    page3: {
       entry: 'src/pages/page3/main.js',
       template: 'public/templates/page3.html',
       filename: devpath + 'page3.html',
     },
-    page4:{
+    page4: {
       entry: 'src/pages/page4/main.js',
       template: 'public/templates/page4.html',
       filename: devpath + 'page4.html',
     },
-    page5:{
+    page5: {
       entry: 'src/pages/page5/main.js',
       template: 'public/templates/page5.html',
       filename: devpath + 'page5.html',
     },
-    page6:{
+    page6: {
       entry: 'src/pages/page6/main.js',
       template: 'public/templates/page6.html',
       filename: devpath + 'page6.html',
     },
-    page7:{
+    page7: {
       entry: 'src/pages/page7/main.js',
       template: 'public/templates/page7.html',
       filename: devpath + 'page7.html',
     },
-    page8:{
+    page8: {
       entry: 'src/pages/page8/main.js',
       template: 'public/templates/page8.html',
       filename: devpath + 'page8.html',
     },
-    page9:{
+    page9: {
       entry: 'src/pages/page9/main.js',
       template: 'public/templates/page9.html',
       filename: devpath + 'page9.html',
     },
-    page10:{
+    page10: {
       entry: 'src/pages/page10/main.js',
       template: 'public/templates/page10.html',
       filename: devpath + 'page10.html',
@@ -126,7 +125,7 @@ module.exports = {
       template: 'public/templates/page20.html',
       filename: devpath + 'page20.html',
     },
-    page21:{
+    page21: {
       entry: 'src/pages/page21/main.js',
       template: 'public/templates/page21.html',
       filename: devpath + 'page21.html',
@@ -249,83 +248,82 @@ module.exports = {
     page45:{
       entry: 'src/pages/page45/main.js',
       template: 'public/templates/page45.html',
-      filename: devpath + 'page45.html',
+      filename: devpath + 'page45.html'
     },
     page46:{
       entry: 'src/pages/page46/main.js',
       template: 'public/templates/page46.html',
-      filename: devpath + 'page46.html',
+      filename: devpath + 'page46.html'
     },
     page47:{
       entry: 'src/pages/page47/main.js',
       template: 'public/templates/page47.html',
-      filename: devpath + 'page47.html',
+      filename: devpath + 'page47.html'
     },
     page48:{
       entry: 'src/pages/page48/main.js',
       template: 'public/templates/page48.html',
-      filename: devpath + 'page48.html',
+      filename: devpath + 'page48.html'
     },
     page49:{
       entry: 'src/pages/page49/main.js',
       template: 'public/templates/page49.html',
-      filename: devpath + 'page49.html',
+      filename: devpath + 'page49.html'
     },
     page50:{
       entry: 'src/pages/page50/main.js',
       template: 'public/templates/page50.html',
-      filename: devpath + 'page50.html',
+      filename: devpath + 'page50.html'
     },
     page51:{
       entry: 'src/pages/page51/main.js',
       template: 'public/templates/page51.html',
-      filename: devpath + 'page51.html',
+      filename: devpath + 'page51.html'
     },
     page52:{
       entry: 'src/pages/page52/main.js',
       template: 'public/templates/page52.html',
-      filename: devpath + 'page52.html',
+      filename: devpath + 'page52.html'
     },
     page53:{
       entry: 'src/pages/page53/main.js',
       template: 'public/templates/page53.html',
-      filename: devpath + 'page53.html',
+      filename: devpath + 'page53.html'
     },
     page54:{
       entry: 'src/pages/page54/main.js',
       template: 'public/templates/page54.html',
-      filename: devpath + 'page54.html',
+      filename: devpath + 'page54.html'
     },
     page55:{
       entry: 'src/pages/page55/main.js',
       template: 'public/templates/page55.html',
-      filename: devpath + 'page55.html',
+      filename: devpath + 'page55.html'
     },
     page56:{
       entry: 'src/pages/page56/main.js',
       template: 'public/templates/page56.html',
-      filename: devpath + 'page56.html',
+      filename: devpath + 'page56.html'
     },
     page57:{
       entry: 'src/pages/page57/main.js',
       template: 'public/templates/page57.html',
-      filename: devpath + 'page57.html',
+      filename: devpath + 'page57.html'
     },
     page58:{
       entry: 'src/pages/page58/main.js',
       template: 'public/templates/page58.html',
-      filename: devpath + 'page58.html',
+      filename: devpath + 'page58.html'
     },
     page59:{
       entry: 'src/pages/page59/main.js',
       template: 'public/templates/page59.html',
-      filename: devpath + 'page59.html',
+      filename: devpath + 'page59.html'
     },
     page60:{
       entry: 'src/pages/page60/main.js',
       template: 'public/templates/page60.html',
-      filename: devpath + 'page60.html',
+      filename: devpath + 'page60.html'
     }
   }
 }
-
