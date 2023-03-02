@@ -1,22 +1,23 @@
 package com.finalproject.backend;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class TestController {
     
-    @RequestMapping(value = "/page1", method = RequestMethod.GET)
-    public String page1(){
+    @RequestMapping({"/page1", "/page2", "/page14", "/page15", "/page12"})
+    public void page1(){
 
-        return "page1";
+       
     }
 
-    @RequestMapping(value = "/page2", method = RequestMethod.GET)
-    public String page2(){
+    // @RequestMapping(value = "/page2", method = RequestMethod.GET)
+    // public String page2(){
 
-        return "page2";
-    }
+    //     return "page2";
+    // }
+
+
 }

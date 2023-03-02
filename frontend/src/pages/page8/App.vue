@@ -10,9 +10,9 @@
     </ul>
   </header>
 
-  <body>
+  <section>
     <h3 style="text-align: center;">채용 공고 수정 페이지</h3>
-    <form action="">
+    <form action="" method="post">
       <div id="">
         제목 <input type="text"><br>
       </div>
@@ -32,7 +32,7 @@
         업종 <input type="text"><br>
       </div>
       <div id="">
-        대표 근무지역 <input type="text"><br>
+        대표 근무지역 <div class="kakaoAPI">카카오맵api</div> <br>
       </div>
       <div id="">
         연봉/급여 <input type="text"><br>
@@ -57,12 +57,13 @@
           <input type="radio" id="process" value="최종합격" checked>최종합격
         </div>
       </div>
-      <div>
+      <div class="buttons">
         <input type="submit" value="수정">
-
+        <a href="#" class="list">목록</a>
+        <a href="#" class="delete">삭제</a>
       </div>
     </form>
-  </body>
+  </section>
 
   <footer style="text-align: center;">
     푸푸푸푸<br>
@@ -107,9 +108,15 @@ textarea {
   box-sizing: border-box;
 }
 
+#com_name {
+  border: 0;
+}
+
 input[type="radio"] {
   margin-right: 10px;
 }
+
+.buttons {margin-top: 10px; text-align: center;}
 
 input[type="submit"],
 input[type="reset"] {
@@ -119,10 +126,24 @@ input[type="reset"] {
   border: none;
   cursor: pointer;
   margin-right: 10px;
+  font-size: 15px;
 }
 
 input[type="submit"]:hover,
 input[type="reset"]:hover {
+  background-color: #555;
+}
+
+.buttons a {
+  text-decoration: none;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.buttons a:hover {
   background-color: #555;
 }
 
@@ -131,5 +152,6 @@ footer {
   color: #fff;
   padding: 10px;
   margin-top: 50px;
-}</style>
+}
+</style>
 
