@@ -41,7 +41,7 @@
     </div>
 
 
-    <button type="submit">가입하기</button>
+    <button type="submit" @click="page30">가입하기</button>
   </section>
     <h4>푸터</h4>
   </form>

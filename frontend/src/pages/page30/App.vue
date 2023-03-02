@@ -1,8 +1,9 @@
 <template>
+  <form>
 <div class="login-wrap">
   <div class="login-html">
     <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">개인회원</label>
-    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">기업회원</label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">기업회원</label>
     <div class="login-form">
       <div class="sign-in-htm">
         <div class="group">
@@ -20,7 +21,10 @@
         <div class="group">
           <input type="submit" class="button" value="Sign In">
         </div>
-        <a href="#forgot">Forgot Password?</a>
+        <a href="#forgot">아이디찾기 </a><br>
+        <a href="#forgot">비밀번호찾기</a>
+        <br>
+        <a href="page11">Sign up</a>
         <div class="hr"></div>
         <div class="sns">소셜 계정으로 간편 로그인</div>
       </div>
@@ -40,20 +44,20 @@
         <div class="group">
           <input type="submit" class="button" value="Sign in">
         </div>
-        <a href="#forgot">Forgot Password?</a>
+        <a href="#forgot">아이디찾기 </a><br>
+        <a href="#forgot">비밀번호찾기</a>
+        <br>
+        <a href="page5">Sign up</a>
         <div class="hr"></div>
         <div class="sns">소셜 계정으로 간편 로그인</div>
       
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-        </ul>
+     
         
       </div>
     </div>
   </div>
 </div>
+</form>
 </template>
 
 <script>
@@ -229,3 +233,5 @@ a{color:inherit;text-decoration:none}
   text-align:center;
 }
 </style>
+
+

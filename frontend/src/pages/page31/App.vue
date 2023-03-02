@@ -44,7 +44,7 @@
     <button type="submit">수정</button> 
     <button type="submit">회원탈퇴</button>
   </section>
-    <h4>푸터</h4>
+ 
   </form>
 </template>
 
