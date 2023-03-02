@@ -135,17 +135,11 @@ module.exports = {
       template: 'public/templates/page22.html',
       filename: devpath + 'page22.html',
     },
-<<<<<<< HEAD
-    page23: {
-=======
     page23:{
->>>>>>> main
       entry: 'src/pages/page23/main.js',
       template: 'public/templates/page23.html',
       filename: devpath + 'page23.html',
     },
-<<<<<<< HEAD
-=======
     page24:{
       entry: 'src/pages/page24/main.js',
       template: 'public/templates/page24.html',
@@ -331,6 +325,5 @@ module.exports = {
       template: 'public/templates/page60.html',
       filename: devpath + 'page60.html'
     }
->>>>>>> main
   }
 }

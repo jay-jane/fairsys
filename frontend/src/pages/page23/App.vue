@@ -1,4 +1,4 @@
-
+<!-- 재윤 - 채용 공고 상세 -->
 <template>
   <header>
     <ul class="head">
@@ -44,36 +44,14 @@
         <img src="" alt="">
       </div>
       <div id="">
-        이메일 주소 <input type="text"><br>
+        <p>상세내용(데이터 히든태그로 넣기)</p>
       </div>
       <div id="">
-        업종 <input type="text"><br>
+        기업 위치
+        <div class="kakaoAPI">(카카오맵api)</div>
       </div>
       <div id="">
-        대표 근무지역 <div class="kakaoAPI">카카오맵api</div><br>
-      </div>
-      <div id="">
-        연봉/급여 <input type="text"><br>
-      </div>
-      <div id="">
-        근무 형태
-        <div style="display: inline-block;">
-          <input type="radio" name="work_type" value="정규직">정규직
-          <input type="radio" name="work_type" value="계약직">계약직
-          <input type="radio" name="work_type" value="인턴">인턴
-        </div>
-      </div>
-      <div id="">
-        상세 내용 <textarea id="" cols="30" rows="3"></textarea>
-      </div>
-      <div id="">
-        전형 절차
-        <div style="display: inline-block;">
-          <input type="radio" id="process" value="서류전형" checked>서류전형
-          <input type="radio" id="process" value="1차면접">1차면접
-          <input type="radio" id="process" value="2차면접">2차면접
-          <input type="radio" id="process" value="최종합격" checked>최종합격
-        </div>
+        기업정보
       </div>
     </div>
     <div id="button_wrap">
