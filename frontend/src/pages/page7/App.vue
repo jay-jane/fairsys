@@ -1,4 +1,4 @@
-
+<!-- 재윤 - 채용 공고 등록 -->
 <template>
   <header>
     <ul class="head">
@@ -14,28 +14,39 @@
     <h3 style="text-align: center;">채용 공고 등록 페이지</h3>
     <form action="" method="post">
       <div id="">
-        제목 <input type="text"><br>
+        제목 <input type="text">
       </div>
       <div id="">
-        기업명 <input type="text"><br>
+        기업명 <input type="text">
       </div>
       <div id="">
-        담당자 성함 <input type="text"><br>
+        담당자 성함 <input type="text">
       </div>
       <div id="">
-        휴대폰 번호 <input type="text"><br>
+        휴대폰 번호 <input type="text">
       </div>
       <div id="">
-        이메일 주소 <input type="text"><br>
+        이메일 주소 <input type="text">
       </div>
       <div id="">
-        업종 <input type="text"><br>
+        업종 <input type="text">
+      </div>
+      <div>
+        모집 부서 <input type="text">
       </div>
       <div id="">
-        대표 근무지역 <div class="kakaoAPI">카카오맵api</div><br>
+        경력 여부
+        <div style="display: inline-block;">
+          <input type="radio" name="work_type" value="정규직">신입
+          <input type="radio" name="work_type" value="계약직">경력
+          <input type="radio" name="work_type" value="인턴">경력무관
+        </div>
       </div>
       <div id="">
-        연봉/급여 <input type="text"><br>
+        대표 근무지역 <div class="kakaoAPI">카카오맵api</div>
+      </div>
+      <div id="">
+        연봉/급여 <input type="text">
       </div>
       <div id="">
         근무 형태
@@ -46,7 +57,10 @@
         </div>
       </div>
       <div id="">
-        상세 내용 <textarea id="" cols="30" rows="3"></textarea>
+        상세 내용
+        <div id="app">
+          <TipTap />
+        </div>
       </div>
       <div id="">
         전형 절차
@@ -71,8 +85,13 @@
 </template>
 
 <script>
+import TipTap from '../../components/TipTap.vue'
+
 export default {
   name: 'App',
+  components: {
+    TipTap
+  }
 }
 </script>
 
