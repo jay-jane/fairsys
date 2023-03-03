@@ -12,21 +12,48 @@
   </nav>
 
   <div class="content">
-    <h2>문의사항 등록하기</h2>
-    <ul>
-      <li>제목 <input type="text"></li>
-      <li>내용 <textarea name="aaa" id="" cols="30" rows="10"></textarea></li>
-      <input type="submit" value="등록하기">
-      <input type="button" value="취소하기">
-    </ul>
+    <h1>통계 화면</h1>
+    <button>기간별</button>
+    <button>나이대별</button>
+    <button>성별</button>
+    <table>
+      <tr>
+        <td>
+          <Bar class="barchart"
+          :options="chartOptions"
+          :data="chartData"
+          />
+        </td>
+      </tr>
+    </table>
   </div>
-
 </template>
 
 <script>
+import {Bar} from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
-  name: 'App'
+  components:{Bar},
+  name: 'App',
+  data(){
+    return{
+
+      /* 차트데이터 입력 */
+      chartData: {
+        /* x축 */
+        labels: [ '1일', '2일', '3일', '4일', '5일','6일','7일' ],
+        /* Y축 */
+        datasets: [ { data: [40, 20, 12, 22, 80, 60, 100] } ]
+      },
+      chartOptions: {
+        responsive: true
+      }
+    }
+  }
+
 }
 </script>
 
@@ -52,5 +79,11 @@ export default {
     color: white;
     text-decoration: none;
   }
+
+  /* 차트디자인 */
+  .barchart{
+    width: 800px;
+  }
+
 </style>
 
