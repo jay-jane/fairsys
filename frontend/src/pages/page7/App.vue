@@ -59,6 +59,7 @@
       <div id="">
         상세 내용
         <div id="app">
+          <MenuBar />
           <TipTap />
         </div>
       </div>
@@ -86,11 +87,14 @@
 
 <script>
 import TipTap from '../../components/TipTap.vue'
+import MenuBar from '../../components/MenuBar.vue'
 
 export default {
   name: 'App',
   components: {
-    TipTap
+    TipTap,
+    MenuBar,
+
   }
 }
 </script>

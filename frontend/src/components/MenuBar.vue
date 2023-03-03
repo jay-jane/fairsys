@@ -2,17 +2,17 @@
     <div>
       <template v-for="(item, index) in items">
         <div class="divider" v-if="item.type === 'divider'" :key="`divider${index}`" />
-        <menu-item v-else :key="index" v-bind="item" />
+        <!-- <menu-item v-else :key="index" v-bind="item" /> -->
       </template>
     </div>
   </template>
   
   <script>
-  import MenuItem from './MenuItem.vue'
+  // import MenuItem from './MenuItem.vue'
   
   export default {
     components: {
-      MenuItem,
+      // MenuItem,
     },
   
     props: {
