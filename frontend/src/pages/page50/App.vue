@@ -1,40 +1,63 @@
 
-<!-- Q&A 페이지 -->
-
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
+
+<!--관리자 로그인-->
+
+  <header>
+  <div class="menu1" style="border-bottom: 1px solid">    
+    <img src="#">
+
+  </div>
+  </header> 
 
 
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
 
-    <!-- 로그인버튼 -->
+   <section>
+    <!-- <div>
+      아아디:   <input type="text">  <br>
+      비밀번호: <input type="password"> <br>
+      <button type="submit">로그인</button>  <br>
 
-  </header>
+      <div class="ad">
+        <img src="#">
+      </div>
+    </div> --> 
+
+     <form>
+        <div class="login_info">
+            아이디<input type="email" placeholder="Email Address"><br>
+            
+            비밀번호<input type="email" placeholder="Email Address">
+           
+        </div>
+        <button>로그인</button><br>
 
 
-  <section id="section">
 
-    <h3>page50</h3>
+        <div class="ad">
+        <img src="#">
+        </div>
+    </form>
 
- 
-  </section>
 
-  <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
 
-  </footer>
+
+
+
+  </section> 
+
+
+<footer style="border-top: 1px solid">
+
+
+내용아직안넣음
+
+
+</footer>
+
+
+
+
 </template>
 
 <script>
@@ -45,33 +68,26 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+
+html{
+width: "100%"; 
+border: 1px solid #444444;
+  
+}
+
+.menu1{
   text-align: center;
 }
 
-#header {}
-
-#menu li {
-  display: inline;
-  padding-left: 20px;
+.ad{
+   text-align: center;
 }
 
-
-
-#section_menu {
-  display: flex;
-  justify-content: center;
-}
-
-tr{
-  display: flex;
-  justify-content: center;
-}
-
-#footer {
-  height: 200px;
+form{
+            
+       text-align: center;  
+       
+       
+           
 }
 </style>

@@ -1,40 +1,88 @@
 
-<!-- Q&A 페이지 -->
+<!-- Q&A 페이지  -->
 
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
+ <header class="head">
+      
+      <div class="menu1" style="border-bottom: 1px solid" >
+          <img src="#" style="float:left">
+            <ul>
+              <li><a href="#">공고 </a></li>
+              <li><a href="#">업체</a></li>
+              <li><a href="#">통계</a></li>              
+              <li><a href="#">Q&A</a></li>  
+              <button style="float:right">로그아웃</button>     
+            </ul>
+          
+        </div>
+  </header> 
 
-
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
-
-    <!-- 로그인버튼 -->
-
-  </header>
 
 
   <section id="section">
 
-    <h3>page53</h3>
+    <h3>업체상세페이지</h3>
 
  
+    <div id="first">
+            <div>
+              기업정보<input type="text"><br>
+              산업(업종)<input type="text"><br>
+              사원수<input type="text"><br>
+              기업형태<input type="text"><br>
+              홈페이지<input type="text"><br>
+            </div>
+    </div>
+
+
+    <div id="second">
+            <div>
+              기업구분<input type="text"><br>
+              주소<input type="text"><br>
+              대표자<input type="text"><br>
+            </div>
+  
+    </div>
+
+     <div id="thr">
+        <div>
+        기업형태<input type="text"><br>
+        사업자번호<input type="text"><br>
+        회사명<input type="text"><br>
+        대표자명<input type="text"><br>
+        회사주소<input type="text"><br>
+        대표자<input type="text"><br>
+        </div>
+      </div>
+
+      <div id="fou">
+        <div>
+        인사담당자<input type="text"><br>
+        아아디<input type="text"><br>
+         비번<input type="password"><br>
+        가입자명<input type="text"><br>
+        전화번호<input type="text"><br>
+        이메일<input type="text"><br>
+        </div>
+      </div>
+
+
+
+
+
   </section>
 
-  <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
+  <footer style="border-top: 1px solid">
 
-  </footer>
+
+내용아직안넣음
+
+
+
+
+
+</footer>
+
 </template>
 
 <script>
@@ -52,23 +100,23 @@ export default {
   text-align: center;
 }
 
-#header {}
+html{
+width: "100%"; 
+border: 1px solid #444444;
+  
+}
 
-#menu li {
+
+
+.head ul{
+list-style:none;
+text-align: center;
+padding: 10px 0px
+}
+
+.head ul li{
   display: inline;
-  padding-left: 20px;
-}
-
-
-
-#section_menu {
-  display: flex;
-  justify-content: center;
-}
-
-tr{
-  display: flex;
-  justify-content: center;
+  padding: 0px 10px 0px 10px;
 }
 
 #footer {
