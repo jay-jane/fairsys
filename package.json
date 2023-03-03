@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "chart.js": "^4.2.1",
-    "chartkick": "^5.0.1",
-    "hchs-vue-charts": "^1.2.8",
-    "vue-chartjs": "^5.2.0",
-    "vue-chartkick": "^1.1.0"
-  }
-}

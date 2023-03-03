@@ -32,7 +32,18 @@
         업종 <input type="text"><br>
       </div>
       <div id="">
-        대표 근무지역 <div class="kakaoAPI">카카오맵api</div> <br>
+        모집부서 <input type="text"><br>
+      </div>
+      <div id="">
+        대표 근무지역 <div class="kakaoAPI">(카카오맵api)</div> <br>
+      </div>
+      <div id="">
+        경력 여부
+        <div style="display: inline-block;">
+          <input type="radio" name="career_type" >신입
+          <input type="radio" name="career_type" >경력
+          <input type="radio" name="career_type" >경력무관
+        </div>
       </div>
       <div id="">
         연봉/급여 <input type="text"><br>
@@ -46,7 +57,10 @@
         </div>
       </div>
       <div id="">
-        상세 내용 <textarea id="" cols="30" rows="3"></textarea>
+        상세 내용
+        <div>
+          (에디터api)
+        </div>
       </div>
       <div id="">
         전형 절차
@@ -55,6 +69,12 @@
           <input type="radio" id="process" value="1차면접">1차면접
           <input type="radio" id="process" value="2차면접">2차면접
           <input type="radio" id="process" value="최종합격" checked>최종합격
+        </div>
+      </div>
+      <div id="endDate_wrap">
+        마감일자
+        <div>
+          (달력api)
         </div>
       </div>
       <div class="buttons">
