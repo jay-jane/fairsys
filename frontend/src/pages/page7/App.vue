@@ -22,8 +22,14 @@
       <div id="">
         담당자 성함 <input type="text">
       </div>
-      <div id="">
-        휴대폰 번호 <input type="text">
+      <div class="field tel-number">
+        <span>휴대폰 번호</span>
+        <select>
+          <option value="">대한민국 +82</option>
+        </select>
+        <div>
+          <input type="text" placeholder="전화번호 입력">
+        </div>
       </div>
       <div id="">
         이메일 주소 <input type="text">
@@ -32,14 +38,14 @@
         업종 <input type="text">
       </div>
       <div>
-        모집 부서 <input type="text">
+        모집 분야 <input type="text"> <input type="text" style="width: 40px;"> 명 모집
       </div>
       <div id="">
         경력 여부
         <div style="display: inline-block;">
-          <input type="radio" name="career_type" >신입
-          <input type="radio" name="career_type" >경력
-          <input type="radio" name="career_type" >경력무관
+          <input type="radio" name="career_type">신입
+          <input type="radio" name="career_type">경력
+          <input type="radio" name="career_type">경력무관
         </div>
       </div>
       <div id="">
@@ -92,12 +98,14 @@
 
 export default {
   name: 'App',
+  
 }
 </script>
 
 <style>
 * {
   list-style: none;
+  box-sizing: border-box;
 }
 
 /* 폼 요소들의 스타일링 */
@@ -180,4 +188,3 @@ footer {
   font-size: 14px;
 }
 </style>
-
