@@ -12,8 +12,8 @@
   </nav>
 
   <div class="btn-group">
-    <button class="btn" @click="showNotice">Q&A</button>
-    <button class="btn" @click="showQna">문의내역</button>
+    <b-button class="btn" variant="primary" @click="showNotice">Q&A</b-button>
+    <b-button class="btn" variant="primary" @click="showQna">문의내역</b-button>
   </div>
   
   <div>
@@ -57,6 +57,11 @@
 </template>
 
 <script>
+import bootstrapvue from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+Vue.use(bootstrapvue);
 
 export default {
   name: 'App',
