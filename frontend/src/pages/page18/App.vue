@@ -1,75 +1,56 @@
 
-
+<!-- 회원정보 수정 페이지 -->
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
-
-
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
-
-    <!-- 로그인버튼 -->
-
+  <!-- 홈으로 넘어갈 수 있는 img 로고 헤더 -->
+  <header>
+    <img src="#">
   </header>
-
-
-  <section id="section">
-
-   <h3>page18</h3>
- 
+  
+  <!-- 아이디, 비밀번호 입력 하는 로그인 창 -->
+  <section>
+    <input type="text" name="name"  placeholder="이름" ><br>
+    <input type="text" name="id"  placeholder="id" ><br>
+    <input type="password" name="pw"  placeholder="pw" ><br>
+    <input type="password" name="pw_re"  placeholder="pw_re" ><br>
+    <input type="email" name="email"  placeholder="email" ><br>
+    <input type="number" name="hp_number"  placeholder="hp_number" ><br>
+    <input type="text" name="adress"  placeholder="adress" ><br>
+    <input type="radio" name="gender" value="man">남
+    <input type="radio" name="gender" value="woman">여<br><br><br>
+    <input type="submit" value="가입하기">
+  
+    <!-- 가입 후에는 바로 메인 페이지 이동 -->
+  
+    <!-- 광고 영역 -->
+    <div class="ad">
+      광고 영역
+    </div>
   </section>
-
+  
   <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
-
+  <footer>
+    
   </footer>
-</template>
-
-<script>
-
-export default {
-  name: 'App'
-}
-</script>
-
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
-}
-
-#header {}
-
-#menu li {
-  display: inline;
-  padding-left: 20px;
-}
-
-
-
-#section_menu {
-  display: flex;
-  justify-content: center;
-}
-
-tr{
-  display: flex;
-  justify-content: center;
-}
-
-#footer {
-  height: 200px;
-}
-</style>
+  </template>
+  
+  <script>
+  
+  export default {
+    name: 'App'
+  }
+  </script>
+  
+  <style>
+  *{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+  }
+  .ad{
+    padding-top: 100px;
+    height: 100px;
+  }
+  </style>
+  
+  

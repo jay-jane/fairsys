@@ -3,43 +3,50 @@
 
   <nav id="top">
     <ul>
-      <li><a href="#"><img src="#"></a></li>
+      <li><a href="page1"><img src="page1"></a></li>
       <li><a href="#">채용정보</a></li>
       <li><a href="#">기업/연봉</a></li>
       <li><a href="#">마이페이지</a></li>
-      <li><a href="#">로그인</a></li>
+      <li><a href="page2">로그인</a></li>
     </ul>
   </nav>
+
+  <div class="btn-group">
+    <button class="btn" @click="showNotice">Q&A</button>
+    <button class="btn" @click="showQna">문의내역</button>
+  </div>
+  
   <div>
     <div class="container">
-      <div class="btn-group">
-        <button class="btn" :class="{ active: isNoticeActive }" @click="showNotice">Q&A</button>
-        <button class="btn" :class="{ active: isQnaActive }" @click="showQna">문의하기</button>
-      </div>
 
-      <div v-if="isNoticeActive" class="list-container">
-        <h2>Q&A</h2>
-        <ul id="list_ul">
-          <li v-for="(notice, index) in notices" :key="index">
-            <span class="num">{{ index + 1 }}</span>
-            <a href="#">{{ notice.title }}</a>
-            <span class="date">{{ notice.date }}</span>
-          </li>
-        </ul>
-      </div>
+      <table class="list">
+        <thead class="head">
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+          </tr>
+        </thead>
 
-      <div v-if="isQnaActive" class="list-container">
-        <h2>문의하기</h2>
-        <a href="page10">글 작성하기</A>
-        <ul>
-          <li v-for="(qna, index) in qnas" :key="index">
-            <span class="num">{{ index + 1 }}</span>
-            <a href="#">{{ qna.title }}</a>
-            <span class="author">{{ qna.author }}</span>
-            <span class="date">{{ qna.date }}</span>
-          </li>
-        </ul>
-      </div>
+        <tbody class="body">
+          <tr>
+            <td>1</td>
+            <td><a href="">사이트 이용 안내 </a></td>
+            <td>2023.03.02</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>사이트 이용 안내 </td>
+            <td>2023.03.02</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>사이트 이용 안내 </td>
+            <td>2023.03.02</td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
   </div>
   
@@ -53,30 +60,13 @@
 
 export default {
   name: 'App',
-  data() {
-    return {
-      isNoticeActive: true,
-      isQnaActive: false,
-      notices: [
-        { title: "제목1", date: "2023-02-28" },
-        { title: "제목2", date: "2023-02-27" },
-        { title: "제목3", date: "2023-02-26" },
-      ],
-      qnas: [
-        { title: "제목1", author: "작성자1", date: "2023-02-28" },
-        { title: "제목2", author: "작성자2", date: "2023-02-27" },
-        { title: "제목3", author: "작성자3", date: "2023-02-26" },
-      ],
-    };
-  },
+  
   methods: {
     showNotice() {
-      this.isNoticeActive = true;
-      this.isQnaActive = false;
+      location.href ="page9";
     },
     showQna() {
-      this.isNoticeActive = false;
-      this.isQnaActive = true;
+      location.href ="page10";
     }
   }
 };
@@ -107,23 +97,49 @@ export default {
 
   /* 리스트 디자인 */
 
-  .list-container {
-    background-color: aquamarine;
+/* 콘텐츠화면 */
+.container {
+    width: 1200px;
     border: 1px solid black;
-  }
-
-  #list_ul{
-    border: 1px solid red;
-    list-style-type: none;
     text-align: center;
+ }
+
+  table {
+    border:0;
+    padding:0;
+    margin:0;
   }
 
-  #list_ul span{
-    border: 1px solid salmon;
+  table caption { 
+    display:none; 
   }
 
-  #list_ul a{
-    border: 1px solid red;
+
+  .list { 
+    display: table;
+    clear:both; 
+    width:1200px; 
+    border-collapse: collapse; 
+  }
+            
+  .list th { 
+    border-color:#333333; 
+    background: #fcfcfc;
+    padding:10px 0 10px 0; 
+    text-align:center; 
+    border-top-width: 2px;
+    border-bottom-width: 1px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    font-weight: 400;
+  }
+
+  .list .body td {
+    text-align: center;
+    padding:5px 9px 5px 9px; 
+    border-bottom-color: #eeeeee;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
   }
 
   .btn-group{

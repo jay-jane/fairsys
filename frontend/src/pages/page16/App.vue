@@ -21,10 +21,66 @@
 
   </header>
 
-
+  
+  <h3 id="first_title">채용정보</h3>
   <section id="section">
+    <article id="article_top">
 
-    <h3>page16</h3>
+      <div id="top">
+        <div id="top_top">
+
+          <p id="company_name">회사이름</p>
+          <p id="company_logo">로고</p>
+        </div>
+
+        <div id="top_bottom">
+          <p id="company_title">채용제목</p>
+        </div>
+      </div>
+
+      <div id="bottom">
+        <div id="bottom_left">
+          <h4>지원자격</h4>
+          <div id="qualify">
+            <span id="q_left">경력</span>  <span id="q_right">경력</span><br>
+            <span id="q_left">학력</span>  <span id="q_right">대졸이상</span>
+          </div>
+        
+        </div>
+        <div id="bottom_left">
+          <h4>근무조건</h4>
+          <div id="qualify">
+            <span id="q_left">고용형태</span>  <span id="q_right">정규직</span><br>
+            <span id="q_left">급여</span>  <span id="q_right">회사 내규에 따름</span><br>
+            <span id="q_left">지역</span>  <span id="q_right">서울시 종로구</span>
+          </div>
+        
+        </div>
+        <div id="bottom_left">
+          <h4>기업정보</h4>
+          <div id="qualify">
+            <span id="q_left">산업(업종)</span>  <span id="q_right">건설,시공,토목,조경</span><br>
+            <span id="q_left">사원수</span>  <span id="q_right">6,583명</span><br>
+            <span id="q_left">설립년도</span>  <span id="q_right">1969년(55년차)</span><br>
+            <span id="q_left">기업형태</span>  <span id="q_right">대기업(주권(유가증권)상장)</span><br>
+            <span id="q_left">홈페이지</span>  <span id="q_right">qsenc.com</span>
+          </div>
+        
+        </div>
+       
+      </div>
+      <hr>
+    </article>
+
+    <article id="article_bottom">
+
+      <div id="section_bottom">
+        <h3>상세요강</h3>
+        
+      </div>
+    </article>
+      
+
  
   </section>
 
@@ -57,16 +113,63 @@ export default {
   padding-left: 20px;
 }
 
-
-
-#section_menu {
-  display: flex;
-  justify-content: center;
+#first_title{
+  padding-top: 20px;
 }
 
-tr{
+#article_top{
+  padding-top: 40px;
+}
+
+
+#top_top{
   display: flex;
-  justify-content: center;
+  
+}
+
+
+#company_name{
+  padding-left: 120px;
+}
+#company_logo{
+  margin-left: auto;
+  padding-right: 120px;
+}
+
+
+
+#top_bottom{
+  display: flex;
+}
+
+#company_title{
+  margin-top: auto;
+  padding-left: 120px;
+
+}
+
+
+
+
+#bottom{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+#q_left{
+  color: gray;
+  padding-right: 20px;
+}
+
+
+#q_right{
+  color: blue;
+}
+
+#article_bottom{
+  padding-top: 40px;
+
 }
 
 #footer {
