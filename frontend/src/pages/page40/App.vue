@@ -14,10 +14,17 @@
   <div class="content">
     <h2>문의사항 등록하기</h2>
     <ul>
+      <li>회사
+          <select name="" id="">
+            <option>지원한 회사1</option>
+            <option>지원한 회사2</option>
+            <option>지원한 회사3</option>
+          </select>
+      </li>
       <li>제목 <input type="text"></li>
       <li>내용 <textarea name="aaa" id="" cols="30" rows="10"></textarea></li>
       <input type="submit" value="등록하기">
-      <input type="button" value="취소하기">
+      <input type="button" value="취소하기" @click="goback">
     </ul>
   </div>
 
@@ -26,7 +33,12 @@
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  methods:{
+    goback: function(){
+      location.href = "page10";
+    }
+  }
 }
 </script>
 
