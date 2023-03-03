@@ -1,40 +1,85 @@
 
-<!-- Q&A 페이지 -->
-
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
 
+<!--지원자목록-->
+  <header>
+      
+    <div class="menu1" style="border-bottom: 1px solid">
+          <img src="#" style="float:left">
+            <ul>
+              <li><a href="#">공고</a></li>
+              <li><a href="#">업체</a></li>              
+              <li><a href="#">통계</a></li>
+              <li><a href="#">Q&A</a></li>  
+              <button style="float:right">로그아웃</button>       
+            </ul>
+        
+      </div>
+  </header> 
+    <section>
 
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
-
-    <!-- 로그인버튼 -->
-
-  </header>
-
-
-  <section id="section">
-
-    <h3>page51</h3>
-
+      
+        <table border="1" width="500">
+        <tr>
+            <td>번호</td>
+            <td>이름</td>
+            <td>공고제목</td>
+            <td>등록일</td>
  
-  </section>
+        </tr>
+        <tr>
+            <td>ㅌㅌㅌㅌ</td>
+            <td>ㅌㅌㅌ</td>
+            <td>ㅌㅌㅌ</td>
+            <td>ㅌㅌㅌ</td>
+  
+        </tr>
+        <tr>
+            <td>ㅌㅌㅌㅌ</td>
+            <td>ㅌㅌㅌㅌ</td>
+            <td>ㅌㅌㅌ</td>
+            <td>ㅌㅌㅌ</td>  
+        </tr>
+    </table>
+ 
+  </section> 
 
-  <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
 
-  </footer>
+
+
+
+
+<footer style="border-top: 1px solid">
+
+
+내용아직안넣음
+
+
+
+
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </template>
 
 <script>
@@ -45,33 +90,28 @@ export default {
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
+
+html{
+width: "100%"; 
+border: 1px solid #444444;
+  
 }
 
-#header {}
 
-#menu li {
+  ul{
+list-style:none;
+text-align: center;
+padding: 10px 0px
+}
+
+ul li{
   display: inline;
-  padding-left: 20px;
+  padding: 0px 10px 0px 10px;
 }
 
 
 
-#section_menu {
-  display: flex;
-  justify-content: center;
-}
 
-tr{
-  display: flex;
-  justify-content: center;
-}
 
-#footer {
-  height: 200px;
-}
+
 </style>
