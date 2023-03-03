@@ -38,14 +38,15 @@
           <input id="pass" type="password" class="input" data-type="password">
         </div>
         <div class="group">
-          <input id="check" type="checkbox" class="check" checked>
-          <label for="check"><span class="icon"></span> Keep me Signed in</label>
+          <input id="check1" type="checkbox" class="check" checked>
+          <label for="check1"><span class="icon"></span> Keep me Signed in</label>
         </div>
         <div class="group">
           <input type="submit" class="button" value="Sign in">
         </div>
         <a href="#forgot">아이디찾기 </a><br>
         <a href="#forgot">비밀번호찾기</a>
+
         <br>
         <a href="page5">Sign up</a>
         <div class="hr"></div>
