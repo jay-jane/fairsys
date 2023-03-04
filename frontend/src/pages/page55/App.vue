@@ -2,76 +2,104 @@
 <!-- Q&A 페이지 -->
 
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
-
-
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
-
-    <!-- 로그인버튼 -->
-
-  </header>
-
+ <div id="menu">
+    <img src="#">
+</div>
 
   <section id="section">
+    <h3 id="first_name">관리자 로그인</h3>
 
-    <h3>page55</h3>
 
- 
+	<form>
+        <div class="login_info">
+            아이디<input type="email" placeholder="Email Address"><br>
+            
+            비밀번호<input type="email" placeholder="Email Address">
+           
+        </div>
+        <button @click="page()">로그인</button><br>
+
+        <div class="ad">
+        <img src="#">
+        </div>
+    </form>
+
   </section>
 
-  <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
-
+  <footer id="ft" style="border-top: 1px solid">
+    <h3>여기 푸터야</h3>
   </footer>
 </template>
 
 <script>
 
 export default {
-  name: 'App'
-}
+  name: "App",
+
+  methods:{
+	page(){
+		location.href = page3;
+	}
+  }
+};
 </script>
 
 <style>
 * {
   margin: 0;
   padding: 0;
-  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+#menu {
+  font: bold 16px "malgun gothic";
+  width: 100%;
+  height: 50px;
+  background: black;
+  color: black;
+  line-height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  padding: auto;
+  border-bottom: 1px solid;
+}
+
+
+#first_name {
   text-align: center;
 }
 
-#header {}
-
-#menu li {
-  display: inline;
-  padding-left: 20px;
-}
-
-
-
-#section_menu {
+#first{
   display: flex;
   justify-content: center;
 }
 
-tr{
+#second{
   display: flex;
   justify-content: center;
 }
 
-#footer {
-  height: 200px;
+
+
+.ad{
+   text-align: center;
+}
+
+form{
+         
+       text-align: center;  
+        
+}
+
+#ft {
+  text-align: center;
+  border-bottom: 1px solid black;
+  background: black;
+}
+
+#ft > h3 {
+  color: azure;
 }
 </style>

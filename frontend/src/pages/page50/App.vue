@@ -5,7 +5,7 @@
 
   <header>
   <div class="menu1" style="border-bottom: 1px solid">    
-    <img src="#">
+    <img src="">
 
   </div>
   </header> 
@@ -32,17 +32,10 @@
         </div>
         <button>로그인</button><br>
 
-
-
         <div class="ad">
         <img src="#">
         </div>
     </form>
-
-
-
-
-
 
   </section> 
 

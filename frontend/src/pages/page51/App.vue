@@ -45,39 +45,12 @@
   </section> 
 
 
-
-
-
-
 <footer style="border-top: 1px solid">
 
 
 내용아직안넣음
 
-
-
-
-
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </template>
@@ -111,6 +84,31 @@ ul li{
 
 
 
+
+table {
+
+  
+  margin-left:auto; 
+  margin-right:auto;
+  
+  border: 1px #444444 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 50%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
 
 
 
