@@ -1,6 +1,4 @@
 
-<!-- Q&A 페이지 -->
-
 <template>
  <div id="menu">
   <img src="#" style="float:left" >
@@ -9,14 +7,14 @@
 
 		<li><a href="#">관리</a>
 			<ul>
-				<li><a href="#">공고</a></li>
-				<li><a href="#">지원자</a></li>	
+				<li><a href="page4">공고</a></li>
+				<li><a href="page51">지원자</a></li>	
 			</ul>
 		</li>
 		<li><a href="#">마이페이지</a></li>
 		
 	</ul>
-  <button style="float:right">로그아웃</button>
+  <button @click="logout" style="float:right">로그아웃</button>
 </div>
 
 <section id="section">
@@ -60,12 +58,19 @@
 </template>
 
 <script>
-
 export default {
-  name: 'App'
-}
-</script>
+  name: 'App',
 
+
+methods: {
+  
+logout(){
+  location.href="page50";
+  }
+}
+};
+
+</script>
 <style>
 * {
 		margin: 0;

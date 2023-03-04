@@ -6,33 +6,29 @@
     <img src="#" style="float: left" />
     <ul>
       <li>
-        <a href="#">공고</a>
+        <a href="page4">공고</a>
         <ul>
-          <li><a href="#">공고상세페이지</a></li>
+          <li><a href="page52">공고상세페이지</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">업체</a>
+        <a href="page3">업체</a>
         <ul>
-          <li><a href="#">업체상세페이지</a></li>
+          <li><a href="page53">업체상세페이지</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">통계</a>
+        <a href="page42">통계</a>
         <ul>
           <li><a href="#">기간별 지원자</a></li>
           <li><a href="#">업체별 모집</a></li>
         </ul>
       </li>
       <li>
-        <a href="#">Q&A</a>
-        <ul>
-          <li><a href="#">등록</a></li>
-          <li><a href="#">내역확인</a></li>
-        </ul>
+        <a href="page9">Q&A</a>       
       </li>
     </ul>
-    <button style="float: right">로그아웃</button>
+    <button @click="logout"  style="float: right">로그아웃</button>
   </div>
 
   <section id="section">
@@ -79,9 +75,19 @@
 
 <script>
 export default {
-  name: "App",
+  name: 'App',
+
+
+methods: {
+  
+logout(){
+  location.href="page50";
+  }
+}
 };
+
 </script>
+
 
 <style>
 * {

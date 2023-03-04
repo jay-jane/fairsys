@@ -3,28 +3,83 @@
 
 <template>
  <div id="menu">
-    <img src="#">
-</div>
+    <img src="#" style="float: left" />
+    <ul>
+      <li>
+        <a href="page4">공고</a>
+        <ul>
+          <li><a href="page52">공고상세페이지</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="page3">업체</a>
+        <ul>
+          <li><a href="page53">업체상세페이지</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="page42">통계</a>
+        <ul>
+          <li><a href="#">기간별 지원자</a></li>
+          <li><a href="#">업체별 모집</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Q&A</a>
+        <ul>
+          <li><a href="#">등록</a></li>
+          <li><a href="#">내역확인</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button @click="logout" style="float: right">로그아웃</button>
+  </div>
 
-  <section id="section">
-    <h3 id="first_name">관리자 로그인</h3>
+     <section>
 
+     
+            <h3 id="first_name">공고상세페이지</h3>
+   <div id="first">
+            <div>
+              기업명1<input type="text"><br>
+              제목<input type="text"><br>
+              고용형태<input type="text"><br>
+              급여<input type="text"><br>
+              지역<input type="text"><br>
+            </div>
 
-	<form>
-        <div class="login_info">
-            아이디<input type="email" placeholder="Email Address"><br>
+            <div>
+              기업로고<input type="text"><br>
+              기업정보<input type="text"><br>
+              산업<input type="text"><br>
+              사원수<input type="text"><br>
+              기업형태<input type="text"><br>
+              홈페이지<input type="text"><br>
+            </div>
+
+      
+    </div>    
+          
+    <br><br>
+        <div id="second">
+          <div>
+              상세요강<input type="text"><br>
+              이미지<input type="text"><br>
+              내용<input type="text"><br>
+              모집분야 자격조건<input type="text"><br>
+              담당업무<input type="text"><br>
+              접수방법<input type="text"><br>
+          </div>
+
+          <div>
+              <button><a href="page51">지원자 목록</a></button>
+              <button>공고삭제</button>
             
-            비밀번호<input type="email" placeholder="Email Address">
-           
-        </div>
-        <button @click="page()">로그인</button><br>
+          </div>
 
-        <div class="ad">
-        <img src="#">
-        </div>
-    </form>
-
+        </div>  
   </section>
+
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>
@@ -32,16 +87,19 @@
 </template>
 
 <script>
-
 export default {
-  name: "App",
+  name: 'App',
 
-  methods:{
-	page(){
-		location.href = page3;
-	}
+
+methods: {
+  
+logout(){
+  location.href="page50";
   }
+}
 };
+
+
 </script>
 
 <style>
@@ -49,7 +107,7 @@ export default {
   margin: 0;
   padding: 0;
 }
-a {
+#menu a {
   text-decoration: none;
   color: white;
 }
@@ -65,11 +123,37 @@ a {
   padding: auto;
   border-bottom: 1px solid;
 }
+#menu > ul {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+}
 
+#menu > ul > li {
+  float: left;
+  width: 140px;
+  position: relative;
+}
+#menu > ul > li > ul {
+  width: 130px;
+  display: none;
+  position: absolute;
+  font-size: 14px;
+  background: skyblue;
+  list-style: none;
+}
+#menu > ul > li:hover > ul {
+  display: block;
+}
+#menu > ul > li > ul > li:hover {
+  background: orange;
+  transition: ease 1s;
+}
 
 #first_name {
   text-align: center;
 }
+
 
 #first{
   display: flex;
@@ -81,16 +165,8 @@ a {
   justify-content: center;
 }
 
-
-
-.ad{
-   text-align: center;
-}
-
-form{
-         
-       text-align: center;  
-        
+a {
+  text-decoration: none;
 }
 
 #ft {

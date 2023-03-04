@@ -1,27 +1,20 @@
 
-<!-- Q&A 페이지 -->
-
 <template>
  <div id="menu">
   <img src="#" style="float:left" >
 	<ul>
-		<li><a href="#">공고</a>
+		<li><a href="page4">공고</a>
 			<ul>
-				<li><a href="#">공고상세페이지</a></li>				
+				<li><a href="page52">공고상세페이지</a></li>				
 			</ul>
 		</li>
-		<li><a href="#">업체</a>
+		<li><a href="page3">업체</a>
 			<ul>
-				<li><a href="#">업체상세페이지</a></li>		
+				<li><a href="page53">업체상세페이지</a></li>		
 			</ul>
 		</li>
-		<li><a href="#">통계</a>
-			<ul>
-				<li><a href="#">기간별 지원자</a></li>
-				<li><a href="#">업체별 모집</a></li>			
-			</ul>
-		</li>
-		<li><a href="#">Q&A</a>
+		<li><a href="page42">통계</a></li>
+		<li><a href="page9">Q&A</a>
 			<ul>
 				<li><a href="#">등록</a></li>
 				<li><a href="#">내역확인</a></li>			
