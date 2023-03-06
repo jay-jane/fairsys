@@ -310,13 +310,13 @@ doLogout(){
 }
 
 .btn1{
-  margin: 20px;
+  margin: 25px;
   width: 100px;
   height: 50px;
 }
 
 .btn2{
-  margin: 20px;
+  margin: 25px;
   width: 100px;
   height: 50px;
 }
