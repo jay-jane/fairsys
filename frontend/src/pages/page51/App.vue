@@ -1,22 +1,42 @@
 
-<template>
+<!-- Q&A 페이지 -->
 
-<!--지원자목록-->
-  <header>
-      
-    <div class="menu1" style="border-bottom: 1px solid">
-          <img src="#" style="float:left">
-            <ul>
-              <li><a href="#">공고</a></li>
-              <li><a href="#">업체</a></li>              
-              <li><a href="#">통계</a></li>
-              <li><a href="#">Q&A</a></li>  
-              <button style="float:right">로그아웃</button>       
-            </ul>
-        
-      </div>
-  </header> 
-    <section>
+<template>
+ <div id="menu">
+    <img src="#" style="float: left" />
+    <ul>
+      <li>
+        <a href="#">공고</a>
+        <ul>
+          <li><a href="#">공고상세페이지</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">업체</a>
+        <ul>
+          <li><a href="#">업체상세페이지</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">통계</a>
+        <ul>
+          <li><a href="#">기간별 지원자</a></li>
+          <li><a href="#">업체별 모집</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Q&A</a>
+        <ul>
+          <li><a href="#">등록</a></li>
+          <li><a href="#">내역확인</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button @click="logout" style="float: right">로그아웃</button>
+  </div>
+
+     <section>
+        <h3 id="first_name">지원자목록</h3>
 
       
         <table border="1" width="500">
@@ -45,73 +65,126 @@
   </section> 
 
 
-
-
-
-
-<footer style="border-top: 1px solid">
-
-
-내용아직안넣음
-
-
-
-
-
-</footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <footer id="ft" style="border-top: 1px solid">
+    <h3>여기 푸터야</h3>
+  </footer>
 </template>
 
 <script>
-
 export default {
-  name: 'App'
+  name: 'App',
+
+
+methods: {
+  
+logout(){
+  location.href="page50";
+  }
 }
+};
+
+
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+#menu {
+  font: bold 16px "malgun gothic";
+  width: 100%;
+  height: 50px;
+  background: black;
+  color: black;
+  line-height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  padding: auto;
+  border-bottom: 1px solid;
+}
+#menu > ul {
+  list-style: none;
+  display: inline-block;
+  text-align: center;
+}
 
-html{
-width: "100%"; 
-border: 1px solid #444444;
+#menu > ul > li {
+  float: left;
+  width: 140px;
+  position: relative;
+}
+#menu > ul > li > ul {
+  width: 130px;
+  display: none;
+  position: absolute;
+  font-size: 14px;
+  background: skyblue;
+  list-style: none;
+}
+#menu > ul > li:hover > ul {
+  display: block;
+}
+#menu > ul > li > ul > li:hover {
+  background: orange;
+  transition: ease 1s;
+}
+
+#first_name {
+  text-align: center;
+}
+
+#full{
+	width: 600px;
+	height: 600px;
+	
+	margin: auto; /* 중앙 맞춤 */
+}
+
+#left{
+	width: 200px;
+	float: left;	
+}
+
+
+#right{
+	width: 200px;
+	float: left;
+}
+table {
+
+  margin-left:auto; 
+  margin-right:auto;
   
+  border: 1px #444444 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 50%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
-
-  ul{
-list-style:none;
-text-align: center;
-padding: 10px 0px
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
 }
 
-ul li{
-  display: inline;
-  padding: 0px 10px 0px 10px;
+#ft {
+  text-align: center;
+  border-bottom: 1px solid black;
+  background: black;
 }
-
-
-
-
-
-
+#ft > h3 {
+  color: azure;
+}
 </style>

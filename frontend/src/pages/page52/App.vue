@@ -1,28 +1,44 @@
 
+<!-- Q&A 페이지 -->
+
 <template>
+ <div id="menu">
+    <img src="#" style="float: left" />
+    <ul>
+      <li>
+        <a href="page4">공고</a>
+        <ul>
+          <li><a href="page52">공고상세페이지</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="page3">업체</a>
+        <ul>
+          <li><a href="page53">업체상세페이지</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="page42">통계</a>
+        <ul>
+          <li><a href="#">기간별 지원자</a></li>
+          <li><a href="#">업체별 모집</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="page9">Q&A</a>
+        <ul>
+          <li><a href="page40">등록</a></li>
+          <li><a href="page10">내역확인</a></li>
+        </ul>
+      </li>
+    </ul>
+    <button @click="logout" style="float: right">로그아웃</button>
+  </div>
 
-<!--공고상세 내용--> 
-
-  <header class="head">
-      
-      <div class="menu1" style="border-bottom: 1px solid" >
-          <img src="#" style="float:left">
-            <ul>
-              <li><a href="#">공고 </a></li>
-              <li><a href="#">업체</a></li>
-              <li><a href="#">통계</a></li>              
-              <li><a href="#">Q&A</a></li>  
-              <button style="float:right">로그아웃</button>     
-            </ul>
-          
-        </div>
-  </header> 
-
-  <section>
+     <section>
 
      
-          <h3>공고상세페이지</h3>
-   
+            <h3 id="first_name">공고상세페이지</h3>
    <div id="first">
             <div>
               기업명1<input type="text"><br>
@@ -42,7 +58,7 @@
             </div>
 
       
-    </div>
+    </div>    
           
     <br><br>
         <div id="second">
@@ -62,76 +78,80 @@
           </div>
 
         </div>  
+  </section>
 
 
-
-
-
-  </section> 
-
-
-
-
-
-
-<footer style="border-top: 1px solid">
-
-ㅇ
-ㅇ
-ㅇ
-ㅇ
-ㅇ
-ㅇ
-ㅇ
-ㅇ
-
-ㅇ
-ㄴ
-내용아직안넣음
-
-
-</footer>
-
+  <footer id="ft" style="border-top: 1px solid">
+    <h3>여기 푸터야</h3>
+  </footer>
 </template>
 
 <script>
-
 export default {
-  name: 'App'
+  name: 'App',
+
+
+methods: {
+  
+logout(){
+  location.href="page50";
+  }
 }
+};
+
+
 </script>
 
 <style>
-
 * {
   margin: 0;
   padding: 0;
+}
+#menu a {
+  text-decoration: none;
+  color: white;
+}
+#menu {
+  font: bold 16px "malgun gothic";
+  width: 100%;
+  height: 50px;
+  background: black;
+  color: black;
+  line-height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  padding: auto;
+  border-bottom: 1px solid;
+}
+#menu > ul {
   list-style: none;
+  display: inline-block;
   text-align: center;
 }
 
-
-
-
-
-html{
-width: "100%"; 
-border: 1px solid #444444;
-  
+#menu > ul > li {
+  float: left;
+  width: 140px;
+  position: relative;
+}
+#menu > ul > li > ul {
+  width: 130px;
+  display: none;
+  position: absolute;
+  font-size: 14px;
+  background: skyblue;
+  list-style: none;
+}
+#menu > ul > li:hover > ul {
+  display: block;
+}
+#menu > ul > li > ul > li:hover {
+  background: orange;
+  transition: ease 1s;
 }
 
-
-
-
-.head ul{
-list-style:none;
-text-align: center;
-padding: 10px 0px
-}
-
-.head ul li{
-  display: inline;
-  padding: 0px 10px 0px 10px;
+#first_name {
+  text-align: center;
 }
 
 
@@ -145,9 +165,17 @@ padding: 10px 0px
   justify-content: center;
 }
 
+a {
+  text-decoration: none;
+}
 
+#ft {
+  text-align: center;
+  border-bottom: 1px solid black;
+  background: black;
+}
 
-
-
+#ft > h3 {
+  color: azure;
+}
 </style>
-

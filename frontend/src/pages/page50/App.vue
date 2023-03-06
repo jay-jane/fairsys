@@ -1,29 +1,16 @@
 
+<!-- Q&A 페이지 -->
+
 <template>
+ <div id="menu">
+    <img src="#" alt="">
+</div>
 
-<!--관리자 로그인-->
-
-  <header>
-  <div class="menu1" style="border-bottom: 1px solid">    
-    <img src="#">
-
-  </div>
-  </header> 
+  <section id="section">
+    <h3 id="first_name">관리자 로그인</h3>
 
 
-
-   <section>
-    <!-- <div>
-      아아디:   <input type="text">  <br>
-      비밀번호: <input type="password"> <br>
-      <button type="submit">로그인</button>  <br>
-
-      <div class="ad">
-        <img src="#">
-      </div>
-    </div> --> 
-
-     <form>
+	<form>
         <div class="login_info">
             아이디<input type="email" placeholder="Email Address"><br>
             
@@ -32,62 +19,83 @@
         </div>
         <button>로그인</button><br>
 
-
-
         <div class="ad">
         <img src="#">
         </div>
     </form>
 
+  </section>
 
-
-
-
-
-  </section> 
-
-
-<footer style="border-top: 1px solid">
-
-
-내용아직안넣음
-
-
-</footer>
-
-
-
-
+  <footer id="ft" style="border-top: 1px solid">
+    <h3>여기 푸터야</h3>
+  </footer>
 </template>
 
 <script>
 
 export default {
-  name: 'App'
-}
+  name: "App",
+
+
+};
 </script>
 
 <style>
-
-html{
-width: "100%"; 
-border: 1px solid #444444;
-  
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+#menu {
+  font: bold 16px "malgun gothic";
+  width: 100%;
+  height: 50px;
+  background: black;
+  color: black;
+  line-height: 50px;
+  margin: 0 auto;
+  text-align: center;
+  padding: auto;
+  border-bottom: 1px solid;
 }
 
-.menu1{
+
+#first_name {
   text-align: center;
 }
+
+#first{
+  display: flex;
+  justify-content: center;
+}
+
+#second{
+  display: flex;
+  justify-content: center;
+}
+
+
 
 .ad{
    text-align: center;
 }
 
 form{
-            
+         
        text-align: center;  
-       
-       
-           
+        
+}
+
+#ft {
+  text-align: center;
+  border-bottom: 1px solid black;
+  background: black;
+}
+
+#ft > h3 {
+  color: azure;
 }
 </style>

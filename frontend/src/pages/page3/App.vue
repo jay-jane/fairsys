@@ -1,28 +1,33 @@
 
 <template>
+ <div id="menu">
+  <img src="#" style="float:left" >
+	<ul>
+		<li><a href="#">등록</a></li>
 
+		<li><a href="#">관리</a>
+			<ul>
+				<li><a href="page4">공고</a></li>
+				<li><a href="page51">지원자</a></li>	
+			</ul>
+		</li>
+		<li><a href="#">마이페이지</a></li>
+		
+	</ul>
+  <button @click="logout" style="float:right">로그아웃</button>
+</div>
 
-<!--업체페이지-->
-  <header>
+<section id="section">
+<h3 id="first_name">업체페이지</h3>
+
       
-    <div class="menu1" style="border-bottom: 1px solid">
-          <img src="#" style="float:left">
-            <ul>
-              <li><a href="#">등록</a></li>
-              <li><a href="#">공고/지원자관리</a></li>              
-              <li><a href="#">마이페이지</a></li> 
-              <button style="float:right">로그아웃</button>       
-            </ul>
-        
-      </div>
-  </header> 
-    <section>
 
-      
+
+           
         <table border="1" width="500">
         <tr>
-            <td>번호</td>
-            <td>회사명</td>
+            <td id="fj">번호</td>
+            <td id="fj">회사명</td>
  
         </tr>
         <tr>
@@ -36,72 +41,137 @@
         </tr>
     </table>
  
-  </section> 
+</section> 
 
 
 
 
 
 
-<footer style="border-top: 1px solid">
+<footer  id="ft" style="border-top: 1px solid">
 
-
-내용아직안넣음
-
-
+<h3>여기 푸터야 </h3>
 
 
 
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </template>
 
 <script>
-
 export default {
-  name: 'App'
+  name: 'App',
+
+
+methods: {
+  
+logout(){
+  location.href="page50";
+  }
 }
+};
+
 </script>
-
 <style>
+* {
+		margin: 0;
+		padding: 0;
+	}
+	a {
+		text-decoration: none;
+		color:white;
+	}
+	#menu {
+		font:bold 16px "malgun gothic";
+		width:100%;
+		height:50px;
+		background: black;
+		color:black;
+		line-height: 50px; 
+		margin:0 auto;
+		text-align: center;
+		padding: auto;
+		border-bottom: 1px solid;
+		
+	}
+	#menu > ul {
+	list-style:none;
+	display:inline-block;
+	text-align: center;
+	}
 
-html{
-width: "100%"; 
-border: 1px solid #444444;
+  #fj {
+    background: wheat;
+  }
+
+	#menu > ul > li {
+		float:left;
+		width:140px;
+		position:relative;
+	}
+	#menu > ul > li > ul {
+		width:130px;
+		display:none;
+		position: absolute;
+		font-size:14px;
+		background: skyblue;
+		list-style:none;
+	}
+	#menu > ul > li:hover > ul {
+		display:block;
+		
+	}
+	#menu > ul > li > ul > li:hover {
+		background: orange;
+		transition: ease 1s;
+		}
+
+
+#section{
+  margin-top: 10px;
+}
+
+#first_name{
+  text-align: center;
+}
+
+table {
+  margin-left:auto; 
+  margin-right:auto;
+  border: 1px #444444 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 50%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  margin-top: 10px;
+
   
 }
 
+ td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+ td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
 
-  ul{
-list-style:none;
+
+#ft {
+
 text-align: center;
-padding: 10px 0px
+border-bottom: 1px solid black;
+background: black;
+
 }
 
-ul li{
-  display: inline;
-  padding: 0px 10px 0px 10px;
+#ft >h3 {
+	color:azure;
 }
+
+
 
 
 
@@ -109,4 +179,3 @@ ul li{
 
 
 </style>
-
