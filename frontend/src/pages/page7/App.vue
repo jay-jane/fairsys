@@ -178,7 +178,8 @@ header {
 }
 
 form {
-  margin: 20px;
+  max-width: 500px;
+  margin: auto;
 }
 
 #field_name {

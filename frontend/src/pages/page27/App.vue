@@ -67,6 +67,44 @@
                 </dl>
               </div>
             </li>
+            <li>
+              <a href="#" class="logo"><img src="#" alt="로고"></a>
+              <div class="company_info">
+                <strong class="title">회사명</strong>
+                <a href="#" class="mark">채용중</a>
+                <dl class="info_item">
+                  <dt>정보1</dt>
+                  <dd>내용1</dd>
+                </dl>
+                <dl class="info_item">
+                  <dt>정보2</dt>
+                  <dd>내용2</dd>
+                </dl>
+                <dl class="info_item">
+                  <dt>정보3</dt>
+                  <dd>내용3</dd>
+                </dl>
+              </div>
+            </li>
+            <li>
+              <a href="#" class="logo"><img src="#" alt="로고"></a>
+              <div class="company_info">
+                <strong class="title">회사명</strong>
+                <a href="#" class="mark">채용중</a>
+                <dl class="info_item">
+                  <dt>정보1</dt>
+                  <dd>내용1</dd>
+                </dl>
+                <dl class="info_item">
+                  <dt>정보2</dt>
+                  <dd>내용2</dd>
+                </dl>
+                <dl class="info_item">
+                  <dt>정보3</dt>
+                  <dd>내용3</dd>
+                </dl>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
