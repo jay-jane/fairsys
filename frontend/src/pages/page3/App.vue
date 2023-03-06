@@ -1,65 +1,110 @@
 
+<!-- Q&A 페이지 -->
+
 <template>
- <div id="menu">
-  <img src="#" style="float:left" >
-	<ul>
-		<li><a href="#">등록</a></li>
+ 
+  <div class="admin_top">
+    <div class="admin_logo">
+      <a href="#">홈으로</a>
+    </div>
+    <div class="admin_account">
+      <span>관리자님 환영합니다!</span>
+      <button @click="doLogout">로그아웃</button>
+    </div>
+  </div>
 
-		<li><a href="#">관리</a>
-			<ul>
-				<li><a href="page4">공고</a></li>
-				<li><a href="page51">지원자</a></li>	
-			</ul>
-		</li>
-		<li><a href="#">마이페이지</a></li>
-		
-	</ul>
-  <button @click="logout" style="float:right">로그아웃</button>
-</div>
+  <div class="admin_nav">
+    <ul>
+      <li class="sub_menu_toggle">
+        <a class="sub menu select">기업</a>
+        <ul class="sub_menu" style="display: block;">
+          <li><a href="#">기업 목록</a></li>
+          <li><a href="#">기업 신청 관리</a></li>
+        </ul>
+      </li>
 
-<section id="section">
-<h3 id="first_name">업체페이지</h3>
+      <li class="sub_menu_toggle">
+        <a href="#">유저</a>
+        <ul class="sub_menu">
+          <li><a href="#">유저 목록</a></li>
+          <li><a href="#">유저 관리</a></li>
+        </ul>
+      </li>
 
-      
+      <li class="sub_menu_toggle">
+        <a href="#">통계</a>
+        <ul class="sub_menu">
+          <li><a href="#">기업 통계</a></li>
+          <li><a href="#">유저 통계</a></li>
+        </ul>
+      </li>
 
+      <li class="sub_menu_toggle">
+        <a href="#">Q&A</a>
+        <ul class="sub_menu">
+          <li><a href="#">Q&A 등록</a></li>
+          <li><a href="#">Q$A 관리</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
-           
-        <table border="1" width="500">
+  <section>
+    <div class="bg">
+      <h3 class="first_name">기업페이지</h3>    
+        <table border="1" width="500" class="t_b">
         <tr>
             <td id="fj">번호</td>
             <td id="fj">회사명</td>
  
         </tr>
         <tr>
-            <td>ㅌㅌㅌㅌ</td>
-            <td>ㅌㅌㅌ</td>
+            <td>1</td>
+            <td>{{company[0]}}</td>
   
         </tr>
         <tr>
-            <td>ㅌㅌㅌㅌ</td>
-            <td>ㅌㅌㅌㅌ</td>  
+            <td>2</td>
+            <td>{{company[1]}}</td>  
         </tr>
+        <tr>
+            <td>2</td>
+            <td>{{company[1]}}</td>  
+        </tr>
+ <tr>
+            <td>2</td>
+            <td>{{company[1]}}</td>  
+        </tr>
+
+ <tr>
+            <td>2</td>
+            <td>{{company[1]}}</td>  
+        </tr>
+
     </table>
- 
+    </div>
 </section> 
+ 
 
-
-
-
-
-
-<footer  id="ft" style="border-top: 1px solid">
-
-<h3>여기 푸터야 </h3>
-
-
-
-</footer>
+  <footer id="ft" style="border-top: 1px solid">
+    <h3>여기 푸터야</h3>
+  </footer>
 </template>
 
 <script>
 export default {
   name: 'App',
+
+data(){
+
+return{
+
+	
+	company :['삼성', '현대','대우']
+
+}
+},
+
 
 
 methods: {
@@ -70,112 +115,86 @@ logout(){
 }
 };
 
-</script>
-<style>
-* {
-		margin: 0;
-		padding: 0;
-	}
-	a {
-		text-decoration: none;
-		color:white;
-	}
-	#menu {
-		font:bold 16px "malgun gothic";
-		width:100%;
-		height:50px;
-		background: black;
-		color:black;
-		line-height: 50px; 
-		margin:0 auto;
-		text-align: center;
-		padding: auto;
-		border-bottom: 1px solid;
-		
-	}
-	#menu > ul {
-	list-style:none;
-	display:inline-block;
-	text-align: center;
-	}
 
-  #fj {
-    background: wheat;
+</script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
+* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
+
+.admin_top {
+  background-color: #263238;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin_top a {
+  color: orange;
+  text-decoration: none;
+}
+
+.admin_logo {
+  margin-left: 20px;
+}
+
+.admin_account {
+  margin-right: 20px;
+}
+
+.admin_account span{
+  color: white;
+  margin-right: 20px;
+}
+
+.admin_nav {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  background-color: #263238;
+}
+
+  .admin_nav li{
+    margin-top: 20px;
+    list-style: none;
   }
 
-	#menu > ul > li {
-		float:left;
-		width:140px;
-		position:relative;
-	}
-	#menu > ul > li > ul {
-		width:130px;
-		display:none;
-		position: absolute;
-		font-size:14px;
-		background: skyblue;
-		list-style:none;
-	}
-	#menu > ul > li:hover > ul {
-		display:block;
-		
-	}
-	#menu > ul > li > ul > li:hover {
-		background: orange;
-		transition: ease 1s;
-		}
+  .admin_nav li a {
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 15px;
+      color: orange;
+      display: block;
+      width: 200px;
+      font-weight: 600;
+  }
 
-
-#section{
-  margin-top: 10px;
-}
-
-#first_name{
-  text-align: center;
-}
-
-table {
-  margin-left:auto; 
-  margin-right:auto;
-  border: 1px #444444 solid;
-  font-size: .9em;
-  box-shadow: 0 2px 5px rgba(0,0,0,.25);
-  width: 50%;
-  border-collapse: collapse;
-  border-radius: 5px;
-  margin-top: 10px;
-
+  .admin_nav .sub_menu {margin-left: 25px;}
+  .admin_nav .sub_menu li a {color: #fff; display: block; width: 155px; padding: 8px 10px 8px 10px; }
+  .admin_nav .sub_menu li a:hover { background-color: orange;}
+  .admin_nav .sub_menu li a.on {background-color: orange;}  
   
-}
+ 
 
- td, th {
-  padding: 1em .5em;
-  vertical-align: middle;
-}
+  .t_b{
+    
+    width: 50%;
+    margin:auto;
+    padding: auto;
+    text-align: center;
+  }
   
- td {
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  background: #fff;
-}
+  .first_name {
+    text-align: center;
+  }
 
 
-#ft {
-
-text-align: center;
-border-bottom: 1px solid black;
-background: black;
-
-}
-
-#ft >h3 {
-	color:azure;
-}
-
-
-
-
-
-
-
+  .bg{
+    padding: 200px;
+  }
 
 </style>
