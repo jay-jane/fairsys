@@ -77,7 +77,8 @@ export default {
 
 #section_menu{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  flex: auto;
 
 }
 

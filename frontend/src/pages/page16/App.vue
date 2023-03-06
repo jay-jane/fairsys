@@ -21,7 +21,7 @@
 
   </header>
 
-  
+
   <h3 id="first_title">채용정보</h3>
   <section id="section">
     <article id="article_top">
@@ -42,32 +42,46 @@
         <div id="bottom_left">
           <h4>지원자격</h4>
           <div id="qualify">
-            <span id="q_left">경력</span>  <span id="q_right">경력</span><br>
-            <span id="q_left">학력</span>  <span id="q_right">대졸이상</span>
+            <span id="q_left">경력</span> <span id="q_right">경력</span><br>
           </div>
-        
+          <div id="qualify">
+            <span id="q_left">학력</span> <span id="q_right">대졸이상</span>
+          </div>
+
         </div>
         <div id="bottom_left">
           <h4>근무조건</h4>
           <div id="qualify">
-            <span id="q_left">고용형태</span>  <span id="q_right">정규직</span><br>
-            <span id="q_left">급여</span>  <span id="q_right">회사 내규에 따름</span><br>
-            <span id="q_left">지역</span>  <span id="q_right">서울시 종로구</span>
+            <span id="q_left">고용형태</span> <span id="q_right">정규직</span><br>
           </div>
-        
+          <div id="qualify">
+            <span id="q_left">급여</span> <span id="q_right">회사 내규에 따름</span><br>
+          </div>
+          <div id="qualify">
+            <span id="q_left">지역</span> <span id="q_right">서울시 종로구</span>
+          </div>
+
         </div>
         <div id="bottom_left">
           <h4>기업정보</h4>
           <div id="qualify">
-            <span id="q_left">산업(업종)</span>  <span id="q_right">건설,시공,토목,조경</span><br>
-            <span id="q_left">사원수</span>  <span id="q_right">6,583명</span><br>
-            <span id="q_left">설립년도</span>  <span id="q_right">1969년(55년차)</span><br>
-            <span id="q_left">기업형태</span>  <span id="q_right">대기업(주권(유가증권)상장)</span><br>
-            <span id="q_left">홈페이지</span>  <span id="q_right">qsenc.com</span>
+            <span id="q_left">산업(업종)</span> <span id="q_right">건설,시공,토목,조경</span><br>
           </div>
-        
+          <div id="qualify">
+            <span id="q_left">사원수</span> <span id="q_right">6,583명</span><br>
+          </div>
+          <div id="qualify">
+            <span id="q_left">설립년도</span> <span id="q_right">1969년(55년차)</span><br>
+          </div>
+          <div id="qualify">
+            <span id="q_left">기업형태</span> <span id="q_right">대기업(주권(유가증권)상장)</span><br>
+          </div>
+          <div id="qualify">
+            <span id="q_left">홈페이지</span> <span id="q_right">qsenc.com</span>
+          </div>
+
         </div>
-       
+
       </div>
       <hr>
     </article>
@@ -76,12 +90,12 @@
 
       <div id="section_bottom">
         <h3>상세요강</h3>
-        
+
       </div>
     </article>
-      
 
- 
+
+
   </section>
 
   <!-- 여기는 하단바 -->
@@ -106,43 +120,44 @@ export default {
   text-align: center;
 }
 
-#header {}
+
 
 #menu li {
   display: inline;
   padding-left: 20px;
 }
 
-#first_title{
+#first_title {
   padding-top: 20px;
 }
 
-#article_top{
+#article_top {
   padding-top: 40px;
 }
 
 
-#top_top{
+#top_top {
   display: flex;
-  
+
 }
 
 
-#company_name{
+#company_name {
   padding-left: 120px;
 }
-#company_logo{
+
+#company_logo {
   margin-left: auto;
   padding-right: 120px;
 }
 
 
 
-#top_bottom{
+#top_bottom {
   display: flex;
 }
 
-#company_title{
+#company_title {
   margin-top: auto;
   padding-left: 120px;
 
@@ -151,23 +166,36 @@ export default {
 
 
 
-#bottom{
+#bottom {
   display: flex;
   justify-content: space-around;
   padding-top: 30px;
 }
 
-#q_left{
+#qualify {
+  text-align: left;
+  display: flex;
+}
+
+#q_left {
   color: gray;
-  padding-right: 20px;
+  padding-right: 40px;
+  flex: auto;
+  text-align: left;
+  box-sizing: border-box;
 }
 
 
-#q_right{
+#q_right {
   color: blue;
+  flex: auto;
+  text-align: right;
+  box-sizing: border-box;
+
+
 }
 
-#article_bottom{
+#article_bottom {
   padding-top: 40px;
 
 }
