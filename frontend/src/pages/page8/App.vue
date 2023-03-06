@@ -23,7 +23,11 @@
         담당자 성함 <input type="text"><br>
       </div>
       <div id="">
-        휴대폰 번호 <input type="text"><br>
+        휴대폰 번호
+        <div class="tel_number_input">
+          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
+            id="tel_number_3">
+        </div>
       </div>
       <div id="">
         이메일 주소 <input type="text"><br>
@@ -32,7 +36,18 @@
         업종 <input type="text"><br>
       </div>
       <div id="">
-        대표 근무지역 <div class="kakaoAPI">카카오맵api</div> <br>
+        모집부서 <input type="text"><br>
+      </div>
+      <div id="">
+        대표 근무지역 <div class="kakaoAPI">(카카오맵api)</div> <br>
+      </div>
+      <div id="">
+        경력 여부
+        <div style="display: inline-block;">
+          <input type="radio" name="career_type">신입
+          <input type="radio" name="career_type">경력
+          <input type="radio" name="career_type">경력무관
+        </div>
       </div>
       <div id="">
         연봉/급여 <input type="text"><br>
@@ -46,15 +61,34 @@
         </div>
       </div>
       <div id="">
-        상세 내용 <textarea id="" cols="30" rows="3"></textarea>
+        상세 내용
+        <div>
+          (에디터api)
+        </div>
       </div>
       <div id="">
         전형 절차
-        <div style="display: inline-block;">
-          <input type="radio" id="process" value="서류전형" checked>서류전형
-          <input type="radio" id="process" value="1차면접">1차면접
-          <input type="radio" id="process" value="2차면접">2차면접
-          <input type="radio" id="process" value="최종합격" checked>최종합격
+        <div id="">
+          <div id="process_wrap">
+            <input type="text" id="process" value="서류전형" readonly>
+          </div>
+          <div id="process_wrap">
+            <input type="text" id="process" value="1차면접" readonly>
+            <img class="deleteBtn" @click="deleteItem" src="https://picsum.photos/20/20" alt="삭제">
+          </div>
+          <div id="process_wrap">
+            <input type="text" id="process" value="2차면접" readonly>
+            <img class="deleteBtn" @click="deleteItem" src="https://picsum.photos/20/20" alt="삭제">
+          </div>
+          <div id="process_wrap">
+            <input type="text" id="process" value="최종합격" readonly>
+          </div>
+        </div>
+      </div>
+      <div id="endDate_wrap">
+        마감일자
+        <div>
+          (달력api)
         </div>
       </div>
       <div class="buttons">
@@ -74,6 +108,11 @@
 <script>
 export default {
   name: 'App',
+  methods: {
+    deleteItem: () => {
+      alert('삭제 이벤트');
+    }
+  }
 }
 </script>
 
@@ -100,8 +139,7 @@ form {
   margin: auto;
 }
 
-input[type="text"],
-textarea {
+input[type="text"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -116,7 +154,10 @@ input[type="radio"] {
   margin-right: 10px;
 }
 
-.buttons {margin-top: 10px; text-align: center;}
+.buttons {
+  margin-top: 10px;
+  text-align: center;
+}
 
 input[type="submit"],
 input[type="reset"] {
@@ -143,8 +184,25 @@ input[type="reset"]:hover {
   cursor: pointer;
   margin-right: 10px;
 }
+
 .buttons a:hover {
   background-color: #555;
+}
+
+.tel_number_input>input {
+  width: 50px;
+}
+
+#process_wrap {
+  position: relative;
+}
+#process_wrap .deleteBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+#process_wrap .deleteBtn:hover {
+  cursor: pointer;
 }
 
 footer {
@@ -152,6 +210,5 @@ footer {
   color: #fff;
   padding: 10px;
   margin-top: 50px;
-}
-</style>
+}</style>
 
