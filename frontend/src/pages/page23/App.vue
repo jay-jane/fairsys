@@ -51,7 +51,7 @@
           <div id="qualify">
             <span id="q_left">산업(업종)</span> <span id="q_right">건설,시공,토목,조경</span><br>
             <span id="q_left">설립년도</span> <span id="q_right">1969년(55년차)</span><br>
-            <span id="q_left">기업형태</span> <span id="q_right">대기업(주권(유가증권)상장)</span><br>
+            <span id="q_left">주소</span> <span id="q_right">기업주소</span><br>
             <span id="q_left">홈페이지</span> <span id="q_right">qsenc.com</span>
           </div>
         </div>
@@ -87,8 +87,8 @@
 
     <div id="button_wrap" style="margin-top: 20px;">
       <a href="#">입사지원</a><br>
-      <a href="#">수정/삭제</a><br>
-      <a href="#">목록</a>
+      <a href="page8">수정/삭제</a><br>
+      <a href="page26">목록</a>
     </div>
   </section>
 

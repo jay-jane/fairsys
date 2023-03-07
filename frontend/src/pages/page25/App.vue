@@ -29,6 +29,9 @@
     <button class="btn_qna" @click="getMessageBox">받은 쪽지함</button>
     <button class="btn_inquiry" @click="sendMessageBox">보낸 쪽지함</button>
   </div>
+  <div class="btn_send_wrap">
+    <button class="btn_send" @click="sendMessage">쪽지 쓰기</button>
+  </div>
 
   <div class="main">
     <div class="container">
@@ -85,6 +88,9 @@ export default {
     },
     sendMessageBox() {
       location.href = "page25";
+    },
+    sendMessage() {
+      location.href = "page22";
     },
     gologin() {
       location.href = "page2";
@@ -192,7 +198,6 @@ export default {
   display: flex;
   justify-content: center;
   height: 600px;
-  margin-top: 50px;
   margin-bottom: 50px;
 }
 
@@ -248,6 +253,14 @@ table caption {
   cursor: pointer;
   background-color: orange;
 }
+.btn_send_wrap {
+  text-align: left;
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 1200px;
+  cursor: pointer;
+}
+.btn_send_wrap button:hover {cursor: pointer;}
 
 .btn_qna {
   width: 200px;
@@ -261,7 +274,6 @@ table caption {
   font-weight: 400;
   font-family: 'Noto Sans KR', sans-serif;
 }
-
 .btn_inquiry {
   width: 200px;
   height: 70px;
@@ -272,6 +284,17 @@ table caption {
   color: white;
   font-size: 24px;
   font-weight: 600;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.btn_send {
+  width: 70px;
+  height: 30px;
+  line-height: 30px;
+  background-color: orange;
+  border: none;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
   font-family: 'Noto Sans KR', sans-serif;
 }
 

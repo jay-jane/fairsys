@@ -103,7 +103,7 @@
         </div>
       </div>
       <div id="field">
-        전형 절차
+        <label class="field_name">전형 절차</label>
         <div id="">
           <div id="process_wrap">
             <input type="text" id="process" value="서류전형" readonly>
@@ -127,7 +127,7 @@
       </div>
       <div>
         <input type="submit" value="등록">
-        <input type="reset" value="취소">
+        <input type="button" value="취소" @click="goMain">
       </div>
     </form>
   </section>
@@ -147,10 +147,13 @@ export default {
   name: 'App',
   components: {
     Tiptap,
-    MenuBar
+    MenuBar,
+  },
+  methods: {
+    goMain: () => {
+      location.href="page35";
+    }
   }
-
-
 }
 </script>
 
@@ -166,8 +169,6 @@ export default {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
-/* 폼 요소들의 스타일링 */
-/* 전체 페이지 스타일링 */
 body {
   margin: 0;
   padding: 0;
@@ -242,6 +243,10 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #45a049;
+}
+
+#field {
+  margin-top: 10px;
 }
 
 #field #process_wrap {
