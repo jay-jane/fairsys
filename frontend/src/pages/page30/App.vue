@@ -7,7 +7,7 @@
     <div class="login-form">
       <div class="sign-in-htm">
         <div class="group">
-          <label for="user" class="label">Username</label>
+          <label for="user" class="label">ID</label>
           <input id="user" type="text" class="input">
         </div>
         <div class="group">
@@ -21,21 +21,30 @@
         <div class="group">
           <input type="submit" class="button" value="Sign In">
         </div>
-        <a href="#forgot">아이디찾기 </a><br>
-        <a href="#forgot">비밀번호찾기</a>
+        <a href="page33">아이디찾기 </a><br>
+        <a href="page33">비밀번호찾기</a>
         <br>
         <a href="page11">Sign up</a>
         <div class="hr"></div>
         <div class="sns">소셜 계정으로 간편 로그인</div>
+       
+        <div class="simple_login_box">
+                    <div class="simple_login_btn">
+                        <div class="login_icon">
+                            <a href="#" class="kakao_login"><img src="" alt="카카오로그인"></a>
+                            <a href="#" class="naver_login"><img src="" alt="네이버로그인"></a>
+                        </div>
+                    </div>
+                </div>
       </div>
       <div class="sign-up-htm">
         <div class="group">
-          <label for="user" class="label">Username</label>
-          <input id="user" type="text" class="input">
+          <label for="com_id" class="label">ID</label>
+          <input id="com_id" type="text" class="input">
         </div>
         <div class="group">
-          <label for="pass" class="label">Password</label>
-          <input id="pass" type="password" class="input" data-type="password">
+          <label for="com_pass" class="label">Password</label>
+          <input id="com_pass" type="password" class="input" data-type="password">
         </div>
         <div class="group">
           <input id="check1" type="checkbox" class="check" checked>
@@ -44,13 +53,22 @@
         <div class="group">
           <input type="submit" class="button" value="Sign in">
         </div>
-        <a href="#forgot">아이디찾기 </a><br>
-        <a href="#forgot">비밀번호찾기</a>
+        <a href="page33">아이디찾기 </a><br>
+        <a href="page33">비밀번호찾기</a>
 
         <br>
         <a href="page5">Sign up</a>
         <div class="hr"></div>
         <div class="sns">소셜 계정으로 간편 로그인</div>
+
+        <div class="simple_login_box">
+                    <div class="simple_login_btn">
+                        <div class="login_icon">
+                            <a href="#" class="kakao_login"><img src="" alt="카카오로그인"></a>
+                            <a href="#" class="naver_login"><img src="" alt="네이버로그인"></a>
+                        </div>
+                    </div>
+                </div>
       
      
         
@@ -227,11 +245,43 @@ a{color:inherit;text-decoration:none}
 }
 .sns{
   height:2px;
-  margin:60px 0 50px 0;
+  margin:-30px 0 50px 0;
   color: white
 }
 .foot-lnk{
   text-align:center;
+}
+
+.simple_login_box{
+    margin-top: 30px;
+}
+.simple_login_btn > h3{
+    color: #1F2124;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.simple_login_btn .login_icon{
+    display: inline;
+    margin: 0 auto;
+   
+}
+.login_icon > a > img{
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    border-radius: 50%;
+}
+.login_icon > a > img:hover{
+    opacity: 0.7;
+    transition: 0.2s ease-in-out;
+}
+
+.login_icon .kakao_login{
+    margin-right: 30px;
+}
+
+.login_icon .naver_login{
+    margin-right: 30px;
 }
 </style>
 

@@ -46,6 +46,7 @@
 
 
     <button type="submit" @click="page30">가입하기</button>
+    <button class="view" @click="btn_view">목록누르면 메인으로</button>
   </section>
     <h4>푸터</h4>
   </form>
@@ -69,6 +70,9 @@ export default {
       com_email:'',
     };
   }, methods: {
+    btn_view() {
+      location.href = "";
+    },
     execDaumPostcode() {
       new window.daum.Postcode({
         oncomplete: (data) => {
