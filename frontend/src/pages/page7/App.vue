@@ -52,9 +52,10 @@
       </div>
       <div id="field">
         <label class="field_name">모집 분야</label>
-        <div id="">
-          <input type="text">
-          <input type="text" style="width: 40px; margin-left: 5px;"> 명 모집
+        <div id="recruit_type">
+          <input type="text" class="recruit_type_input">
+          <input type="text" style="width: 40px; margin-left: 5px;">
+          <span>명 모집</span>
         </div>
       </div>
       <div id="field">
@@ -71,11 +72,19 @@
       </div>
       <div id="field">
         <label class="field_name">연봉/급여</label>
-        <div>
-          <select>
-            <option value="">연봉</option>
-            <option value="">월급</option>
+        <div id="sal_wrap">
+          <select id="sal_type">
+            <option value="sal_y">연봉</option>
+            <option value="sal_m">월급</option>
           </select>
+          <select id="sal_y">
+            <option value="sal_y">2,200 ~ 2,800</option>
+            <option value="sal_y">2,800 ~ 3,200</option>
+            <option value="sal_y">3,200 ~ 3,600</option>
+            <option value="sal_y">3,600 ~ 4,000</option>
+          </select>
+          <input type="hidden" class="sal_m">
+          <button type="button" class="sal_m" style="display: hidden">입력</button>
         </div>
       </div>
       <div id="field">
@@ -88,8 +97,9 @@
       </div>
       <div id="field">
         <label class="field_name">상세 내용</label>
-        <div id="app">
-          (에디터api)
+        <div id="tiptapAPI">
+          <MenuBar />
+          <tiptap />
         </div>
       </div>
       <div id="field">
@@ -130,16 +140,30 @@
 
 <script>
 
+import Tiptap from '../../components/TipTap.vue'
+import MenuBar from '../../components/MenuBar.vue'
+
 export default {
   name: 'App',
+  components: {
+    Tiptap,
+    MenuBar
+  }
+
 
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
 * {
+  padding: 0;
+  margin: 0;
   list-style: none;
+  text-decoration: none;
   box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
 /* 폼 요소들의 스타일링 */
@@ -232,6 +256,36 @@ button[type="submit"]:hover {
 
 #process_wrap .deleteBtn:hover {
   cursor: pointer;
+}
+
+#recruit_type {
+  overflow: hidden;
+}
+
+#recruit_type input {
+  float: left;
+}
+
+#recruit_type .recruit_type_input {
+  width: 200px;
+}
+
+#recruit_type span {
+  line-height: 59px;
+}
+
+#sal_wrap input[type=text] {
+  width: 80%;
+  margin-right: 10px;
+}
+
+#process_wrap #process {
+  font-weight: bold;
+  color: orangered;
+}
+
+#tiptapAPI {
+  border: 1px solid #999;
 }
 
 /* 푸터 스타일링 */
