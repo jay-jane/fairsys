@@ -1,77 +1,221 @@
-
-<!-- Q&A 페이지 -->
-
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
+  <form>
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">아이디찾기</label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">비밀번호찾기</label>
+    <div class="login-form">
+      <div class="sign-in-htm">
+        <div class="group">
+          <label for="user" class="label">Username</label>
+          <input id="user" type="text" class="input">
+        </div>
+        <div class="group">
+          <label for="pass" class="label">phone_num</label>
+          <input id="pass" type="password" class="input" data-type="password">
+        </div>
 
+        <div class="group">
+          <input type="submit" class="button" value="아이디 찾기">
+        </div>
 
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
+      </div>
+      <div class="sign-up-htm">
+        <div class="group">
+          <label for="com_id" class="label">UserID</label>
+          <input id="com_id" type="text" class="input">
+        </div>
+        <div class="group">
+          <label for="com_pass" class="label">휴대폰인증</label>
+          <input id="com_pass" type="password" class="input" data-type="password">
+        </div>
+
+        <div class="group">
+          <input type="submit" class="button" value="비밀번호 찾기">
+        </div>
+      
+      
+     
+        
+      </div>
     </div>
-
-    <!-- 로그인버튼 -->
-
-  </header>
-
-
-  <section id="section">
-
-    <h3>page33</h3>
-
- 
-  </section>
-
-  <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
-
-  </footer>
+  </div>
+</div>
+</form>
 </template>
 
 <script>
-
-export default {
-  name: 'App'
+ export default {
+    name: "App",
+    data() {
+      return {
+        user: '',
+        pass: ''
+      }
+    },
+  methods: {
+    login() {
+      // 로그인 로직 구현
+    }
+  }
 }
-</script>
+  </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
+
+body{
+  margin:0;
+  color:#6a6f8c;
+  background:#c8c8c8;
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+.login-wrap{
+  width:100%;
+  margin:auto;
+  max-width:525px;
+  min-height:670px;
+  position:relative;
+
+}
+.login-html{
+  width:100%;
+  height:100%;
+  position:absolute;
+  padding:90px 70px 50px 70px;
+  background:rgba(40,57,101,.9);
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  position:absolute;
+  transform:rotateY(180deg);
+  backface-visibility:hidden;
+  transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+  display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+  text-transform:uppercase;
+}
+.login-html .tab{
+  font-size:22px;
+  margin-right:15px;
+  padding-bottom:5px;
+  margin:0 15px 10px 0;
+  display:inline-block;
+  border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+  color:#fff;
+  border-color:#1161ee;
+}
+.login-form{
+  min-height:345px;
+  position:relative;
+  perspective:1000px;
+  transform-style:preserve-3d;
+}
+.login-form .group{
+  margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button{
+  width:100%;
+  color:#fff;
+  display:block;
+}
+.login-form .group .input,
+.login-form .group .button{
+  border:none;
+  padding:15px 20px;
+  border-radius:25px;
+  background:rgba(255,255,255,.1);
+}
+.login-form .group input[data-type="password"]{
+  text-security:circle;
+  -webkit-text-security:circle;
+}
+.login-form .group .label{
+  color:#aaa;
+  font-size:12px;
+}
+.login-form .group .button{
+  background:#1161ee;
+}
+.login-form .group label .icon{
+  width:15px;
+  height:15px;
+  border-radius:2px;
+  position:relative;
+  display:inline-block;
+  background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+  content:'';
+  width:10px;
+  height:2px;
+  background:#fff;
+  position:absolute;
+  transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+  left:3px;
+  width:5px;
+  bottom:6px;
+  transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+  top:6px;
+  right:0;
+  transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+  color:#fff;
+}
+.login-form .group .check:checked + label .icon{
+  background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+  transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+  transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+  transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+  transform:rotate(0);
 }
 
-#header {}
-
-#menu li {
-  display: inline;
-  padding-left: 20px;
+.hr{
+  height:2px;
+  margin:60px 0 50px 0;
+  background:rgba(255,255,255,.2);
 }
-
-
-
-#section_menu {
-  display: flex;
-  justify-content: center;
+.sns{
+  height:2px;
+  margin:60px 0 50px 0;
+  color: white
 }
-
-tr{
-  display: flex;
-  justify-content: center;
-}
-
-#footer {
-  height: 200px;
+.foot-lnk{
+  text-align:center;
 }
 </style>
+
+

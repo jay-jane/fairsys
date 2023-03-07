@@ -2,7 +2,7 @@
 <template>
  
  <nav id="top">
-    <div id="logo"><a href="#">중앙정보 취업 박람회</a></div>
+    <div id="logo"><a href="page1">중앙정보 취업 박람회</a></div>
     <div id="menu"><a href="#" @mouseover="doDropmenu">채용정보</a></div>
     <div id="menu"><a href="#" @mouseover="doDropmenu">기업/연봉</a></div>
     <div id="menu"><a href="#" @mouseover="doDropmenu">마이페이지</a></div>
@@ -21,7 +21,8 @@
     </div>
     <div id="drop">
       <p><a href="#" class="drop_menu" >이력서관리</a></p>
-      <p><a href="#" class="drop_menu" >Q&A</a></p>
+      <p><a href="page9" class="drop_menu" >Q&A</a></p>
+      <p><a href="page21" class="drop_menu" >쪽지함</a></p>
     </div>
   </nav>
 
@@ -33,6 +34,7 @@
 
   <div class="main">
     <div class="container">
+      
       <table class="list">
         <thead class="head">
           <tr>
@@ -66,9 +68,9 @@
 
   <div id="bottom">
 
-    중앙정보처리 채용 박람회<br />
-    서울 강남구 테헤란로 7길 7(역삼동 에스코빌딩 6층) / 대표자:정현경<br />
-    TEL:02-561-1911 / FAX:02-538-2613
+    중앙정보 채용 박람회<br />
+    중앙정보 7층 704호 / 대표자:coding404<br />
+    TEL:02-1253-8253 / FAX:02-1253-8253
 
   </div>
 </template>
@@ -184,61 +186,8 @@ export default {
     background-color: black;
   }
 
-
-
-/* 콘텐츠화면 */
-.main {
-  display: flex;
-  justify-content: center;
-  height: 600px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.container {
-  border: 1px solid black;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-table {
-  border: 0;
-  padding: 0;
-  margin: 0;
-}
-
-table caption {
-  display: none;
-}
-
-.list {
-  display: table;
-  clear: both;
-  width: 1200px;
-  border-collapse: collapse;
-}
-
-.list th {
-  border-color: #333333;
-  background: #fcfcfc;
-  padding: 10px 0 10px 0;
-  text-align: center;
-  border-top-width: 2px;
-  border-bottom-width: 1px;
-  border-top-style: solid;
-  border-bottom-style: solid;
-  font-weight: 400;
-}
-
-.list .body td {
-  text-align: center;
-  padding: 5px 9px 5px 9px;
-  border-bottom-color: #eeeeee;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-}
-
-.btn-group {
+  /* 버튼 */
+  .btn-group {
   text-align: center;
   margin-top: 100px;
 }
@@ -267,6 +216,74 @@ table caption {
   font-size: 24px;
   font-weight: 400;
   font-family: 'Noto Sans KR', sans-serif;
+}
+
+
+/* Q&A 목록 화면 */
+.main {
+  display: flex;
+  justify-content: center;
+  height: 600px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.list {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.head {
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.head th {
+  padding: 1em;
+}
+
+.head th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.head th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.body tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.body td {
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.body td:first-child {
+  border-left: 1px solid #ddd;
+  border-bottom-left-radius: 10px;
+}
+
+.body td:last-child {
+  border-right: 1px solid #ddd;
+  border-bottom-right-radius: 10px;
+}
+
+.body td a {
+  color: #333;
+  text-decoration: none;
+}
+
+.body td a:hover {
+  text-decoration: underline;
 }
 
 /* footer 디자인 */
