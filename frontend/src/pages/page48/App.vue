@@ -1,77 +1,186 @@
 
-<!-- Q&A 페이지 -->
-
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
+  
+  <header>
 
+    <div class="admin_top">
+      <div class="admin_logo">
+        <a href="#">홈으로</a>
+      </div>
+      <div class="admin_account">
+        <span>관리자님 환영합니다!</span>
+        <button @click="doLogout">로그아웃</button>
+      </div>
+  </div>
 
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
+  <div class="admin_nav">
+    <ul>
+      <li class="sub_menu_toggle">
+        <a class="sub menu select">기업</a>
+        <ul class="sub_menu" style="display: block;">
+          <li><a href="#">기업 목록</a></li>
+          <li><a href="#">기업 신청 관리</a></li>
+        </ul>
+      </li>
 
-    <!-- 로그인버튼 -->
+      <li class="sub_menu_toggle">
+        <a href="#">유저</a>
+        <ul class="sub_menu">
+          <li><a href="#">유저 목록</a></li>
+          <li><a href="#">유저 관리</a></li>
+        </ul>
+      </li>
+
+      <li class="sub_menu_toggle">
+        <a href="#">통계</a>
+        <ul class="sub_menu">
+          <li><a href="#">기업 통계</a></li>
+          <li><a href="#">유저 통계</a></li>
+        </ul>
+      </li>
+
+      <li class="sub_menu_toggle">
+        <a href="#">Q&A</a>
+        <ul class="sub_menu">
+          <li><a href="page43">Q&A 등록</a></li>
+          <li><a href="#">Q&A 관리</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 
   </header>
 
-
-  <section id="section">
-
-    <h3>page48</h3>
-
- 
-  </section>
-
-  <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
-
-  </footer>
 </template>
 
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  methods:{
+    doLogout(){
+      location.href ="page2";
+    }
+  }
 }
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 
-#header {}
+* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
 
-#menu li {
-  display: inline;
-  padding-left: 20px;
-}
-
-
-
-#section_menu {
+.admin_top {
+  background-color: #263238;
+  height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
-tr{
-  display: flex;
-  justify-content: center;
+.admin_top a {
+  color: orange;
+  text-decoration: none;
 }
 
-#footer {
-  height: 200px;
+.admin_logo {
+  margin-left: 20px;
 }
+
+.admin_account {
+  margin-right: 20px;
+}
+
+.admin_account span{
+  color: white;
+  margin-right: 20px;
+}
+
+.admin_nav {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  background-color: #263238;
+}
+
+  .admin_nav li{
+    margin-top: 20px;
+    list-style: none;
+  }
+
+  .admin_nav li a {
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 15px;
+      color: orange;
+      display: block;
+      width: 200px;
+      font-weight: 600;
+  }
+
+  .admin_nav .sub_menu {margin-left: 25px;}
+  .admin_nav .sub_menu li a {color: #fff; display: block; width: 155px; padding: 8px 10px 8px 10px; }
+  .admin_nav .sub_menu li a:hover { background-color: orange;}
+  .admin_nav .sub_menu li a.on {background-color: orange;}  
+  
+  .content {
+  margin-left: 200px; /* admin_nav의 너비 + 20px 마진을 주어서 겹치지 않도록 함 */
+  height: 100%;
+  }
+
+  .content h1{
+    padding: 8px 20px;
+  }
+
+  .registration {
+  border-collapse: collapse;
+  width: 100%;
+  }
+
+  .registration td {
+    padding: 10px;
+    text-align: center;
+  }
+
+  .input-style {
+  width: 1000px;
+  height: 400px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  resize: none;
+  font-size: 16px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    background-color: orange;
+    color: #fff;
+    border: none;
+    margin-right: 10px;
+  }
+
+  .btn-primary:hover {
+    background-color: orangered;
+  }
+
+  .btn-secondary {
+    background-color: #f8f9fa;
+    color: #212529;
+    border: 1px solid #ccc;
+  }
+
+  .btn-secondary:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+  }
 </style>
