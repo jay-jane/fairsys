@@ -46,7 +46,9 @@
 
   <h3>자기소개서</h3>
   <textarea id="" cols="150" rows="10"></textarea>
+  <br/>
 
+  <button class="view" @click="btn_view">목록</button>
 
   </section>
 
@@ -56,6 +58,11 @@
 
 export default {
   name: 'App',
+  methods: {
+    btn_view() {
+      location.href = "page6";
+    }
+  },
   data() {
       return {
         userId: '',

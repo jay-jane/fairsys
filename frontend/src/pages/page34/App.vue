@@ -2,76 +2,119 @@
 <!-- Q&A 페이지 -->
 
 <template>
-  <!-- 여기는 상단바 -->
-  <header id="header">
+  <table>
+   <caption>채용공고 현황</caption>
+      
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>마감일</th>
+            <th>
+            <select name="" id="salary">
+            <option value="">전체</option>
+            <option value="">채용 전</option>
+            <option value="">진행중</option>
+            <option value="">채용마감</option>
+          </select>
+        </th>
+        <th>조회</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>2023-03-06</td>
+                <td>진행상황</td>
+                <td><input type="submit" value="목록조회" class="view"></td>
+            </tr>
 
+        </tbody>
+      </table>
+      <hr/>
 
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
+      <table>
+   <caption>지원자 관리 </caption>
+      
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>마감일</th>
+                <th>진행상태</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        </tbody>
+      </table>
 
-    <!-- 로그인버튼 -->
-
-  </header>
-
-
-  <section id="section">
-
-    <h3>page34</h3>
-
- 
-  </section>
-
-  <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
-
-  </footer>
+      
 </template>
 
 <script>
-
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    btn_view() {
+      location.href = "page32";
+    }
+  },
+ 
+  data() {
+      return {
+        userId: '',
+        passWd: ''
+      }
+  }
 }
+
 </script>
 
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-align: center;
+table {
+    width: 1500px;
+    text-align: center;
+    border: 1px solid #fff;
+    border-spacing: 1px;
+    font-family: 'Cairo', sans-serif;
+  margin: auto;
 }
 
-#header {}
+caption {
+    font-weight: bold;
+}
 
-#menu li {
-  display: inline;
-  padding-left: 20px;
+table td {
+    padding: 10px;
+    background-color: #eee;
+}
+
+table th {
+    background-color: #d1cece;
+    color: #000;
+    padding: 10px;
+  
 }
 
 
-
-#section_menu {
-  display: flex;
-  justify-content: center;
+.view, .delete {
+    border: none;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: bold;
 }
 
-tr{
-  display: flex;
-  justify-content: center;
+.view {
+    background-color: #000;
 }
 
-#footer {
-  height: 200px;
-}
+
 </style>
