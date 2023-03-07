@@ -162,7 +162,7 @@ export default {
   .admin_nav .sub_menu li a.on {background-color: orange;}  
   
   table {
-    width: 1500px;
+    width: 1150px;
     text-align: center;
     border: 1px solid #fff;
     border-spacing: 1px;

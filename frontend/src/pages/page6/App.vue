@@ -1,7 +1,7 @@
 
 <template>
 <table>
-        <caption>Developers Rating</caption>
+        <caption>이력서 리스트</caption>
         <thead>
             <tr>
                 <th>번호</th>
