@@ -2,100 +2,91 @@
 <!-- Q&A 페이지 -->
 
 <template>
- <div id="menu">
-    <img src="#" alt="">
-</div>
-
-  <section id="section">
-    <h3 id="first_name">관리자 로그인</h3>
 
 
-	<form>
-        <div class="login_info">
-            아이디<input type="email" placeholder="Email Address"><br>
-            
-            비밀번호<input type="email" placeholder="Email Address">
-           
-        </div>
-        <button>로그인</button><br>
 
-        <div class="ad">
-        <img src="#">
-        </div>
-    </form>
+  <div class="out">
+      <div class="out-out">
+        <form action="#">
+              <img src="#">
+              <h3>관리자 페이지 로그인</h3>
+            <input type="text" placeholder="아이디" class="in">
+            <input type="password" placeholder="비밀번호" class="in">
+            <input type="submit" id="btn" value="로그인"><br>
+        </form>
+        <a href="#none">비밀번호를 잊어버리셨나요?</a>
+      </div>
+  </div>
 
-  </section>
+    <div class="ad">
+      <img src="#">
+    </div>
 
+  
+ 
   <footer id="ft" style="border-top: 1px solid">
-    <h3>여기 푸터야</h3>
+    
   </footer>
+
 </template>
 
 <script>
-
 export default {
-  name: "App",
+  name: 'App'
 
 
-};
+}
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-}
-a {
-  text-decoration: none;
-  color: white;
-}
-#menu {
-  font: bold 16px "malgun gothic";
-  width: 100%;
-  height: 50px;
-  background: black;
-  color: black;
-  line-height: 50px;
-  margin: 0 auto;
-  text-align: center;
-  padding: auto;
-  border-bottom: 1px solid;
-}
+   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
 
-#first_name {
-  text-align: center;
-}
+        body {
+            background-color:   sandybrown;
+        }
+        .out{
+          margin: 100px;
+        }
 
-#first{
-  display: flex;
-  justify-content: center;
-}
+        .out-out {
+            margin: auto;
+            width: 300px;
+            background-color: #EEEFF1;
+            border-radius: 5px;
+            text-align: center;
+            padding: 20px;
 
-#second{
-  display: flex;
-  justify-content: center;
-}
+        }
 
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: none;
+        }
 
+        .in {
+            margin-bottom: 10px;
+        }
 
-.ad{
-   text-align: center;
-}
+        #btn {
+            background-color: #bc1b1e;
+            margin-bottom: 30px;
+            color: white;
+        }
 
-form{
-         
-       text-align: center;  
-        
-}
+        a {
+            text-decoration: none;
+            color: #9B9B9B;
+            font-size: 12px;
+        }
 
-#ft {
-  text-align: center;
-  border-bottom: 1px solid black;
-  background: black;
-}
-
-#ft > h3 {
-  color: azure;
-}
+        .ad{
+          text-align: center;
+        }
 </style>

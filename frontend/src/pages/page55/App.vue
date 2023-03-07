@@ -2,84 +2,75 @@
 <!-- Q&A 페이지 -->
 
 <template>
- <div id="menu">
-    <img src="#" style="float: left" />
+ 
+  <div class="admin_top">
+    <div class="admin_logo">
+      <a href="#">홈으로</a>
+    </div>
+    <div class="admin_account">
+      <span>관리자님 환영합니다!</span>
+      <button @click="doLogout">로그아웃</button>
+    </div>
+  </div>
+
+  <div class="admin_nav">
     <ul>
-      <li>
-        <a href="page4">공고</a>
-        <ul>
-          <li><a href="page52">공고상세페이지</a></li>
+      <li class="sub_menu_toggle">
+        <a class="sub menu select">기업</a>
+        <ul class="sub_menu" style="display: block;">
+          <li><a href="#">기업 목록</a></li>
+          <li><a href="#">기업 신청 관리</a></li>
         </ul>
       </li>
-      <li>
-        <a href="page3">업체</a>
-        <ul>
-          <li><a href="page53">업체상세페이지</a></li>
+
+      <li class="sub_menu_toggle">
+        <a href="#">유저</a>
+        <ul class="sub_menu">
+          <li><a href="#">유저 목록</a></li>
+          <li><a href="#">유저 관리</a></li>
         </ul>
       </li>
-      <li>
-        <a href="page42">통계</a>
-        <ul>
-          <li><a href="#">기간별 지원자</a></li>
-          <li><a href="#">업체별 모집</a></li>
+
+      <li class="sub_menu_toggle">
+        <a href="#">통계</a>
+        <ul class="sub_menu">
+          <li><a href="#">기업 통계</a></li>
+          <li><a href="#">유저 통계</a></li>
         </ul>
       </li>
-      <li>
+
+      <li class="sub_menu_toggle">
         <a href="#">Q&A</a>
-        <ul>
-          <li><a href="#">등록</a></li>
-          <li><a href="#">내역확인</a></li>
+        <ul class="sub_menu">
+          <li><a href="#">Q&A 등록</a></li>
+          <li><a href="#">Q$A 관리</a></li>
         </ul>
       </li>
     </ul>
-    <button @click="logout" style="float: right">로그아웃</button>
   </div>
 
-     <section>
-
-     
-            <h3 id="first_name">공고상세페이지</h3>
-   <div id="first">
-            <div>
-              기업명1<input type="text"><br>
-              제목<input type="text"><br>
-              고용형태<input type="text"><br>
-              급여<input type="text"><br>
-              지역<input type="text"><br>
-            </div>
-
-            <div>
-              기업로고<input type="text"><br>
-              기업정보<input type="text"><br>
-              산업<input type="text"><br>
-              사원수<input type="text"><br>
-              기업형태<input type="text"><br>
-              홈페이지<input type="text"><br>
-            </div>
-
-      
-    </div>    
-          
-    <br><br>
-        <div id="second">
-          <div>
-              상세요강<input type="text"><br>
-              이미지<input type="text"><br>
-              내용<input type="text"><br>
-              모집분야 자격조건<input type="text"><br>
-              담당업무<input type="text"><br>
-              접수방법<input type="text"><br>
-          </div>
-
-          <div>
-              <button><a href="page51">지원자 목록</a></button>
-              <button>공고삭제</button>
-            
-          </div>
-
-        </div>  
-  </section>
-
+  <section>
+    <div class="bg">
+      <h3 class="first_name">기업페이지</h3>    
+        <table border="1" width="500" class="t_b">
+        <tr>
+            <td id="fj">번호</td>
+            <td id="fj">회사명</td>
+ 
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>{{company[0]}}</td>
+  
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>{{company[1]}}</td>  
+        </tr>
+    </table>
+    </div>
+</section> 
+ 
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>
@@ -89,6 +80,17 @@
 <script>
 export default {
   name: 'App',
+
+data(){
+
+return{
+
+	
+	company :['삼성', '현대','대우']
+
+}
+},
+
 
 
 methods: {
@@ -103,79 +105,83 @@ logout(){
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
+* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
+
+.admin_top {
+  background-color: #263238;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-#menu a {
+
+.admin_top a {
+  color: orange;
   text-decoration: none;
+}
+
+.admin_logo {
+  margin-left: 20px;
+}
+
+.admin_account {
+  margin-right: 20px;
+}
+
+.admin_account span{
   color: white;
-}
-#menu {
-  font: bold 16px "malgun gothic";
-  width: 100%;
-  height: 50px;
-  background: black;
-  color: black;
-  line-height: 50px;
-  margin: 0 auto;
-  text-align: center;
-  padding: auto;
-  border-bottom: 1px solid;
-}
-#menu > ul {
-  list-style: none;
-  display: inline-block;
-  text-align: center;
+  margin-right: 20px;
 }
 
-#menu > ul > li {
-  float: left;
-  width: 140px;
-  position: relative;
-}
-#menu > ul > li > ul {
-  width: 130px;
-  display: none;
-  position: absolute;
-  font-size: 14px;
-  background: skyblue;
-  list-style: none;
-}
-#menu > ul > li:hover > ul {
-  display: block;
-}
-#menu > ul > li > ul > li:hover {
-  background: orange;
-  transition: ease 1s;
+.admin_nav {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 100px;
+  left: 0;
+  background-color: #263238;
 }
 
-#first_name {
-  text-align: center;
-}
+  .admin_nav li{
+    margin-top: 20px;
+    list-style: none;
+  }
+
+  .admin_nav li a {
+      padding: 8px 20px;
+      text-decoration: none;
+      font-size: 15px;
+      color: orange;
+      display: block;
+      width: 200px;
+      font-weight: 600;
+  }
+
+  .admin_nav .sub_menu {margin-left: 25px;}
+  .admin_nav .sub_menu li a {color: #fff; display: block; width: 155px; padding: 8px 10px 8px 10px; }
+  .admin_nav .sub_menu li a:hover { background-color: orange;}
+  .admin_nav .sub_menu li a.on {background-color: orange;}  
+  
+  .content {
+  margin-left: 200px; /* admin_nav의 너비 + 20px 마진을 주어서 겹치지 않도록 함 */
+  background-color: aqua;
+  height: 100%;
+  }
+
+  .t_b{
+    
+    width: 100%;
+  }
+  
+  .first_name {
+    text-align: center;
+  }
 
 
-#first{
-  display: flex;
-  justify-content: center;
-}
+  .bg{
+    padding: 200px;
+  }
 
-#second{
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  text-decoration: none;
-}
-
-#ft {
-  text-align: center;
-  border-bottom: 1px solid black;
-  background: black;
-}
-
-#ft > h3 {
-  color: azure;
-}
 </style>

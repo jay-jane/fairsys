@@ -117,6 +117,16 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 header {
   background-color: #333;
   color: #fff;
@@ -211,4 +221,3 @@ footer {
   padding: 10px;
   margin-top: 50px;
 }</style>
-
