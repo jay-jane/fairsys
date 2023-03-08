@@ -1,12 +1,13 @@
 
 <template>
 <table>
-        <caption>이력서 리스트</caption>
+        <caption>지원자 리스트</caption>
         <thead>
             <tr>
                 <th>번호</th>
+                <th>공고제목</th>
                 <th>이름</th>
-                <th>마감일</th>
+                <th>성별</th>
                 <th>목록</th>
             </tr>
         </thead>
@@ -14,6 +15,7 @@
             <tr>
                 <td>1</td>
                 <td>2</td>
+                <td>3</td>
                 <td>3</td>
                 <td>
                   <button class="view" @click="btn_view">view</button>
@@ -24,6 +26,7 @@
             <tr>
                 <td>1</td>
                 <td>2</td>
+                <td>3</td>
                 <td>3</td>
                 <td>
                   <button class="view" @click="btn_view">view</button>

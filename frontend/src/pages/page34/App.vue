@@ -1,120 +1,100 @@
-
-<!-- Q&A 페이지 -->
-
 <template>
-  <table>
-   <caption>채용공고 현황</caption>
-      
-        <thead>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>마감일</th>
-            <th>
-            <select name="" id="salary">
-            <option value="">전체</option>
-            <option value="">채용 전</option>
-            <option value="">진행중</option>
-            <option value="">채용마감</option>
-          </select>
-        </th>
-        <th>조회</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>2023-03-06</td>
-                <td>진행상황</td>
-                <td><input type="submit" value="목록조회" class="view"></td>
-            </tr>
+  <div class="withdrawal-page">
+    <h1>회원 탈퇴</h1>
+    <form>
 
-        </tbody>
-      </table>
-      <hr/>
+      <div class="form-group">
+        <label for="id">아이디</label>
+        <input id="id" type="id" value="{{ 아이디값 }}" readonly>
+      </div>
 
-      <table>
-   <caption>지원자 관리 </caption>
-      
-        <thead>
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>마감일</th>
-                <th>진행상태</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-            </tr>
-        </tbody>
-      </table>
-
-      
+      <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input id="password" type="password" v-model="password">
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">비밀번호 확인</label>
+        <input id="confirmPassword" type="password" v-model="confirmPassword">
+      </div>
+      <div class="form-group">
+        <button type="submit" @click="deleteAlert">회원탈퇴</button>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
+  name:'App',
+  data() {
+    return {
+      password: "",
+      confirmPassword: ""
+    };
+  },
   methods: {
-    btn_view() {
-      location.href = "page32";
+    // deleteAlert() {
+    //   alert("탈퇴되었습니다. 감사합니다.");
+    // }
+    deleteAlert() {
+      if (confirm("탈퇴하시겠습니까?")) {
+        //탈퇴버튼 눌렀을때 맞으면 탈퇴
+        alert("탈퇴되었습니다.")
+      } else {
+        // 취소 버튼을 누른 경우 취소
+
+      }
     }
   },
- 
-  data() {
-      return {
-        userId: '',
-        passWd: ''
-      }
-  }
-}
-
+};
 </script>
 
-
 <style>
-table {
-    width: 1500px;
-    text-align: center;
-    border: 1px solid #fff;
-    border-spacing: 1px;
-    font-family: 'Cairo', sans-serif;
-  margin: auto;
+.withdrawal-page {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 50px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-caption {
-    font-weight: bold;
+h1 {
+  font-size: 24px;
+  margin-bottom: 30px;
 }
 
-table td {
-    padding: 10px;
-    background-color: #eee;
+.form-group {
+  margin-bottom: 20px;
 }
 
-table th {
-    background-color: #d1cece;
-    color: #000;
-    padding: 10px;
-  
+label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
 
-
-.view, .delete {
-    border: none;
-    padding: 5px 10px;
-    color: #fff;
-    font-weight: bold;
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+input[type="id"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-.view {
-    background-color: #000;
+button[type="submit"] {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
-
 </style>

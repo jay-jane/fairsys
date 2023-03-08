@@ -44,9 +44,10 @@
       <input v-model="com_email" required type="email">
     </div>
 
-
+    <div class="list">
     <button type="submit" @click="page30">가입하기</button>
-    <button class="view" @click="btn_view">목록누르면 메인으로</button>
+    <button class="view" @click="btn_view">목록</button>
+    </div>
   </section>
     <h4>푸터</h4>
   </form>
@@ -71,7 +72,7 @@ export default {
     };
   }, methods: {
     btn_view() {
-      location.href = "";
+      location.href = "page1";
     },
     execDaumPostcode() {
       new window.daum.Postcode({
@@ -143,22 +144,32 @@ input {
   width: 100%;
 }
 
-button {
+button[type="submit"] {
   padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #0077cc;
+  font-size: 16px;
+  background-color: #007bff;
   color: #fff;
-  font-weight: bold;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
+}
+.view {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
   background-color: #005fa3;
 }
 
-
+.list {
+  text-align: center;
+  margin-top: 30px;
+}
 </style>
 
