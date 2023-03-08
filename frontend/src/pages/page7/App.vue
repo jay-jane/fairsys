@@ -147,6 +147,7 @@ export default {
       location.href="page35";
     }
   }
+}
 
 </script>
 
