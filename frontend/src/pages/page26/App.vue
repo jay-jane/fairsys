@@ -1,14 +1,6 @@
 <!-- 재윤 - 채용 공고 목록 -->
 <template>
-  <header>
-    <ul class="head">
-      <li>메인로고</li>
-      <li><a href="page7">등록</a></li>
-      <li>공고 관리</li>
-      <li>마이페이지</li>
-      <li>로그인/로그아웃</li>
-    </ul>
-  </header>
+  <Header></Header>
 
   <section id="salary_wrap">
     <h3>채용 정보</h3>
@@ -130,16 +122,20 @@
 
   </section>
 
-  <footer style="text-align: center;">
-    푸푸푸푸<br>
-    터터터터
-  </footer>
+  <Footer></Footer>
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
-  name: 'App'
+
+  name: 'App',
+  components: {
+    Header,
+    Footer,
+  }
 }
 </script>
 
@@ -360,7 +356,10 @@ h3 {
   white-space: nowrap;
 }
 
-#info_wrap {overflow: hidden;}
+#info_wrap {
+  overflow: hidden;
+}
+
 #info_wrap .info_item {
   float: left;
   margin-right: 5px;
