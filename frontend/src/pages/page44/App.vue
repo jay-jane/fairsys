@@ -1,45 +1,52 @@
 
 <template>
   
-  <h1>Q&A 관리</h1>
-  <div class="btn-group">
-    <button>전체삭제</button>
-    <button>선택삭제</button>
-  </div>
+  <h1>유저 목록</h1>
   <div class="main">    
-    <div class="container">  
+    <div class="container">
+      <div class="searchBox">
+        <input type="text">
+        <input type="submit" value="검색">
+      </div>  
+      <select name="" id="">
+        <option value="5"> 5개씩 보기</option>
+        <option value="10"> 10개씩 보기</option>
+        <option value="30"> 30개씩 보기</option>
+        <option value="50"> 50개씩 보기</option>
+      </select>
+
       <table class="list">
         <thead class="head">
           <tr>
-            <th>선택</th>
             <th>번호</th>
-            <th>제목</th>
-            <th>작성일</th>
-            <th>수정하기</th>
+            <th>이름</th>
+            <th>아이디</th>
+            <th>가입일</th>
+            <th>상세보기</th>
           </tr>
         </thead>
 
         <tbody class="body">
           <tr>
-            <td><input type="checkbox"></td>
             <td>1</td>
-            <td><a href="">사이트 이용 안내 </a></td>
+            <td>오하영</td>
+            <td>ohy1234</td>
             <td>2023.03.02</td>
-            <td><a href="#">수정하기</a></td>
+            <td><a href="#">선택</a></td>
           </tr>
           <tr>
-            <td><input type="checkbox"></td>
             <td>2</td>
-            <td>사이트 이용 안내 </td>
+            <td>오하영</td>
+            <td>ohy1234</td>
             <td>2023.03.02</td>
-            <td><a href="#">수정하기</a></td>
+            <td><a href="#">선택</a></td>
           </tr>
           <tr>
-            <td><input type="checkbox"></td>
             <td>3</td>
-            <td>사이트 이용 안내 </td>
+            <td>오하영</td>
+            <td>ohy1234</td>
             <td>2023.03.02</td>
-            <td><a href="#">수정하기</a></td>
+            <td><a href="#">선택</a></td>
           </tr>
         </tbody>
       </table>
@@ -74,6 +81,16 @@ export default {
     margin: 0 auto;
   }
 
+  .container select{
+    float: left;
+    margin: 10px 0;
+  }
+
+  .searchBox{
+    float: right;
+    margin: 10px 0;
+  }
+
   .list {
     width: 100%;
     border-collapse: collapse;
@@ -106,14 +123,6 @@ export default {
 
   .body td a:hover {
     text-decoration: underline;
-  }
-
-  .btn-group{
-    display: flex;
-    justify-content: left;
-    margin: 0 auto;
-    width: 800px;
-    text-align: center;
   }
 
 </style>

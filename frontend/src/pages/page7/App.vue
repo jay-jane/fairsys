@@ -97,7 +97,9 @@
       </div>
       <div id="field">
         <label class="field_name">상세 내용</label>
+
         <div class="content">나중에@@@@</div>
+
       </div>
       <div id="field">
         <label class="field_name">전형 절차</label>
@@ -137,14 +139,15 @@
 
 <script>
 
+
 export default {
   name: 'App',
   methods: {
     goMain: () => {
       location.href="page35";
     }
-  },
-}
+  }
+
 </script>
 
 <style>
