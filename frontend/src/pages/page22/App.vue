@@ -11,28 +11,27 @@
   </header>
 
   <section>
-    <h3>쪽지 작성하기</h3>
     <div>
       <h3>쪽지 작성</h3>
       <form action="" method="post">
-        <div>
+        <div class="my_name">
           <label for="name">이름 </label>
-          <input type="text" id="name" value="회원이름데이터" required>
+          <input type="text" id="name" name="myName" value="회원이름데이터" readonly>
         </div>
-        <div>
+        <div class="manager_name">
           <label for="company">받는 사람</label>
-          <input type="text" id="company" value="회사이름데이터" readonly>
+          <input type="text" id="company" name="managerName" value="회사이름데이터" readonly>
         </div>
-        <div>
+        <div class="title_wrap">
           <label for="title">제목</label>
-          <input type="text" id="title" v-model="title" required>
+          <input type="text" id="title" name="msgTitle" v-model="title" required>
         </div>
-        <div>
+        <div class="content_wrap">
           <label for="message">내용</label>
-          <textarea id="message" v-model="message" required></textarea>
+          <textarea id="message" v-model="message" name="msgContent" required></textarea>
         </div>
         <button type="submit">보내기</button>
-        <button type="reset">취소</button>
+        <button type="button" @click="goMain">취소</button>
       </form>
     </div>
   </section>
@@ -46,7 +45,12 @@
 <script>
 
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    goMain: () => {
+      location.href="page";
+    },
+  },
 }
 </script>
 
@@ -115,10 +119,19 @@ input[type="radio"] {
 }
 
 /* 버튼 스타일링 */
-button[type="submit"],
-button[type="reset"] {
-  background-color: #4CAF50;
-  color: white;
+button[type="submit"] {
+  background-color: orange;
+  color: black;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+button[type="button"] {
+  background-color: #ccc;
+  color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
