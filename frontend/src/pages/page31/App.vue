@@ -36,7 +36,7 @@
       <input v-model="com_number" required type="number" placeholder="전화번호를 입력하세요">
     </div>
     <div>
-      <label for="com_manager">가입자명: </label>
+      <label for="com_manager">담당자명: </label>
       <input v-model="com_manager" required type="text" placeholder="성함을 입력하세요">
     </div>
     <div>
@@ -46,7 +46,8 @@
 
 
     <button type="submit" @click="page30">수정하기</button>
-    <button class="view" @click="btn_view">목록누르면 메인으로</button>
+    <button class="view" @click="btn_list">목록</button>
+    <button class="view" @click="btn_view">회원탈퇴</button>
   </section>
  
   </form>
@@ -73,6 +74,9 @@ export default {
     btn_view() {
       location.href = "page34";
     },
+    btn_list() {
+      location.href ="page1";
+    },
     execDaumPostcode() {
       new window.daum.Postcode({
         oncomplete: (data) => {
@@ -91,9 +95,11 @@ export default {
           if (data.userSelectedType === "R") {
             // 법정동명이 있을 경우 추가한다. (법정리는 제외)
             // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-            if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
-              this.extraAddress += data.bname;
-            }
+           
+            // if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+            //   this.extraAddress += data.bname;
+            // }
+            
             // 건물명이 있고, 공동주택일 경우 추가한다.
             if (data.buildingName !== "" && data.apartment === "Y") {
               this.extraAddress +=
@@ -142,18 +148,24 @@ input {
   width: 100%;
 }
 
-button {
+button[type="submit"] {
   padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #0077cc;
+  font-size: 16px;
+  background-color: #007bff;
   color: #fff;
-  font-weight: bold;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
 }
-
+.view {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 button:hover {
   background-color: #005fa3;
 }
