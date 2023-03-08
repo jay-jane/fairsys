@@ -3,24 +3,7 @@
 
 <template>
   <!-- 여기는 상단바 -->
-  <header id="header">
-
-
-    <!-- 메뉴바 -->
-    <div id="menu">
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-      </ul>
-    </div>
-
-    <!-- 로그인버튼 -->
-
-  </header>
+  <Header></Header>
 
 
   <article id="article">
@@ -112,13 +95,12 @@
 
 
   <!-- 여기는 하단바 -->
-  <footer id="footer">
-    저작권 정보?
-
-  </footer>
+  <Footer></Footer>
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
 
 import {
   Chart as ChartJS,
@@ -140,8 +122,11 @@ ChartJS.register(
 )
 export default {
   name: 'App',
+  
   components: {
-    Radar
+    Radar,
+    Header,
+    Footer
   },
 
   data() {

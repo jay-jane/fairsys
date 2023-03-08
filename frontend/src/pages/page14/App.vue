@@ -22,7 +22,7 @@
 
   </header>
 
-
+  <h3>26번 페이지로 변경</h3>
   <section id="section">
 
     <ul id="section_menu">

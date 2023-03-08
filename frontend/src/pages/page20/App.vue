@@ -5,7 +5,7 @@
   <!-- 여기는 상단바 -->
   <header id="header">
 
-
+    
     <!-- 메뉴바 -->
     <div id="menu">
       <ul>
@@ -25,7 +25,7 @@
 
   <section id="section">
 
-    <h3>page20</h3>
+    <h3>6번 페이지로 변경</h3>
 
  
   </section>

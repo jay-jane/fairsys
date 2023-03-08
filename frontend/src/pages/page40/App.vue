@@ -11,6 +11,7 @@
       </ul>
   </nav>
 
+  <h3>43번 페이지로 변경</h3>
   <div class="content">
     <h2>문의사항 등록하기</h2>
     <ul>
