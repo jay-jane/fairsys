@@ -2,27 +2,9 @@
 <!-- 메인 페이지 -->
 <template>
   <!-- 여기는 상단바 -->
-  <header id="header">
-
-    
-    <!-- 메뉴바 -->
-    <div id="menu">
-      
-      <ul>
-        <!-- 로고 -->
-        <li><img src="#"></li>
-        <li><a href="page14">채용정보</a></li>
-        <li><a href="page15">기업/연봉</a></li>
-        <li><a href="page12">마이페이지</a></li>
-        <li><a href="page2">로그인</a></li>
-        <!-- 로그인이 되면 로그아웃으로 변경이 되야함 -->
-      </ul> 
-    </div>
-      
-    <!-- 로그인버튼 -->
-
-  </header>
-
+ 
+  
+  <Header></Header>
 
   <section id="section">
   여기에는 광고 배너 및 공고 들어가고<br/>
@@ -45,17 +27,20 @@
   </section>
 
 
-  <footer id="footer">
-    저작권 정보?
-
-  </footer>
+ <Footer></Footer>
 
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Header,
+    Footer
+  }
 }
 </script>
 

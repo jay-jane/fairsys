@@ -1,3 +1,33 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Codespaces
+Marketplace
+Explore
+ 
+@srlee3637 
+921126
+/
+Final_Project_FairSys
+Public
+Fork your own copy of 921126/Final_Project_FairSys
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Final_Project_FairSys/backend/build.gradle
+@921126
+921126 first commit
+Latest commit c376d50 last week
+ History
+ 1 contributor
+37 lines (32 sloc)  1.01 KB
+
 plugins {
 	id 'java'
 	id 'war'
