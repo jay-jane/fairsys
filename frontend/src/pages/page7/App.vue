@@ -142,11 +142,14 @@
 
 export default {
   name: 'App',
+
   methods: {
     goMain: () => {
-      location.href="page35";
+      location.href="page35"
     }
   }
+}
+
 }
 
 </script>
