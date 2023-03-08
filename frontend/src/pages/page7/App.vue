@@ -97,10 +97,6 @@
       </div>
       <div id="field">
         <label class="field_name">상세 내용</label>
-        <div id="tiptapAPI">
-          <MenuBar />
-          <tiptap />
-        </div>
       </div>
       <div id="field">
         전형 절차
@@ -140,15 +136,10 @@
 
 <script>
 
-import Tiptap from '../../components/TipTap.vue'
-import MenuBar from '../../components/MenuBar.vue'
+
 
 export default {
-  name: 'App',
-  components: {
-    Tiptap,
-    MenuBar
-  }
+  name: 'App'
 
 
 }

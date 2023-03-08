@@ -3,9 +3,20 @@
  
   <div class="content">
 
-    <h1>Q&A 등록</h1>
+    <h1>문의사항 등록</h1>
     <div class="table_border">
       <table class="registration">
+        <tr>
+          <td>회사</td>
+          <td>
+            <select name="" id="" style="width: 870px;">
+              <option value="company1">지원한 회사1</option>
+              <option value="company1">지원한 회사1</option>
+              <option value="company1">지원한 회사1</option>
+              <option value="company1">지원한 회사1</option>
+            </select>
+          </td>
+        </tr>
         <tr>
           <td>제목</td>
           <td><input type="text" name="" id="" style="width: 870px; height: 50px;" ></td>
