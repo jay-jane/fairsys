@@ -11,7 +11,7 @@
   </header>
 
   <section id="salary_wrap">
-    <h3>채용 공고 목록 페이지</h3>
+    <h3>채용 정보</h3>
     <hr>
     <div id="content_wrap">
       <div id="swiper_wrap">
