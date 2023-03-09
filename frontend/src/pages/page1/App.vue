@@ -10,8 +10,8 @@
   여기에는 광고 배너 및 공고 들어가고<br/>
 
   <ul>
+    <li><router-link to="/login">테스트입니다</router-link></li>
     <li>대충 이미지랑 링크 걸어줄거 시간되면 하기</li>
-    <li></li>
     <li></li>
     <li></li>
     <li></li>
