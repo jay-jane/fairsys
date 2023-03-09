@@ -1,19 +1,12 @@
 
 <template>
 
-  <nav id="top">
-      <ul>
-        <li><a href="#"><img src="#"></a></li>
-        <li><a href="#">채용정보</a></li>
-        <li><a href="#">기업/연봉</a></li>
-        <li><a href="#">마이페이지</a></li>
-        <li><a href="#">로그인</a></li>
-      </ul>
-  </nav>
+  <AdminHeader></AdminHeader>
+  <Side></Side>
 
   <div class="content">
 
-    <h2>지원자 현황 통계</h2>
+    <h2>통합 통계</h2>
     <br>
     <br>
     <table class="integrated_statistics">
@@ -60,18 +53,24 @@
         </td>
       </tr>
     </table>
-
   </div>
+
+
 </template>
 
 <script>
+import AdminHeader from '../../components/layout/Header/AdminHeader.vue';
+import Side from '../../components/layout/Side/Side.vue';
 import {Bar} from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
-  components:{Bar},
+  components:{
+    Bar,    
+    AdminHeader,
+    Side
+  },
   name: 'App',
   data(){
     return{
@@ -122,6 +121,7 @@ export default {
 
   .content{
     text-align: center;
+    margin-left: 200px;
   }
 
   /* 통합 통계 */
@@ -148,7 +148,7 @@ export default {
 
   /* 차트디자인 */
   .barchart{
-    width: 800px;
+    width: 100%
   }
 
 </style>

@@ -15,12 +15,13 @@ export default {
 <style>
 /* footer 디자인 */
 #bottom {
-    height: 260px;
+    height: 200px;
     background-color: black;
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    margin-top: 50px;
 }
 </style>
