@@ -2,84 +2,52 @@
 <!-- Q&A 페이지 -->
 
 <template>
- <div id="menu">
-    <img src="#" style="float: left" />
-    <ul>
-      <li>
-        <a href="page4">공고</a>
-        <ul>
-          <li><a href="page52">공고상세페이지</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="page3">업체</a>
-        <ul>
-          <li><a href="page53">업체상세페이지</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="page42">통계</a>
-        <ul>
-          <li><a href="#">기간별 지원자</a></li>
-          <li><a href="#">업체별 모집</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="page9">Q&A</a>
-        <ul>
-          <li><a href="page40">등록</a></li>
-          <li><a href="page10">내역확인</a></li>
-        </ul>
-      </li>
-    </ul>
-    <button @click="logout" style="float: right">로그아웃</button>
-  </div>
-
-     <section>
-
-     
-            <h3 id="first_name">공고상세페이지</h3>
-   <div id="first">
-            <div>
-              기업명1<input type="text"><br>
-              제목<input type="text"><br>
-              고용형태<input type="text"><br>
-              급여<input type="text"><br>
-              지역<input type="text"><br>
-            </div>
-
-            <div>
-              기업로고<input type="text"><br>
-              기업정보<input type="text"><br>
-              산업<input type="text"><br>
-              사원수<input type="text"><br>
-              기업형태<input type="text"><br>
-              홈페이지<input type="text"><br>
-            </div>
-
+ 
+  <section>
+   
       
-    </div>    
-          
-    <br><br>
-        <div id="second">
-          <div>
-              상세요강<input type="text"><br>
-              이미지<input type="text"><br>
-              내용<input type="text"><br>
-              모집분야 자격조건<input type="text"><br>
-              담당업무<input type="text"><br>
-              접수방법<input type="text"><br>
-          </div>
+     <div class="bg"> 
+      <h3 class="first_name">기업관리</h3>    
+        <table>
+        <thead>
+          <tr>
+            <th class="jb-th-1">번호</th>
+            <th class="jb-th-2">회사이름</th>
+            <th class="jb-th-3">신청일자</th>
+            <th class="jb-th-3">마감일자</th>
+            <th class="jb-th-4">인가</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>(주)짬뽕</td>
+            <td class="date">2023.03.08</td>
+            <td class="date">2023.03.09</td>
+            <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>
+          </tr>
+            <tr>
+              <th>2</th>
+              <td>(주)짜장면</td>
+              <td class="date">2023.03.08</td>
+              <td class="date">2023.03.09</td>
+             <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>            
+            </tr>
 
-          <div>
-              <button><a href="page51">지원자 목록</a></button>
-              <button>공고삭제</button>
-            
-          </div>
-
-        </div>  
-  </section>
-
+             <tr>
+              <th>3</th>
+              <td>(주)탕수육</td>
+              <td class="date">2023.03.08</td>
+              <td class="date">2023.03.09</td>
+              <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>  
+            </tr>
+         </tbody>
+      </table>
+    </div>
+     
+</section> 
+ 
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>
@@ -89,6 +57,17 @@
 <script>
 export default {
   name: 'App',
+
+data(){
+
+return{
+
+	
+	company :['삼성', '현대','대우']
+
+}
+},
+
 
 
 methods: {
@@ -103,79 +82,68 @@ logout(){
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-}
-#menu a {
-  text-decoration: none;
-  color: white;
-}
-#menu {
-  font: bold 16px "malgun gothic";
-  width: 100%;
-  height: 50px;
-  background: black;
-  color: black;
-  line-height: 50px;
-  margin: 0 auto;
-  text-align: center;
-  padding: auto;
-  border-bottom: 1px solid;
-}
-#menu > ul {
-  list-style: none;
+
+* {margin: 0; padding: 0; }
+
+
+
+  .space {
+  width: 10px;
+  height: auto;
   display: inline-block;
+  }
+
+
+
+
+
+  table{
+    padding: auto;
+    margin: auto;
+    border: 1px solid black;
+    border-collapse : collapse;
+    border-radius: 5px; 
+    }
+ 
+  th {
+    border: 1px solid black;
+  }
+
+  td{
+  border: 1px solid black;
+  text-align:center;
+  }
+
+  .jb-th-1 {
+    width: 200px;
+    background-color: bisque;
+  }
+
+
+
+  .jb-th-2 {
+    width: 600px;
+     background-color: bisque;
+     text-align: center;
+  }
+
+  .jb-th-3{
+    width: 200px;
+     background-color: bisque;
+      text-align: center;
+  }
+
+  .jb-th-4{
+    width: 100px;
+     background-color: bisque;
+      text-align: center;
+  }
+
+ 
+
+ .date{
   text-align: center;
-}
+ }
 
-#menu > ul > li {
-  float: left;
-  width: 140px;
-  position: relative;
-}
-#menu > ul > li > ul {
-  width: 130px;
-  display: none;
-  position: absolute;
-  font-size: 14px;
-  background: skyblue;
-  list-style: none;
-}
-#menu > ul > li:hover > ul {
-  display: block;
-}
-#menu > ul > li > ul > li:hover {
-  background: orange;
-  transition: ease 1s;
-}
-
-#first_name {
-  text-align: center;
-}
-
-
-#first{
-  display: flex;
-  justify-content: center;
-}
-
-#second{
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  text-decoration: none;
-}
-
-#ft {
-  text-align: center;
-  border-bottom: 1px solid black;
-  background: black;
-}
-
-#ft > h3 {
-  color: azure;
-}
+   
 </style>
