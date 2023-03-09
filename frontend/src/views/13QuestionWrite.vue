@@ -1,7 +1,4 @@
-
 <template>
-  
-  <Header></Header>
 
   <div class="content">
 
@@ -41,13 +38,9 @@
 
   </div>
 
-  <Footer></Footer>
-
 </template>
 
 <script>
-import Header from '../../components/layout/Header/Header.vue'
-import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
   name: 'App',
@@ -59,10 +52,6 @@ export default {
       location.href = "#";
     }
   },
-  components: {
-    Header,
-    Footer
-  }
 }
 </script>
 

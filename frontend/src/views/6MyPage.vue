@@ -67,9 +67,6 @@ export default {
   text-align: center;
 }
 
-#header{
-  
-}
 #menu li{
   display: inline;
   padding-left: 20px;

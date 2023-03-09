@@ -2,9 +2,6 @@
 <!-- 메인 페이지 -->
 <template>
   <!-- 여기는 상단바 -->
- 
-  
-  <Header></Header>
 
   <section id="main_section">
   여기에는 광고 배너 및 공고 들어가고<br/>
@@ -25,22 +22,12 @@
   <button type="button" >더보기</button>
 
   </section>
-
-
- <Footer></Footer>
-
 </template>
 
 <script>
-import Header from '../../components/layout/Header/Header.vue'
-import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
   name: 'App',
-  components: {
-    Header,
-    Footer
-  }
 }
 </script>
 
