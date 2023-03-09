@@ -11,6 +11,7 @@
   </header>
 
   <section>
+   
     <h3 style="text-align: center;">채용 공고 수정 페이지</h3>
     <form action="" method="post">
       <div id="field_name">
@@ -98,21 +99,21 @@
       </div>
     </form>
   </section>
-
   <footer style="text-align: center;">
     푸푸푸푸<br>
     터터터터
   </footer>
 </template>
-
 <script>
 export default {
   name: 'App',
-  methods: {
-    deleteItem: () => {
-      alert('삭제 이벤트');
-    }
-  }
+  // methods: {
+  //   deleteItem: () => {
+  //     alert('삭제 이벤트');
+  //   }
+  // },
+ 
+  
 }
 </script>
 

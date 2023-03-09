@@ -20,10 +20,15 @@ module.exports = {
   },
 
   //vue 프로젝트 빌드 경로(css,js파일)
-
   outputDir: path.resolve(__dirname, "../backend/src/main/resources/static"),
 
   pages: {
+    // index: {
+    //   entry: 'src/main.js',
+    //   template: 'public/templates/index.html',  //html 파일의 경로
+    //   filename: devpath + 'index.html'          //html 파일 생성경로
+    // },
+
 
     page1: {
       entry: 'src/pages/page1/main.js',

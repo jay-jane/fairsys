@@ -12,6 +12,23 @@
           swiperAPI
         </div>
       </div>
+      <div id="category_wrap">
+        <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%;">
+          <tr>
+            <th>카테고리</th>
+            <td colspan="5"><input type="text" name="prod_category" value="">
+              <div class="loading" style="display: none;">
+                <div class="loader"></div>
+                <div class="loading-overlay"></div>
+              </div>
+
+              <div class="categoryListWrap">
+                <!-- 카테고리 jquery -->
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
       <div id="search_wrap">
         <div id="search_name" class="option_box">
           <strong class="option_title">
