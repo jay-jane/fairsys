@@ -37,12 +37,15 @@
       </div>
       <div id="field">
         <label class="field_name">업종</label>
-        <div id="">
-          <input type="text">
+        <div id="job_type">
+
         </div>
       </div>
       <div id="field">
         <label class="field_name">모집 분야</label>
+        <div id="job_type">
+          <Hashtags></Hashtags>
+        </div>
         <div id="recruit_type">
           <input type="text" class="recruit_type_input">
           <input type="text" style="width: 40px; margin-left: 5px;">
@@ -125,13 +128,17 @@
 </template>
 
 <script>
+import Hashtags from '../components/Hashtags.vue';
 
 export default {
   name: 'App',
   methods: {
     goMain: () => {
-      location.href="page35";
+      location.href = "/";
     }
+  },
+  components: {
+    Hashtags,
   },
 }
 
@@ -153,6 +160,33 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+}
+
+/* 헤더 스타일링 */
+header {
+  background-color: #333;
+  color: #fff;
+  align-items: center;
+  padding: 10px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.head li {
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.head li:first-child {
+  font-size: 24px;
 }
 
 form {
@@ -244,5 +278,12 @@ button[type="submit"]:hover {
 
 #tiptapAPI {
   border: 1px solid #999;
+}
+
+/* 푸터 스타일링 */
+footer {
+  background-color: #f2f2f2;
+  padding: 10px;
+  font-size: 14px;
 }
 </style>
