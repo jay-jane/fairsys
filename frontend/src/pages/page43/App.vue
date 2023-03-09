@@ -1,6 +1,8 @@
 
 <template>
- 
+  
+  <Header></Header>
+
   <div class="content">
 
     <h1>문의사항 등록</h1>
@@ -9,11 +11,11 @@
         <tr>
           <td>회사</td>
           <td>
-            <select name="" id="" style="width: 870px;">
-              <option value="company1">지원한 회사1</option>
-              <option value="company1">지원한 회사1</option>
-              <option value="company1">지원한 회사1</option>
-              <option value="company1">지원한 회사1</option>
+            <select name="" id="">
+              <option value="">선택한 회사1</option>
+              <option value="">선택한 회사2</option>
+              <option value="">선택한 회사3</option>
+              <option value="">선택한 회사4</option>
             </select>
           </td>
         </tr>
@@ -39,9 +41,13 @@
 
   </div>
 
+  <Footer></Footer>
+
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
   name: 'App',
@@ -52,6 +58,10 @@ export default {
     doCancel(){
       location.href = "#";
     }
+  },
+  components: {
+    Header,
+    Footer
   }
 }
 </script>

@@ -30,6 +30,12 @@ module.exports = {
     // },
 
 
+    main:{
+      entry: 'src/main.js',
+      template:'src/templates/main.html',
+      filename: devpath + 'main.html'
+    },
+
     page1: {
       entry: 'src/pages/page1/main.js',
       template: 'public/templates/page1.html',  //html 파일의 경로

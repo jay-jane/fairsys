@@ -2,81 +2,36 @@
 <!-- Q&A 페이지 -->
 
 <template>
-   <div class="admin_top">
-    <div class="admin_logo">
-      <a href="#">홈으로</a>
-    </div>
-    <div class="admin_account">
-      <span>관리자님 환영합니다!</span>
-      <button @click="doLogout">로그아웃</button>
-    </div>
-  </div>
-
-  <div class="admin_nav">
-    <ul>
-      <li class="sub_menu_toggle">
-        <a class="sub menu select">기업</a>
-        <ul class="sub_menu" style="display: block;">
-          <li><a href="#">기업 목록</a></li>
-          <li><a href="#">기업 신청 관리</a></li>
-        </ul>
-      </li>
-
-      <li class="sub_menu_toggle">
-        <a href="#">유저</a>
-        <ul class="sub_menu">
-          <li><a href="#">유저 목록</a></li>
-          <li><a href="#">유저 관리</a></li>
-        </ul>
-      </li>
-
-      <li class="sub_menu_toggle">
-        <a href="#">통계</a>
-        <ul class="sub_menu">
-          <li><a href="#">기업 통계</a></li>
-          <li><a href="#">유저 통계</a></li>
-        </ul>
-      </li>
-
-    <li class="sub_menu_toggle">
-        <a href="#">Q&A</a>
-        <ul class="sub_menu">
-          <li><a href="#">Q&A 등록</a></li>
-          <li><a href="#">Q$A 관리</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-
+ 
 
 
 
   <section id="section">
-
-  <div class="bbg">  
-        <div class="bannerImg"></div>
+      <h3>회사이름</h3>
+      <div class="bbg">       
         <div id="company_logo">
           <img src="https://picsum.photos/50/50" alt="로고" class="logoImg"></div>
-        <div id="company_name">
-        <h3>회사이름</h3>
-        </div>
-      <article id="article_top">
-      <div id="top">
-        <div id="top_bottom">
+        
+
+
+
+        <article id="article_top">
+        <div id="top">
+          <div id="top_bottom">
           <div id="company_title">
             <h2>공고제목</h2>
           </div>
-        </div>
-      </div>
-
-      <div id="bottom">
-        <div id="bottom_left">
-          <h4>지원자격</h4>
-          <div id="qualify">
-            <span id="q_left">경력</span> <span id="q_right">경력</span><br>
-            <span id="q_left">학력</span> <span id="q_right">대졸이상</span>
           </div>
         </div>
+
+        <div id="bottom">
+          <div id="bottom_left">
+            <h4>지원자격</h4>
+            <div id="qualify">
+              <span id="q_left">경력</span> <span id="q_right">경력</span><br>
+              <span id="q_left">학력</span> <span id="q_right">대졸이상</span>
+            </div>
+          </div>
         <div id="bottom_left">
           <h4>근무조건</h4>
           <div id="qualify">
@@ -85,8 +40,8 @@
             <span id="q_left">근무지역</span> <span id="q_right">서울시 종로구</span>
           </div>
         </div>
-      </div>
-      <div id="bottom">
+        </div>
+        <div id="bottom">
         <div id="bottom_left">
           <h4>기업정보</h4>
           <div id="qualify">
@@ -106,9 +61,7 @@
           <div id="qualify">
             <span id="q_left">담당자</span> <span id="q_right">이이이</span><br>
             <span id="q_left">핸드폰 번호</span> <span id="q_right">010-1111-xxxx</span><br>
-            <span id="q_left">이메일</span> <span id="q_right">dldldl@dldldl.dldl</span><br>
-
-               
+            <span id="q_left">이메일</span> <span id="q_right">dldldl@dldldl.dldl</span><br>     
           </div>
         </div>
       </div>
@@ -116,8 +69,8 @@
     </article>
     <div class="btn" >
               
-                <button class="btn1">승인</button>
-                <button class="btn2">반려</button>
+      <button class="btn1">승인</button>
+      <button class="btn2">반려</button>
     </div>
   </div>
     
@@ -151,70 +104,10 @@ doLogout(){
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 
-* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
 
-.admin_top {
-  background-color: #263238;
-  height: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+* {margin: 0; padding: 0;}
 
-.admin_top a {
-  color: orange;
-  text-decoration: none;
-}
-
-.admin_logo {
-  margin-left: 20px;
-}
-
-.admin_account {
-  margin-right: 20px;
-}
-
-.admin_account span{
-  color: white;
-  margin-right: 20px;
-}
-
-.admin_nav {
-  width: 200px;
-  height: 100%;
-  position: fixed;
-  top: 100px;
-  left: 0;
-  background-color: #263238;
-}
-
-  .admin_nav li{
-    margin-top: 20px;
-    list-style: none;
-  }
-
-  .admin_nav li a {
-      padding: 8px 20px;
-      text-decoration: none;
-      font-size: 15px;
-      color: orange;
-      display: block;
-      width: 200px;
-      font-weight: 600;
-  }
-
-  .admin_nav .sub_menu {margin-left: 25px;}
-  .admin_nav .sub_menu li a {color: #fff; display: block; width: 155px; padding: 8px 10px 8px 10px; }
-  .admin_nav .sub_menu li a:hover { background-color: orange;}
-  .admin_nav .sub_menu li a.on {background-color: orange;}  
-  
-  .content {
-  margin-left: 200px; /* admin_nav의 너비 + 20px 마진을 주어서 겹치지 않도록 함 */
-  background-color: aqua;
-  height: 100%;
-  }
 
 #info_wrap ul {
   display: flex;
@@ -234,9 +127,6 @@ doLogout(){
   padding-top: 20px;
 }
 
-#article_top {
-  padding-top: 120px;
-}
 
 #top_top {
   display: flex;
@@ -299,10 +189,7 @@ doLogout(){
 }
 
 
-.bbg{
-  padding: 100px 200px 300px 400px;
-  margin: 10px;
-}
+
 
 .btn {
   text-align: center;
