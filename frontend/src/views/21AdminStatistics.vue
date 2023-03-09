@@ -1,9 +1,6 @@
 
 <template>
 
-  <AdminHeader></AdminHeader>
-  <Side></Side>
-
   <div class="content">
 
     <h2>통합 통계</h2>
@@ -59,8 +56,6 @@
 </template>
 
 <script>
-import AdminHeader from '../../components/layout/Header/AdminHeader.vue';
-import Side from '../../components/layout/Side/Side.vue';
 import {Bar} from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
@@ -68,8 +63,6 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
   components:{
     Bar,    
-    AdminHeader,
-    Side
   },
   name: 'App',
   data(){

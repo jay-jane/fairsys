@@ -1,7 +1,5 @@
 <!-- 재윤 - 채용 공고 등록 -->
 <template>
-  
-  <Header></Header>
 
   <section>
     <h3 style="text-align: center;">채용 공고 등록 페이지</h3>
@@ -124,13 +122,9 @@
     </form>
   </section>
 
-  <Footer></Footer>
-
 </template>
 
 <script>
-import Header from '../../components/layout/Header/Header.vue'
-import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
   name: 'App',
@@ -138,10 +132,6 @@ export default {
     goMain: () => {
       location.href="page35";
     }
-  },
-  components: {
-    Header,
-    Footer,
   },
 }
 
@@ -163,33 +153,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-}
-
-/* 헤더 스타일링 */
-header {
-  background-color: #333;
-  color: #fff;
-  align-items: center;
-  padding: 10px;
-}
-
-.head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.head li {
-  margin-right: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.head li:first-child {
-  font-size: 24px;
 }
 
 form {
@@ -282,10 +245,4 @@ button[type="submit"]:hover {
 #tiptapAPI {
   border: 1px solid #999;
 }
-
-/* 푸터 스타일링 */
-footer {
-  background-color: #f2f2f2;
-  padding: 10px;
-  font-size: 14px;
-}</style>
+</style>

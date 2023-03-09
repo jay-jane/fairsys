@@ -1,8 +1,4 @@
-
 <template>
-
-  <AdminHeader></AdminHeader>
-  <Side></Side>
 
   <div class="main">    
     <div class="container">
@@ -60,15 +56,10 @@
 </template>
 
 <script>
-import AdminHeader from '../../components/layout/Header/AdminHeader.vue';
-import Side from '../../components/layout/Side/Side.vue';
 
 export default {
   name: 'App',
-  components: {
-    AdminHeader,
-    Side
-  }
+
 }
 </script>
 

@@ -1,7 +1,4 @@
 
-<!-- Q&A 페이지 -->
-
-
 <template>
   <div class="admin_nav">
     <ul>
@@ -9,8 +6,8 @@
         <a class="sub menu select">채용공고</a>
         <ul class="sub_menu" style="display: block;">
           <li><a href="page7">공고 등록</a></li>
-          <li><router-link :to="{name:'page8'}">공고수정</router-link></li>
-          <!-- <a v-bind:href='`page8?id=${str.name}`' @click="getData">공고 수정</a> -->
+          <li><a href="">공고 수정</a></li>
+          <!-- <router-link :to="{name:'page8'}">공고수정</router-link> -->
         </ul>
       </li>
 
