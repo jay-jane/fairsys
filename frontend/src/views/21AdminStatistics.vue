@@ -90,33 +90,6 @@ export default {
 </script>
 
 <style>
-   #top{
-    background-color: blue;
-  }
-
-  #top ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  #top li {
-    display: inline-block;
-    padding: 10px;
-  }
-
-  #top a {
-    color: white;
-    text-decoration: none;
-  }
-
-  .content{
-    text-align: center;
-    margin-left: 200px;
-  }
-
   /* 통합 통계 */
   .integrated_statistics{
     display: flex;

@@ -1,21 +1,20 @@
 <template>
     <div id="user_menu">
     <nav id="top">
-      <div id="logo"><router-link to="/databinding">중앙정보 취업 박람회</router-link></div>
-      <div id="menu"><a href="#" @mouseover="doDropmenu">채용정보</a></div>
-      <div id="menu"><a href="#" @mouseover="doDropmenu">마이페이지</a></div>
+      <div id="logo"><router-link to="/">중앙정보 취업 박람회</router-link></div>
+      <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용정보</router-link></div>
+      <div id="menu"><router-link to="/6" @mouseover="doDropmenu">마이페이지</router-link></div>
       <div id="login"><button class="btn_login" @click="gologin">로그인</button></div>
     </nav>
     <nav id="drop_top" @mouseleave="doHidden">
       <div id="drop">
-        <p><a href="#" class="drop_menu">직무별</a></p>
-        <p><a href="#" class="drop_menu">산업별</a></p>
-        <p><a href="#" class="drop_menu">지역별</a></p>
+        <p><router-link to="/4" class="drop_menu">직무별</router-link></p>
+        <p><router-link to="/4" class="drop_menu">산업별</router-link></p>
+        <p><router-link to="/4" class="drop_menu">지역별</router-link></p>
       </div>
       <div id="drop">
-        <p><a href="#" class="drop_menu">이력서 관리</a></p>
-        <p><a href="#" class="drop_menu">지원 현황</a></p>
-        <p><a href="#" class="drop_menu">문의하기</a></p>
+        <p><router-link to="/10" class="drop_menu">지원현황</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
+        <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
       </div>
     </nav>
   </div>
@@ -25,7 +24,7 @@ export default {
     name:'hearder',
     methods:{
         gologin() {
-        location.href = "page30";
+        location.href = "/2";
         },
         doDropmenu() {
         const dorp_top = document.querySelector("#drop_top");
