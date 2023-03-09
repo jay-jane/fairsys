@@ -2,6 +2,11 @@
   <form action="">
   
     <section>
+      <div id="join_wraaper" class="join_cont_wrap">
+
+      <div class="cont_division">
+
+      
     <h3>기업회원가입</h3>
     <div>
       <label for="com_name">회사명: <input v-model="com_name" required type="text" placeholder="회사이름을 입력하세요"></label>
@@ -44,10 +49,117 @@
       <input v-model="com_email" required type="email">
     </div>
 
+
+
+<div class="cont_division">
+  <span class="terms_agree">
+    <strong>약관</strong>
+  </span>
+  <div class="agree_box"> 
+    <ul class="agree_article">
+      <li>
+        <span class="inpChk sizeL">
+        <input type="checkbox" id="agreeAllPersonal" class="check_mail" v-model="checkAll">
+    <label class ="check_all check_off lbl" for="agreeAllPersonal">
+      <strong>전체동의</strong>
+    </label>
+        </span>
+      </li>
+    </ul>
+
+    <ul class="agree_article depth2">
+      <li>
+        <div class="agree_desc"> 
+        <span class="chk">
+        <input type="checkbox" id="agree_1" class="checkbox_box">
+    <label for="agree_1">(필수)
+      <span><strong>개인회원 약관에 동의</strong></span>
+    </label>
+  </span>
+        </div>
+    <a href=""><br/>
+      <!-- <span>개인회원 약관 상세보기</span> -->
+    </a>
+      </li>
+    </ul>
+  
+    <ul class="agree_article depth2">
+      <li>
+        <div class="agree_desc"> 
+        <span class="chk">
+        <input type="checkbox" id="agree_1" class="checkbox_box">
+    <label for="agree_1">(필수)
+      <span><strong>개인정보 수집 및 이용에 동의</strong></span>
+    </label>
+  </span>
+        </div>
+    <a href=""><br/>
+      <!-- <span>개인회원 약관 상세보기</span> -->
+    </a>
+      </li>
+    </ul>
+
+
+    <ul class="agree_article depth2">
+      <li>
+        <div class="agree_desc"> 
+        <span class="chk">
+        <input type="checkbox" id="agree_1" class="checkbox_box">
+    <label for="agree_2">
+      <span>(선택)위치기반서비스 이용약관에 동의</span>
+    </label>
+  </span>
+        </div>
+    <a href=""><br/>
+      <!-- <span>개인회원 약관 상세보기</span> -->
+    </a>
+      </li>
+    </ul>
+
+    <ul class="agree_article depth2">
+      <li>
+        <div class="agree_desc"> 
+        <span class="chk">
+        <input type="checkbox" id="agree_1" class="checkbox_box">
+    <label for="agree_2">
+      <span>(선택)마케팅 정보 수신 동의 -이메일</span>
+    </label>
+  </span>
+        </div>
+    <a href=""><br/>
+      <!-- <span>개인회원 약관 상세보기</span> -->
+    </a>
+      </li>
+    </ul>
+
+    <ul class="agree_article depth2">
+      <li>
+        <div class="agree_desc"> 
+        <span class="chk">
+        <input type="checkbox" id="agree_1" class="checkbox_box">
+    <label class="label_check" for="agree_2">
+      <span>(선택)마케팅 정보 수신 동의</span>
+    </label>
+  </span>
+        </div>
+    <a href=""><br/>
+      <!-- <span>개인회원 약관 상세보기</span> -->
+    </a>
+      </li>
+    </ul>
+
+
+
+  </div>  
+</div>
+
     <div class="list">
     <button type="submit" @click="page30">가입하기</button>
     <button class="view" @click="btn_view">목록</button>
     </div>
+
+  </div>
+</div>  
   </section>
     <h4>푸터</h4>
   </form>
@@ -118,10 +230,29 @@ export default {
 };
 
 
-
 </script>
 
 <style>
+div{
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+#join_wrapper {
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+li{
+  list-style: none;
+  
+}
+a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+    color: black;
+}
 form {
   display: flex;
   flex-direction: column;
@@ -171,5 +302,76 @@ button:hover {
   text-align: center;
   margin-top: 30px;
 }
+
+
+/* 약관동의 부분 */
+.cont_division {
+  position: relative;
+  width: 360px;
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+
+.cont_division .terms_agree {
+  font-size: 16px;
+  color: #373f57;
+  margin-bottom: 8px;
+  display: inline-block;
+}
+
+.cont_division .agree_box {
+  border: 1px solid #d7dce5;
+  padding: 10px;
+}
+
+.cont_division .agree_box .agree_article {
+  color: black;
+  border-bottom: 1px solid #d7dce5;
+  padding-bottom: 16px;
+  
+}
+.inpChk {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+
+
+
+.cont_division .agree_box .agree_article.depth2 {
+    border: none;
+    padding-bottom: 0;
+}
+
+.cont_division .agree_box .agree_article.depth2 li {
+  position: relative;
+    margin: -10px ;
+}
+.cont_division .agree_box .agree_article.depth2 span {
+  font-size: 15px;
+}
+
+input[type="checkbox"]{
+    display: inline-block;
+    width: 15px;
+    height: 13px;
+
+}
+
+/* .cont_division .agree_box .agree_article.depth3 {
+    border: none;
+    padding-bottom: 0;
+}
+
+.cont_division .agree_box .agree_article.depth3 li {
+  position: relative;
+    margin: 16px 0;
+}
+.cont_division .agree_box .agree_article.depth3 span {
+  font-size: 13px
+} */
+
 </style>
+
 
