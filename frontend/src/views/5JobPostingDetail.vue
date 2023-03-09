@@ -1,6 +1,5 @@
 <!-- 재윤 - 채용 공고 상세 -->
 <template>
-  <Header></Header>
 
   <section id="section">
     <div id="banner_wrap">
@@ -84,19 +83,14 @@
     </div>
   </section>
 
-  <Footer></Footer>
 </template>
 
 <script>
-import Header from '../../components/layout/Header/Header.vue'
-import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
+
   name: 'App',
-  components: {
-    Header,
-    Footer
-  }
+
 }
 </script>
 

@@ -1,19 +1,21 @@
 <template>
-  <nav>
-    <Header></Header>
-    <router-link to="/">Home</router-link>
-    <router-link to="/databinding">databinding</router-link>
-    테스트
-  </nav>
-  <router-view/>
+  <Header></Header>
+  <Side></Side>
+  <router-view />
+  <Footer></Footer>
 </template>
 
 <script>
-  import Header from './layouts/Header.vue';
-
-  export default{
-    components: {Header}
+import Header from './layouts/Header.vue';
+import Footer from './layouts/Footer.vue';
+import Side from './layouts/Side.vue';
+export default {
+  components: {
+    Header,
+    Footer,
+    Side,
   }
+}
 
 </script>
 

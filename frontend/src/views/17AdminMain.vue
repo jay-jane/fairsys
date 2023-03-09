@@ -1,9 +1,6 @@
 
 <template>
 
-
-  <AdminHeader></AdminHeader> 
-  <Side></Side>
   <div class="container">
     
     <div class="wrap_top">
@@ -72,12 +69,9 @@
 
   </div>
 
-  
 </template>
 
 <script>
-import AdminHeader from '../../components/layout/Header/AdminHeader.vue';
-import Side from '../../components/layout/Side/Side.vue';
 import {Bar} from 'vue-chartjs';
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
@@ -85,8 +79,6 @@ ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 export default {
   name: 'App',
   components: {
-    AdminHeader,
-    Side,
     Bar
   },
   data(){

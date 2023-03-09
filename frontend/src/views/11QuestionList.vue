@@ -1,8 +1,6 @@
 
 <template>
 
-  <Header></Header>
-  
   <div class="main">
     <div class="container">
 
@@ -46,15 +44,10 @@
       </table>
     </div>
   </div>
-  
-  <Footer></Footer>
 
 </template>
 
 <script>
-import Header from '../../components/layout/Header/Header.vue'
-import Footer from '../../components/layout/Footer/Footer.vue'
-
 
 export default {
   name: 'App',
@@ -64,12 +57,6 @@ export default {
       location.href ="page43";
     }
   },
-  components: {
-    Header,
-    Footer
-  }
-
-
 };
 </script>
 

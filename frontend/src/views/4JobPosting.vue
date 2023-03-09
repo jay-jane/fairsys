@@ -1,6 +1,5 @@
 <!-- 재윤 - 채용 공고 목록 -->
 <template>
-  <Header></Header>
 
   <section id="salary_wrap">
     <h3>채용 정보</h3>
@@ -139,20 +138,15 @@
 
   </section>
 
-  <Footer></Footer>
 </template>
 
 <script>
-import Header from '../../components/layout/Header/Header.vue'
-import Footer from '../../components/layout/Footer/Footer.vue'
+
 
 export default {
 
   name: 'App',
-  components: {
-    Header,
-    Footer,
-  }
+
 }
 </script>
 
