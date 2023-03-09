@@ -1,14 +1,6 @@
 <!-- 재윤 - 기업 정보 화면 -->
 <template>
-  <header>
-    <ul class="head">
-      <li><a href="">메인로고</a></li>
-      <li><a href="">등록</a></li>
-      <li><a href="">공고 관리</a></li>
-      <li><a href="">마이페이지</a></li>
-      <li><a href="page2">로그인/로그아웃</a></li>
-    </ul>
-  </header>
+  <Header></Header>
 
   <section id="section">
     <div id="banner_wrap">
@@ -28,7 +20,7 @@
         </div>
       </div>
 
-      <div id="bottom" style="margin-bottom: 10px;">
+      <div id="mid" style="margin-bottom: 10px;">
         <div id="bottom_left">
           <div id="qualify">
             <span id="q_left">산업(업종)</span> <span id="q_right">건설,시공,토목,조경</span><br>
@@ -68,15 +60,19 @@
     </div>
   </section>
 
-  <footer style="text-align: center;">
-    푸푸푸푸<br>
-    터터터터
-  </footer>
+  <Footer></Footer>
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
+
 export default {
   name: 'App',
+  components: {
+    Header,
+    Footer,
+  }
 }
 </script>
 
@@ -89,41 +85,7 @@ export default {
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: Arial, sans-serif;
-}
-
-/* 헤더 스타일링 */
-header {
-  background-color: #333;
-  color: #fff;
-  align-items: center;
-  padding: 10px;
-}
-
-.head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.head li {
-  margin-right: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.head li:first-child {
-  font-size: 24px;
-}
-
-.head li a {
-  color: #fff;
-  text-decoration: none;
 }
 
 #info_wrap ul {
@@ -185,24 +147,22 @@ header {
   display: flex;
 }
 
-#company_title {
-  margin-top: auto;
-  padding-left: 120px;
-
-}
-
-#bottom {
+#mid {
   display: flex;
   justify-content: space-around;
   padding-top: 30px;
 }
 
+#qualify {
+  overflow: hidden;
+}
 #q_left {
+  float: left;
   color: gray;
   padding-right: 20px;
 }
-
 #q_right {
+  float: right;
   color: blue;
 }
 

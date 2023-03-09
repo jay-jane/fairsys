@@ -1,14 +1,7 @@
 <!-- 재윤 - 채용 공고 등록 -->
 <template>
-  <header>
-    <ul class="head">
-      <li>메인로고</li>
-      <li>등록</li>
-      <li>공고 관리</li>
-      <li>마이페이지</li>
-      <li>로그인/로그아웃</li>
-    </ul>
-  </header>
+  
+  <Header></Header>
 
   <section>
     <h3 style="text-align: center;">채용 공고 등록 페이지</h3>
@@ -131,24 +124,25 @@
     </form>
   </section>
 
-  <footer style="text-align: center;">
-    푸푸푸푸<br>
-    터터터터
-  </footer>
+  <Footer></Footer>
+
 </template>
 
 <script>
-
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
   name: 'App',
-
   methods: {
     goMain: () => {
-      location.href="page35"
+      location.href="page35";
     }
-  }
-
+  },
+  components: {
+    Header,
+    Footer,
+  },
 }
 
 </script>

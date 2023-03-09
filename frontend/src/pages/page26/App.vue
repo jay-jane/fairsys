@@ -1,14 +1,6 @@
 <!-- 재윤 - 채용 공고 목록 -->
 <template>
-  <header>
-    <ul class="head">
-      <li>메인로고</li>
-      <li><a href="page7">등록</a></li>
-      <li>공고 관리</li>
-      <li>마이페이지</li>
-      <li>로그인/로그아웃</li>
-    </ul>
-  </header>
+  <Header></Header>
 
   <section id="salary_wrap">
     <h3>채용 정보</h3>
@@ -19,6 +11,23 @@
         <div id="swiper">
           swiperAPI
         </div>
+      </div>
+      <div id="category_wrap">
+        <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%;">
+          <tr>
+            <th>카테고리</th>
+            <td colspan="5"><input type="text" name="prod_category" value="">
+              <div class="loading" style="display: none;">
+                <div class="loader"></div>
+                <div class="loading-overlay"></div>
+              </div>
+
+              <div class="categoryListWrap">
+                <!-- 카테고리 jquery -->
+              </div>
+            </td>
+          </tr>
+        </table>
       </div>
       <div id="search_wrap">
         <div id="search_name" class="option_box">
@@ -130,16 +139,20 @@
 
   </section>
 
-  <footer style="text-align: center;">
-    푸푸푸푸<br>
-    터터터터
-  </footer>
+  <Footer></Footer>
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
 
 export default {
-  name: 'App'
+
+  name: 'App',
+  components: {
+    Header,
+    Footer,
+  }
 }
 </script>
 
@@ -360,7 +373,10 @@ h3 {
   white-space: nowrap;
 }
 
-#info_wrap {overflow: hidden;}
+#info_wrap {
+  overflow: hidden;
+}
+
 #info_wrap .info_item {
   float: left;
   margin-right: 5px;
