@@ -2,68 +2,49 @@
 <!-- Q&A 페이지 -->
 
 <template>
- <div id="menu">
-    <img src="#" style="float: left" />
-    <ul>
-      <li>
-        <a href="#">공고</a>
-        <ul>
-          <li><a href="#">공고상세페이지</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">업체</a>
-        <ul>
-          <li><a href="#">업체상세페이지</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">통계</a>
-        <ul>
-          <li><a href="#">기간별 지원자</a></li>
-          <li><a href="#">업체별 모집</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Q&A</a>
-        <ul>
-          <li><a href="#">등록</a></li>
-          <li><a href="#">내역확인</a></li>
-        </ul>
-      </li>
-    </ul>
-    <button @click="logout" style="float: right">로그아웃</button>
-  </div>
-
-     <section>
-        <h3 id="first_name">지원자목록</h3>
-
+ 
+  <section>
+   
       
-        <table border="1" width="500">
-        <tr>
-            <td>번호</td>
-            <td>이름</td>
-            <td>공고제목</td>
-            <td>등록일</td>
- 
-        </tr>
-        <tr>
-            <td>ㅌㅌㅌㅌ</td>
-            <td>ㅌㅌㅌ</td>
-            <td>ㅌㅌㅌ</td>
-            <td>ㅌㅌㅌ</td>
-  
-        </tr>
-        <tr>
-            <td>ㅌㅌㅌㅌ</td>
-            <td>ㅌㅌㅌㅌ</td>
-            <td>ㅌㅌㅌ</td>
-            <td>ㅌㅌㅌ</td>  
-        </tr>
-    </table>
- 
-  </section> 
+     <div class="bg"> 
+      <h3 class="first_name">기업</h3>    
+        <table>
+        <thead>
+          <tr>
+            <th class="jb-th-1">번호</th>
+            <th class="jb-th-2">회사이름</th>
+            <th class="jb-th-3">신청일자</th>
+            <th class="jb-th-3">승인일자</th>
+           
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td>(주)짬뽕</td>
+            <td class="date">2023.03.08</td>
+            <td class="date">2023.03.09</td>
+            
+          </tr>
+            <tr>
+              <th>2</th>
+              <td>(주)짜장면</td>
+              <td class="date">2023.03.08</td>
+              <td class="date">2023.03.09</td>
+            </tr>
 
+             <tr>
+              <th>3</th>
+              <td>(주)탕수육</td>
+              <td class="date">2023.03.08</td>
+              <td class="date">2023.03.09</td>
+            </tr>
+         </tbody>
+      </table>
+    </div>
+     
+</section> 
+ 
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>
@@ -73,6 +54,17 @@
 <script>
 export default {
   name: 'App',
+
+data(){
+
+return{
+
+	
+	company :['삼성', '현대','대우']
+
+}
+},
+
 
 
 methods: {
@@ -87,104 +79,48 @@ logout(){
 </script>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-}
-a {
-  text-decoration: none;
-  color: white;
-}
-#menu {
-  font: bold 16px "malgun gothic";
-  width: 100%;
-  height: 50px;
-  background: black;
-  color: black;
-  line-height: 50px;
-  margin: 0 auto;
+
+* {margin: 0; padding: 0; }
+
+  table{
+    padding: auto;
+    margin: auto;
+    border: 1px solid black;
+    border-collapse : collapse;
+    border-radius: 5px; 
+    }
+ 
+  th {
+    border: 1px solid black;
+  }
+
+  td{
+  border: 1px solid black;
+  text-align:center;
+  }
+
+  .jb-th-1 {
+    width: 200px;
+    background-color: bisque;
+  }
+
+
+
+  .jb-th-2 {
+    width: 600px;
+     background-color: bisque;
+     text-align: center;
+  }
+
+  .jb-th-3{
+    width: 200px;
+     background-color: bisque;
+      text-align: center;
+  }
+
+ .date{
   text-align: center;
-  padding: auto;
-  border-bottom: 1px solid;
-}
-#menu > ul {
-  list-style: none;
-  display: inline-block;
-  text-align: center;
-}
+ }
 
-#menu > ul > li {
-  float: left;
-  width: 140px;
-  position: relative;
-}
-#menu > ul > li > ul {
-  width: 130px;
-  display: none;
-  position: absolute;
-  font-size: 14px;
-  background: skyblue;
-  list-style: none;
-}
-#menu > ul > li:hover > ul {
-  display: block;
-}
-#menu > ul > li > ul > li:hover {
-  background: orange;
-  transition: ease 1s;
-}
-
-#first_name {
-  text-align: center;
-}
-
-#full{
-	width: 600px;
-	height: 600px;
-	
-	margin: auto; /* 중앙 맞춤 */
-}
-
-#left{
-	width: 200px;
-	float: left;	
-}
-
-
-#right{
-	width: 200px;
-	float: left;
-}
-table {
-
-  margin-left:auto; 
-  margin-right:auto;
-  
-  border: 1px #444444 solid;
-  font-size: .9em;
-  box-shadow: 0 2px 5px rgba(0,0,0,.25);
-  width: 50%;
-  border-collapse: collapse;
-  border-radius: 5px;
-  overflow: hidden;
-}
-
- td, th {
-  padding: 1em .5em;
-  vertical-align: middle;
-}
-  
- td {
-  border-bottom: 1px solid rgba(0,0,0,.1);
-  background: #fff;
-}
-
-#ft {
-  text-align: center;
-  border-bottom: 1px solid black;
-  background: black;
-}
-#ft > h3 {
-  color: azure;
-}
+   
 </style>
