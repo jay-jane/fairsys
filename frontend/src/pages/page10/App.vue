@@ -1,38 +1,13 @@
 
 <template>
 
-<nav id="top">
-    <div id="logo"><a href="page1">중앙정보 취업 박람회</a></div>
-    <div id="menu"><a href="#" @mouseover="doDropmenu">채용정보</a></div>
-    <div id="menu"><a href="#" @mouseover="doDropmenu">기업/연봉</a></div>
-    <div id="menu"><a href="#" @mouseover="doDropmenu">마이페이지</a></div>
-    <div id="login"><button class="btn_login" @click="gologin">로그인</button></div>
-  </nav>
-  <nav id="drop_top" @mouseleave="doHidden">
-    <div id="drop">
-      <p><a href="#" class="drop_menu" >직무별</a></p>
-      <p><a href="#" class="drop_menu" >산업별</a></p>
-      <p><a href="#" class="drop_menu" >지역별</a></p>
-      <p><a href="#" class="drop_menu" >기업별</a></p>
-    </div>
-    <div id="drop">
-      <p><a href="#" class="drop_menu" >기업정보</a></p>
-      <p><a href="#" class="drop_menu" >연봉정보</a></p>
-    </div>
-    <div id="drop">
-      <p><a href="#" class="drop_menu" >이력서관리</a></p>
-      <p><a href="page9" class="drop_menu" >Q&A</a></p>
-      <p><a href="page21" class="drop_menu" >쪽지함</a></p>
-    </div>
-  </nav>
-
-  <div class="btn-group">
-    <button class="btn_qna" @click="showNotice">Q&A</button>
-    <button class="btn_inquiry" @click="showQna">문의 내역</button>
-  </div>
+  <Header></Header>
   
   <div class="main">
     <div class="container">
+
+      <h2>문의하기</h2>
+      <button @click="inquiry" class="btn btn-primary">문의작성하기</button>
 
       <table class="list">
         <thead class="head">
@@ -48,7 +23,7 @@
         <tbody class="body">
           <tr>
             <td>1</td>
-            <td><a href="page41">문의 1개 드립니다. 왜 서류 합격이 안뜨죠?</a></td>
+            <td><router-link to="/test1">문의 1개 드립니다. 왜 서류 합격이 안뜨죠?</router-link></td>
             <td>오하영</td>
             <td>2023.03.02</td>
             <td>미답변</td>
@@ -69,165 +44,39 @@
           </tr>
         </tbody>
       </table>
-      <button @click="inquiry">문의하기</button>
     </div>
   </div>
   
-  <div id="bottom">
+  <Footer></Footer>
 
-    중앙정보 채용 박람회<br />
-    중앙정보 7층 704호 / 대표자:coding404<br />
-    TEL:02-1253-8253 / FAX:02-1253-8253
-
-  </div>
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
+
 
 export default {
   name: 'App',
-  
+
   methods: {
-    showNotice() {
-      location.href ="page9";
-    },
-    showQna() {
-      location.href ="page10";
-    },
     inquiry(){
-      location.href ="page40";
-    },
-    gologin() {
-      location.href = "page2";
-    }, 
-    doDropmenu(){
-      const dorp_top = document.querySelector("#drop_top");
-      dorp_top.style.display = "block";
-    },
-    doHidden(){
-      const dropMenu_hidden = document.querySelector("#drop_top");
-      dropMenu_hidden.style.display="none";
+      location.href ="page43";
     }
+  },
+  components: {
+    Header,
+    Footer
   }
+
+
 };
 </script>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 
-* {
-  padding: 0;
-  margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  text-decoration: none;
-}
-
-/* header 디자인 */
- /* 헤더 기본메뉴 */
- #top{
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-    border-bottom: 2px solid rgba(0,0, 0, 0.2);
-  }
-
-  #top div{
-    display: inline-block;
-    height: 100px;
-  }
-
-  #menu{
-    width: 200px;
-    line-height: 100px;
-    display: inline-block;
-  }
-
-  #logo{
-    float: left;
-    margin-left: 50px;
-    line-height: 100px;
-  }
-
-  /* 헤더 드롭다운 메뉴 */
-
-  #drop_top {
-    display: none;
-    text-align: center;
-    background-color: orange;
-  }
-
-  #drop {
-    margin-bottom: 20px;
-    width: 200px;
-    line-height: 60px;
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  #drop a{
-    color: white;
-    font-size: 18px;
-  }
-
-  #drop a:hover{
-    color: black;
-  }
-
-  /* 로그인버튼 */
-  #login{
-    float: right;
-    margin-right: 50px;
-    line-height: 100px;
-  }
-
-  .btn_login{
-    font-size: 18px;
-    font-weight: 500;
-    color:  white;
-    background-color: orange;
-    border: none;
-    border-radius: 30px;
-    height: 50px;
-    width: 160px;
-  }
-
-  .btn_login:hover{
-    color: white;
-    background-color: black;
-  }
-
-  /* 버튼 */
-  .btn-group {
-  text-align: center;
-  margin-top: 100px;
-  }
-
-  .btn_qna {
-    width: 200px;
-    height: 70px;
-    background-color: lightslategray;
-    color: white;
-    border: none;
-    border-radius: 45px;
-    margin-right: 20px;
-    font-size: 24px;
-    font-weight: 400;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-
-  .btn_inquiry {
-    width: 200px;
-    height: 70px;
-    background-color: orange;
-    border: none;
-    border-radius: 45px;
-    margin-left: 20px;
-    color: white;
-    font-size: 24px;
-    font-weight: 600;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-
+  * {padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
 
 /* 문의사항 목록  */
 
@@ -235,8 +84,6 @@ export default {
   display: flex;
   justify-content: center;
   height: 600px;
-  margin-top: 50px;
-  margin-bottom: 50px;
 }
 
   .container {
@@ -245,11 +92,29 @@ export default {
     margin: 0 auto;
   }
 
+  .container h2{
+  margin: 20px 0;
+  }
+
+  .container button{
+    float: right;
+    margin: 10px 0;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: orange;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+  }
+
+
   .list {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
   }
+
 
   .head {
     background-color: #f5f5f5;
@@ -297,20 +162,6 @@ export default {
     text-decoration: underline;
   }
 
-  .btn-group{
-    text-align: center;
-  }
 
-
-  /* footer 디자인 */
-  #bottom {
-    height: 260px;
-    background-color: black;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
 </style>
 

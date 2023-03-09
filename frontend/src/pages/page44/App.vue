@@ -1,9 +1,12 @@
 
 <template>
-  
-  <h1>유저 목록</h1>
+
+  <AdminHeader></AdminHeader>
+  <Side></Side>
+
   <div class="main">    
     <div class="container">
+      <h1>유저 목록</h1>
       <div class="searchBox">
         <input type="text">
         <input type="submit" value="검색">
@@ -57,9 +60,15 @@
 </template>
 
 <script>
+import AdminHeader from '../../components/layout/Header/AdminHeader.vue';
+import Side from '../../components/layout/Side/Side.vue';
 
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    AdminHeader,
+    Side
+  }
 }
 </script>
 
@@ -72,7 +81,7 @@ export default {
   display: flex;
   justify-content: center;
   height: 600px;
-  margin-bottom: 50px;
+  margin-left: 200px;
 }
 
   .container {

@@ -1,16 +1,7 @@
 
 <template>
 
-  <nav id="top">
-      <ul>
-        <li><a href="#"><img src="#"></a></li>
-        <li><a href="#">채용정보</a></li>
-        <li><a href="#">기업/연봉</a></li>
-        <li><a href="#">마이페이지</a></li>
-        <li><a href="#">로그인</a></li>
-      </ul>
-  </nav>
-
+<Header></Header>
   <div class="content">
     
     <div class="container">
@@ -64,9 +55,14 @@
 
   </div>
 
+  <Footer></Footer>
+
 </template>
 
 <script>
+import Header from '../../components/layout/Header/Header.vue'
+import Footer from '../../components/layout/Footer/Footer.vue'
+
 
 export default {
   name: 'App',
@@ -74,31 +70,15 @@ export default {
     golist(){
       location.href = "page10";
     }
+  },
+  components: {
+    Header,
+    Footer
   }
 }
 </script>
 
 <style>
-   #top{
-    background-color: blue;
-  }
 
-  #top ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  #top li {
-    display: inline-block;
-    padding: 10px;
-  }
-
-  #top a {
-    color: white;
-    text-decoration: none;
-  }
 </style>
 
