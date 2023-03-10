@@ -1,6 +1,5 @@
 <!-- 재윤 - 채용 공고 목록 -->
 <template>
-
   <section id="salary_wrap">
     <h3>채용 정보</h3>
     <hr>
@@ -12,17 +11,27 @@
         </div>
       </div>
       <div id="category_wrap">
-        <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%;">
+        <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%">
           <tr>
             <th>카테고리</th>
-            <td colspan="5"><input type="text" name="prod_category" value="">
+            <td colspan="5"><input type="text" name="prod_category" value={{category}} readonly>
               <div class="loading" style="display: none;">
                 <div class="loader"></div>
                 <div class="loading-overlay"></div>
               </div>
 
-              <div class="categoryListWrap">
-                <!-- 카테고리 jquery -->
+              <div class="categoryListWrap" ref="category">
+                <ul class="categoryList" style="position: relative;">
+                  <li @click="getCategory_List" value="1"><a href="#">머임</a></li>
+                  <li @click="getCategory_List" value="2"><a href="#">지역</a></li>
+                  <li @click="getCategory_List" value="3"><a href="#">근무형태</a></li>
+                </ul>
+                <ul class="categoryList" v-if="mid_category" style="position: relative;" v-html="getCategory1">
+                </ul>
+                <ul class="categoryList" v-if="mid_category" style="position: relative;" v-html="getCategory2">
+                </ul>
+                <ul class="categoryList" v-if="mid_category" style="position: relative;" v-html="getCategory3">
+                </ul>
               </div>
             </td>
           </tr>
@@ -33,26 +42,27 @@
           <strong class="option_title">
             <label for="company_name">기업명</label>
           </strong>
-          <input type="text" placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
+          <input type="text" @focusout="getComName" placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
         </div>
         <div id="search_salary" class="option_box">
           <strong class="option_title">지역</strong>
-          <select name="" id="salary">
-            <option value="">서울, 경기</option>
-            <option value="">인천</option>
-            <option value="">나머지</option>
-            <option value="">@@@@</option>
+          <select @change="getRegion" id="salary">
+            <option value="서울, 경기">서울, 경기</option>
+            <option value="인천">인천</option>
+            <option value="나머지">나머지</option>
+            <option value="@@@@">@@@@</option>
           </select>
         </div>
         <div id="search_type" class="option_box">
           <strong class="option_title">근무형태</strong>
           <div id="job_type">
-            <input type="radio" name="job_type" value="신입">신입
-            <input type="radio" style="margin-left: 5px;" name="job_type" value="경력">경력
-            <input type="radio" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
+            <input @click="getCareer" type="radio" name="job_type" value="신입">신입
+            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력">경력
+            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
           </div>
         </div>
         <div id="search_btn">
+          <span>{{ com_name }}, {{ region }}, {{ career }}</span>
           <p class="search_total">검색 결과 : <strong class="num_total" style="color: orangered;">999</strong> 건</p>
           <button type="button" class="search_btn" @click="searchItem">검색하기</button>
         </div>
@@ -137,16 +147,57 @@
     </div>
 
   </section>
-
 </template>
 
 <script>
-
+import axios from 'axios';
 
 export default {
-
   name: 'App',
+  data() {
+    return {
+      com_name: '',
+      region: '',
+      career: '',
+      getCategory:
+        '<li><a href="#">중분류</a></li>' +
+        '<li><a href="#">중분류</a></li>' +
+        '<li><a href="#">중분류</a></li>',
+      category: '',
+      mid_category: false,
+    }
+  },
+  methods: {
+    getRegion: function (e) {
+      this.region = e.target.value;
+    },
+    getCareer: function (e) {
+      this.career = e.target.value;
+    },
+    getComName: function (e) {
+      this.com_name = e.target.value;
+    },
+    getCategory_List: function (e) {
+      e.preventDefault();
+      this.mid_category = true;
+      // if(e.target.tagName != '') return;
+      // axios.get("/getCategoryChild").then(result => { category_create(result); }).catch(err => { alert(err); });
+      // this.data.forEach(item => {
+      //   this.$refs.category.insertAdjacentHTML(item);
+      // });
+    },
+    // category_create: function (data) {
+    //   this.category += '<ul class="categoryList" style="position: relative;" @click="getCategory_List;" >';
+    //   data.forEach( item => {
+    //     this.category += '<li><a href="#" data-set=>' + item.category_detail_nm + '</a></li>';
+    //   });
+    //   this.category += '</ul>';
+    //   this.$refs.category.append(this.category);
+    // },
+  },
+  mounted() {
 
+  },
 }
 </script>
 
