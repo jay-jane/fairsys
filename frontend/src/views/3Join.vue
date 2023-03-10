@@ -1,13 +1,13 @@
+
 <template>
   <form action="">
 
     <section>
-      <div id="join_wraaper" class="join_cont_wrap">
+
 
         <div class="cont_division">
+         
 
-
-          <h3>기업회원가입</h3>
           <div>
             <label for="com_name">회사명: <input v-model="com_name" required type="text" placeholder="회사이름을 입력하세요"></label>
           </div>
@@ -22,6 +22,7 @@
           <div>
             <!-- <label for="com_address">회사주소: </label> -->
             <!-- <input v-model="com_address" required type="text" placeholder="회사주소를 입력하세요"> -->
+
             <input type="text" v-model="postcode" placeholder="우편번호">
             <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"><br>
             <input type="text" v-model="address" placeholder="주소"><br>
@@ -164,9 +165,11 @@
           </div>
 
         </div>
-      </div>
+
+   
     </section>
-    <h4>푸터</h4>
+
+
   </form>
 </template>
 
@@ -262,6 +265,22 @@ div {
   position: relative;
 }
 
+
+
+<style>
+div {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+#join_wrapper {
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
 li {
   list-style: none;
 
@@ -275,6 +294,7 @@ a:hover {
   color: black;
 }
 
+
 form {
   display: flex;
   flex-direction: column;
@@ -282,8 +302,6 @@ form {
   gap: 10px;
   margin: 20px;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
 }
 
 label {
@@ -383,19 +401,11 @@ input[type="checkbox"] {
   height: 13px;
 
 }
-
-/* .cont_division .agree_box .agree_article.depth3 {
-    border: none;
-    padding-bottom: 0;
+*{
+  text-align: left;
 }
 
-.cont_division .agree_box .agree_article.depth3 li {
-  position: relative;
-    margin: 16px 0;
-}
-.cont_division .agree_box .agree_article.depth3 span {
-  font-size: 13px
-} */
+
 </style>
 
 

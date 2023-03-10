@@ -46,7 +46,7 @@
 
 
     <button type="submit" @click="page30">수정하기</button>
-    <button class="view" @click="btn_list">목록</button>
+    <button class="view" @click="btn_list"><router-link to="/1">목록</router-link></button>
     <button class="view" @click="btn_view">회원탈퇴</button>
   </section>
  

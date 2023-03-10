@@ -24,6 +24,11 @@ const routes = [
     component: () => import('../views/3Join.vue')
   },
   {
+    path: '/33',
+    name: 'join1',
+    component: () => import('../views/3join1.vue')
+  },
+  {
     path: '/4',
     name: 'jobPosting',
     component: () => import('../views/4JobPosting.vue')
@@ -112,6 +117,11 @@ const routes = [
     path: '/21',
     name: 'adminStatistics',
     component: () => import('../views/21AdminStatistics.vue')
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: () => import('../views/22Test.vue')
   },
 ];
 
