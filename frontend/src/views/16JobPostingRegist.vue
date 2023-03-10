@@ -38,7 +38,12 @@
       <div id="field">
         <label class="field_name">업종</label>
         <div id="job_type">
-
+          <select name="" id="">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
+            <option value="">4</option>
+          </select>
         </div>
       </div>
       <div id="field">
@@ -46,8 +51,7 @@
         <div id="job_type">
           <Hashtags></Hashtags>
         </div>
-        <div id="recruit_type">
-          <input type="text" class="recruit_type_input">
+        <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;">
           <span>명 모집</span>
         </div>
@@ -145,7 +149,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap'); */
 
 * {
   padding: 0;
@@ -153,7 +157,7 @@ export default {
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  font-family: 'Noto Sans KR', sans-serif;
+  /* font-family: 'Noto Sans KR', sans-serif; */
 }
 
 body {

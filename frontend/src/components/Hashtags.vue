@@ -7,7 +7,10 @@
             <input type="text" class="fake" ref="fake" @keydown.backspace.prevent="deleteTag(focusIndex)"
                 @keydown.delete.prevent="deleteTag(focusIndex)" />
             <span class="tag" v-for="(row, index) in tags" :key="index" :class="{ active: row.select }"
-                @click="selectTag(index)">{{ row.value }}</span>
+                @click="selectTag(index), deleteTag(index)">{{ row.value }}
+                <button type="button" style="border: 0; font-size: 15px; cursor: pointer; color: orangered;">x</button>
+            </span>
+
         </div>
         <!--// Hashtags -->
 
@@ -32,7 +35,7 @@ export default {
         return {
             defaultPlaceholder: this.placeholder
                 ? this.placeholder
-                : "#추천태그 #특수문자제외",
+                : "#특수문자제외",
             errorMsg: null,
             focusIndex: null,
             helpVisible: true,
@@ -140,7 +143,6 @@ export default {
 <style scoped>
 .comp_hashtag {
     position: relative;
-    width: 80%;
     padding: 5px 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -208,6 +210,7 @@ export default {
     word-break: break-all;
     font-size: 13px;
     text-align: left;
+    cursor: pointer;
 }
 
 .comp_hashtag .tags .tag:hover:after {
@@ -226,11 +229,6 @@ export default {
 .comp_hashtag .tags .tag:before {
     display: inline;
     content: "#";
-}
-
-.comp_hashtag .tags .tag.active {
-    background-color: #656565;
-    color: #fff;
 }
 
 .comp_hashtag .tags .tag.active:hover:after {
