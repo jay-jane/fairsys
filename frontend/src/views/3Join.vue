@@ -4,6 +4,7 @@
 
     <section>
 
+
         <div class="cont_division">
          
 
@@ -21,7 +22,7 @@
           <div>
             <!-- <label for="com_address">회사주소: </label> -->
             <!-- <input v-model="com_address" required type="text" placeholder="회사주소를 입력하세요"> -->
-            
+
             <input type="text" v-model="postcode" placeholder="우편번호">
             <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"><br>
             <input type="text" v-model="address" placeholder="주소"><br>
@@ -164,14 +165,16 @@
           </div>
 
         </div>
+
    
     </section>
+
 
   </form>
 </template>
 
-
 <script>
+
 export default {
   data() {
     return {
@@ -246,9 +249,23 @@ export default {
     }
   },
 };
-
-
 </script>
+
+<style>
+div {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+#join_wrapper {
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+}
+
+
 
 <style>
 div {
@@ -276,6 +293,7 @@ a:hover {
   text-decoration: none;
   color: black;
 }
+
 
 form {
   display: flex;
@@ -387,5 +405,7 @@ input[type="checkbox"] {
   text-align: left;
 }
 
+
 </style>
+
 
