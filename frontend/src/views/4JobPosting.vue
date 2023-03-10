@@ -14,7 +14,7 @@
         <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%">
           <tr>
             <th>카테고리</th>
-            <td colspan="5"><input type="text" name="prod_category" value={{category}} readonly>
+            <td colspan="5"><input type="text" name="prod_category" value={{  }} readonly>
               <div class="loading" style="display: none;">
                 <div class="loader"></div>
                 <div class="loading-overlay"></div>
