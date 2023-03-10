@@ -5,7 +5,7 @@
       <li class="sub_menu_toggle">
         <a class="sub menu select">채용공고</a>
         <ul class="sub_menu" style="display: block;">
-          <li><a href="page7">공고 등록</a></li>
+          <li><router-link to="/16">공고등록</router-link></li>
           <li><a href="">공고 수정</a></li>
           <!-- <router-link :to="{name:'page8'}">공고수정</router-link> -->
         </ul>
@@ -14,7 +14,7 @@
       <li class="sub_menu_toggle">
         <a href="#">이력서</a>
         <ul class="sub_menu">
-          <li><a href="page6">이력서 리스트</a></li>
+          <li><router-link to="/10">이력서리스트</router-link></li>
           <li><a href="#"></a></li>
         </ul>
       </li>
@@ -30,7 +30,7 @@
       <li class="sub_menu_toggle">
         <a href="#">회사정보수정</a>
         <ul class="sub_menu">
-          <li><a href="page31">정보수정</a></li>
+          <li><router-link to="/9">회원정보수정</router-link></li>
           <li><a href="page34">회원탈퇴</a></li>
         </ul>
       </li>

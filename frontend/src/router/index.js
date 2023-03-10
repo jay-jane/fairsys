@@ -24,6 +24,11 @@ const routes = [
     component: () => import('../views/3Join.vue')
   },
   {
+    path: '/33',
+    name: 'join1',
+    component: () => import('../views/3join1.vue')
+  },
+  {
     path: '/4',
     name: 'jobPosting',
     component: () => import('../views/4JobPosting.vue')
