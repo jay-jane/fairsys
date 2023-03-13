@@ -1,13 +1,12 @@
 <!-- 재윤 - 채용 공고 등록 -->
 <template>
-
   <section>
     <h3 style="text-align: center;">채용 공고 등록 페이지</h3>
     <form @submit="regist">
       <div id="field">
         <label class="field_name">제목</label>
         <div id="">
-          <input type="text">
+          <input type="text" v-model="j_title">
         </div>
       </div>
       <div id="field">
@@ -65,7 +64,7 @@
         </div>
       </div>
       <div id="field">
-        <label class="field_name">대표 근무지역</label>
+        <label class="field_name">근무지역</label>
         <div class="kakaoAPI">(카카오맵api)</div>
       </div>
       <div id="field">
@@ -94,6 +93,14 @@
         </div>
       </div>
       <div id="field">
+        <label class="field_name">학력</label>
+        <div style="display: inline-block;">
+          <input type="radio" name="graduation_type" value="대졸">대졸
+          <input type="radio" name="graduation_type" value="고졸/초대졸">고졸/초대졸
+          <input type="radio" name="graduation_type" value="학력무관">학력무관
+        </div>
+      </div>
+      <div id="field">
         <label class="field_name">상세 내용</label>
 
         <div class="content">나중에@@@@</div>
@@ -105,13 +112,26 @@
           <div id="process_wrap">
             <input type="text" id="process" value="서류전형" readonly>
           </div>
-          <div id="process_wrap">
-            <input type="text" id="process" value="1차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" src="https://picsum.photos/20/20" alt="삭제">
+          <div id="process_add">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
+              style="margin-bottom: 15px;">
+              1차면접
+              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
+            </button>
           </div>
-          <div id="process_wrap">
+          <div id="process_wrap" ref="interview1" style="display: none;">
+            <input type="text" id="process" value="1차면접" readonly>
+            <img class="deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
+          </div>
+          <div id="process_add">
+            <button type="button" class="add_btn" name="interview2" @click="addBtn" ref="btn2">
+              2차면접
+              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
+            </button>
+          </div>
+          <div id="process_wrap" ref="interview2" style="display: none;">
             <input type="text" id="process" value="2차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" src="https://picsum.photos/20/20" alt="삭제">
+            <img class="deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
           </div>
           <div id="process_wrap">
             <input type="text" id="process" value="최종합격" readonly>
@@ -123,12 +143,11 @@
         <div>(달력api)</div>
       </div>
       <div>
-        <input type="submit" value="등록">
-        <input type="button" value="취소" @click="goMain">
+        <button type="button" value="등록" @click="submitForm">등록</button>
+        <button type="button" value="취소" @click="goMain">취소</button>
       </div>
     </form>
   </section>
-
 </template>
 
 <script>
@@ -136,10 +155,44 @@ import Hashtags from '../components/Hashtags.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      j_title: '',
+    }
+  },
   methods: {
     goMain: () => {
       location.href = "/";
-    }
+    },
+    deleteItem: function (e) {
+      if (e.target.tagName != "IMG") return;
+      if (e.target.name == "interview1") {
+        this.$refs.interview1.style.display = "none";
+        this.$refs.btn1.style.display = "inline-block";
+      } else {
+        this.$refs.interview2.style.display = "none";
+        this.$refs.btn2.style.display = "inline-block";
+      }
+
+    },
+    addBtn: function (e) {
+      if (e.target.tagName != "BUTTON") return;
+      if (e.target.name == 'interview1') {
+        this.$refs.interview1.style.display = "block";
+        this.$refs.btn1.style.display = "none";
+      } else {
+        this.$refs.interview2.style.display = "block";
+        this.$refs.btn2.style.display = "none";
+      }
+    },
+    submitForm: function() {
+      this.axios.post("/regist", {j_title: this.j_title})
+                .then(r => {
+                  console.log(r);
+                  this.$router.push({path:"/"});
+                })
+                .catch(err => {console.log(err)});
+    },
   },
   components: {
     Hashtags,
@@ -164,33 +217,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-}
-
-/* 헤더 스타일링 */
-header {
-  background-color: #333;
-  color: #fff;
-  align-items: center;
-  padding: 10px;
-}
-
-.head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.head li {
-  margin-right: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.head li:first-child {
-  font-size: 24px;
 }
 
 form {
@@ -278,16 +304,18 @@ button[type="submit"]:hover {
 #process_wrap #process {
   font-weight: bold;
   color: orangered;
+  cursor: default;
 }
 
-#tiptapAPI {
-  border: 1px solid #999;
-}
-
-/* 푸터 스타일링 */
-footer {
-  background-color: #f2f2f2;
-  padding: 10px;
-  font-size: 14px;
+#process_add .add_btn {
+  width: 80%;
+  text-align: center;
+  height: 30px;
+  background-color: #eee;
+  border: 0;
+  border-radius: 2px;
+  color: grey;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>

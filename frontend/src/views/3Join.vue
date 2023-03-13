@@ -265,9 +265,6 @@ div {
   position: relative;
 }
 
-
-
-<style>
 div {
   display: block;
   margin: 0;

@@ -22,10 +22,4 @@ export default {
 </script>
 
 <style>
-@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2');
-#app {
-    font-family: 'KCC-Ganpan';
-    font-weight: normal;
-    font-style: normal;
-}
 </style>
