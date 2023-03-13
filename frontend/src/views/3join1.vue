@@ -18,34 +18,34 @@
                         <input v-model="com_ceo" required type="text" placeholder="대표자명을 입력하세요">
                     </div>
                     <div>
-                        <label for="business_number">사업자등록번호: </label>
-                        <input v-model="business_number" required type="number" placeholder="사업자 번호를 입력하세요">
+                        <label for="com_business_number">사업자등록번호: </label>
+                        <input v-model="com_business_number" required type="number" placeholder="사업자 번호를 입력하세요">
                     </div>
                     <div>
-                        <!-- <label for="com_address">회사주소: </label> -->
-                        <!-- <input v-model="com_address" required type="text" placeholder="회사주소를 입력하세요"> -->
+                        <label for="com_address">회사주소: </label> -
+                         <input v-model="com_address" required type="text" placeholder="회사주소를 입력하세요">
 
-                        <input type="text" v-model="postcode" placeholder="우편번호">
+                        <!-- <input type="text" v-model="postcode" placeholder="우편번호">
                         <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"><br>
                         <input type="text" v-model="address" placeholder="주소"><br>
-                        <input type="text" v-model="detailAddress" placeholder="상세주소">
+                        <input type="text" v-model="detailAddress" placeholder="상세주소"> -->
                     </div>
 
                     <div>
-                        <label for="com_userid">id: </label>
-                        <input v-model="com_userid" required type="text" placeholder="아이디를 입력하세요">
+                        <label for="com_id">id: </label>
+                        <input v-model="com_id" required type="text" placeholder="아이디를 입력하세요">
                     </div>
                     <div>
-                        <label for="com_password">password: </label>
-                        <input v-model="com_password" required type="password" placeholder="비밀번호를 입력하세요">
+                        <label for="com_pw">password: </label>
+                        <input v-model="com_pw" required type="password" placeholder="비밀번호를 입력하세요">
                     </div>
                     <div>
-                        <label for="com_number">전화번호: </label>
-                        <input v-model="com_number" required type="number" placeholder="전화번호를 입력하세요">
+                        <label for="com_hp">전화번호: </label>
+                        <input v-model="com_hp" required type="number" placeholder="전화번호를 입력하세요">
                     </div>
                     <div>
-                        <label for="com_manager">가입자명: </label>
-                        <input v-model="com_manager" required type="text" placeholder="성함을 입력하세요">
+                        <label for="com_user">가입자명: </label>
+                        <input v-model="com_user" required type="text" placeholder="성함을 입력하세요">
                     </div>
                     <div>
                         <label for="com_email">이메일: </label>
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                     <div class="list">
-                        <button type="submit" @click="page30">가입하기</button>
+                        <button type="button" @click="submitForm" >가입하기</button>
                         <button class="view" @click="btn_view">목록</button>
                     </div>
 
@@ -107,50 +107,48 @@
             <div class="cont_division">
 
 
+                <div>
+                        <label for="com_name">회사명: <input v-model="com_name" required type="text"
+                                placeholder="회사이름을 입력하세요"></label>
+                    </div>
+                    <div>
+                        <label for="com_ceo">대표자명: </label>
+                        <input v-model="com_ceo" required type="text" placeholder="대표자명을 입력하세요">
+                    </div>
+                    <div>
+                        <label for="com_business_number">사업자등록번호: </label>
+                        <input v-model="com_business_number" required type="number" placeholder="사업자 번호를 입력하세요">
+                    </div>
+                    <div>
+                        <label for="com_address">회사주소: </label> -
+                         <input v-model="com_address" required type="text" placeholder="회사주소를 입력하세요">
 
-<div>
-    <label for="user_name">이름: <input v-model="user_name" required type="text"
-            placeholder="이름을 입력하세요"></label>
-</div>
-<div>
-    <label for="com_ceo">대표자명: </label>
-    <input v-model="com_ceo" required type="text" placeholder="대표자명을 입력하세요">
-</div>
-<div>
-    <label for="business_number">사업자등록번호: </label>
-    <input v-model="business_number" required type="number" placeholder="사업자 번호를 입력하세요">
-</div>
-<div>
-    <!-- <label for="com_address">회사주소: </label> -->
-    <!-- <input v-model="com_address" required type="text" placeholder="회사주소를 입력하세요"> -->
+                        <!-- <input type="text" v-model="postcode" placeholder="우편번호">
+                        <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"><br>
+                        <input type="text" v-model="address" placeholder="주소"><br>
+                        <input type="text" v-model="detailAddress" placeholder="상세주소"> -->
+                    </div>
 
-    <input type="text" v-model="postcode" placeholder="우편번호">
-    <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"><br>
-    <input type="text" v-model="address" placeholder="주소"><br>
-    <input type="text" v-model="detailAddress" placeholder="상세주소">
-</div>
-
-<div>
-    <label for="com_userid">id: </label>
-    <input v-model="com_userid" required type="text" placeholder="아이디를 입력하세요">
-</div>
-<div>
-    <label for="com_password">password: </label>
-    <input v-model="com_password" required type="password" placeholder="비밀번호를 입력하세요">
-</div>
-<div>
-    <label for="com_number">전화번호: </label>
-    <input v-model="com_number" required type="number" placeholder="전화번호를 입력하세요">
-</div>
-<div>
-    <label for="com_manager">가입자명: </label>
-    <input v-model="com_manager" required type="text" placeholder="성함을 입력하세요">
-</div>
-<div>
-    <label for="com_email">이메일: </label>
-    <input v-model="com_email" required type="email">
-</div>
-
+                    <div>
+                        <label for="com_id">id: </label>
+                        <input v-model="com_id" required type="text" placeholder="아이디를 입력하세요">
+                    </div>
+                    <div>
+                        <label for="com_pw">password: </label>
+                        <input v-model="com_pw" required type="password" placeholder="비밀번호를 입력하세요">
+                    </div>
+                    <div>
+                        <label for="com_hp">전화번호: </label>
+                        <input v-model="com_hp" required type="number" placeholder="전화번호를 입력하세요">
+                    </div>
+                    <div>
+                        <label for="com_user">가입자명: </label>
+                        <input v-model="com_user" required type="text" placeholder="성함을 입력하세요">
+                    </div>
+                    <div>
+                        <label for="com_email">이메일: </label>
+                        <input v-model="com_email" required type="email">
+                    </div>
 
 
 <div class="cont_division">
@@ -187,9 +185,9 @@
             </ul>
         </div>
     </div>
-</div>
+</div> 
 <div class="list">
-    <button type="submit" @click="page30">가입하기</button>
+    <button type="submit" >가입하기</button>
     <button class="view" @click="btn_view">목록</button>
 </div>
 
@@ -219,17 +217,39 @@ export default {
             // 로그인 로직
         }
     },
-    computed: {
-        allSelected: {
-            get: function () {
-                return this.checkList.length === this.selectList.length;
-            },
-            set: function (e) {
-                this.selectList = e ? this.checkList : [];
-            }
+
+    async submitForm() {
+            console.log(1);
+
+            // let data = await fetch("/test/registForm", {
+            //     method: "post", 
+            //     body: JSON.stringify({ user_id: "Xxxx" }),
+            //     headers: { "Content-Type": "application/json", }
+            //     })
+            // let result = await data.text();
+            // console.log(result)
+
+            this.axios.post('/regist/registForm',
+                {
+                    com_name: this.com_name,
+                    com_ceo: this.com_ceo,
+                    com_Business_number: this.com_Business_number,
+                    com_address: this.com_address,
+                    com_id: this.com_id,
+                    com_pw: this.com_pw,
+                    com_hp: this.com_hp,
+                    com_user: this.com_user,
+                    com_email: this.com_email
+                }
+            ).then(res => {
+                console.log(res)
+                this.$router.push({path:'/'})
+            }).catch(err => {
+                console.log(err)
+            })
         }
-    },
-}
+};
+
 </script>
   
 <style>

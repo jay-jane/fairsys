@@ -1,6 +1,6 @@
 
 <template>
-  <form action="">
+  <form>
 
     <section>
 
@@ -267,7 +267,7 @@ div {
 
 
 
-<style>
+
 div {
   display: block;
   margin: 0;
