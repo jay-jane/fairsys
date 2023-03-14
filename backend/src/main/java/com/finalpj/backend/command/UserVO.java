@@ -13,9 +13,11 @@ public class UserVO {
     private String user_name;
     private String user_birth;
     private String user_email;
-    private String user_hp;
-    private String user_status;
+    private String user_phone;
     private String user_gender;
+    private String user_postcode;
     private String user_address;
+    private String user_detail_address;
     private String ut_no;
+    private String u_no;
 }

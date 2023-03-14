@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.finalpj.backend.service.EmploymentQnaMapper">
+
+    <select id="getList" resultType="EmploymentQnaVO">
+        SELECT * FROM employment_qa
+        WHERE user_id = 'aaa123'
+        ORDER BY qa_no DESC
+        LIMIT #{cri.pageStart}, #{cri.amount};
+
+    </select>
+
+    <select id="getTotal" resultType="int">
+     	select count(*) as total from employment_qa
+     	where user_id = 'aaa123'
+		<if test="cri.searchTitle != null and cri.searchTitle !='' ">
+			<![CDATA[ and qa_title like concat('%', #{cri.searchTitle}, '%')]]>
+		</if>
+		<if test="cri.searchContent != null and cri.searchContent !='' ">
+			<![CDATA[ and qa_content like concat('%', #{cri.searchContent}, '%')]]>
+		</if>
+     </select>
+
+</mapper>

@@ -7,4 +7,5 @@ import com.finalpj.backend.command.UserVO;
 @Mapper
 public interface TestMapper {
     public int regist(UserVO vo);
+    public int checkId(String user_id);
 }

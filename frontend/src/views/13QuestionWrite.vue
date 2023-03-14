@@ -29,7 +29,7 @@
         <tr>
           <td></td>
           <td>
-            <input type="submit" value="등록하기" class="btn btn-primary">
+            <button class="btn btn-primary">등록하기</button>
             <button class="btn btn-secondary" @click="doCancel">취소하기</button>
           </td>
         </tr>
@@ -61,6 +61,7 @@ export default {
 * {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
   
 .content {
+  margin-left: 200px;
   height: 100%;
 }
 
