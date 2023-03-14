@@ -7,7 +7,7 @@
             <input type="text" class="fake" ref="fake" @keydown.backspace.prevent="deleteTag(focusIndex)"
                 @keydown.delete.prevent="deleteTag(focusIndex)" />
             <span class="tag" v-for="(row, index) in tags" :key="index" :class="{ active: row.select }"
-                @click="selectTag(index), deleteTag(index)">{{ row.value }}
+                @click="selectTag(index), deleteTag(index)" >{{ row.value }}
                 <button type="button" style="border: 0; font-size: 15px; cursor: pointer; color: orangered;">x</button>
             </span>
 
