@@ -9,21 +9,52 @@
   							user_name,
   							user_birth,
   							user_email,
-  							user_hp,
-  							user_status,
+  							user_phone,
   							user_gender,
+  							user_postcode,
   							user_address,
-  							ut_no )
+  							user_detail_address
+  							)
   		values( #{user_id},
   				#{user_pw},
   				#{user_name},
   				#{user_birth},
   				#{user_email},
-  				#{user_hp},
-  				#{user_status},
+  				#{user_phone},
   				#{user_gender},
+  				#{user_postcode},
   				#{user_address},
-  				#{ut_no} )
+  				#{user_detail_address}
+  				)
   	</insert>
+
+	<select id="checkId" resultType="int">
+		select count(*) from user where user_id=#{user_id}
+	</select>
+
+  <!-- <insert id="regist" parameterType="UserVO">
+  		insert into user(user_id,
+  							user_pw,
+  							user_name,
+  							user_birth,
+  							user_email,
+  							user_phone,
+  							user_gender,
+  							user_postcode,
+  							user_address,
+  							user_detail_address
+  							)
+  		values( #{user_id},
+  				#{user_pw},
+  				#{user_name},
+  				#{user_birth},
+  				#{user_email},
+  				#{user_phone},
+  				#{user_gender},
+  				#{user_postcode},
+  				#{user_address},
+  				#{user_detail_address}
+  				)
+  	</insert> -->
 
 </mapper>
