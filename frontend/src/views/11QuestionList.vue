@@ -122,17 +122,6 @@ export default {
       console.log(this.list_view);
       let response = await Axios.get("/11/amount?page="+ 1 +"&amount=" + this.list_view  );
       this.list = response.data;
-      
-      // then((response)=>{
-      //   //데이터전달
-      //   this.list = response.data;
-      //   //this.list_view = this.list_view;
-      //   //console.log(response.data.length);
-      //   //console.log(this.list);
-      // })
-      // .catch((err)=>{
-      //   console.log(err);
-      // })
     },
 
     loglist_view(){

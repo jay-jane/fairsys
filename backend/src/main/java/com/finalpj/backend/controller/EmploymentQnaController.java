@@ -21,7 +21,7 @@ public class EmploymentQnaController {
     @Autowired
     private EmploymentQnaService eqs;
 
-    @GetMapping("/amount")
+    @GetMapping("/")
     public  ArrayList<EmploymentQnaVO> list (String user_id, Criteria cri){
 
         //페이지네이션 처리
