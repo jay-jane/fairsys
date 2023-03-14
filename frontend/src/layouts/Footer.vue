@@ -16,9 +16,9 @@ export default {
 /* footer 디자인 */
 #bottom {
     height: 200px;
-    background-color: black;
+
     color: white;
-    display: flex;
+   
     align-items: center;
     justify-content: center;
     text-align: center;

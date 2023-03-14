@@ -128,11 +128,28 @@ const routes = [
     name: 'test',
     component: () => import('../views/22Test.vue')
   },
+
+
+  {
+    path: '/25',
+    name: '25',
+    component: () => import('../views/25test.vue')
+  },
+  
+
+  {
+    path: '/26',
+    name: '26',
+    component: () => import('../views/26test.vue')
+  },
+  
+
   {
     path: '/99',
     name: 'test',
     component: () => import('../views/99TestList.vue')
   },
+
 ];
 
 const router = createRouter({
