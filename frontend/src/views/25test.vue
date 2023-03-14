@@ -59,7 +59,7 @@
               </tr>
               <tr>
                 <th><label for="w_gender">성별</label></th>
-                <td class="gender">
+                <td>
                   <input v-model="w_gender" required type="radio" name="gender" value="남">남
                   <input v-model="w_gender" required type="radio" name="gender" value="여">여
                 </td>
@@ -608,6 +608,6 @@
     font-size: 14px;
   }
   
-  .gender { display: inline-block;}
+  
   </style>
     
