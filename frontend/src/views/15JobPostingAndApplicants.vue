@@ -46,7 +46,7 @@
           <div id="salary_list_total">
             <ul>
               <li class="com_info">
-                <a href="#" class="logo"><img src="#" alt="로고"></a>
+                <a href="#" class="logo"><img src="" alt="로고"></a>
                 <div class="company_info">
                   <strong class="title">회사명</strong>
                   <a href="#" class="mark">채용중</a>
