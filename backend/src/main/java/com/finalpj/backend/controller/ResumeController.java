@@ -27,15 +27,15 @@ public class ResumeController {
 
         ArrayList<ResumeVO> list =resumeService.getList();
         System.out.println(list.toString());
-
+        resumeService.getList();
         return list;
     }
 
     @PostMapping("/26")
-	public String registForm(@RequestBody ResumeWriteVO vo){
+	public String regist(@RequestBody ResumeWriteVO vo){
 
         System.out.println(vo.toString());
-
+        resumeService.regist(vo);
       
         return "/26";
     }

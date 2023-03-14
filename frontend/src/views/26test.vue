@@ -168,7 +168,7 @@
           <td>
                 
                 <label for="w_get">
-                  <input v-model="w_leave" required type="date" >
+                  <input v-model="w_get" required type="date" >
                 </label>
               </td>
          
@@ -195,14 +195,14 @@
     <div class="resume-part2-box">
       <table class="resume-part2-input">
         <tr>
-          <th class="pl-15"><label for="w_license">점수</label></th>
+          <th class="pl-15"><label for="w_license">자격증명</label></th>
           <td>
             <input v-model="w_license" required type="text">
           </td>
-          <th style="padding-top:10px"><label for="w_getLicense">취득일</label></th>
+          <th style="padding-top:10px"><label for="w_getlicense">취득일</label></th>
           <td>
                 
-            <input v-model="w_getLicense" required type="date" >
+            <input v-model="w_getlicense" required type="date" >
                
               </td>
         </tr>
@@ -221,17 +221,25 @@
 export default {
   data() {
         return {
-            com_name: '',
-            com_ceo: '',
-            business_number: '',
-            postcode: "",
-            address: "",
-            extraAddress: "",
-            com_userid: '',
-            com_password: '',
-            com_number: '',
-            com_manager: '',
-            com_email: '',
+                  w_no: "",
+                  w_name: "",
+                  w_hp: "",
+                  w_email: "",
+                  w_address: "",
+                  w_gender: "",
+                  w_level: "",
+                  w_finish: "",
+                  w_major: "",
+                  w_fndate: "",
+                  w_com: "",
+                  w_position: "",
+                  w_join: "",
+                  w_leave: "",
+                  w_subject: "",
+                  w_score: "",
+                  w_get: "",
+                  w_license: "",
+                  w_getlicense: ""
         };
     },methods: {
         btn_view() {
@@ -264,10 +272,10 @@ async submitForm() {
                   w_position: this.w_position,
                   w_join: this.w_join,
                   w_leave: this.w_leave,
-                  W_subject: this.W_subject,
+                  w_subject: this.w_subject,
                   w_score: this.w_score,
-                  W_get: this.W_get,
-                  W_license: this.W_license,
+                  w_get: this.w_get,
+                  w_license: this.w_license,
                   w_getlicense: this.w_getlicense
                 }
             ).then(res => {

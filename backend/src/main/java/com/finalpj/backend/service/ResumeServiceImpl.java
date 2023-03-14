@@ -21,6 +21,7 @@ public class ResumeServiceImpl implements ResumeService{
 
 
     }
+
     @Override
     public int regist(ResumeWriteVO vo) {
         return resumemapper.regist(vo);

@@ -24,10 +24,10 @@
                 w_position,
                 w_join,
                 w_leave,
-                W_subject,
+                w_subject,
                 w_score,
-                W_get,
-                W_license,
+                w_get,
+                w_license,
                 w_getlicense)
   		values( #{w_no},
   				#{w_name},
@@ -43,10 +43,10 @@
           #{w_position}, 
           #{w_join},
           #{w_leave},
-          #{W_subject},
+          #{w_subject},
           #{w_score},
-          #{W_get},
-          #{W_license},
+          #{w_get},
+          #{w_license},
           #{w_getlicense} )
 
           
