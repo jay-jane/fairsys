@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CompanyServiceimpl implements CompanyService {
+public class adminCompanyServiceimpl implements adminCompanyService {
 
     
     @Autowired
-    private CompanyMapper companyMapper ;
+    private adminCompanyMapper companyMapper ;
 
     @Override
 	public ArrayList<CompanyVO> getList(String com_id) {
