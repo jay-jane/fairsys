@@ -16,4 +16,10 @@ public class TestServiceImpl implements TestService {
         return mapper.regist(vo);
        
     }
+    @Override
+    public int checkId(String user_id){
+        System.out.println(mapper.checkId(user_id));
+        return mapper.checkId(user_id);
+       
+    }
 }
