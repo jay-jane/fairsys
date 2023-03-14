@@ -39,10 +39,7 @@ export default {
   text-align: center;
 }
 
-#main_section{
-  height: 200px;
-  line-height: 100px;
-}
+
 
 
 </style>
