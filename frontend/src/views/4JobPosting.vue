@@ -14,7 +14,7 @@
         <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%">
           <tr>
             <th>카테고리</th>
-            <td colspan="5"><input type="text" name="prod_category" value={{category}} readonly>
+            <td colspan="5"><span style="display: inline-block" class="category_name">{{category}}</span>
               <div class="loading" style="display: none;">
                 <div class="loader"></div>
                 <div class="loading-overlay"></div>
@@ -22,15 +22,20 @@
 
               <div class="categoryListWrap" ref="category">
                 <ul class="categoryList" style="position: relative;">
-                  <li @click="getCategory_List" value="1"><a href="#">머임</a></li>
-                  <li @click="getCategory_List" value="2"><a href="#">지역</a></li>
-                  <li @click="getCategory_List" value="3"><a href="#">근무형태</a></li>
+                  <li><a href="#" @click="getCategory_List" name="1">머임</a></li>
+                  <li><a href="#" @click="getCategory_List" name="2">지역</a></li>
+                  <li><a href="#" @click="getCategory_List" name="3">근무형태</a></li>
                 </ul>
-                <ul class="categoryList" v-if="mid_category" style="position: relative;" v-html="getCategory1">
-                </ul>
-                <ul class="categoryList" v-if="mid_category" style="position: relative;" v-html="getCategory2">
-                </ul>
-                <ul class="categoryList" v-if="mid_category" style="position: relative;" v-html="getCategory3">
+                <ul class="categoryList" style="position: relative;">
+                  <li><a href="#" v-if="mid_category1" @click="getCategory">머임1</a></li>
+                  <li><a href="#" v-if="mid_category1" @click="getCategory">머임2</a></li>
+                  <li><a href="#" v-if="mid_category1" @click="getCategory">머임3</a></li>
+                  <li><a href="#" v-if="mid_category2" @click="getCategory">서울</a></li>
+                  <li><a href="#" v-if="mid_category2" @click="getCategory">경기</a></li>
+                  <li><a href="#" v-if="mid_category2" @click="getCategory">인천</a></li>
+                  <li><a href="#" v-if="mid_category3" @click="getCategory">신입</a></li>
+                  <li><a href="#" v-if="mid_category3" @click="getCategory">경력</a></li>
+                  <li><a href="#" v-if="mid_category3" @click="getCategory">경력무관</a></li>
                 </ul>
               </div>
             </td>
@@ -75,12 +80,12 @@
         <div id="salary_list_total">
           <ul>
             <li>
-              <a href="#" class="logo"><img src="#" alt="로고"></a>
+              <a href="#" class="logo"><img src="" alt="로고"></a>
               <div class="company_info">
-                <strong class="title"><a href="page23?" style="color: #333;">회사명</a></strong>
+                <strong class="title"><a href="#" style="color: #333;">회사명</a></strong>
                 <a href="#" class="mark">채용중</a>
                 <div class="recruit_title">
-                  <a href="page23?" style="color: #333;">IT개발 부문 채용</a>
+                  <a href="#" style="color: #333;">IT개발 부문 채용</a>
                 </div>
                 <div id="info_wrap">
                   <dl class="info_item">
@@ -96,12 +101,12 @@
               </div>
             </li>
             <li>
-              <a href="#" class="logo"><img src="#" alt="로고"></a>
+              <a href="#" class="logo"><img src="" alt="로고"></a>
               <div class="company_info">
-                <strong class="title"><a href="page23?" style="color: #333;">회사명</a></strong>
+                <strong class="title"><a href="#" style="color: #333;">회사명</a></strong>
                 <a href="#" class="mark">채용중</a>
                 <div class="recruit_title">
-                  <a href="page23?" style="color: #333;">IT개발 부문 채용</a>
+                  <a href="#" style="color: #333;">IT개발 부문 채용</a>
                 </div>
                 <div id="info_wrap">
                   <dl class="info_item">
@@ -117,12 +122,12 @@
               </div>
             </li>
             <li>
-              <a href="#" class="logo"><img src="#" alt="로고"></a>
+              <a href="#" class="logo"><img src="" alt="로고"></a>
               <div class="company_info">
-                <strong class="title"><a href="page23?" style="color: #333;">회사명</a></strong>
+                <strong class="title"><a href="#" style="color: #333;">회사명</a></strong>
                 <a href="#" class="mark">채용중</a>
                 <div class="recruit_title">
-                  <a href="page23?" style="color: #333;">IT개발 부문 채용</a>
+                  <a href="#" style="color: #333;">IT개발 부문 채용</a>
                 </div>
                 <div id="info_wrap">
                   <dl class="info_item">
@@ -150,7 +155,6 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
   name: 'App',
@@ -159,12 +163,12 @@ export default {
       com_name: '',
       region: '',
       career: '',
-      getCategory:
-        '<li><a href="#">중분류</a></li>' +
-        '<li><a href="#">중분류</a></li>' +
-        '<li><a href="#">중분류</a></li>',
       category: '',
-      mid_category: false,
+      category_region: '',
+      category_type: '',
+      mid_category1: false,
+      mid_category2: false,
+      mid_category3: false,
     }
   },
   methods: {
@@ -179,21 +183,24 @@ export default {
     },
     getCategory_List: function (e) {
       e.preventDefault();
-      this.mid_category = true;
-      // if(e.target.tagName != '') return;
-      // axios.get("/getCategoryChild").then(result => { category_create(result); }).catch(err => { alert(err); });
-      // this.data.forEach(item => {
-      //   this.$refs.category.insertAdjacentHTML(item);
-      // });
+      if (e.target.tagName != 'A') return;
+      if (e.target.name == 1) {
+        this.mid_category1 = true;
+        this.mid_category2 = false;
+        this.mid_category3 = false;
+      } else if (e.target.name == 2) {
+        this.mid_category1 = false;
+        this.mid_category2 = true;
+        this.mid_category3 = false;
+      } else if (e.target.name == 3) {
+        this.mid_category1 = false;
+        this.mid_category2 = false;
+        this.mid_category3 = true;
+      }
     },
-    // category_create: function (data) {
-    //   this.category += '<ul class="categoryList" style="position: relative;" @click="getCategory_List;" >';
-    //   data.forEach( item => {
-    //     this.category += '<li><a href="#" data-set=>' + item.category_detail_nm + '</a></li>';
-    //   });
-    //   this.category += '</ul>';
-    //   this.$refs.category.append(this.category);
-    // },
+    getCategory: function (e) {
+      this.category = e.target.innerHTML;
+    }
   },
   mounted() {
 
