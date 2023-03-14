@@ -94,6 +94,11 @@ const routes = [
     component: () => import('../views/16JobPostingRegist.vue')
   },
   {
+    path: '/16-1',
+    name: 'jobPostingModify',
+    component: () => import('../views/16-1JobPostingModify.vue')
+  },
+  {
     path: '/17',
     name: 'adminMain',
     component: () => import('../views/17AdminMain.vue')
@@ -122,6 +127,11 @@ const routes = [
     path: '/test',
     name: 'test',
     component: () => import('../views/22Test.vue')
+  },
+  {
+    path: '/99',
+    name: 'test',
+    component: () => import('../views/99TestList.vue')
   },
 ];
 

@@ -10,7 +10,7 @@
       
       <ul>
         <!-- 로고 -->
-        <li><img src="#"></li>
+        <li><img src=""></li>
         <li><a href="page14">채용정보</a></li>
         <li><a href="page15">기업/연봉</a></li>
         <li><a href="page12">마이페이지</a></li>

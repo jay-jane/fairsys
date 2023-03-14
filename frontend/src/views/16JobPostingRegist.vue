@@ -1,13 +1,13 @@
 <!-- 재윤 - 채용 공고 등록 -->
 <template>
-
   <section>
-    <h3 style="text-align: center;">채용 공고 등록 페이지</h3>
+    <h3 style="text-align: center;">채용 공고 등록</h3>
     <form @submit="regist">
       <div id="field">
         <label class="field_name">제목</label>
         <div id="">
-          <input type="text">
+          <input type="hidden" v-model="com_id">
+          <input type="text" v-model="j_title">
         </div>
       </div>
       <div id="field">
@@ -32,13 +32,17 @@
       <div id="field">
         <label class="field_name">이메일 주소</label>
         <div id="">
-          <input type="text">
+          <input type="email" v-model="j_email">
         </div>
       </div>
       <div id="field">
         <label class="field_name">업종</label>
         <div id="job_type">
-
+          <select name="" id="">
+            <option value="">서비스업</option>
+            <option value="">제조</option>
+            <option value="">IT/웹</option>
+          </select>
         </div>
       </div>
       <div id="field">
@@ -46,22 +50,21 @@
         <div id="job_type">
           <Hashtags></Hashtags>
         </div>
-        <div id="recruit_type">
-          <input type="text" class="recruit_type_input">
-          <input type="text" style="width: 40px; margin-left: 5px;">
+        <div id="recruit_type" style="display: inline-block;">
+          <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
         </div>
       </div>
       <div id="field">
         <label class="field_name">경력 여부</label>
         <div id="career" style="display: inline-block;">
-          <input type="radio" name="career_type">신입
-          <input type="radio" name="career_type">경력
-          <input type="radio" name="career_type">경력무관
+          <input type="radio" name="career_type" v-model="j_career" value="N">신입
+          <input type="radio" name="career_type" v-model="j_career" value="Y">경력
+          <input type="radio" name="career_type" v-model="j_career" value="B">경력무관
         </div>
       </div>
       <div id="field">
-        <label class="field_name">대표 근무지역</label>
+        <label class="field_name">근무지역</label>
         <div class="kakaoAPI">(카카오맵api)</div>
       </div>
       <div id="field">
@@ -71,11 +74,11 @@
             <option value="sal_y">연봉</option>
             <option value="sal_m">월급</option>
           </select>
-          <select id="sal_y">
-            <option value="sal_y">2,200 ~ 2,800</option>
-            <option value="sal_y">2,800 ~ 3,200</option>
-            <option value="sal_y">3,200 ~ 3,600</option>
-            <option value="sal_y">3,600 ~ 4,000</option>
+          <select id="sal_y" v-model="j_salary">
+            <option value="2200~2800">2,200 ~ 2,800</option>
+            <option value="2800~3200">2,800 ~ 3,200</option>
+            <option value="3200~3600">3,200 ~ 3,600</option>
+            <option value="3600~4000">3,600 ~ 4,000</option>
           </select>
           <input type="hidden" class="sal_m">
           <button type="button" class="sal_m" style="display: hidden">입력</button>
@@ -84,9 +87,17 @@
       <div id="field">
         <label class="field_name">근무 형태</label>
         <div style="display: inline-block;">
-          <input type="radio" name="work_type" value="정규직">정규직
-          <input type="radio" name="work_type" value="계약직">계약직
-          <input type="radio" name="work_type" value="인턴">인턴
+          <input type="radio" name="work_type" v-model="j_type" value="Y">정규직
+          <input type="radio" name="work_type" v-model="j_type" value="N">계약직
+          <input type="radio" name="work_type" v-model="j_type" value="F">인턴
+        </div>
+      </div>
+      <div id="field">
+        <label class="field_name">학력</label>
+        <div style="display: inline-block;">
+          <input type="radio" name="graduation_type" v-model="j_graduation" value="Y">대졸
+          <input type="radio" name="graduation_type" v-model="j_graduation" value="N">고졸/초대졸
+          <input type="radio" name="graduation_type" v-model="j_graduation" value="F">학력무관
         </div>
       </div>
       <div id="field">
@@ -101,13 +112,26 @@
           <div id="process_wrap">
             <input type="text" id="process" value="서류전형" readonly>
           </div>
-          <div id="process_wrap">
-            <input type="text" id="process" value="1차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" src="https://picsum.photos/20/20" alt="삭제">
+          <div id="process_add">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
+              style="margin-bottom: 15px;">
+              1차면접
+              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
+            </button>
           </div>
-          <div id="process_wrap">
-            <input type="text" id="process" value="2차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" src="https://picsum.photos/20/20" alt="삭제">
+          <div id="process_wrap" ref="interview1" style="display: none;">
+            <input type="text" id="process" value="A" readonly>
+            <img class="deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
+          </div>
+          <div id="process_add">
+            <button type="button" class="add_btn" name="interview2" @click="addBtn" ref="btn2">
+              2차면접
+              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
+            </button>
+          </div>
+          <div id="process_wrap" ref="interview2" style="display: none;">
+            <input type="text" id="process" value="B" readonly>
+            <img class="deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
           </div>
           <div id="process_wrap">
             <input type="text" id="process" value="최종합격" readonly>
@@ -119,12 +143,11 @@
         <div>(달력api)</div>
       </div>
       <div>
-        <input type="submit" value="등록">
-        <input type="button" value="취소" @click="goMain">
+        <button type="button" value="등록" @click="submitForm">등록</button>
+        <button type="button" value="취소" @click="goMain">취소</button>
       </div>
     </form>
   </section>
-
 </template>
 
 <script>
@@ -132,9 +155,79 @@ import Hashtags from '../components/Hashtags.vue';
 
 export default {
   name: 'App',
+  data() {
+    return {
+      j_recruitNum: '',
+      j_email: '',
+      j_title: '',
+      j_content: '상세 내용12345',
+      j_salary: '',
+      j_department: '임시',
+      j_schedule: 'A',
+      j_graduation: '',
+      j_career: '',
+      j_type: '',
+      com_id: '1818',
+    }
+  },
   methods: {
     goMain: () => {
       location.href = "/";
+    },
+    deleteItem: function (e) {
+      if (e.target.tagName != "IMG") return;
+      if (e.target.name == "interview1") {
+        this.$refs.interview1.style.display = "none";
+        this.$refs.btn1.style.display = "inline-block";
+      } else {
+        this.$refs.interview2.style.display = "none";
+        this.$refs.btn2.style.display = "inline-block";
+      }
+
+    },
+    addBtn: function (e) {
+      if (e.target.tagName != "BUTTON") return;
+      if (e.target.name == 'interview1') {
+        this.$refs.interview1.style.display = "block";
+        this.$refs.btn1.style.display = "none";
+      } else {
+        this.$refs.interview2.style.display = "block";
+        this.$refs.btn2.style.display = "none";
+      }
+    },
+    submitForm() {
+      console.log(1);
+
+      // let data = await fetch("/test/registForm", {
+      //     method: "post", 
+      //     body: JSON.stringify({ user_id: "Xxxx" }),
+      //     headers: { "Content-Type": "application/json", }
+      //     })
+      // let result = await data.text();
+      // console.log(result)
+
+      this.axios.post('/regist',
+        {
+          j_recruitNum: this.j_recruitNum,
+          j_email: this.j_email,
+          j_title: this.j_title,
+          j_content: this.j_content,
+          j_salary: this.j_salary,
+          j_department: this.j_department,
+          j_schedule: this.j_schedule,
+          j_graduation: this.j_graduation,
+          j_career: this.j_career,
+          j_type: this.j_type,
+          com_id: this.com_id,
+        }
+        ).then(res => {
+          console.log(res);
+          this.$router.push({ path: '/' });
+          console.log(this.com_id);
+          console.log(this.j_schedule);
+        }).catch(err => {
+          console.log(err);
+      })
     }
   },
   components: {
@@ -145,7 +238,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap'); */
 
 * {
   padding: 0;
@@ -153,40 +246,13 @@ export default {
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  font-family: 'Noto Sans KR', sans-serif;
+  /* font-family: 'Noto Sans KR', sans-serif; */
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-}
-
-/* 헤더 스타일링 */
-header {
-  background-color: #333;
-  color: #fff;
-  align-items: center;
-  padding: 10px;
-}
-
-.head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.head li {
-  margin-right: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.head li:first-child {
-  font-size: 24px;
 }
 
 form {
@@ -274,16 +340,18 @@ button[type="submit"]:hover {
 #process_wrap #process {
   font-weight: bold;
   color: orangered;
+  cursor: default;
 }
 
-#tiptapAPI {
-  border: 1px solid #999;
-}
-
-/* 푸터 스타일링 */
-footer {
-  background-color: #f2f2f2;
-  padding: 10px;
-  font-size: 14px;
+#process_add .add_btn {
+  width: 80%;
+  text-align: center;
+  height: 30px;
+  background-color: #eee;
+  border: 0;
+  border-radius: 2px;
+  color: grey;
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
