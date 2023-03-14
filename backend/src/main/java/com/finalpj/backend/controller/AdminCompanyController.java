@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.finalpj.backend.command.CompanyVO;
-import com.finalpj.backend.service.adminCompanyService;
+import com.finalpj.backend.service.AdminCompanyService;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +17,17 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 @RestController
 @RequestMapping("/18")
-public class adminCompanyController {
+public class AdminCompanyController {
     
          
         @Autowired
-        @Qualifier("CompanyService")
-        private adminCompanyService companyService;
+        @Qualifier("adminCompanyService")
+        private AdminCompanyService admincompanyService;
     
         @GetMapping("/")
         public  ArrayList<CompanyVO> list (String com_id){
     
-            ArrayList<CompanyVO> list = companyService.getList(com_id);
+            ArrayList<CompanyVO> list = admincompanyService.getList(com_id);
             System.out.println(list.toString());    
             return list;
         }
