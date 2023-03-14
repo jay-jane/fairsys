@@ -20,7 +20,7 @@
         </thead>
         <tbody>
           <tr>
-            <th>1</th>
+            <th >1</th>
             <td>(주)짬뽕</td>
             <td class="date">2023.03.08</td>
             <td class="date">2023.03.09</td>
@@ -42,7 +42,7 @@
          </tbody>
       </table>
     </div>
-     
+     <input type="text" v-model="com_id">
 </section> 
  
 
@@ -52,32 +52,40 @@
 </template>
 
 <script>
+import  Axios from 'axios';
+
 export default {
   name: 'App',
 
 data(){
 
 return{
-
-	
-	company :['삼성', '현대','대우']
-
+  com_id:1
 }
 },
-
-
-
 methods: {
   
 logout(){
-  location.href="page50";
+  location.href="/3";
+  },
+get(){
+      Axios.get("/18?" + com_id).
+      then((response)=>{
+        console.log(response.data);
+        this.title = response.data.title;
+        console.log(title);
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+    }
+
+  },
+  mounted(){
+    this.get();
   }
-}
 };
-
-
 </script>
-
 <style>
 
 * {margin: 0; padding: 0; }
