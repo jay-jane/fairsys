@@ -69,7 +69,7 @@ const routes = [
     component: () => import('../views/11QuestionList.vue')
   },
   {
-    path: '/12',
+    path: '/12/:qa_no',
     name: 'questionDetail',
     component: () => import('../views/12QuestionDetail.vue')
   },
