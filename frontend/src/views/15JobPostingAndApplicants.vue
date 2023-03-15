@@ -125,7 +125,7 @@
             <td>2</td>
             <!-- <td>진행상황</td> -->
             <td><a href="page6" style="text-decoration: underline; font-weight: 700;">1</a></td>
-            <td><button class="view" @click="btn_view">조회</button></td>
+            <td><router-link to="/ApplyStatus">조회</router-link></td>
           </tr>
         </tbody>
       </table>

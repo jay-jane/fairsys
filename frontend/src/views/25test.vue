@@ -1,7 +1,7 @@
 
 <template>
-    <section>
-      <div class="resume">
+    <section id="section" v-for="item in list">
+      <div class="resume" >
         <div class="resume-wrapper">
           <ul class="step-progress">
             <li class="step-progress-item current">
@@ -217,77 +217,38 @@
     </section>
   </template>
     
-  <script>
-  export default {
-    data() {
-          return {
-                    w_no: "",
-                    w_name: "",
-                    w_hp: "",
-                    w_email: "",
-                    w_address: "",
-                    w_gender: "",
-                    w_level: "",
-                    w_finish: "",
-                    w_major: "",
-                    w_fndate: "",
-                    w_com: "",
-                    w_position: "",
-                    w_join: "",
-                    w_leave: "",
-                    w_subject: "",
-                    w_score: "",
-                    w_get: "",
-                    w_license: "",
-                    w_getlicense: ""
-          };
-      },methods: {
-          btn_view() {
-              location.href = "page1";
-          },
-  async submitForm() {
-              console.log(1);
-  
-              // let data = await fetch("/test/registForm", {
-              //     method: "post", 
-              //     body: JSON.stringify({ user_id: "Xxxx" }),
-              //     headers: { "Content-Type": "application/json", }
-              //     })
-              // let result = await data.text();
-              // console.log(result)
-  
-              this.axios.post('/resume/26',
-                  {
-                    w_no: this.w_no,
-                    w_name: this.w_name,
-                    w_hp: this.w_hp,
-                    w_email: this.w_email,
-                    w_address: this.w_address,
-                    w_gender: this.w_gender,
-                    w_level: this.w_level,
-                    w_finish: this.w_finish,
-                    w_major: this.w_major,
-                    w_fndate: this.w_fndate,
-                    w_com: this.w_com,
-                    w_position: this.w_position,
-                    w_join: this.w_join,
-                    w_leave: this.w_leave,
-                    w_subject: this.w_subject,
-                    w_score: this.w_score,
-                    w_get: this.w_get,
-                    w_license: this.w_license,
-                    w_getlicense: this.w_getlicense
-                  }
-              ).then(res => {
-                  console.log(res)
-                  this.$router.push({path:'/'})
-              }).catch(err => {
-                  console.log(err)
-              })
-          }
+    <script>
+
+    export default {
+    
+      name: 'App',
+      data() {
+        return {
+          w_no: '',
+          list: [],
+          a: '',
         }
-      };
-  </script>
+    
+      },
+      methods: {
+        UserinfoModify() {
+          this.axios.get('/resume/ResumeModify')
+                    .then(res => {
+                      console.log(res.data);
+                      console.log(this.$route.query.w_no);
+                      this.a = this.$route.query.w_no;
+                      this.w_no = this.$route.query.w_no;
+                      this.list = res.data;})
+                    .catch(err => {
+                      console.log(err);});
+        },
+      },
+      mounted() {
+        this.UserinfoModify();
+    
+      },
+    }
+    </script>
     
   <style>
   
