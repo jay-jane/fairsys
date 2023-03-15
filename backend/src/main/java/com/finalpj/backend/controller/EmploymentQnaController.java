@@ -20,13 +20,10 @@ public class EmploymentQnaController {
     @Autowired
     private EmploymentQnaService eqs;
 
-<<<<<<< HEAD
-    @GetMapping("/11")
-    public  ArrayList<EmploymentQnaVO> list (String user_id, Criteria cri){
-=======
+
+
     @GetMapping("/11/")
     public  OneGate list (String user_id, Criteria cri){
->>>>>>> d5d1742699b680b2866e33cb0c5d8acc2cc08966
 
         //페이지네이션 처리
         int total = eqs.getTotal("aaa123", cri);
