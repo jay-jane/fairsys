@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobPostingVO {
-    private String j_no;
+    private int j_no;
     private String j_regdate;
     private String j_recruitNum;
     private String j_email;

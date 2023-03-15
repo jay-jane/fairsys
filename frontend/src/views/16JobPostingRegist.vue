@@ -25,8 +25,7 @@
       <div class="field tel-number">
         <label class="field_name">휴대폰 번호</label>
         <div class="tel_number_input">
-          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
-            id="tel_number_3">
+          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text" id="tel_number_3">
         </div>
       </div>
       <div id="field">
@@ -139,8 +138,8 @@
         </div>
       </div>
       <div id="field endDate">
-        <label class="field_name">마감일자</label>
-        <div>(달력api)</div>
+        <label class="field_name">마감일자</label><br>
+        <input type="date" v-model="j_end_date">
       </div>
       <div>
         <button type="button" value="등록" @click="submitForm">등록</button>
@@ -165,8 +164,10 @@ export default {
       j_department: '임시',
       j_schedule: 'A',
       j_graduation: '',
+      j_end_date: '',
       j_career: '',
       j_type: '',
+      hash: '',
       com_id: '1818',
     }
   },
@@ -206,7 +207,7 @@ export default {
       // let result = await data.text();
       // console.log(result)
 
-      this.axios.post('/regist',
+      this.axios.post('/jobPostingRegist',
         {
           j_recruitNum: this.j_recruitNum,
           j_email: this.j_email,
@@ -216,9 +217,11 @@ export default {
           j_department: this.j_department,
           j_schedule: this.j_schedule,
           j_graduation: this.j_graduation,
+          j_end_date: this.j_end_date,
           j_career: this.j_career,
           j_type: this.j_type,
           com_id: this.com_id,
+          hash: this.hash,
         }
         ).then(res => {
           console.log(res);
@@ -264,7 +267,7 @@ form {
   font-weight: bold;
 }
 
-input[type="text"] {
+input[type="text"], [type="email"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
