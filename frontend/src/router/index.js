@@ -44,13 +44,13 @@ const routes = [
     component: () => import('../views/6MyPage.vue')
   },
   {
-    path: '/7',
+    path: '/ResumeRegist',
     name: 'resumeRegist',
     component: () => import('../views/7ResumeRegist.vue')
   },
   {
-    path: '/8',
-    name: 'resumeModify',
+    path: '/ResumeModify',
+    name: 'ResumeModify', 
     component: () => import('../views/8ResumeModify.vue')
   },
   {
@@ -59,7 +59,7 @@ const routes = [
     component: () => import('../views/9UserInfoModify.vue')
   },
   {
-    path: '/10',
+    path: '/ApplyStatus',
     name: 'applyStatus',
     component: () => import('../views/10ApplyStatus.vue')
   },
@@ -69,7 +69,7 @@ const routes = [
     component: () => import('../views/11QuestionList.vue')
   },
   {
-    path: '/12',
+    path: '/12/:qa_no',
     name: 'questionDetail',
     component: () => import('../views/12QuestionDetail.vue')
   },

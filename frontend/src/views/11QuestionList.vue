@@ -7,7 +7,7 @@
       <h2>문의하기</h2>
 
       <!-- 출력 카테고리 -->
-      <select v-model="list_view" class="view" @change="loglist_view">
+      <select v-model="amount" class="view" @change="loglist_view">
         <option value="10">10개 보기</option>
         <option value="20">20개 보기</option>
         <option value="30">30개 보기</option>
@@ -31,7 +31,7 @@
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <tr v-for="(item,index) in list">
             <td>{{ item.qa_no }}</td>
-            <td><router-link to="#">{{ item.qa_title }}</router-link></td>
+            <td @click.prevent="goDetail(item.qa_no)">{{ item.qa_title }}</td>
             <td>{{ item.user_id }}</td>
             <td>{{ item.qa_date }}</td>
             <td>{{ item.qa_answer }}</td>
@@ -41,47 +41,55 @@
       </table>
 
       <div class="serch_box">
+
         <select name="" id="">
           <option value="title">제목</option>
           <option value="content">내용</option>
         </select>
+
         <input type="text">
-        <button>검색</button>
+        <button @click="search($event.target)">검색</button>
+
       </div>
 
       <!-- 페이지 이동 -->
       <div class="page">
-				<ul>
-          <!-- 맨앞으로 가기 -->
-					<li>
-            <a href="#">
+        <ul>
+          <li>
+            <!-- 맨앞으로 가기 -->
+            <router-link :to="{path: '/11/?page=1&amount='+amount}" @click="goFirstPage">
               <i class="fa fa-angle-double-left" aria-hidden="true"></i>
-            </a>
-          </li>
-          <!-- 앞으로 가기 -->
-					<li style="margin-right:5px;">
-            <a href="#">
-              <i class="fa fa-angle-left" aria-hidden="true"></i>
-            </a>
+            </router-link>
           </li>
 
-					<li class="on"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
+          <!-- 앞으로 가기 -->
+            <li style="margin-right:5px;">
+              <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goBeforePage">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+              </router-link>
+            </li>
+
+           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
+          <div v-for="(item, index) in pageList" :key="index" class="page_btn">
+            <li v-bind:class="{ 'on' : item === page}">
+              <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="thisPage($event.target)">
+                {{item}}
+              </router-link>
+            </li>
+          </div>              
 
           <!-- 뒤로 가기 -->
 					<li style="margin-left:5px;">
-            <a href="#">
+            <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goNextPage">
               <i class="fa fa-angle-right" aria-hidden="true"></i>
-            </a>
+            </router-link>
           </li>
+
           <!-- 맨뒤로 가기 -->
 					<li>
-            <a href="#">
+            <router-link :to="{path: '/11/?page='+realEnd+'&amount='+amount}" @click="goLastPage">
               <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            </a>
+            </router-link>
           </li>
 
 				</ul>
@@ -99,17 +107,28 @@ export default {
   el: '#App',
   data(){
     return {
-      qa_no : 1,
-      qa_title : "작성된 글이 없습니다.",
-      list : '',
-      list_view : 10
+
+      //공용
+      list : '',    //게시글리스트
+      pages : '',   //pageVO
+      pageList:'',  //pageVO.pageList 배열값
+      detailNum:'',
+
+      //페이지이동에 필요한 초기값들
+      page: 1,
+      amount: 10,
+      searchTitle: '',
+      searchContent: '',
+      prev:'',
+      pageStart:'',
+      pageEnd:'',
+      realEnd:''
     }
   },  
 
   watch: {
-    'list_view': function(){
+    'amount': function(){
       this.get();
-
     }
   },
 
@@ -119,31 +138,97 @@ export default {
     },
 
     async get(){
-      console.log(this.list_view);
-      let response = await Axios.get("/11/amount?page="+ 1 +"&amount=" + this.list_view  );
-      this.list = response.data;
-      
-      // then((response)=>{
-      //   //데이터전달
-      //   this.list = response.data;
-      //   //this.list_view = this.list_view;
-      //   //console.log(response.data.length);
-      //   //console.log(this.list);
-      // })
-      // .catch((err)=>{
-      //   console.log(err);
-      // })
+      //console.log(this.list_view);
+
+      //화면에 리스트 출력을 위해 필요한 내용 전달
+      let response = await Axios.get("/11/?amount="+this.amount+"&page="+this.page+"&searchTitle="+this.searchTitle+"&searchContent="+this.searchContent);
+    
+      //필요한 공용 데이터를 담기
+      this.list = response.data.list;
+      this.pages = response.data.pageVO;
+      this.pageList = this.pages.pageList;
+
+      //페이지이동에 필요한 데이터 담기
+      this.page = this.pages.page;
+      this.searchTitle = this.pages.cri.searchTitle;
+      this.searchContent = this.pages.cri.searchContent;
+      this.prev = this.pages.prev;
+      this.pageStart = this.pages.pageStart;
+      this.pageEnd = this.pages.pageEnd;
+      this.realEnd = this.pages.realEnd;
+
+    },
+
+    goDetail(qa_no){
+      const path = '/12';
+
+      this.$router.push({
+        path: '/12',
+        name: 'questionDetail',
+        params: {"qa_no" : qa_no}
+      })
+
     },
 
     loglist_view(){
-      this.list_view = this.list_view;
-      //this.$forceUpdate();
+      this.amount = this.amount;
+    },
+
+    goFirstPage(){
+      this.page = 1;
+      this.get();
+    },
+
+    goBeforePage(){
+      if(this.page > 1){
+        this.page = this.page-1;
+      }else{
+        alert("첫번째 페이지입니다.");
+      }
+    },
+    
+    thisPage(target){
+
+      this.page = target.innerHTML;
+      this.get();
+
+    },  
+
+    goNextPage(){
+
+      if(this.page < this.realEnd){
+        this.page = this.page +1;
+        this.get();
+      }else{
+        alert("마지막 페이지입니다.");
+      }
+    },
+
+    goLastPage(){
+      this.page=this.realEnd;
+      this.get();
+    },
+
+    search(target){ //검색버튼 선택
+
+      const userselect = target.previousElementSibling.previousElementSibling.value;
+      const usertext = target.previousElementSibling.value;
+      
+      if(userselect === "title"){
+        this.searchTitle = usertext;
+        this.get();
+      }else if(userselect === "content"){
+        this.searchContent = usertext;
+        this.get();
+      }
+      
+
     }
 
   },
   mounted(){
+    //데이터 출력시키기
     this.get();
-    this.loglist_view();
   }
 };
 </script>
@@ -248,13 +333,52 @@ export default {
     margin-top: 20px;
   }
 
-  .page{padding:30px 0 20px 0;position:relative;}
-  .page ul{text-align:center;}
-  .page ul li{display:inline;  padding:0px!important;}
-  .page ul li a{display:inline-block; zoom:1;*display:inline; width: 35px; height: 35px; line-height: 35px; color:#777777; border:1px solid #dddddd;transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;font-size:15px;}
-  .page ul li a:hover, .page ul li.on a{display:inline-block;zoom:1;*display:inline; border:1px solid #7866c9;background:#fff;color:#7866c9;}
-  .page ul li a i{color:#777777;}
-  .page ul li a:hover i{color:#7866c9;}
+  .page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  }
+
+  .page ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+
+  .page li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 14px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ccc;
+  }
+
+  .page li.on {
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .page i {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+  }
+
+  .page_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
 </style>
 
