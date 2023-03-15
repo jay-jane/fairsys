@@ -20,6 +20,8 @@ public class EmploymentQnaController {
     @Autowired
     private EmploymentQnaService eqs;
 
+
+
     @GetMapping("/11/")
     public  OneGate list (String user_id, Criteria cri){
 

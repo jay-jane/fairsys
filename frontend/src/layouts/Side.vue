@@ -6,8 +6,8 @@
         <li class="sub_menu_toggle">
           <a class="sub menu select">기업</a>
           <ul class="sub_menu" style="display: block;">
-            <li><a href="page51">기업 목록</a></li>
-            <li><a href="page52">기업 신청 관리</a></li>
+            <li><a href="/18">기업 목록</a></li>
+            <li><a href="/19">기업 신청 관리</a></li>
           </ul>
         </li>
   

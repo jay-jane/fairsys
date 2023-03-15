@@ -29,7 +29,7 @@
         <tbody class="body">
 
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
-          <tr v-for="(item,index) in list">
+          <tr v-for="(item,index) in list" v-bind:key="index">
             <td>{{ item.qa_no }}</td>
             <td @click.prevent="goDetail(item.qa_no)">{{ item.qa_title }}</td>
             <td>{{ item.user_id }}</td>

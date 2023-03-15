@@ -2,49 +2,52 @@
 <!-- Q&A 페이지 -->
 
 <template>
- 
+  <!-- <select v-model="com_id">
+    <option value="1">1개 보기</option>
+    <option value="2">2개 보기</option>
+    <option value="3">3개 보기</option>
+  </select> -->
   <section>
-   
-      
-     <div class="bg"> 
-      <h3 class="first_name">기업</h3>    
-        <table>
+
+
+    <div class="bg">
+      <h3 class="first_name">기업</h3>
+      <table>
         <thead>
           <tr>
             <th class="jb-th-1">번호</th>
             <th class="jb-th-2">회사이름</th>
             <th class="jb-th-3">신청일자</th>
             <th class="jb-th-3">승인일자</th>
-           
+
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th >1</th>
-            <td>(주)짬뽕</td>
+          <tr v-for="(item,index) in list" v-bind:key="index">
+            <td>{{ item +1 }}</td>
+            <td>{{ item.com_name }}</td>
+            <td>{{ item.com_Application_date }}</td>
+            <td>{{ item.com_registration_date }}</td>
+          </tr>
+
+          <!-- <tr>
+            <th>2</th>
+            <td>(주)짜장면</td>
             <td class="date">2023.03.08</td>
             <td class="date">2023.03.09</td>
-            
           </tr>
-            <tr>
-              <th>2</th>
-              <td>(주)짜장면</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-            </tr>
-
-             <tr>
-              <th>3</th>
-              <td>(주)탕수육</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-            </tr>
-         </tbody>
+          <tr>
+            <th>3</th>
+            <td>(주)탕수육</td>
+            <td class="date">2023.03.08</td>
+            <td class="date">2023.03.09</td>
+          </tr> -->
+        </tbody>
       </table>
     </div>
-     <input type="text" v-model="com_id">
-</section> 
- 
+    
+  </section>
+
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>
@@ -52,83 +55,80 @@
 </template>
 
 <script>
-import  Axios from 'axios';
+import Axios from 'axios';
 
 export default {
   name: 'App',
 
-data(){
+  data() {
 
-return{
-  com_id:1
-}
-},
-methods: {
-  
-logout(){
-  location.href="/3";
-  },
-get(){
-      Axios.get("/18?" + com_id).
-      then((response)=>{
-        console.log(response.data);
-        this.title = response.data.title;
-        console.log(title);
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
+    return {
+   
+      list:'',
+ 
+      
     }
-
   },
-  mounted(){
-    this.get();
+  methods: {
+
+    logout() {
+      location.href = "/3";
+    },
+    async get() {
+      let res = await Axios.get('/18');
+        this.list= res.data;
+        console.log(this.list);
   }
+
+},
+mounted(){
+  this.get();
+}
 };
 </script>
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
 
-* {margin: 0; padding: 0; }
-
-  table{
-    padding: auto;
-    margin: auto;
-    border: 1px solid black;
-    border-collapse : collapse;
-    border-radius: 5px; 
-    }
- 
-  th {
-    border: 1px solid black;
-  }
-
-  td{
+table {
+  padding: auto;
+  margin: auto;
   border: 1px solid black;
-  text-align:center;
-  }
+  border-collapse: collapse;
+  border-radius: 5px;
+}
 
-  .jb-th-1 {
-    width: 200px;
-    background-color: bisque;
-  }
+th {
+  border: 1px solid black;
+}
 
-
-
-  .jb-th-2 {
-    width: 600px;
-     background-color: bisque;
-     text-align: center;
-  }
-
-  .jb-th-3{
-    width: 200px;
-     background-color: bisque;
-      text-align: center;
-  }
-
- .date{
+td {
+  border: 1px solid black;
   text-align: center;
- }
+}
 
-   
+.jb-th-1 {
+  width: 200px;
+  background-color: bisque;
+}
+
+
+
+.jb-th-2 {
+  width: 600px;
+  background-color: bisque;
+  text-align: center;
+}
+
+.jb-th-3 {
+  width: 200px;
+  background-color: bisque;
+  text-align: center;
+}
+
+.date {
+  text-align: center;
+}
 </style>
