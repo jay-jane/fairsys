@@ -246,7 +246,7 @@ export default {
             location.href = "page1";
         },
 async submitForm() {
-            console.log(1);
+              alert('작성이 완료되었습니다.!');
 
             // let data = await fetch("/test/registForm", {
             //     method: "post", 

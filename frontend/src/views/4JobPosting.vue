@@ -14,7 +14,7 @@
         <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%">
           <tr>
             <th>카테고리</th>
-            <td colspan="5"><span style="display: inline-block" class="category_name">{{category}}</span>
+            <td colspan="5"><span style="display: inline-block" class="category_name">{{ category }}</span>
               <div class="loading" style="display: none;">
                 <div class="loader"></div>
                 <div class="loading-overlay"></div>
@@ -79,69 +79,34 @@
 
         <div id="salary_list_total">
           <ul>
-            <li>
-              <a href="#" class="logo"><img src="" alt="로고"></a>
-              <div class="company_info">
-                <strong class="title"><a href="#" style="color: #333;">회사명</a></strong>
-                <a href="#" class="mark">채용중</a>
-                <div class="recruit_title">
-                  <a href="#" style="color: #333;">IT개발 부문 채용</a>
+            <div v-for="item in list">
+              <li>
+                <a href="#" class="logo"><img src="" alt="로고"></a>
+                <div class="company_info">
+                  <!-- <strong class="title"><router-link :to="`/5?j_no=${j_no}`" v-model="j_no" @click="getJno">회사명</router-link></strong> -->
+                  <!-- <strong class="title"><router-link :to="`/5?j_no=${j_no}`">{{ item.j_no }}번. {{item.j_title}}</router-link></strong> -->
+                  <strong class="title">
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_no }}번. {{ item.j_title
+                    }}</span>
+                  </strong>
+                  <a href="#" class="mark">채용중</a>
+                  <div class="recruit_title">
+                    <a href="#" style="color: #333;">IT개발 부문 채용</a>
+                  </div>
+                  <div id="info_wrap">
+                    <dl class="info_item">
+                      <dt>경력</dt>
+                    </dl>
+                    <dl class="info_item">
+                      <dt>학력</dt>
+                    </dl>
+                    <dl class="info_item">
+                      <dt>지역</dt>
+                    </dl>
+                  </div>
                 </div>
-                <div id="info_wrap">
-                  <dl class="info_item">
-                    <dt>경력</dt>
-                  </dl>
-                  <dl class="info_item">
-                    <dt>학력</dt>
-                  </dl>
-                  <dl class="info_item">
-                    <dt>지역</dt>
-                  </dl>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href="#" class="logo"><img src="" alt="로고"></a>
-              <div class="company_info">
-                <strong class="title"><a href="#" style="color: #333;">회사명</a></strong>
-                <a href="#" class="mark">채용중</a>
-                <div class="recruit_title">
-                  <a href="#" style="color: #333;">IT개발 부문 채용</a>
-                </div>
-                <div id="info_wrap">
-                  <dl class="info_item">
-                    <dt>경력</dt>
-                  </dl>
-                  <dl class="info_item">
-                    <dt>학력</dt>
-                  </dl>
-                  <dl class="info_item">
-                    <dt>지역</dt>
-                  </dl>
-                </div>
-              </div>
-            </li>
-            <li>
-              <a href="#" class="logo"><img src="" alt="로고"></a>
-              <div class="company_info">
-                <strong class="title"><a href="#" style="color: #333;">회사명</a></strong>
-                <a href="#" class="mark">채용중</a>
-                <div class="recruit_title">
-                  <a href="#" style="color: #333;">IT개발 부문 채용</a>
-                </div>
-                <div id="info_wrap">
-                  <dl class="info_item">
-                    <dt>경력</dt>
-                  </dl>
-                  <dl class="info_item">
-                    <dt>학력</dt>
-                  </dl>
-                  <dl class="info_item">
-                    <dt>지역</dt>
-                  </dl>
-                </div>
-              </div>
-            </li>
+              </li>
+            </div>
           </ul>
         </div>
       </div>
@@ -169,6 +134,19 @@ export default {
       mid_category1: false,
       mid_category2: false,
       mid_category3: false,
+      j_no: '',
+      j_recruitNum: '',
+      j_email: '',
+      j_title: '',
+      j_content: '',
+      j_salary: '',
+      j_department: '',
+      j_schedule: '',
+      j_graduation: '',
+      j_career: '',
+      j_type: '',
+      com_id: '',
+      list: [],
     }
   },
   methods: {
@@ -200,10 +178,24 @@ export default {
     },
     getCategory: function (e) {
       this.category = e.target.innerHTML;
-    }
+    },
+    getList() {
+      this.axios.get("/jobPostingList")
+        .then(res => {
+          this.list = res.data;
+        })
+        .catch(err => console.log(err));
+    },
+    getDetail(j_no) {
+      this.$router.push({
+        path: '/jobPostingDetail',
+        name: 'jobPostingDetail',
+        params: { 'j_no': j_no }
+      })
+    },
   },
   mounted() {
-
+    this.getList();
   },
 }
 </script>
@@ -256,7 +248,7 @@ header {
 }
 
 /* section */
-section {
+#salary_wrap {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;

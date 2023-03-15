@@ -33,11 +33,11 @@
                   </thead>
                   <tbody>
                     <tr v-for="(item, index) in list" v-bind:key="index">
-                      <td>{{ item.com_ceo }}</td>
-                      <td>{{ item.com_manager }}</td>
-                      <td>{{ item.com_manager_phone }}</td>
-                      <td>{{ item.com_address }}</td>
-                      <td>{{ item.com_postcode }}</td>
+                      <td>{{ com_ceo }}</td>
+                      <td>{{ com_manager }}</td>
+                      <td>{{ com_manager_phone }}</td>
+                      <td>{{ com_address }}</td>
+                      <td>{{ com_postcode }}</td>
                     </tr>
                   </tbody>
                 </table>

@@ -1,9 +1,8 @@
 <template>
 
   <div class="content">
-
-    <h1>문의사항 등록</h1>
     <div class="table_border">
+      <h1>문의사항 등록</h1>
       <table class="registration">
         <tr>
           <td>회사</td>
@@ -18,12 +17,12 @@
         </tr>
         <tr>
           <td>제목</td>
-          <td><input type="text" name="" id="" style="width: 870px; height: 50px;" ></td>
+          <td><input type="text" ></td>
         </tr>
   
         <tr>
           <td>내용</td>
-          <td><textarea name="" id="" class="input-style" ></textarea></td>
+          <td><textarea class="input-style" ></textarea></td>
         </tr>
   
         <tr>
@@ -35,7 +34,6 @@
         </tr>
       </table>
     </div>
-
   </div>
 
 </template>
@@ -44,12 +42,20 @@
 
 export default {
   name: 'App',
+  data(){
+    return{
+      test:''
+    }
+  },
+  created(){
+
+  },  
   methods:{
     doLogout(){
       location.href ="page2";
     },
     doCancel(){
-      location.href = "#";
+      location.href = "/11";
     }
   },
 }
@@ -58,77 +64,83 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 
-* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
+* {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black; overflow: auto;}
   
 .content {
-  margin-left: 200px;
-  height: 100%;
-}
-
-.content h1 {
-  margin: 20px auto;
-  padding: 8px 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 .table_border {
   border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  margin: 0 auto;
-  width: 75%;
+  border-radius: 5px;
   padding: 20px;
 }
 
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
 .registration {
-  margin: 0 auto;
-  font-size: 16px;
+  margin: 30px auto;
+  width: 100%;
+  max-width: 700px;
+  border-collapse: collapse;
 }
 
 .registration td {
   padding: 10px;
-  text-align: center;
 }
 
-.input-style {
-  width: 850px;
-  height: 400px;
-  margin-bottom: 10px;
+.registration td:first-child {
+  font-weight: bold;
+  width: 120px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
   padding: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  border-radius: 3px;
   resize: none;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .btn {
+  display: inline-block;
   padding: 10px 20px;
-  border-radius: 3px;
-  font-size: 16px;
-  font-weight: 500;
-  font-family: 'Noto Sans KR', sans-serif;
-}
-
-.btn-primary {
-  background-color: orange;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
   color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #007bff;
   border: none;
-  margin-right: 10px;
-}
-
-.btn-primary:hover {
-  background-color: orangered;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .btn-secondary {
-  background-color: #f8f9fa;
-  color: #212529;
-  border: 1px solid #ccc;
+  background-color: #6c757d;
+  margin-left: 10px;
+}
+
+.btn:hover {
+  background-color: #0069d9;
 }
 
 .btn-secondary:hover {
-  background-color: #e9ecef;
-  border-color: #adb5bd;
+  background-color: #5a6268;
 }
+
+
 
 </style>
 

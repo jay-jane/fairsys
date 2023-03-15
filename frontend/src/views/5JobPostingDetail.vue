@@ -1,7 +1,7 @@
 <!-- 재윤 - 채용 공고 상세 -->
 <template>
-  <section id="section" v-for="item in list">
-    <div id="main_wrap" v-if="item.j_no === a">
+  <section id="section">
+    <div id="detail_wrap" v-for="item in list">
       <div id="banner_wrap">
         <img src="https://picsum.photos/1000/100" alt="배너" width="100%" height="200px">
         <div class="bannerImg"></div>
@@ -16,6 +16,7 @@
             <div id="company_title">
               <div class="title">
                 <h2>{{ item.j_title }}</h2>
+                <h2>{{ $route.params.j_no }}</h2>
               </div>
             </div>
           </div>
@@ -81,7 +82,7 @@
 
       <div id="button_wrap" style="margin-top: 20px;">
         <a href="#">입사지원</a><br>
-        <router-link :to="`/16-1?j_no=${j_no}`">수정/삭제</router-link><br>
+        <router-link :to="{name: 'jobPostingModify', params: {j_no: item.j_no}}">수정/삭제</router-link><br>
         <a href="99">목록</a>
       </div>
     </div>
@@ -103,20 +104,18 @@ export default {
   },
   methods: {
     getJobDetail() {
-      this.axios.get('/getJobDetail')
-                .then(res => {
-                  console.log(res.data);
-                  console.log(this.$route.query.j_no);
-                  this.a = this.$route.query.j_no;
-                  this.j_no = this.$route.query.j_no;
-                  this.list = res.data;})
-                .catch(err => {
-                  console.log(err);});
+      this.j_no = this.$route.params.j_no;
+      this.axios.get('/jobPostingDetail/' + this.j_no, {params: {"j_no": this.j_no}})
+        .then(res => {
+          this.list = res.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
   },
   mounted() {
     this.getJobDetail();
-
   },
 }
 </script>

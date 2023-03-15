@@ -1,6 +1,7 @@
 package com.finalpj.backend.command;
 
 import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +18,4 @@ public class EmploymentQnaVO {
     private String user_id;
     private String com_id;
     private String qa_answer;
-    
 }

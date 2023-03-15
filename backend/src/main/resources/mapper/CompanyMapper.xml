@@ -15,7 +15,7 @@
   </insert>
 
   <select id="getJobDetail" resultType="JobPostingVO">
-    select * from job_posting where j_no
+    select * from job_posting where j_no = #{j_no}
   </select>
 
   <update id="update" parameterType="JobPostingVO">
@@ -23,5 +23,13 @@
     j_recruitNum = #{j_recruitNum}, j_salary = #{j_salary}, j_graduation = #{j_graduation}
     where j_no = #{j_no}
   </update>
+
+  <delete id="delete" parameterType="JobPostingVO">
+    delete from job_posting where j_no = #{j_no}
+  </delete>
+
+  <select id="getJobList" resultType="JobPostingVO">
+    select * from job_posting order by j_no desc
+  </select>
 
 </mapper>
