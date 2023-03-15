@@ -15,9 +15,15 @@
         <!--// Hashtags -->
 
         <div class="inp" v-show="!helpVisible">
-            <input type="text" ref="input" v-model.trim="value" @focus="initSelect" @keydown.space.prevent="addHashTags"
+            <input type="text" list="options" ref="input" v-model.trim="value" @focus="initSelect" @keydown.space.prevent="addHashTags"
                 @keydown.enter.prevent="addHashTags" @keydown.backspace="initErrorMsg" @keydown.delete="initErrorMsg"
                 placeholder="태그입력" />
+            <datalist id="options">
+                <option value="제조"></option>
+                <option value="IT/웹"></option>
+                <option value="일반사무"></option>
+                <option value="서비스업"></option>
+            </datalist>
         </div>
 
         <transition enter-active-class="animate__animated animate__fadeInDown animate__faster"
@@ -41,6 +47,7 @@ export default {
             helpVisible: true,
             tags: [],
             value: "",
+            valList: [],
         };
     },
     methods: {
@@ -107,9 +114,16 @@ export default {
                 return "중복된 단어를 입력하셨습니다.";
             }
 
-            const regex = /[~!@#$%^&*()+|<>?:{},.="':;/-]/;
+            const regex = /[~!@#$%^&*()+|<>?:{},.="':;-]/;
             if (regex.test(this.value)) {
                 return "특수문자는 태그로 등록할 수 없습니다.";
+            }
+
+            if (this.value !== "제조" && this.value !== "IT/웹"  && this.value !== "서비스업" && this.value !== "일반사무" ) {
+                return "선택할 수 없는 분야입니다.";
+            } else {
+                this.valList.push(this.value);
+                return false;
             }
 
             return false;
@@ -135,6 +149,7 @@ export default {
             this.value = null;
             this.$refs.input.focus();
         },
+        
     },
     mounted() { },
 };
