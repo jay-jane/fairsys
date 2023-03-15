@@ -15,13 +15,12 @@ import com.finalpj.backend.util.Criteria;
 import com.finalpj.backend.util.PageVO;
 
 @RestController
-@RequestMapping("/11")
 public class EmploymentQnaController {
     
     @Autowired
     private EmploymentQnaService eqs;
 
-    @GetMapping("/amount")
+    @GetMapping("/11")
     public  ArrayList<EmploymentQnaVO> list (String user_id, Criteria cri){
 
         //페이지네이션 처리

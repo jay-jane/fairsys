@@ -21,6 +21,7 @@ public class ResumeWriteVO {
     private String w_level;
     private String w_finish;
     private String w_major;
+    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date w_fndate;
     private String w_com;

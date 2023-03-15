@@ -22,6 +22,7 @@ public class CompanyVO {
     private String com_status;
     private String com_email;
     private String ut_no;
+    private int cno;
     private String com_registration_date;
     private String com_Application_date;
 

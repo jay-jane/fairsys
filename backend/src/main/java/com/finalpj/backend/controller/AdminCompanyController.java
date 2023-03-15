@@ -11,26 +11,35 @@ import org.springframework.web.bind.annotation.RestController;
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.service.AdminCompanyService;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 
 @RestController
-@RequestMapping("/18")
+
 public class AdminCompanyController {
     
          
         @Autowired
-        @Qualifier("adminCompanyService")
         private AdminCompanyService admincompanyService;
     
-        @GetMapping("/")
-        public  ArrayList<CompanyVO> list (String com_id){
+        
+        @GetMapping("/18")
+        public  ArrayList<CompanyVO> list (){
     
-            ArrayList<CompanyVO> list = admincompanyService.getList(com_id);
+            ArrayList<CompanyVO> list = admincompanyService.getList();
             System.out.println(list.toString());    
             return list;
         }
-    }
 
+         @GetMapping("/19")
+         public  ArrayList<CompanyVO> Nlist (){
+    
+            ArrayList<CompanyVO> list = admincompanyService.getNlist();
+            System.out.println(list.toString());    
+            return list;
+         }    
+
+
+    }
 

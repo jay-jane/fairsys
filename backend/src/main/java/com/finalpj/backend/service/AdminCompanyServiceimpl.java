@@ -6,7 +6,7 @@ import com.finalpj.backend.command.CompanyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("adminCompanyService")
+@Service("AdminCompanyService")
 public class AdminCompanyServiceimpl implements AdminCompanyService {
 
     
@@ -14,11 +14,13 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
     private AdminCompanyMapper adminCompanyMapper ;
 
     @Override
-	public ArrayList<CompanyVO> getList(String com_id) {
-		return adminCompanyMapper.getList(com_id);
+	public ArrayList<CompanyVO> getList() {
+		return adminCompanyMapper.getList();
     
     }
     
-
-
+  @Override
+	public ArrayList<CompanyVO> getNlist() {
+	return adminCompanyMapper.getNlist();
+  }
 }
