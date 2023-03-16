@@ -5,19 +5,19 @@
       <div class="resume-wrapper">
         <ul class="step-progress">
           <li class="step-progress-item current">
-            <router-link to="/23"> <strong>기본정보</strong></router-link>
+            <router-link to="#"> <strong>기본정보</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/24"> <strong>학력/경력</strong></router-link>
+            <router-link to="#"> <strong>학력/경력</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/25"><strong>어학/자격증</strong></router-link>
+            <router-link to="#"><strong>어학/자격증</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/26"><strong>???</strong></router-link>
+            <router-link to="#"><strong>???</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/27"><strong>???</strong></router-link>
+            <router-link to="#"><strong>???</strong></router-link>
           </li>
         </ul>
         <div class="resume-btn-box">
@@ -241,7 +241,8 @@ export default {
                   w_score: "",
                   w_get: "",
                   w_license: "",
-                  w_getlicense: ""
+                  w_getlicense: "",
+                  user_id: sessionStorage.getItem("user_id")
         };
     },
     methods: {
@@ -259,7 +260,7 @@ async submitForm() {
             //     })
             // let result = await data.text();
             // console.log(result)
-
+        
             this.axios.post('/ResumeRegist',
                 {
                   w_no: this.w_no,
@@ -280,14 +281,15 @@ async submitForm() {
                   w_score: this.w_score,
                   w_get: this.w_get,
                   w_license: this.w_license,
-                  w_getlicense: this.w_getlicense
+                  w_getlicense: this.w_getlicense,
+                  user_id: this.user_id
                 }
             ).then(res => {
+              console.log(this.user_id)
               alert('작성이 완료되었습니다.!');
                 console.log(res)
-                console.log(this.w_no)
-                this.$router.push(`/ResumeModify?w_no=1`);
-            }).catch(err => {   //`/ResumeModify?w_no=1`
+                this.$router.push('/UserMyPage');
+            }).catch(err => {  
                 console.log(err)
             })
         }
@@ -296,13 +298,12 @@ async submitForm() {
 </script>
   
 <style>
-
 .resume {
   width: 30vw;
   margin: 0 auto;
   display: grid;
   padding-top: 8vh;
-  height: 92vh;
+  height: 100%;
 }
 
   .resume-wrapper {
