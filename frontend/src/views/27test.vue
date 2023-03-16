@@ -1,21 +1,10 @@
-<!-- Q&A 페이지 -->
-
 <template>
-  <!--모달창-->
   <div class="black-bg" v-if="모달창열렸니 == true">
     <div class="white-bg">
-      <table>
-        <thead>
-          <tr>
-            <th class="jb-th-1">번호</th>
-            <th class="jb-th-2">회사이름</th>
-          </tr>
-        </thead>
-        <tr v-for="(item, index) in list" :key="index">
-          <td>{{ item.com_ceo }}</td>
-          <td>{{ item.com_postcode }}</td>
-        </tr>
-      </table>
+      <h4>
+        <td>{{ com_ceo }}</td>
+      </h4>
+      <p>상페이지내용임</p>
       <button @click="모달창열렸니 = false">닫기</button>
     </div>
   </div>
@@ -37,38 +26,9 @@
           <tr v-for="(item, index) in list" v-bind:key="index">
             <th>{{ index + 1 }}</th>
             <td>
-              <!--<a href="#pop1" class="btn" -->
-              <a @click="모달창열렸니 = true">{{ item.com_name }}</a>
-              <!--
-              <div class="POPUP" id="pop1">
-                <h3>{{ item.com_name }}</h3>
-                <table class="poptab">
-                  <thead>
-                    <tr>
-                      <th>회사대표자</th>
-                      <th>담당자</th>
-                      <th>담당자번호</th>
-                      <th>주소</th>
-                      <th>사업자번호</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr>
-                      <td>{{ item.com_ceo }}</td>
-                      <td>{{ item.com_manager }}</td>
-                      <td>{{ item.com_manager_phone }}</td>
-                      <td>{{ item.com_address }}</td>
-                      <td>{{ item.com_postcode }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#a">닫기</a>
-              </div>
-              <div class="dim"></div>
-              -->
+              <h4 @click="모달창열렸니 = true">{{ item.com_name }}</h4>
             </td>
-            <td class="date">{{ item.com_Application_date }}</td>
+            <td class="date">2023.03.08</td>
             <td class="date">2023.03.09</td>
             <td>
               <button class="btn">승인</button>
@@ -119,16 +79,12 @@ export default {
       location.href = "/3";
     },
     async get() {
-      let res = await Axios.get("/19");
+      let res = await Axios.get("/27");
       this.list = res.data;
       console.log(this.list);
     },
   },
   mounted() {
-    this.get();
-  },
-
-  created() {
     this.get();
   },
 };
@@ -188,54 +144,6 @@ td {
 
 .date {
   text-align: center;
-}
-
-.POPUP {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  box-sizing: border-box;
-  background: #fff;
-  z-index: 5;
-  width: 500px;
-  height: 300px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 5);
-  border-radius: 5px;
-  text-align: right;
-  opacity: 0;
-  transition: all 0.5s;
-}
-.POPUP:target {
-  opacity: 1;
-}
-.POPUP:target + .dim {
-  opacity: 1;
-  z-index: 2;
-}
-
-.POPUP a {
-  color: grey;
-  text-decoration: none;
-}
-
-.dim {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: all 0.5s;
-}
-
-.poptab {
-  float: left;
-  width: 50%;
-  height: 50%;
 }
 
 div {
