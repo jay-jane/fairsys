@@ -8,7 +8,7 @@
         <span>관리자님 환영합니다!</span>
         <button @click="doLogout">로그아웃</button>
       </div>
-  </div>
+</div>
 
 </template>
     
@@ -28,23 +28,25 @@
     
 <style>
 
-
-
-  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
     
-  * {
-    padding: 0;
-    margin: 0;
-    font-family: 'Noto Sans KR', sans-serif;
-    text-decoration: none;
-  }
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  text-decoration: none;
+}
 
-  .admin_top {
+.admin_top {
   background-color: #263238;
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .admin_top a {

@@ -135,6 +135,16 @@ const routes = [
     name: "25",
     component: () => import("../views/25test.vue"),
   },
+  {
+    path: '/ResumeUpdate',
+    name: 'ResumeUpdate',
+    component: () => import('../views/ResumeUpdate.vue')
+  },
+  {
+    path: '/UserMyPage',
+    name: 'userMyPage',
+    component: () => import('../views/66MyPage.vue')
+  },
 
   {
     path: "/26",

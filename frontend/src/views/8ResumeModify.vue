@@ -5,19 +5,19 @@
       <div class="resume-wrapper">
         <ul class="step-progress">
           <li class="step-progress-item current">
-            <router-link to="/23"> <strong>기본정보</strong></router-link>
+            <router-link to="#"> <strong>기본정보</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/24"> <strong>학력/경력</strong></router-link>
+            <router-link to="#"> <strong>학력/경력</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/25"><strong>어학/자격증</strong></router-link>
+            <router-link to="#"><strong>어학/자격증</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/26"><strong>???</strong></router-link>
+            <router-link to="#"><strong>???</strong></router-link>
           </li>
           <li class="step-progress-item">
-            <router-link to="/27"><strong>???</strong></router-link>
+            <router-link to="#"><strong>???</strong></router-link>
           </li>
         </ul>
         <div class="resume-btn-box">
@@ -40,7 +40,6 @@
                 <tr>
                   <th><label for="w_name">이름</label></th>
                   <td>{{ item.w_name }}</td>
-                  <input type="text">
                 </tr>
                 <tr>
                   <th><label for="w_hp">연락처</label></th>
@@ -80,7 +79,7 @@
                     <div class="graduation">
 
                       {{ item.w_finish }}
-
+                      
                     </div>
                   </td>
                 </tr>
@@ -97,12 +96,10 @@
                     </label>
                   </td>
                 </tr>
-
               <!-- <tr>
           <th style="padding-top:10px">입학</th>
           <td>
             <v-app class="date-pick">
-
             </v-app>
           </td>
           <th class="pl-15" style="padding-top:10px">졸업</th>
@@ -165,19 +162,16 @@
                 <tr>
                   <th style="padding-top:10px"><label for="w_get">취득일</label></th>
                   <td>
-
                     <label for="w_get">
                       {{ item.w_get }}
                     </label>
                   </td>
-
                 </tr>
 
               <!-- <tr>
           <th style="padding-top:10px">입학</th>
           <td>
             <v-app class="date-pick">
-
             </v-app>
           </td>
           <th class="pl-15" style="padding-top:10px">졸업</th>
@@ -187,7 +181,6 @@
           </tr> -->
               </table>
             </div>
-
 
             <!-- /// -->
             <h3 style="text-align: left;">자격증</h3>
@@ -200,20 +193,14 @@
                   </td>
                   <th style="padding-top:10px"><label for="w_getlicense">취득일</label></th>
                   <td>
-
                     {{ item.w_getlicense }}
                   </td>
                 </tr>
               </table>
-
             </div>
-            <button type="button" value="수정" @click="submitForm" >수정</button>
           </div>
-
         </div>
-
       </div>
-
     </div>
 
 
@@ -259,44 +246,11 @@ export default {
           console.log(err);
         });
     },
- submitForm() {
-      this.axios.post('/ResumeUpdate',
-        {
-                  w_no: this.w_no,
-                  w_name: this.w_name,
-                  w_hp: this.w_hp,
-                  w_email: this.w_email,
-                  w_address: this.w_address,
-                  w_gender: this.w_gender,
-                  w_level: this.w_level,
-                  w_finish: this.w_finish,
-                  w_major: this.w_major,
-                  w_fndate: this.w_fndate,
-                  w_com: this.w_com,
-                  w_position: this.w_position,
-                  w_join: this.w_join,
-                  w_leave: this.w_leave,
-                  w_subject: this.w_subject,
-                  w_score: this.w_score,
-                  w_get: this.w_get,
-                  w_license: this.w_license,
-                  w_getlicense: this.w_getlicense
-        }
-      ).then(res => {
-        alert('수정이 완료되었습니다.!')
-        // this.$router.push(`/ResumeModify?w_no=1`);
-        this.$router.push(`/ResumeModify?w_no=1`);
-      }).catch(err => {
-        console.log(err);
-      })
-    },
   },
   mounted() {
     this.ApplyStatus();
-
   },
 };
-
 </script>
   
 <style>
@@ -305,7 +259,7 @@ export default {
   margin: 0 auto;
   display: grid;
   padding-top: 8vh;
-  height: 92vh;
+  height: 100%;
 }
 
 .resume-wrapper {
@@ -639,6 +593,5 @@ export default {
   cursor: pointer;
   font-size: 14px;
 }
-
 </style>
   
