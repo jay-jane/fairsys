@@ -23,4 +23,14 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
 	public ArrayList<CompanyVO> getNlist() {
 	return adminCompanyMapper.getNlist();
   }
-}
+
+  // @Override
+  // public int companyModify(CompanyVO vo) {
+  //   return adminCompanyMapper.companyModify(vo);
+    
+  }
+
+
+
+  
+
