@@ -13,15 +13,21 @@ export default {
 </script>
 
 <style>
+ @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+* {padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
+
+
+
 /* footer 디자인 */
 #bottom {
-    height: 200px;
-
-    color: white;
-   
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin-top: 50px;
+  height: 200px;
+  margin-left: 200px;
+  background-color: #263238;
+  top: 0;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* 속성이 적용된 요소내의 자식들을 수직방향으로 정렬 */
 }
+
 </style>

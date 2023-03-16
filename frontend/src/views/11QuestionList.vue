@@ -58,14 +58,14 @@
           <li>
             <!-- 맨앞으로 가기 -->
             <router-link :to="{path: '/11/?page=1&amount='+amount}" @click="goFirstPage">
-              <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+              <i class="fa fa-angle-double-left" aria-hidden="true">&lt;&lt;</i>
             </router-link>
           </li>
 
           <!-- 앞으로 가기 -->
             <li style="margin-right:5px;">
               <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goBeforePage">
-                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <i class="fa fa-angle-left" aria-hidden="true">&lt;</i>
               </router-link>
             </li>
 
@@ -81,14 +81,14 @@
           <!-- 뒤로 가기 -->
 					<li style="margin-left:5px;">
             <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goNextPage">
-              <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <i class="fa fa-angle-right" aria-hidden="true">r</i>
             </router-link>
           </li>
 
           <!-- 맨뒤로 가기 -->
 					<li>
             <router-link :to="{path: '/11/?page='+realEnd+'&amount='+amount}" @click="goLastPage">
-              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+              <i class="fa fa-angle-double-right" aria-hidden="true">>></i>
             </router-link>
           </li>
 
@@ -331,6 +331,25 @@ export default {
 
   .serch_box{
     margin-top: 20px;
+  }
+
+  .serch_box select,input,button{
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .serch_box input{
+    width: 50%;
+    border-radius: 35px;
+    border: 1px solid #ddd;
+  }
+
+  .serch_box button {
+    width: 10%;
+    background-color: orange;
+    border: none;
+    color: white;
+    font-size: 16px;
   }
 
   .page {
