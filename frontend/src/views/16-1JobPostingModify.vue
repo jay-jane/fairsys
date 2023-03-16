@@ -36,16 +36,6 @@
         </div>
       </div>
       <div id="field">
-        <label class="field_name">업종</label>
-        <div id="job_type">
-          <select name="" id="">
-            <option value="a">서비스업</option>
-            <option value="b">제조</option>
-            <option value="c">IT/웹</option>
-          </select>
-        </div>
-      </div>
-      <div id="field">
         <label class="field_name">모집 분야</label>
         <div id="job_type">
           <Hashtags></Hashtags>
@@ -69,20 +59,14 @@
         <div class="kakaoAPI">(카카오맵api)</div>
       </div>
       <div id="field">
-        <label class="field_name">연봉/급여</label>
+        <label class="field_name">급여(연봉)</label>
         <div id="sal_wrap">
-          <select id="sal_type">
-            <option value="sal_y">연봉</option>
-            <option value="sal_m">월급</option>
-          </select>
           <select id="sal_y" v-bind:value="j_salary">
-            <option value="2200~2800">2,200 ~ 2,800</option>
-            <option value="2800~3200">2,800 ~ 3,200</option>
-            <option value="3200~3600">3,200 ~ 3,600</option>
-            <option value="3600~4000">3,600 ~ 4,000</option>
+            <option value="2200~2800">2,200만원 ~ 2,800만원</option>
+            <option value="2800~3200">2,800만원 ~ 3,200만원</option>
+            <option value="3200~3600">3,200만원 ~ 3,600만원</option>
+            <option value="3600~4000">3,600만원 ~ 4,000만원</option>
           </select>
-          <input type="hidden" class="sal_m">
-          <button type="button" class="sal_m" style="display: hidden">입력</button>
         </div>
       </div>
       <div id="field">
@@ -114,24 +98,23 @@
             <input type="text" id="process" value="서류전형" readonly>
           </div>
           <div id="process_add">
-            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
-              style="margin-bottom: 15px;">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1" style="margin-bottom: 15px;">
               1차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
           </div>
           <div id="process_wrap" ref="interview1" style="display: none;">
-            <input type="text" id="process" value="A" readonly>
+            <input type="text" id="process" value="1차면접" readonly>
             <img class="deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
           </div>
           <div id="process_add">
-            <button type="button" class="add_btn" name="interview2" @click="addBtn" ref="btn2">
+            <button type="button" class="add_btn" name="interview2" style="display: none;" @click="addBtn" ref="btn2">
               2차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
           </div>
           <div id="process_wrap" ref="interview2" style="display: none;">
-            <input type="text" id="process" value="B" readonly>
+            <input type="text" id="process" value="2차면접" readonly>
             <img class="deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
           </div>
           <div id="process_wrap">
@@ -140,8 +123,8 @@
         </div>
       </div>
       <div id="field endDate">
-        <label class="field_name">마감일자</label>
-        <div>(달력api)</div>
+        <label class="field_name">마감일자</label><br>
+        <input type="date" v-model="j_end_date">
       </div>
       <div>
         <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
@@ -172,6 +155,7 @@ export default {
       j_type: '',
       com_id: '1818',
       list: [],
+      j_end_date: '',
     }
   },
   methods: {
@@ -219,24 +203,30 @@ export default {
         alert('수정되었습니다.');
         this.$router.push('/jobPostingDetail/' + this.j_no);
       }).catch(err => {
-        console.log("에러");
         console.log(err);
       })
     },
     deleteForm() {
       confirm('삭제하시겠습니까?');
-      this.axios.post('/jobPostingDelete', {"j_no": this.$route.params.j_no})
-                .then(() => {
-                  alert('삭제되었습니다');
-                  this.$router.push('/4');
-                })
-                .catch(err => console.log(err));
+      this.axios.post('/jobPostingDelete', { "j_no": this.$route.params.j_no })
+        .then(() => {
+          alert('삭제되었습니다');
+          this.$router.push('/4');
+        })
+        .catch(err => console.log(err));
     },
     getJobDetail() {
       this.j_no = this.$route.params.j_no;
       this.axios.get('/jobPostingDetail/' + this.j_no, { params: { "j_no": this.j_no } })
         .then(res => {
           this.list = res.data;
+          this.j_schedule = this.list[0].j_schedule;
+          if (this.j_schedule.includes("2차")) {
+            this.$refs.btn1.style.display = "none";
+            this.$refs.btn2.style.display = "none";
+            this.$refs.interview1.style.display = "block";
+            this.$refs.interview2.style.display = "block";
+          }
         })
         .catch(err => {
           console.log(err);
@@ -283,9 +273,17 @@ export default {
   font-weight: bold;
 }
 
-input[type="text"] {
+input[type="text"],
+[type="email"] {
   width: 100%;
   padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+#sal_y {
+  width: 50%;
+  padding: 5px;
   margin: 10px 0;
   box-sizing: border-box;
 }

@@ -52,10 +52,10 @@
         <div id="search_salary" class="option_box">
           <strong class="option_title">지역</strong>
           <select @change="getRegion" id="salary">
-            <option value="서울, 경기">서울, 경기</option>
+            <option value="" selected></option>
+            <option value="서울">서울</option>
+            <option value="경기">경기</option>
             <option value="인천">인천</option>
-            <option value="나머지">나머지</option>
-            <option value="@@@@">@@@@</option>
           </select>
         </div>
         <div id="search_type" class="option_box">
@@ -76,7 +76,12 @@
         <div class="total_sort">
           <p>총 <strong class="num_total" style="color: orangered; font-size: 20px;">999</strong>건</p>
         </div>
-
+        <!-- 출력 카테고리 -->
+        <select v-model="amount" class="view" @change="loglist_view">
+          <option value="5">5개씩 보기</option>
+          <option value="10">10개씩 보기</option>
+          <option value="30">30개씩 보기</option>
+        </select>
         <div id="salary_list_total">
           <ul>
             <div v-for="item in list">
@@ -86,19 +91,18 @@
                   <!-- <strong class="title"><router-link :to="`/5?j_no=${j_no}`" v-model="j_no" @click="getJno">회사명</router-link></strong> -->
                   <!-- <strong class="title"><router-link :to="`/5?j_no=${j_no}`">{{ item.j_no }}번. {{item.j_title}}</router-link></strong> -->
                   <strong class="title">
-                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_no }}번. {{ item.j_title
-                    }}</span>
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_no }}번. {{ item.j_title }}</span>
                   </strong>
                   <a href="#" class="mark">채용중</a>
                   <div class="recruit_title">
-                    <a href="#" style="color: #333;">IT개발 부문 채용</a>
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_title }}</span>
                   </div>
                   <div id="info_wrap">
                     <dl class="info_item">
-                      <dt>경력</dt>
+                      <dt>{{ item.j_career }}</dt>
                     </dl>
                     <dl class="info_item">
-                      <dt>학력</dt>
+                      <dt>{{ item.j_graduation }}</dt>
                     </dl>
                     <dl class="info_item">
                       <dt>지역</dt>
@@ -112,8 +116,47 @@
       </div>
     </div>
 
-    <div id="pagination">
-      페이지네이션
+    <!-- 페이지네이션 -->
+    <div class="page">
+      <ul>
+        <li>
+          <!-- 맨앞으로 가기 -->
+          <router-link :to="{ path: '/4/?page=1&amount=' + amount }" @click="goFirstPage">
+            <i class="fa fa-angle-double-left" aria-hidden="true"> &lt;&lt; </i>
+          </router-link>
+        </li>
+
+        <!-- 앞으로 가기 -->
+        <li style="margin-right:5px;">
+          <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" @click="goBeforePage">
+            <i class="fa fa-angle-left" aria-hidden="true"> &lt; </i>
+          </router-link>
+        </li>
+
+        <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
+        <div v-for="(item, index) in pageList" :key="index" class="page_btn">
+          <li v-bind:class="{ 'on': item === page }">
+            <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" style="padding: 10px" @click="thisPage($event.target)">
+              {{ item }}
+            </router-link>
+          </li>
+        </div>
+
+        <!-- 뒤로 가기 -->
+        <li style="margin-left:5px;">
+          <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" @click="goNextPage">
+            <i class="fa fa-angle-right" aria-hidden="true"> &gt; </i>
+          </router-link>
+        </li>
+
+        <!-- 맨뒤로 가기 -->
+        <li>
+          <router-link :to="{ path: '/4/?page=' + realEnd + '&amount=' + amount }" @click="goLastPage">
+            <i class="fa fa-angle-double-right" aria-hidden="true"> &gt;&gt; </i>
+          </router-link>
+        </li>
+
+      </ul>
     </div>
 
   </section>
@@ -134,19 +177,29 @@ export default {
       mid_category1: false,
       mid_category2: false,
       mid_category3: false,
-      j_no: '',
-      j_recruitNum: '',
-      j_email: '',
-      j_title: '',
-      j_content: '',
-      j_salary: '',
-      j_department: '',
-      j_schedule: '',
-      j_graduation: '',
-      j_career: '',
-      j_type: '',
-      com_id: '',
+
+      //공용
+      pages: '',   //pageVO
+      pageList: '',  //pageVO.pageList 배열값
+      detailNum: '',
+
+      //페이지이동에 필요한 초기값들
+      page: 1,
+      amount: 10,
+      searchTitle: '',
+      searchContent: '',
+      prev: '',
+      pageStart: '',
+      pageEnd: '',
+      realEnd: '',
+
+      //게시글 리스트
       list: [],
+    }
+  },
+  watch: {
+    'amount': function () {
+      this.get();
     }
   },
   methods: {
@@ -179,13 +232,13 @@ export default {
     getCategory: function (e) {
       this.category = e.target.innerHTML;
     },
-    getList() {
-      this.axios.get("/jobPostingList")
-        .then(res => {
-          this.list = res.data;
-        })
-        .catch(err => console.log(err));
-    },
+    // getList() {
+    //   this.axios.get("/jobPostingList")
+    //     .then(res => {
+    //       this.list = res.data;
+    //     })
+    //     .catch(err => console.log(err));
+    // },
     getDetail(j_no) {
       this.$router.push({
         path: '/jobPostingDetail',
@@ -193,9 +246,57 @@ export default {
         params: { 'j_no': j_no }
       })
     },
+    async get() {
+      //화면에 리스트 출력을 위해 필요한 내용 전달하기
+      let response = await this.axios.get("/4/?amount=" + this.amount + "&page=" + this.page);
+      //필요한 공용 데이터를 담기
+      this.list = response.data.jobList;
+      this.pages = response.data.pageVO;
+      this.pageList = this.pages.pageList;
+      //페이지이동에 필요한 데이터 담기
+      this.page = this.pages.page;
+      this.searchTitle = this.pages.cri.searchTitle;
+      this.searchContent = this.pages.cri.searchContent;
+      this.prev = this.pages.prev;
+      this.pageStart = this.pages.pageStart;
+      this.pageEnd = this.pages.pageEnd;
+      this.realEnd = this.pages.realEnd;
+    },
+    loglist_view() {
+      this.amount = this.amount;
+    },
+    goFirstPage() {
+      this.page = 1;
+      this.get();
+    },
+    goBeforePage() {
+      if (this.page > 1) {
+        this.page = this.page - 1;
+      } else {
+        alert("첫번째 페이지입니다.");
+      }
+    },
+    thisPage(target) {
+      this.page = target.innerHTML;
+      this.get();
+
+    },
+    goNextPage() {
+      if (this.page < this.realEnd) {
+        this.page = this.page + 1;
+        this.get();
+      } else {
+        alert("마지막 페이지입니다.");
+      }
+    },
+    goLastPage() {
+      this.page = this.realEnd;
+      this.get();
+    },
   },
   mounted() {
-    this.getList();
+    this.get();
+    // this.getList();
   },
 }
 </script>
@@ -426,11 +527,50 @@ h3 {
   margin-right: 5px;
 }
 
-/* footer */
-footer {
-  background-color: #f7f7f7;
-  padding: 20px;
-  text-align: center;
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.page ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.page li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   font-size: 14px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.page li.on {
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.page i {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.page_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
