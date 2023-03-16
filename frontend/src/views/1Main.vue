@@ -112,22 +112,7 @@
                       </div>
                   </div>
                   <div class="service_container">
-                      <div class="area_info">
-                          <div class="area_info_header">
-                              <h3 class="info_tit"><a href="">공지사항</a></h3>
-                          </div>
-                          <div class="notice_list_wrapper">
-                              <ul class="notice_list">         
-                                  <li class="list active"><a href="" class="link">1234</a></li>
-                              </ul>
-                          </div>
-                          <span class="notice_btn_wrapper"><button type="button" class="btn_prev"><span
-                                      class="blind">이전글보기</span><svg class="icon"> <use xlink:href="#icon_arrow_left">
-                                      </use></svg></button><button type="button"
-                                  class="btn_next"><span class="blind">다음글보기</span><svg
-                                      class="icon">
-                                      <use xlink:href="#icon_arrow_right"></use></svg></button></span>
-                      </div>
+  
                   </div>
               </div>
               <div class="wrap_service_aside">
