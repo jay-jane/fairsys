@@ -22,4 +22,7 @@ public interface EmploymentQnaMapper {
     //게시글 상세내용
     public ArrayList<EmploymentQnaVO> getDetail(@Param("qa_no") int qa_no,
                                                 @Param("user_id") String user_id);
+
+    //게시글 작성
+    public void regist(EmploymentQnaVO vo);
 }
