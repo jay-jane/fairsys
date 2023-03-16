@@ -33,7 +33,7 @@
                                                                   <div class="logo empty"><img src=""></div>
                                                                   <div class="box_bubble"><span class="txt">내일 마감</span>
                                                                   </div>
-                                                                  <div class="box_text"><strong class="tit_type2">[모집중]</strong></div>
+                                                                  <div class="box_text"><strong class="tit_type2">회사명</strong></div>
                                                                   <div class="box_source">
                                                                       <p class="corp">회사명</p>
                                                                   </div>
@@ -48,7 +48,7 @@
                                                           <a href="page20">
                                                             <div class="card_detail">
                                                                   <div class="logo empty"><img src=""></div>
-                                                                  <div class="box_bubble"><span class="txt">내일 마감</span>
+                                                                  <div class="box_bubble"><span class="txt">회사명</span>
                                                                   </div>
                                                                   <div class="box_text"><strong class="tit_type2">[모집중]</strong></div>
                                                                   <div class="box_source">
@@ -315,7 +315,7 @@ button {
 }
 
 .cont_top .service_header .menu_list .btn.on {
-  color: var(--common_blue100);
+
   font-weight: bold;
   background-color: #deebff
 }
@@ -332,8 +332,7 @@ button {
   margin-left: 4px;
   width: 16px;
   height: 16px;
-  background: url("") no-repeat center center;
-  content: ""
+
 }
 
 .cont_top .service_header .menu_list .content_body {
@@ -425,9 +424,6 @@ button {
 }
 
 
-
-
-
 .cont_top .service_container {
   display: inline-block;
   padding-top: 290px;
@@ -469,9 +465,6 @@ button {
   max-height: 24px
 }
 
-.cont_top .card .logo.empty {
-  background: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16 5.5C16 4.11929 14.8807 3 13.5 3H5.5C4.11929 3 3 4.11929 3 5.5V19.5C3 20.8807 4.11929 22 5.5 22H7H12H15H16H19.5C20.8807 22 22 20.8807 22 19.5V12.5C22 11.1193 20.8807 10 19.5 10H16V5.5ZM12 21H15V10V5.5C15 4.67157 14.3284 4 13.5 4H5.5C4.67157 4 4 4.67157 4 5.5V19.5C4 20.3284 4.67157 21 5.5 21H7V17C7 15.8954 7.89543 15 9 15H10C11.1046 15 12 15.8954 12 17V21ZM8 21H11V17C11 16.4477 10.5523 16 10 16H9C8.44772 16 8 16.4477 8 17V21ZM19.5 21H16V11H19.5C20.3284 11 21 11.6716 21 12.5V19.5C21 20.3284 20.3284 21 19.5 21ZM8 11.5C8 11.2239 7.77614 11 7.5 11C7.22386 11 7 11.2239 7 11.5V12.5C7 12.7761 7.22386 13 7.5 13C7.77614 13 8 12.7761 8 12.5V11.5ZM7.5 7C7.77614 7 8 7.22386 8 7.5V8.5C8 8.77614 7.77614 9 7.5 9C7.22386 9 7 8.77614 7 8.5V7.5C7 7.22386 7.22386 7 7.5 7ZM12 11.5C12 11.2239 11.7761 11 11.5 11C11.2239 11 11 11.2239 11 11.5V12.5C11 12.7761 11.2239 13 11.5 13C11.7761 13 12 12.7761 12 12.5V11.5ZM18.5 17C18.7761 17 19 17.2239 19 17.5V18.5C19 18.7761 18.7761 19 18.5 19C18.2239 19 18 18.7761 18 18.5V17.5C18 17.2239 18.2239 17 18.5 17ZM12 7.5C12 7.22386 11.7761 7 11.5 7C11.2239 7 11 7.22386 11 7.5V8.5C11 8.77614 11.2239 9 11.5 9C11.7761 9 12 8.77614 12 8.5V7.5ZM18.5 13C18.7761 13 19 13.2239 19 13.5V14.5C19 14.7761 18.7761 15 18.5 15C18.2239 15 18 14.7761 18 14.5V13.5C18 13.2239 18.2239 13 18.5 13Z' fill='%236B768B'/%3E%3C/svg%3E%0A") no-repeat center center
-}
 
 
 .cont_top .card .card_detail {
