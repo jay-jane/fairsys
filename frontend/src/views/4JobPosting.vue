@@ -47,7 +47,7 @@
           <strong class="option_title">
             <label for="company_name">기업명</label>
           </strong>
-          <input type="text" @focusout="getComName" placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
+          <input type="text" v-model="companyName" @keydown.enter="getComName" @focusout="getComName" placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
         </div>
         <div id="search_salary" class="option_box">
           <strong class="option_title">지역</strong>
@@ -75,29 +75,28 @@
       <div id="salary_list_wrap">
         <div class="total_sort">
           <p>총 <strong class="num_total" style="color: orangered; font-size: 20px;">999</strong>건</p>
+          <!-- 출력 카테고리 -->
+          <select v-model="amount" class="view" @change="loglist_view">
+            <option value="5">5개씩 보기</option>
+            <option value="10">10개씩 보기</option>
+            <option value="30">30개씩 보기</option>
+          </select>
         </div>
-        <!-- 출력 카테고리 -->
-        <select v-model="amount" class="view" @change="loglist_view">
-          <option value="5">5개씩 보기</option>
-          <option value="10">10개씩 보기</option>
-          <option value="30">30개씩 보기</option>
-        </select>
         <div id="salary_list_total">
           <ul>
             <div v-for="item in list">
               <li>
-                <a href="#" class="logo"><img src="" alt="로고"></a>
+                <a href="#" class="logo" @click.prevent="getDetail(item.j_no)"><img src="" alt="로고"></a>
                 <div class="company_info">
-                  <!-- <strong class="title"><router-link :to="`/5?j_no=${j_no}`" v-model="j_no" @click="getJno">회사명</router-link></strong> -->
-                  <!-- <strong class="title"><router-link :to="`/5?j_no=${j_no}`">{{ item.j_no }}번. {{item.j_title}}</router-link></strong> -->
                   <strong class="title">
-                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_no }}번. {{ item.j_title }}</span>
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_no }}번. {{ item.j_title
+                    }}</span>
                   </strong>
-                  <a href="#" class="mark">채용중</a>
+                  <a href="#" class="mark" @click="(e) => { e.preventDefault(); }" style="cursor: default;">채용중</a>
                   <div class="recruit_title">
                     <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_title }}</span>
                   </div>
-                  <div id="info_wrap">
+                  <div id="info_wrap" style="cursor: default;">
                     <dl class="info_item">
                       <dt>{{ item.j_career }}</dt>
                     </dl>
@@ -136,7 +135,8 @@
         <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
         <div v-for="(item, index) in pageList" :key="index" class="page_btn">
           <li v-bind:class="{ 'on': item === page }">
-            <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" style="padding: 10px" @click="thisPage($event.target)">
+            <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" style="padding: 10px"
+              @click="thisPage($event.target)">
               {{ item }}
             </router-link>
           </li>
@@ -192,6 +192,10 @@ export default {
       pageStart: '',
       pageEnd: '',
       realEnd: '',
+
+      //검색
+      searchTitle: '',
+      companyName: '',
 
       //게시글 리스트
       list: [],
@@ -292,6 +296,21 @@ export default {
     goLastPage() {
       this.page = this.realEnd;
       this.get();
+    },
+    searchItem() {
+      // const userselect = target.previousElementSibling.previousElementSibling.value;
+      this.searchTitle = this.companyName;
+      this.get();
+      console.log("실행");
+      console.log(this.searchTitle);
+      // if (userselect === "title") {
+      //   this.searchTitle = usertext;
+      //   this.get();
+      // } else if (userselect === "content") {
+      //   this.searchContent = usertext;
+      //   this.get();
+      // }
+
     },
   },
   mounted() {

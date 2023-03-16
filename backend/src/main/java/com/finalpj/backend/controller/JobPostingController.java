@@ -30,9 +30,10 @@ public class JobPostingController {
         //페이지네이션 처리
         int total =  service.getTotal(jcri);
         JobPageVO pageVO = new JobPageVO(jcri, total);
-       //게시글 처리
+        //게시글 처리
         List<JobPostingVO> list = service.getJobList(jcri);
         JobOneGate ogate = new JobOneGate(list, pageVO);
+        System.out.println(list.toString());
         return ogate;
     }
 

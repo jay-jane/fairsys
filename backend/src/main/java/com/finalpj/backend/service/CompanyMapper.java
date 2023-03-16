@@ -15,5 +15,5 @@ public interface CompanyMapper {
     void update(JobPostingVO vo);
     void delete(int j_no);
     List<JobPostingVO> getJobList(@Param("jcri") JobCriteria jcri);
-    int getTotal(JobCriteria jcri);
+    int getTotal(@Param("jcri") JobCriteria jcri);
 }
