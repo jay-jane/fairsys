@@ -22,9 +22,14 @@ public class EmploymentQnaMapperImpl implements EmploymentQnaService {
         return eqm.getTotal(user_id, cri);
     }
 
-        //게시글 상세내용
-        public ArrayList<EmploymentQnaVO> getDetail(int qa_no, String user_id){
-            return eqm.getDetail(qa_no, user_id);
-        }
+    //게시글 상세내용
+    public ArrayList<EmploymentQnaVO> getDetail(int qa_no, String user_id){
+        return eqm.getDetail(qa_no, user_id);
+    }
+
+    //게시글 작성
+    public void regist(EmploymentQnaVO vo){
+        eqm.regist(vo);
+    }
 
 }
