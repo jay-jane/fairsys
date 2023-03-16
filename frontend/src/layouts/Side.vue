@@ -6,22 +6,22 @@
         <li class="sub_menu_toggle">
           <a class="sub menu select">기업</a>
           <ul class="sub_menu" style="display: block;">
-            <li><a href="/18">기업 목록</a></li>
-            <li><a href="/19">기업 신청 관리</a></li>
+            <li><router-link to="/18">기업 목록</router-link></li>
+            <li><router-link to="/19">가입 신청 관리</router-link></li>
           </ul>
         </li>
   
         <li class="sub_menu_toggle">
           <a href="#">유저</a>
           <ul class="sub_menu">
-            <li><a href="page44">유저 관리</a></li>
+            <li><router-link to="/20">유저 목록</router-link></li>
           </ul>
         </li>
   
         <li class="sub_menu_toggle">
           <a href="#">통계</a>
           <ul class="sub_menu">
-            <li><a href="page42">통합 통계</a></li>
+            <li><router-link to="/21">통합 통계</router-link></li>
           </ul>
         </li>
 
@@ -44,8 +44,7 @@
   </script>
   
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
-
+  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
   * {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
   
   .admin_nav {
