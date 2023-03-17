@@ -26,7 +26,7 @@ export default {
 
   methods: {
     gologInOut() {
-      if (this.$store.state.logInOut == '로그인') {
+      if (sessionStorage.length<1) {
         location.href = "/2";
         
       } else {
