@@ -16,7 +16,7 @@
 
         <div class="inp" v-show="!helpVisible">
             <input type="text" list="options" ref="input" v-model.trim="value" @focus="initSelect" @keydown.space.prevent="addHashTags"
-                @keydown.enter.prevent="addHashTags" @keydown.enter="getHashTags" @keydown.backspace="initErrorMsg" @keydown.delete="initErrorMsg"
+                @keydown.enter.prevent="addHashTags" @keydown.backspace="initErrorMsg" @keydown.delete="initErrorMsg"
                 placeholder="태그입력" />
             <datalist id="options">
                 <option value="UI/UX 디자이너"></option>
@@ -148,11 +148,8 @@ export default {
             this.errorMsg = null;
             this.value = null;
             this.$refs.input.focus();
-        },
-        getHashTags() {
-            console.log(this.valList);
-        }
-        
+            this.$router.push({path: "/16", query: {"valList": this.valList}});
+        },        
     },
 };
 </script>

@@ -33,8 +33,12 @@ public class JobPostingController {
         //게시글 처리
         List<JobPostingVO> list = service.getJobList(jcri);
         JobOneGate ogate = new JobOneGate(list, pageVO);
-        System.out.println(list.toString());
         return ogate;
+    }
+
+    @GetMapping("/getTotal")
+    public int getTotal(JobCriteria jcri) {
+        return service.getTotal(jcri);
     }
 
     @PostMapping("/jobPostingRegist")
