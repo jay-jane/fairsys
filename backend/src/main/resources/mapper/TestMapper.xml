@@ -31,30 +31,48 @@
 	<select id="checkId" resultType="int">
 		select count(*) from user where user_id=#{user_id}
 	</select>
-
-  <!-- <insert id="regist" parameterType="UserVO">
-  		insert into user(user_id,
-  							user_pw,
-  							user_name,
-  							user_birth,
-  							user_email,
-  							user_phone,
-  							user_gender,
-  							user_postcode,
-  							user_address,
-  							user_detail_address
+	
+	
+	<select id="login" resultType="UserVO">
+		select * from user where user_id=#{user_id} and user_pw=#{user_pw}
+	</select>
+	
+	
+	
+	
+  	<insert id="regist2" parameterType="CompanyVO">
+  		   insert into company(com_id,
+  							com_pw,
+  							com_num,
+  							com_name,
+  							com_category,
+  							com_ceo,
+  							com_postcode,
+  							com_address,
+  							com_detail_address,
+  							com_manager,
+  							com_manager_phone,
+  							com_email
   							)
-  		values( #{user_id},
-  				#{user_pw},
-  				#{user_name},
-  				#{user_birth},
-  				#{user_email},
-  				#{user_phone},
-  				#{user_gender},
-  				#{user_postcode},
-  				#{user_address},
-  				#{user_detail_address}
-  				)
-  	</insert> -->
+  		              values( #{com_id},
+  							  #{com_pw},
+  							  #{com_num},
+  					       	  #{com_name},
+  							  #{com_category},
+  					          #{com_ceo},
+  							  #{com_postcode},
+  							  #{com_address},
+  							  #{com_detail_address},
+  							  #{com_manager},
+  							  #{com_manager_phone},
+  							  #{com_email}
+  							)
+  	</insert>
+
+	<select id="checkId2" resultType="int">
+		select count(*) from company where com_id=#{com_id}
+	</select>
+
+  
 
 </mapper>

@@ -143,6 +143,10 @@ export default {
   mounted() {
     this.get();
   },
+
+  created() {
+    this.get();
+  },
 };
 </script>
 

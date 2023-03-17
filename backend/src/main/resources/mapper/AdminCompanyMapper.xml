@@ -21,8 +21,10 @@
 	</update>
 
 
+
   <delete id="companyDelete" parameterType="int">
 		delete from company where com_id = #{com_id}
 	</delete>
+
 
   </mapper>

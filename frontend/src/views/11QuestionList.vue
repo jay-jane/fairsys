@@ -331,6 +331,8 @@ export default {
 
   .serch_box{
     margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
   }
 
   .serch_box select,input,button{

@@ -236,7 +236,7 @@ export default {
   },
   methods: {
     ApplyStatus() {
-      this.axios.get("/ApplyStatus")
+      this.axios.get("/ApplyStatus/")
         .then(res => {
           this.a = this.$route.query.w_no;
           this.w_no = this.$route.query.w_no;

@@ -30,18 +30,30 @@
 
   <select id="getJobList" resultType="JobPostingVO">
     select * from job_posting
-    <if test="jcri.searchTitle != null and jcri.searchTitle !='' ">
+    <if test="jcri.searchTitle != '' ">
 			<![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>
+    <if test="jcri.searchCareer != '' and jcri.searchTitle == '' ">
+			<![CDATA[ where j_career like concat('%', #{jcri.searchCareer}, '%')]]>
+		</if>
+    <if test="jcri.searchTitle != '' and jcri.searchCareer != '' ">
+      <![CDATA[ and j_career like concat('%', #{jcri.searchCareer}, '%')]]>
+    </if>
     order by j_no desc
     limit #{jcri.pageStart}, #{jcri.amount}
   </select>
 
   <select id="getTotal" resultType="int">
-     	select count(*) as total from job_posting
-      <if test="jcri.searchTitle != null and jcri.searchTitle !='' ">
-			  <![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
-		  </if>
+    select count(*) as total from job_posting
+    <if test="jcri.searchTitle != '' ">
+			<![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
+		</if>
+    <if test="jcri.searchCareer != '' and jcri.searchTitle == '' ">
+			<![CDATA[ where j_career like concat('%', #{jcri.searchCareer}, '%')]]>
+		</if>
+    <if test="jcri.searchTitle != '' and jcri.searchCareer != '' ">
+      <![CDATA[ and j_career like concat('%', #{jcri.searchCareer}, '%')]]>
+    </if>
      </select>
 
 </mapper>

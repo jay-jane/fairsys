@@ -24,9 +24,10 @@ public class AdminCompanyController {
         @Autowired
         private AdminCompanyService admincompanyService;
     
-        
+
         @GetMapping("/18")
         public  ArrayList<CompanyVO> list (){
+
     
             ArrayList<CompanyVO> list = admincompanyService.getList();
             System.out.println(list.toString());    

@@ -2,79 +2,67 @@
 <template>
 
   <div class="content">
-
     <div class="title">
       <h1>통합 통계</h1>
     </div>
 
     <div class="wrap">
       <div class="date_Select">
-        <span>기간선택</span>
         <table>
           <tbody>
 
-            <td>
-              <tr>시작 날짜</tr>
-            </td>
-
-            <td>
-              <tr>
-                <!-- <font-awesome-icon
-                  incon="fa-solid fa-calendar-days"
-                  transform="down-2.5 right-20"
-                  style="z-index: 1; cursor: pointer;"
-                  @click="clickCalIcon()"
-                /> -->
+            <tr>
+              <td>기간선택</td>
+              <td>시작 날짜</td>
+              <td>                
                 <Datepicker
-                  v-model="picked"
+                  v-model="startDate"
                   :locale="locale"
                   :weekStartsOn="0"
                   :inputFormat="inputFormat"
                   :clearable="true"
-                  />
-              </tr>
-            </td>
-
-            <td>
-              <tr>마지막 날짜</tr>
-            </td>
-            
-            <td>
-              <tr>
+                />
+              </td>
+              <td>마지막 날짜</td>
+              <td>
                 <Datepicker
-                  v-model="picked"
+                  v-model="endDate"
                   :locale="locale"
                   :weekStartsOn="0"
                   :inputFormat="inputFormat"
                   :clearable="true"
-                  />
-              </tr>
-            </td>
-
+                />
+              </td>
+              <td><button>검색하기</button></td>
+            </tr>
           </tbody>
         </table>
-
-
-
-
       </div>
     </div>
 
-    <!-- <table class="graph_statistics">
+    <div class="btn_group">
+      <button>전체보기</button>
+      <button>가입자 추이</button>
+      <button>지원자 추이</button>
+      <button>합격자 추이</button>
+      <button>성별, 연령분포</button>
+    </div>
+
+
+
+    <table class="graph_statistics">
       <tr>
         <td>
           <Bar class="barchart"
-          :options="chartOptions"
           :data="chartData"
           />
         </td>
         <td>
           <Pie class="barchart"
-          :options="chartOptions"
           :data="chartData2" />
         </td>
       </tr>
-    </table> -->
+    </table>
   </div>
 
 
@@ -82,7 +70,7 @@
 
 <script>
 //데이트피커 관련 자료
-import { ref, reactive, defineComponent} from 'vue';
+import { ref, reactive, watch} from 'vue';
 import Datepicker from 'vue3-datepicker';
 import {ko} from 'date-fns/locale';
 
@@ -127,12 +115,29 @@ export default {
   },
   // 데이터피커 설정
   setup(){
-    const picked = ref(new Date());
+
+    //공통설정
     const locale = reactive(ko); //한글달력 기본값 영어
     const inputFormat = ref('yyyy-MM-dd'); //날짜세팅
+    
+    const now = new Date();
+
+    //시작날짜는 당일 날짜 8일전
+    const startDate = ref(new Date(now.setDate(now.getDate()-8)));
+    //마지막날짜는 당일 날짜 1일전
+    const endDate = ref(new Date(now.setDate(now.getDate()+7)));
+
+    watch([startDate, endDate], ([newStartDate, newEndDate]) =>{
+
+      if (newStartDate && newEndDate && newStartDate > newEndDate) {
+        alert('시작일은 종료일보다 작거나 같아야합니다.');
+      }
+
+    });
 
     return{
-      picked,
+      startDate,
+      endDate,
       locale,
       inputFormat
     }
@@ -143,48 +148,108 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
-* {padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
+* {padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; box-sizing: border-box;}
 
 
-  .content{
-    margin-left: 200px; 
-    margin-top: 100px;
-    height: auto;
-    background-color: #f5f5f5;
-  }
+.content {
+  margin: 100px 0 0 200px;
+  padding: 30px;
+}
 
-  /* 타이틀설정 */
 
-  .date_Select{
+.title h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 
-  }
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+}
 
-  /* 통합 통계 */
-  .integrated_statistics{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
 
-  .graph_statistics{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
 
-  table{
-    border-collapse: collapse;
-  }
+.date_Select button {
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
 
-  td{
-    border: 1px solid black;
-    padding: 10px;
-  }
+.date_Select button:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
 
-  /* 차트디자인 */
-  .barchart{
-    width: 100%
-  }
+.date_Select table {
+  border: 1px solid #ccc;
+}
+
+.date_Select td:first-child {
+  font-weight: bold;
+}
+
+.date_Select td:nth-child(2),
+.date_Select td:nth-child(4) {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.btn_group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px 20px;
+}
+
+.btn_group button {
+  font-size: 16px;
+  color: #333;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.btn_group button:hover {
+  background-color: #e2e2e2;
+}
+
+.graph_statistics {
+  width: 100%;
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.barchart {
+  width: 45%;
+  height: 300px;
+}
+
 
 </style>
 

@@ -2,19 +2,23 @@
 
   <div class="main">    
     <div class="container">
-      <h1>유저 목록</h1>
+
+      <h1>유저 전체 목록</h1>
+
       <div class="searchBox">
         <input type="text">
-        <input type="submit" value="검색">
+        <button>검색하기</button>
       </div>  
-      <select name="" id="">
-        <option value="5"> 5개씩 보기</option>
+
+      <select v-model="amount" class="list_view">
         <option value="10"> 10개씩 보기</option>
         <option value="30"> 30개씩 보기</option>
         <option value="50"> 50개씩 보기</option>
+        <option value="100"> 100개씩 보기</option>
       </select>
 
       <table class="list">
+
         <thead class="head">
           <tr>
             <th>번호</th>
@@ -56,23 +60,38 @@
 </template>
 
 <script>
+import Axios from 'axios';
 
 export default {
   name: 'App',
+  
+  data(){
+    return {
+
+      //공용 데이터
+
+      //페이지 이동에 필요한 데이터
+      amount: 10,
+
+    }
+  },
+
+  methods:{
+
+  }
+
 
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+* {padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; box-sizing: border-box;}
 
-* {padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none;}
 
 .main {
-  display: flex;
-  justify-content: center;
-  height: 600px;
-  margin-left: 200px;
+  margin: 100px 0 0 200px;
+  padding: 30px;
 }
 
   .container {

@@ -46,7 +46,9 @@ const routes = [
   },
   {
     path: "/ResumeRegist",
-    name: "resumeRegist",
+
+    name: "ResumeRegist",
+
     component: () => import("../views/7ResumeRegist.vue"),
   },
   {
@@ -60,8 +62,10 @@ const routes = [
     component: () => import("../views/9UserInfoModify.vue"),
   },
   {
-    path: "/ApplyStatus",
-    name: "applyStatus",
+
+    path: "/ApplyStatus/",
+    name: "ApplyStatus",
+
     component: () => import("../views/10ApplyStatus.vue"),
   },
   {

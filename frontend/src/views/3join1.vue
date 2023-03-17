@@ -174,7 +174,7 @@ export default {
                 // pwhintans: this.propSignup.pwhintans,
                 yyyy: "2023",
                 mm: "03",
-                dd: "13",
+                dd: "14",
 
             },
             genderList: [
@@ -280,6 +280,7 @@ export default {
                 console.log(err)
             })
         },
+        
 
         btn_view() {
             location.href = "page1";
