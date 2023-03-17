@@ -15,4 +15,7 @@ public interface EmploymentQnaService {
 
     //게시글 상세내용
     public ArrayList<EmploymentQnaVO> getDetail(int qa_no, String user_id);
+
+    //게시글 작성
+    public void regist(EmploymentQnaVO vo);
 }

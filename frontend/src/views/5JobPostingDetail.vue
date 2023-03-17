@@ -16,7 +16,6 @@
             <div id="company_title">
               <div class="title">
                 <h2>{{ item.j_title }}</h2>
-                <h2>{{ $route.params.j_no }}</h2>
               </div>
             </div>
           </div>
@@ -52,9 +51,9 @@
           <div id="bottom_left">
             <h4>채용정보</h4>
             <div id="qualify">
-              <span id="q_left">채용 부서</span> <span id="q_right">{{ item.j_department }}</span><br>
-              <span id="q_left">마감 일자</span> <span id="q_right">{{ item.j_end_date }}</span><br>
-              <span id="q_left">전형 절차</span> <span id="q_right">{{ item.j_schedule }}</span><br>
+              <span id="q_left">채용 분야</span> <span id="q_right">{{ item.j_department }}</span><br>
+              <span id="q_left">마감 일자</span> <span id="q_right">{{ j_end_date }}</span><br>
+              <span id="q_left">전형 절차</span> <span id="q_right">서류 심사 > {{ item.j_schedule }} 최종 합격</span><br>
             </div><br>
             <h4>채용 담당자</h4>
             <div id="qualify">
@@ -98,7 +97,7 @@ export default {
     return {
       j_no: '',
       list: [],
-      a: '',
+      j_end_date: '',
     }
 
   },
@@ -107,7 +106,9 @@ export default {
       this.j_no = this.$route.params.j_no;
       this.axios.get('/jobPostingDetail/' + this.j_no, {params: {"j_no": this.j_no}})
         .then(res => {
+          console.log(res.data[0].j_end_date);
           this.list = res.data;
+          this.j_end_date = res.data[0].j_end_date.substring(0, 10);
         })
         .catch(err => {
           console.log(err);

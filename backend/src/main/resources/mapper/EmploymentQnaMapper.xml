@@ -28,10 +28,15 @@
 		<if test="cri.searchContent != null and cri.searchContent !='' ">
 			<![CDATA[ and qa_content like concat('%', #{cri.searchContent}, '%')]]>
 		</if>
-     </select>
+    </select>
 
-	 <select id="getDetail" resultType="EmploymentQnaVO">
-	 	select * from employment_qa where qa_no= #{qa_no} and user_id = 'aaa123'
-	 </select>
+	<select id="getDetail" resultType="EmploymentQnaVO">
+		select * from employment_qa where qa_no= #{qa_no} and user_id = 'aaa123'
+	</select>
+
+	<insert id="regist" parameterType="EmploymentQnaVO">
+		INSERT INTO employment_qa (qa_title, qa_content, user_id, com_id) 
+		values (#{qa_title}, #{qa_content}, #{user_id}, #{com_id})
+	</insert>
 
 </mapper>

@@ -5,16 +5,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 import com.finalpj.backend.command.ResumeWriteVO;
 import com.finalpj.backend.service.ResumeService;
-import com.finalpj.backend.util.Criteria;
-import com.finalpj.backend.util.PageVO;
+import com.finalpj.backend.util.ResumeCriteria;
+import com.finalpj.backend.util.ResumeOneGate;
+import com.finalpj.backend.util.ResumePageVO;
 
 @RestController
 public class ResumeController {
@@ -22,21 +23,28 @@ public class ResumeController {
     @Autowired
     private ResumeService resumeService;
 
-       //이력서 리스트
-       @GetMapping("/ApplyStatus")
-       public ArrayList<ResumeWriteVO> ApplyStatus (Criteria cri){
+    @GetMapping("/ApplyStatus")
+    public ResumeOneGate list(ResumeCriteria cri) {
+                //페이지네이션 처리
+                int total =  resumeService.getTotal(cri);
+                ResumePageVO pageVO = new ResumePageVO(cri, total);
+                //게시글 처리
+                ArrayList<ResumeWriteVO> list = resumeService.getList(cri);
+                ResumeOneGate ogate = new ResumeOneGate(list, pageVO);
+                // System.out.println(list.toString());
+                return ogate;
+    }
+    
+    //    //이력서 리스트
+    //    @GetMapping("/ApplyStatus")
+    //    public ArrayList<ResumeWriteVO> ApplyStatus (){
 
-        //페이지네이션 처리
-        int total = resumeService.getTotal(cri);
-        PageVO pageVO = new PageVO(cri, total);
 
-
-   
-           ArrayList<ResumeWriteVO> ApplyStatus = resumeService.ApplyStatus();
-           System.out.println(ApplyStatus.toString());
-           resumeService.ApplyStatus();
-           return ApplyStatus;
-       }
+    //        ArrayList<ResumeWriteVO> ApplyStatus = resumeService.ApplyStatus();
+    //        System.out.println(ApplyStatus.toString());
+    //        resumeService.ApplyStatus();
+    //        return ApplyStatus;
+    //    }
    
        //이력서 작성
        @PostMapping("/ResumeRegist")
@@ -52,8 +60,6 @@ public class ResumeController {
        @GetMapping("/ResumeModify")
        public List<ResumeWriteVO> ResumeModify() {
            List<ResumeWriteVO> list = resumeService.ResumeModify();
-           System.out.println(list.toString());
-          
            return list;
        }
    

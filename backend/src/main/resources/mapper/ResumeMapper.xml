@@ -5,9 +5,9 @@
 
 
 <mapper namespace="com.finalpj.backend.service.ResumeMapper">
-  <select id="ApplyStatus" parameterType="ResumeWriteVO" resultType="ResumeWriteVO">
+  <!-- <select id="ApplyStatus" parameterType="ResumeWriteVO" resultType="ResumeWriteVO">
 		select * from resume_write order by w_no desc;
-	</select>
+	</select> -->
 
 <insert id="ResumeRegist" parameterType="ResumeWriteVO">
   		insert into resume_write(w_no,
@@ -76,6 +76,25 @@ where w_no = #{w_no};
 <delete id="delete" parameterType="ResumeWriteVO">
     delete from resume_write where w_no  = #{w_no};
 </delete>
+
+
+ <select id="getList" resultType="ResumeWriteVO">
+    select * from resume_write
+     <!-- <if test="cri.searchTitle != null and cri.searchTitle !='' ">
+			<![CDATA[ where r_title like concat('%', #{cri.searchTitle}, '%')]]>
+		</if> -->
+    order by w_no desc
+    limit #{cri.pageStart}, #{cri.amount}
+  </select>
+
+      <select id="getTotal" resultType="int">
+     	select count(*) as total from resume_write
+      <!-- <if test="cri.searchTitle != null and cri.searchTitle !='' ">
+			  <![CDATA[ where r_title like concat('%', #{cri.searchTitle}, '%')]]>
+		</if> -->
+     </select>
+
+
 
 </mapper>
 

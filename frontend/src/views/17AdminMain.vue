@@ -49,18 +49,15 @@
     <div class="wrap_middle">
 
       <div class="date_apply_user">
-        <h3>일자별 지원자 수</h3>
-        <Bar class="barchart"
-          :options="chartOptions"
+        <Line class="barchart"
           :data="chartData"
         />
       </div>
 
       <div class="date_pass_user">
-        <h3>일자별 합격자 수</h3>
         <Bar class="barchart"
-          :options="chartOptions"
           :data="chartData2"
+          :options="options"
         />
       </div>
 
@@ -72,14 +69,16 @@
 </template>
 
 <script>
-import {Bar} from 'vue-chartjs';
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+import {Bar, Line, Pie} from 'vue-chartjs';
+import { Chart, registerables} from 'chart.js'
+Chart.register(...registerables)
 
 export default {
   name: 'App',
   components: {
-    Bar
+    Bar,
+    Line,
+    Pie
   },
   data(){
     return{
@@ -88,15 +87,22 @@ export default {
         /* x축 */
         labels: [ '1일', '2일', '3일', '4일', '5일','6일','7일' ],
         /* Y축 */
-        datasets: [ { data: [40, 20, 12, 22, 80, 60, 100] } ]
+        datasets: [ { 
+          label: '일자별 전체 지원자 수',
+          data: [40, 20, 12, 22, 80, 60, 100]
+         } ]
       },
       chartData2: {
         /* x축 */
         labels: [ '여자', '남자'],
         /* Y축 */
-        datasets: [ { data: [40, 20] } ]
+        datasets: [ { 
+          //그래프 명
+          label: '전체 합격자 성별 비율',
+          data: [40, 20] 
+        } ],
       },
-      chartOptions: {
+      options:{
         responsive: true
       }
     }
@@ -107,11 +113,14 @@ export default {
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
   * {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
+  
+  
   h3{color: white;}
   
   .container{
     margin-left: 200px;
     padding: 20px;
+    background-color: #f5f5f5;
   }
   
   .wrap_top{
@@ -137,6 +146,7 @@ export default {
     width: 300px;
     border-radius: 25px;
     padding: 25px;
+    box-shadow: black;
   }
 
   .all_user b{font-size: 48px; float: right; }
@@ -164,18 +174,14 @@ export default {
 
   .wrap_middle{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 50px;
+    align-items: center;
+    gap: 30px;
     margin: 30px 0;
   }
 
-  .date_apply_user{
-    border: 1px solid grey;
-    width: 700px;
-    padding: 25px;
-  }
-
-  .date_pass_user{
+  .date_apply_user, .date_pass_user{
     border: 1px solid grey;
     width: 700px;
     padding: 25px;

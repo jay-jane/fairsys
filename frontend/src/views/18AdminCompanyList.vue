@@ -1,4 +1,3 @@
-
 <!-- Q&A 페이지 -->
 
 <template>
@@ -8,8 +7,6 @@
     <option value="3">3개 보기</option>
   </select> -->
   <section>
-
-
     <div class="bg">
       <h3 class="first_name">기업</h3>
       <table>
@@ -19,12 +16,11 @@
             <th class="jb-th-2">회사이름</th>
             <th class="jb-th-3">신청일자</th>
             <th class="jb-th-3">승인일자</th>
-
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item,index) in list" v-bind:key="index">
-            <td>{{ item +1 }}</td>
+          <tr v-for="(item, index) in list" v-bind:key="index">
+            <td>{{ index + 1 }}</td>
             <td>{{ item.com_name }}</td>
             <td>{{ item.com_Application_date }}</td>
             <td>{{ item.com_registration_date }}</td>
@@ -45,9 +41,7 @@
         </tbody>
       </table>
     </div>
-    
   </section>
-
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>
@@ -55,35 +49,29 @@
 </template>
 
 <script>
-import Axios from 'axios';
+import Axios from "axios";
 
 export default {
-  name: 'App',
+  name: "App",
 
   data() {
-
     return {
-   
-      list:'',
- 
-      
-    }
+      list: "",
+    };
   },
   methods: {
-
     logout() {
       location.href = "/3";
     },
     async get() {
-      let res = await Axios.get('/18');
-        this.list= res.data;
-        console.log(this.list);
-  }
-
-},
-mounted(){
-  this.get();
-}
+      let res = await Axios.get("/18");
+      this.list = res.data;
+      console.log(this.list);
+    },
+  },
+  mounted() {
+    this.get();
+  },
 };
 </script>
 <style>
@@ -113,8 +101,6 @@ td {
   width: 200px;
   background-color: bisque;
 }
-
-
 
 .jb-th-2 {
   width: 600px;

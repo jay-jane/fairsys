@@ -7,11 +7,11 @@
     insert into job_posting(j_recruitNum, j_email,
                             j_title, j_content, j_salary,
                             j_department, j_schedule, j_graduation,
-                            j_career, j_type, com_id)
+                            j_career, j_type, com_id, j_end_date)
     values(#{j_recruitNum}, #{j_email},
             #{j_title}, #{j_content}, #{j_salary},
             #{j_department}, #{j_schedule}, #{j_graduation},
-            #{j_career}, #{j_type}, #{com_id})
+            #{j_career}, #{j_type}, #{com_id}, #{j_end_date})
   </insert>
 
   <select id="getJobDetail" resultType="JobPostingVO">
@@ -29,7 +29,19 @@
   </delete>
 
   <select id="getJobList" resultType="JobPostingVO">
-    select * from job_posting order by j_no desc
+    select * from job_posting
+    <if test="jcri.searchTitle != null and jcri.searchTitle !='' ">
+			<![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
+		</if>
+    order by j_no desc
+    limit #{jcri.pageStart}, #{jcri.amount}
   </select>
+
+  <select id="getTotal" resultType="int">
+     	select count(*) as total from job_posting
+      <if test="jcri.searchTitle != null and jcri.searchTitle !='' ">
+			  <![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
+		  </if>
+     </select>
 
 </mapper>
