@@ -11,8 +11,9 @@ public class JobCriteria {
 	private int amount; //데이터 개수
 	
 	//검색키워드
-	private String searchTitle; //제목
-	private String searchContent; //내용
+	private String searchTitle; //기업명
+	private String searchRegion; //지역
+	private String searchCareer; //경력
 	
 	public JobCriteria() {
 		this.page = 1;

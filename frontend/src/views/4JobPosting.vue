@@ -10,71 +10,59 @@
           swiperAPI
         </div>
       </div>
-      <div id="category_wrap">
-        <table cellpadding="0" cellspacing="0" class="board_basic_view" width="100%">
-          <tr>
-            <th>카테고리</th>
-            <td colspan="5"><span style="display: inline-block" class="category_name">{{ category }}</span>
-              <div class="loading" style="display: none;">
-                <div class="loader"></div>
-                <div class="loading-overlay"></div>
-              </div>
-
-              <div class="categoryListWrap" ref="category">
-                <ul class="categoryList" style="position: relative;">
-                  <li><a href="#" @click="getCategory_List" name="1">머임</a></li>
-                  <li><a href="#" @click="getCategory_List" name="2">지역</a></li>
-                  <li><a href="#" @click="getCategory_List" name="3">근무형태</a></li>
-                </ul>
-                <ul class="categoryList" style="position: relative;">
-                  <li><a href="#" v-if="mid_category1" @click="getCategory">머임1</a></li>
-                  <li><a href="#" v-if="mid_category1" @click="getCategory">머임2</a></li>
-                  <li><a href="#" v-if="mid_category1" @click="getCategory">머임3</a></li>
-                  <li><a href="#" v-if="mid_category2" @click="getCategory">서울</a></li>
-                  <li><a href="#" v-if="mid_category2" @click="getCategory">경기</a></li>
-                  <li><a href="#" v-if="mid_category2" @click="getCategory">인천</a></li>
-                  <li><a href="#" v-if="mid_category3" @click="getCategory">신입</a></li>
-                  <li><a href="#" v-if="mid_category3" @click="getCategory">경력</a></li>
-                  <li><a href="#" v-if="mid_category3" @click="getCategory">경력무관</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
       <div id="search_wrap">
         <div id="search_name" class="option_box">
           <strong class="option_title">
             <label for="company_name">기업명</label>
           </strong>
-          <input type="text" v-model="companyName" @keydown.enter="getComName" @focusout="getComName" placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
+          <input type="text" v-model="companyName" @keydown.enter="getComName" @focusout="getComName"
+            placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
         </div>
-        <div id="search_salary" class="option_box">
-          <strong class="option_title">지역</strong>
-          <select @change="getRegion" id="salary">
+        <div id="search_salary" class="option_box" style="overflow: hidden;">
+          <strong class="option_title" style="float: left;">지역<br><br>
+            <span @click="" style="font-size: 8px; font-weight: normal; cursor: pointer;">
+              <img src="https://picsum.photos/10/10" alt="r"> 초기화
+            </span>
+          </strong>
+          <ul class="categoryList" style="float: left;">
+            <li><a href="#" @click.prevent="getCategory_List" name="1">서울</a></li>
+            <li><a href="#" @click.prevent="getCategory_List" name="2">경기</a></li>
+            <li><a href="#" @click.prevent="getCategory_List" name="3">인천</a></li>
+          </ul>
+          <ul class="categoryList">
+            <li><a href="#" class="서울시" v-if="mid_category1" @click.prevent="getCategory">&gt; 강남구</a></li>
+            <li><a href="#" class="서울시" v-if="mid_category1" @click.prevent="getCategory">&gt; 서초구</a></li>
+            <li><a href="#" class="서울시" v-if="mid_category1" @click.prevent="getCategory">&gt; 강서구</a></li>
+            <li><a href="#" class="경기도" v-if="mid_category2" @click.prevent="getCategory">&gt; 수원</a></li>
+            <li><a href="#" class="경기도" v-if="mid_category2" @click.prevent="getCategory">&gt; 성남</a></li>
+            <li><a href="#" class="경기도" v-if="mid_category2" @click.prevent="getCategory">&gt; 안산</a></li>
+            <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 연수구</a></li>
+            <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 서구</a></li>
+          </ul>
+        <!-- <select @change="getRegion" id="salary">
             <option value="" selected></option>
             <option value="서울">서울</option>
             <option value="경기">경기</option>
             <option value="인천">인천</option>
-          </select>
+            </select> -->
         </div>
         <div id="search_type" class="option_box">
           <strong class="option_title">근무형태</strong>
           <div id="job_type">
             <input @click="getCareer" type="radio" name="job_type" value="신입">신입
             <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력">경력
-            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
+            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="무관">경력무관
           </div>
         </div>
         <div id="search_btn">
-          <span>{{ com_name }}, {{ region }}, {{ career }}</span>
-          <p class="search_total">검색 결과 : <strong class="num_total" style="color: orangered;">999</strong> 건</p>
+          <span>{{ com_name }}&nbsp;/&nbsp;{{ category }}&nbsp;/&nbsp;{{ career }}</span>
+          <p class="search_total">검색 결과 : <strong class="num_total" style="color: orangered;">{{ total }}</strong> 건</p>
           <button type="button" class="search_btn" @click="searchItem">검색하기</button>
         </div>
       </div>
       <div id="salary_list_wrap">
         <div class="total_sort">
-          <p>총 <strong class="num_total" style="color: orangered; font-size: 20px;">999</strong>건</p>
+          <p>총 <strong class="num_total" style="color: orangered; font-size: 20px;">{{ total }}</strong>건</p>
           <!-- 출력 카테고리 -->
           <select v-model="amount" class="view" @change="loglist_view">
             <option value="5">5개씩 보기</option>
@@ -186,8 +174,6 @@ export default {
       //페이지이동에 필요한 초기값들
       page: 1,
       amount: 10,
-      searchTitle: '',
-      searchContent: '',
       prev: '',
       pageStart: '',
       pageEnd: '',
@@ -195,7 +181,13 @@ export default {
 
       //검색
       searchTitle: '',
+      searchRegion: '',
+      searchCareer: '',
       companyName: '',
+      regionName: '',
+      careerName: '',
+
+      total: '',
 
       //게시글 리스트
       list: [],
@@ -204,7 +196,7 @@ export default {
   watch: {
     'amount': function () {
       this.get();
-    }
+    },
   },
   methods: {
     getRegion: function (e) {
@@ -234,15 +226,9 @@ export default {
       }
     },
     getCategory: function (e) {
-      this.category = e.target.innerHTML;
+      console.log(e.target.className);
+      this.category = e.target.className + " " + e.target.innerHTML.substr(4);
     },
-    // getList() {
-    //   this.axios.get("/jobPostingList")
-    //     .then(res => {
-    //       this.list = res.data;
-    //     })
-    //     .catch(err => console.log(err));
-    // },
     getDetail(j_no) {
       this.$router.push({
         path: '/jobPostingDetail',
@@ -252,11 +238,12 @@ export default {
     },
     async get() {
       //화면에 리스트 출력을 위해 필요한 내용 전달하기
-      let response = await this.axios.get("/4/?amount=" + this.amount + "&page=" + this.page);
+      let response = await this.axios.get("/4/?amount=" + this.amount + "&page=" + this.page + "&searchTitle=" + this.searchTitle + "&searchRegion=" + this.searchRegion + "&searchCareer=" + this.searchCareer);
       //필요한 공용 데이터를 담기
       this.list = response.data.jobList;
       this.pages = response.data.pageVO;
       this.pageList = this.pages.pageList;
+      this.total = response.data.pageVO.total;
       //페이지이동에 필요한 데이터 담기
       this.page = this.pages.page;
       this.searchTitle = this.pages.cri.searchTitle;
@@ -283,7 +270,6 @@ export default {
     thisPage(target) {
       this.page = target.innerHTML;
       this.get();
-
     },
     goNextPage() {
       if (this.page < this.realEnd) {
@@ -298,24 +284,17 @@ export default {
       this.get();
     },
     searchItem() {
-      // const userselect = target.previousElementSibling.previousElementSibling.value;
       this.searchTitle = this.companyName;
+      this.searchCareer = this.career;
+      console.log(this.searchCareer);
       this.get();
-      console.log("실행");
-      console.log(this.searchTitle);
-      // if (userselect === "title") {
-      //   this.searchTitle = usertext;
-      //   this.get();
-      // } else if (userselect === "content") {
-      //   this.searchContent = usertext;
-      //   this.get();
-      // }
-
+      if(this.total == 0) {
+        alert('검색 결과가 없습니다');
+      }
     },
   },
   mounted() {
     this.get();
-    // this.getList();
   },
 }
 </script>

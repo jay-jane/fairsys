@@ -25,7 +25,8 @@
       <div class="field tel-number">
         <label class="field_name">휴대폰 번호</label>
         <div class="tel_number_input">
-          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text" id="tel_number_3">
+          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
+            id="tel_number_3">
         </div>
       </div>
       <div id="field">
@@ -38,6 +39,10 @@
         <label class="field_name">모집 분야</label>
         <div id="job_type">
           <Hashtags></Hashtags>
+          {{ valList }}
+        </div>
+        <div v-for="item in valList">
+          {{ item }}
         </div>
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
@@ -95,7 +100,8 @@
             <input type="text" id="process" value="서류전형" readonly>
           </div>
           <div id="process_add">
-            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1" style="margin-bottom: 15px;">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
+              style="margin-bottom: 15px;">
               1차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
@@ -152,6 +158,7 @@ export default {
       j_end_date: '',
       com_id: '1818',
       hash: [],
+      valList: this.$route.query.valList,
     }
   },
   methods: {
@@ -185,12 +192,12 @@ export default {
     submitForm() {
       console.log(1);
 
-      if(this.$refs.interview1.style.display == "none") {
+      if (this.$refs.interview1.style.display == "none") {
         this.j_schedule = "";
-      } else if(this.$refs.interview1.style.display == "block" && this.$refs.interview2.style.display == "none") {
+      } else if (this.$refs.interview1.style.display == "block" && this.$refs.interview2.style.display == "none") {
         this.j_schedule = "1차 면접 >";
       }
-      if(this.$refs.interview2.style.display == "block") {
+      if (this.$refs.interview2.style.display == "block") {
         this.j_schedule = "1차 면접 > 2차 면접 >";
       }
 
@@ -209,16 +216,24 @@ export default {
           j_type: this.j_type,
           com_id: this.com_id,
         }
-        ).then(() => {
-          alert('등록되었습니다');
-          this.$router.push({ path: '/4' });
-        }).catch(err => {
-          console.log(err);
+      ).then(() => {
+        alert('등록되었습니다');
+        this.$router.push({ path: '/4' });
+      }).catch(err => {
+        console.log(err);
       })
     },
+    asdf() {
+      console.log("태그넘기기");
+      console.log(this.valList);
+      console.log(this.$route.query.valList);
+    }
   },
   components: {
     Hashtags,
+  },
+  updated() {
+    this.asdf();
   },
 }
 
@@ -251,7 +266,8 @@ form {
   font-weight: bold;
 }
 
-input[type="text"], [type="email"] {
+input[type="text"],
+[type="email"] {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -340,5 +356,4 @@ button[type="submit"]:hover {
   color: grey;
   font-weight: bold;
   cursor: pointer;
-}
-</style>
+}</style>
