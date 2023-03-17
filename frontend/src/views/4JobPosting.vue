@@ -263,6 +263,7 @@ export default {
     goBeforePage() {
       if (this.page > 1) {
         this.page = this.page - 1;
+        this.get();
       } else {
         alert("첫번째 페이지입니다.");
       }
@@ -288,9 +289,6 @@ export default {
       this.searchCareer = this.career;
       console.log(this.searchCareer);
       this.get();
-      if(this.total == 0) {
-        alert('검색 결과가 없습니다');
-      }
     },
   },
   mounted() {

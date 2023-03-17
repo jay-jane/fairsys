@@ -7,7 +7,7 @@
         <label class="field_name">제목</label>
         <div id="">
           <input type="hidden" v-model="com_id">
-          <input type="text" v-model="j_title">
+          <input type="text" id="j_title" v-model="j_title">
         </div>
       </div>
       <div id="field">
@@ -39,11 +39,10 @@
         <label class="field_name">모집 분야</label>
         <div id="job_type">
           <Hashtags></Hashtags>
-          {{ valList }}
         </div>
-        <div v-for="item in valList">
+      <!-- <div v-for="item in $route.query.valList">
           {{ item }}
-        </div>
+              </div> -->
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
@@ -90,7 +89,24 @@
       </div>
       <div id="field">
         <label class="field_name">상세 내용</label>
-        <div class="content">나중에@@@@</div>
+        <div class="content">
+          <textarea name="" id="" cols="30" rows="10">파일업로드ㅇ해야댐</textarea>
+          <div class="upload">
+            <span class="">상세 정보 업로드</span>
+            <input id="uploadFile" type="file" @change="handleFileChange" accept="image/*" />
+          </div>
+          <div>
+            <v-row justify="center">
+              <v-col sm="7" md="7" lg="7" xl="7">
+                <img :src="preview">
+                <v-file-input v-model="file" @change="previewFile(file)" />
+                <v-btn block color="blue" @click="validateCheck">
+                  추가
+                </v-btn>
+              </v-col>
+            </v-row>
+          </div>
+        </div>
 
       </div>
       <div id="field">
@@ -127,7 +143,17 @@
       </div>
       <div id="field endDate">
         <label class="field_name">마감일자</label><br>
-        <input type="date" v-model="j_end_date">
+        <!-- <input type="date" v-model="j_end_date"> -->
+        <div class="date_Select">
+          <table>
+            <tbody>
+              <td>
+                <Datepicker v-model="endDate" :locale="locale" :weekStartsOn="0" :inputFormat="inputFormat"
+                  :clearable="true" />
+              </td>
+            </tbody>
+          </table>
+        </div>
       </div>
       <div>
         <button type="button" value="등록" @click="submitForm">등록</button>
@@ -139,6 +165,9 @@
 
 <script>
 import Hashtags from '../components/Hashtags.vue';
+import { ref, reactive, watch } from 'vue';
+import Datepicker from 'vue3-datepicker';
+import { ko } from 'date-fns/locale';
 
 export default {
   name: 'App',
@@ -157,8 +186,14 @@ export default {
       j_type: '',
       j_end_date: '',
       com_id: '1818',
-      hash: [],
-      valList: this.$route.query.valList,
+      endDate: '',
+
+      // hash: [],
+      // valList: '',
+
+      file: '',
+      preview: '',
+      saveFile: null,
     }
   },
   methods: {
@@ -190,50 +225,108 @@ export default {
       }
     },
     submitForm() {
-      console.log(1);
-
-      if (this.$refs.interview1.style.display == "none") {
-        this.j_schedule = "";
-      } else if (this.$refs.interview1.style.display == "block" && this.$refs.interview2.style.display == "none") {
-        this.j_schedule = "1차 면접 >";
-      }
-      if (this.$refs.interview2.style.display == "block") {
-        this.j_schedule = "1차 면접 > 2차 면접 >";
-      }
-
-      this.axios.post('/jobPostingRegist',
-        {
-          j_recruitNum: this.j_recruitNum,
-          j_email: this.j_email,
-          j_title: this.j_title,
-          j_content: this.j_content,
-          j_salary: this.j_salary,
-          j_department: this.j_department,
-          j_schedule: this.j_schedule,
-          j_graduation: this.j_graduation,
-          j_end_date: this.j_end_date,
-          j_career: this.j_career,
-          j_type: this.j_type,
-          com_id: this.com_id,
+      if (confirm('등록하시겠습니까?')) {
+        if (this.$refs.interview1.style.display == "none") {
+          this.j_schedule = "";
+        } else if (this.$refs.interview1.style.display == "block" && this.$refs.interview2.style.display == "none") {
+          this.j_schedule = "1차 면접 >";
         }
-      ).then(() => {
-        alert('등록되었습니다');
-        this.$router.push({ path: '/4' });
-      }).catch(err => {
-        console.log(err);
-      })
+        if (this.$refs.interview2.style.display == "block") {
+          this.j_schedule = "1차 면접 > 2차 면접 >";
+        }
+        if (this.j_title == '') {
+          alert('글 제목은 필수 입력 항목입니다');
+          document.getElementById("j_title").focus();
+          return;
+        } else {
+          this.axios.post('/jobPostingRegist',
+            {
+              j_recruitNum: this.j_recruitNum,
+              j_email: this.j_email,
+              j_title: this.j_title,
+              j_content: this.j_content,
+              j_salary: this.j_salary,
+              j_department: JSON.stringify(this.$route.query.valList),
+              j_schedule: this.j_schedule,
+              j_graduation: this.j_graduation,
+              j_end_date: this.endDate,
+              j_career: this.j_career,
+              j_type: this.j_type,
+              com_id: this.com_id,
+            }
+          ).then(() => {
+            alert('등록되었습니다!');
+            this.$router.push({ path: '/4' });
+          }).catch(err => {
+            console.log(err);
+
+          });
+        }
+      }
     },
-    asdf() {
-      console.log("태그넘기기");
-      console.log(this.valList);
-      console.log(this.$route.query.valList);
-    }
+    handleFileChange(e) {
+      const file = e.target.files;
+      let validation = true;
+      let message = '';
+
+      if (file.length > 1) {
+        validation = false;
+        message = `파일은 한개만 등록 가능합니다.`
+      }
+      if (file[0].size > 1024 * 1024 * 2) {
+        message = `${message}, 파일은 용량은 2MB 이하만 가능합니다.`;
+        validation = false;
+      }
+      if (file[0].type.indexOf('image') < 0) {
+        message = `${message}, 이미지 파일만 업로드 가능합니다.`;
+        validation = false;
+      }
+
+      if (validation) {
+        this.file = file;
+      } else {
+        this.file = '';
+        alert(message);
+      }
+    },
+    previewFile(file){
+      const fileData = (data) => {
+        this.preview = data
+      }
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.addEventListener("load", function () {
+        fileData(reader.result)
+      }, false);
+    },
   },
   components: {
     Hashtags,
+    Datepicker,
   },
-  updated() {
-    this.asdf();
+  setup() {
+    //공통설정
+    const locale = reactive(ko); //한글달력 기본값 영어
+    const inputFormat = ref('yyyy-MM-dd'); //날짜세팅
+
+    const now = new Date();
+    let endDate = ref(new Date(now.setDate(now.getDate())));
+
+    console.log("now : " + now);
+    console.log(endDate);
+
+    watch(endDate, (newEndDate) => {
+      console.log("new end : " + newEndDate);
+      if (now > newEndDate) {
+        alert('마감일은 오늘 날짜 이후로 설정 가능합니다.');
+      }
+    });
+
+    return {
+      endDate,
+      locale,
+      inputFormat
+    }
   },
 }
 
@@ -356,4 +449,5 @@ button[type="submit"]:hover {
   color: grey;
   font-weight: bold;
   cursor: pointer;
-}</style>
+}
+</style>

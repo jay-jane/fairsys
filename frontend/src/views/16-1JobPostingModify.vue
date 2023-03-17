@@ -124,7 +124,7 @@
       </div>
       <div id="field endDate">
         <label class="field_name">마감일자</label><br>
-        <input type="date" v-model="j_end_date">
+        <input type="date" v-bind:value="j_end_date">
       </div>
       <div>
         <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>

@@ -51,7 +51,7 @@
           <div id="bottom_left">
             <h4>채용정보</h4>
             <div id="qualify">
-              <span id="q_left">채용 분야</span> <span id="q_right">{{ item.j_department }}</span><br>
+              <span id="q_left">채용 분야</span> <span id="q_right" v-for="item in j_department">{{ item }}&nbsp;&nbsp;</span><br>
               <span id="q_left">마감 일자</span> <span id="q_right">{{ j_end_date }}</span><br>
               <span id="q_left">전형 절차</span> <span id="q_right">서류 심사 > {{ item.j_schedule }} 최종 합격</span><br>
             </div><br>
@@ -82,7 +82,7 @@
       <div id="button_wrap" style="margin-top: 20px;">
         <a href="#">입사지원</a><br>
         <router-link :to="{name: 'jobPostingModify', params: {j_no: item.j_no}}">수정/삭제</router-link><br>
-        <a href="99">목록</a>
+        <router-link to="/4">목록</router-link>
       </div>
     </div>
   </section>
@@ -98,6 +98,7 @@ export default {
       j_no: '',
       list: [],
       j_end_date: '',
+      j_department: [],
     }
 
   },
@@ -106,9 +107,9 @@ export default {
       this.j_no = this.$route.params.j_no;
       this.axios.get('/jobPostingDetail/' + this.j_no, {params: {"j_no": this.j_no}})
         .then(res => {
-          console.log(res.data[0].j_end_date);
           this.list = res.data;
           this.j_end_date = res.data[0].j_end_date.substring(0, 10);
+          this.j_department = JSON.parse(res.data[0].j_department);
         })
         .catch(err => {
           console.log(err);

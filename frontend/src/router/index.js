@@ -94,7 +94,7 @@ const routes = [
     component: () => import("../views/15JobPostingAndApplicants.vue"),
   },
   {
-    path: "/16",
+    path: "/16/",
     name: "jobPostingRegist",
     component: () => import("../views/16JobPostingRegist.vue"),
   },
