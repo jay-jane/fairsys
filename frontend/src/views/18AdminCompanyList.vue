@@ -1,12 +1,14 @@
 <!-- Q&A 페이지 -->
 
 <template>
+
   <!-- <select v-model="com_id">
     <option value="1">1개 보기</option>
     <option value="2">2개 보기</option>
     <option value="3">3개 보기</option>
   </select> -->
   <section>
+
     <div class="bg">
       <h3 class="first_name">기업</h3>
       <table>
@@ -16,6 +18,7 @@
             <th class="jb-th-2">회사이름</th>
             <th class="jb-th-3">신청일자</th>
             <th class="jb-th-3">승인일자</th>
+
           </tr>
         </thead>
         <tbody>
@@ -24,6 +27,14 @@
             <td>{{ item.com_name }}</td>
             <td>{{ item.com_Application_date }}</td>
             <td>{{ item.com_registration_date }}</td>
+          </tr>
+
+          <!-- <tr>
+            <th>2</th>
+            <td>(주)짜장면</td>
+
+            <td class="date">2023.03.08</td>
+            <td class="date">2023.03.09</td> -->
           </tr>
 
           <!-- <tr>
@@ -41,7 +52,10 @@
         </tbody>
       </table>
     </div>
+
+
   </section>
+
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>
@@ -49,6 +63,7 @@
 </template>
 
 <script>
+
 import Axios from "axios";
 
 export default {
@@ -72,6 +87,7 @@ export default {
   mounted() {
     this.get();
   },
+
 };
 </script>
 <style>
@@ -83,6 +99,7 @@ export default {
 table {
   padding: auto;
   margin: auto;
+
   border: 1px solid black;
   border-collapse: collapse;
   border-radius: 5px;
@@ -90,6 +107,7 @@ table {
 
 th {
   border: 1px solid black;
+
 }
 
 td {
@@ -97,10 +115,12 @@ td {
   text-align: center;
 }
 
+
 .jb-th-1 {
   width: 200px;
   background-color: bisque;
 }
+
 
 .jb-th-2 {
   width: 600px;
