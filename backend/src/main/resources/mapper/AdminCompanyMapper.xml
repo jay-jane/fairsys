@@ -6,7 +6,17 @@
 
   <mapper namespace="com.finalpj.backend.service.AdminCompanyMapper">
   <select id="getList" resultType="CompanyVO">
-    select * from Company where com_id = #{com_id}
+    select * from Company where com_status='y'
   </select>
+
+
+  <select id="getNlist" resultType="CompanyVO">
+    select * from Company where com_status='n'
+  </select>
+
+
+  
+
+
 
   </mapper>

@@ -1,5 +1,7 @@
 package com.finalpj.backend.command;
 
+import java.sql.Timestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,13 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobPostingVO {
-    private String j_no;
+    private int j_no;
     private String j_regdate;
     private String j_recruitNum;
     private String j_email;
     private String j_title;
     private String j_content;
-    private String j_end_date;
+    private Timestamp j_end_date;
     private String j_salary;
     private String j_department;
     private String j_schedule;

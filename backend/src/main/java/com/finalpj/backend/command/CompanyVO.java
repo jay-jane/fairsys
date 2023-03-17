@@ -26,9 +26,11 @@ public class CompanyVO {
     private String com_status;
     private String com_email;
     private String ut_no;
+
     private String c_no;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date com_registration_date;
     private Date com_Application_date;
+
 
 }

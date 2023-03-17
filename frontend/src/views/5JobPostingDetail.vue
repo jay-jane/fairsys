@@ -1,7 +1,7 @@
 <!-- 재윤 - 채용 공고 상세 -->
 <template>
-  <section id="section" v-for="item in list">
-    <div id="main_wrap" v-if="item.j_no === a">
+  <section id="section">
+    <div id="detail_wrap" v-for="item in list">
       <div id="banner_wrap">
         <img src="https://picsum.photos/1000/100" alt="배너" width="100%" height="200px">
         <div class="bannerImg"></div>
@@ -51,9 +51,9 @@
           <div id="bottom_left">
             <h4>채용정보</h4>
             <div id="qualify">
-              <span id="q_left">채용 부서</span> <span id="q_right">{{ item.j_department }}</span><br>
-              <span id="q_left">마감 일자</span> <span id="q_right">{{ item.j_end_date }}</span><br>
-              <span id="q_left">전형 절차</span> <span id="q_right">{{ item.j_schedule }}</span><br>
+              <span id="q_left">채용 분야</span> <span id="q_right">{{ item.j_department }}</span><br>
+              <span id="q_left">마감 일자</span> <span id="q_right">{{ j_end_date }}</span><br>
+              <span id="q_left">전형 절차</span> <span id="q_right">서류 심사 > {{ item.j_schedule }} 최종 합격</span><br>
             </div><br>
             <h4>채용 담당자</h4>
             <div id="qualify">
@@ -81,7 +81,7 @@
 
       <div id="button_wrap" style="margin-top: 20px;">
         <a href="#">입사지원</a><br>
-        <router-link :to="`/16-1?j_no=${j_no}`">수정/삭제</router-link><br>
+        <router-link :to="{name: 'jobPostingModify', params: {j_no: item.j_no}}">수정/삭제</router-link><br>
         <a href="99">목록</a>
       </div>
     </div>
@@ -97,26 +97,26 @@ export default {
     return {
       j_no: '',
       list: [],
-      a: '',
+      j_end_date: '',
     }
 
   },
   methods: {
     getJobDetail() {
-      this.axios.get('/getJobDetail')
-                .then(res => {
-                  console.log(res.data);
-                  console.log(this.$route.query.j_no);
-                  this.a = this.$route.query.j_no;
-                  this.j_no = this.$route.query.j_no;
-                  this.list = res.data;})
-                .catch(err => {
-                  console.log(err);});
+      this.j_no = this.$route.params.j_no;
+      this.axios.get('/jobPostingDetail/' + this.j_no, {params: {"j_no": this.j_no}})
+        .then(res => {
+          console.log(res.data[0].j_end_date);
+          this.list = res.data;
+          this.j_end_date = res.data[0].j_end_date.substring(0, 10);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
   },
   mounted() {
     this.getJobDetail();
-
   },
 }
 </script>

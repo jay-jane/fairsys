@@ -1,64 +1,67 @@
 
 <template>
+  <section id="section" >
     <table>
             <caption>지원자 리스트</caption>
             <thead> 
+              <select v-model="amount" class="view" @change="loglist_view">
+                <option value="10">10개 보기</option>
+                <option value="20">20개 보기</option>
+                <option value="30">30개 보기</option>
+              </select>
+
                 <tr>
                     <th>번호</th>
-                    <th>공고제목</th>
                     <th>이름</th>
+                    <th>이메일</th>
                     <th>성별</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="post in posts" :key="post.id"> 
-                    <td> {{ post.r_no }}</td>
-                    <td> {{ post.r_title }}</td>
-                    <td> {{ post.r_name }}</td>
-                    <td> {{ post.r_gender }}</td>
+              <tr v-for="(item,index) in list">
+                    <td><router-link :to="`/ResumeModify?w_no=${item.w_no}`">{{ item.w_no}}</router-link></td>
+                    <td> {{ item.w_name }}</td>
+                    <td> {{ item.w_email}}</td>
+                    <td> {{ item.w_email}}</td>
                 </tr>
-                <tr> 
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                </tr>
-    
             </tbody>
-    
         </table>
+
+
+
+      </section>
     </template>
     
+
+    
     <script>
-    import  Axios from 'axios';
-    
-    
     export default {
-      name: 'App',
-      data(){
-        return {
-          posts: [], 
-        }
-      },  
-      methods: {
-     
-        get(){
-          console.log(1);
-          this.axios.get("resume/10").
-          then((response)=>{
-            console.log(response.data);
-            console.log(title);
-          })
-          .catch((error)=>{
-            console.log(error);
-          })
-        }
-    
-      },
-      mounted(){
-        this.get();
-      }
-    };
+
+name: 'App',
+data() {
+  return {
+    w_no: '',
+    list: [],
+    a: '',
+  }
+
+},
+methods: {
+  ApplyStatus() {
+    this.axios.get('/ApplyStatus')
+              .then(res => {
+                this.a = this.$route.query.w_no;
+                this.w_no = this.$route.query.w_no;
+                this.list = res.data;})
+              .catch(err => {
+                console.log(err);});
+  },
+},
+mounted() {
+  this.ApplyStatus();
+  },
+}
+  
     </script>
     
     
@@ -87,7 +90,6 @@
         color: #fff;
         padding: 10px;
     }
-    
-   
+
     </style>
     

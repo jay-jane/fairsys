@@ -1,153 +1,136 @@
 <!-- 재윤 - 채용 공고 수정 -->
 <template>
-  <section v-for="item in list">
-    <div id="main_wrap" v-if="item.j_no === a">
+  <section>
+    <div id="main_wrap" v-for="item in list">
       <h3 style="text-align: center;">채용 공고 수정</h3>
-      <form @submit="regist">
-        <div id="field">
-          <label class="field_name">제목</label>
-          <div id="">
-            <input type="hidden" v-model="com_id">
-            <input type="text" v-bind:value="item.j_title">
-          </div>
+      <div id="field">
+        <label class="field_name">제목</label>
+        <div id="">
+          <input type="hidden" v-model="com_id">
+          <input type="text" v-bind:value="item.j_title" @change="getTitle">
         </div>
-        <div id="field">
-          <label class="field_name">담당자 성함</label>
-          <div id="">
-            <input type="text">
-          </div>
+      </div>
+      <div id="field">
+        <label class="field_name">담당자 성함</label>
+        <div id="">
+          <input type="text">
         </div>
-        <div id="field">
-          <label class="field_name">기업명</label>
-          <div id="">
-            <input type="text">
-          </div>
+      </div>
+      <div id="field">
+        <label class="field_name">기업명</label>
+        <div id="">
+          <input type="text">
         </div>
-        <div class="field tel-number">
-          <label class="field_name">휴대폰 번호</label>
-          <div class="tel_number_input">
-            <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
-              id="tel_number_3">
-          </div>
+      </div>
+      <div class="field tel-number">
+        <label class="field_name">휴대폰 번호</label>
+        <div class="tel_number_input">
+          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
+            id="tel_number_3">
         </div>
-        <div id="field">
-          <label class="field_name">이메일 주소</label>
-          <div id="">
-            <input type="email" v-bind:value="item.j_email">
-          </div>
+      </div>
+      <div id="field">
+        <label class="field_name">이메일 주소</label>
+        <div id="">
+          <input type="email" v-bind:value="item.j_email" @change="getEamil">
         </div>
-        <div id="field">
-          <label class="field_name">업종</label>
-          <div id="job_type">
-            <select name="" id="">
-              <option value="a">서비스업</option>
-              <option value="b">제조</option>
-              <option value="c">IT/웹</option>
-            </select>
-          </div>
+      </div>
+      <div id="field">
+        <label class="field_name">모집 분야</label>
+        <div id="job_type">
+          <Hashtags></Hashtags>
         </div>
-        <div id="field">
-          <label class="field_name">모집 분야</label>
-          <div id="job_type">
-            <Hashtags></Hashtags>
-          </div>
-          <div id="recruit_type" style="display: inline-block;">
-            <input type="text" style="width: 40px; margin-left: 5px;" v-bind:value="item.j_recruitNum">
-            <span>명 모집</span>
-          </div>
+        <div id="recruit_type" style="display: inline-block;">
+          <input type="text" style="width: 40px; margin-left: 5px;" v-bind:value="item.j_recruitNum"
+            @change="getRecruitNum">
+          <span>명 모집</span>
         </div>
-        <div id="field">
-          <label class="field_name">경력 여부</label>
-          <div id="career" style="display: inline-block;">
-            <input type="radio" name="career_type" v-model="j_career" value="N">신입
-            <input type="radio" name="career_type" v-model="j_career" value="Y">경력
-            <input type="radio" name="career_type" v-model="j_career" value="B">경력무관
-          </div>
+      </div>
+      <div id="field">
+        <label class="field_name">경력 여부</label>
+        <div id="career" style="display: inline-block;">
+          <input type="radio" name="career_type" v-bind:value="j_career" value="N">신입
+          <input type="radio" name="career_type" v-bind:value="j_career" value="Y">경력
+          <input type="radio" name="career_type" v-bind:value="j_career" value="B">경력무관
         </div>
-        <div id="field">
-          <label class="field_name">근무지역</label>
-          <div class="kakaoAPI">(카카오맵api)</div>
+      </div>
+      <div id="field">
+        <label class="field_name">근무지역</label>
+        <div class="kakaoAPI">(카카오맵api)</div>
+      </div>
+      <div id="field">
+        <label class="field_name">급여(연봉)</label>
+        <div id="sal_wrap">
+          <select id="sal_y" v-bind:value="j_salary">
+            <option value="2200~2800">2,200만원 ~ 2,800만원</option>
+            <option value="2800~3200">2,800만원 ~ 3,200만원</option>
+            <option value="3200~3600">3,200만원 ~ 3,600만원</option>
+            <option value="3600~4000">3,600만원 ~ 4,000만원</option>
+          </select>
         </div>
-        <div id="field">
-          <label class="field_name">연봉/급여</label>
-          <div id="sal_wrap">
-            <select id="sal_type">
-              <option value="sal_y">연봉</option>
-              <option value="sal_m">월급</option>
-            </select>
-            <select id="sal_y" v-model="j_salary">
-              <option value="2200~2800">2,200 ~ 2,800</option>
-              <option value="2800~3200">2,800 ~ 3,200</option>
-              <option value="3200~3600">3,200 ~ 3,600</option>
-              <option value="3600~4000">3,600 ~ 4,000</option>
-            </select>
-            <input type="hidden" class="sal_m">
-            <button type="button" class="sal_m" style="display: hidden">입력</button>
-          </div>
+      </div>
+      <div id="field">
+        <label class="field_name">근무 형태</label>
+        <div style="display: inline-block;">
+          <input type="radio" name="work_type" v-bind:value="j_type" value="Y">정규직
+          <input type="radio" name="work_type" v-bind:value="j_type" value="N">계약직
+          <input type="radio" name="work_type" v-bind:value="j_type" value="F">인턴
         </div>
-        <div id="field">
-          <label class="field_name">근무 형태</label>
-          <div style="display: inline-block;">
-            <input type="radio" name="work_type" v-model="j_type" value="Y">정규직
-            <input type="radio" name="work_type" v-model="j_type" value="N">계약직
-            <input type="radio" name="work_type" v-model="j_type" value="F">인턴
-          </div>
+      </div>
+      <div id="field">
+        <label class="field_name">학력</label>
+        <div style="display: inline-block;">
+          <input type="radio" name="graduation_type" v-bind:value="j_graduation" value="Y">대졸
+          <input type="radio" name="graduation_type" v-bind:value="j_graduation" value="N">고졸/초대졸
+          <input type="radio" name="graduation_type" v-bind:value="j_graduation" value="YN">학력무관
         </div>
-        <div id="field">
-          <label class="field_name">학력</label>
-          <div style="display: inline-block;">
-            <input type="radio" name="graduation_type" v-model="j_graduation" value="Y">대졸
-            <input type="radio" name="graduation_type" v-model="j_graduation" value="N">고졸/초대졸
-            <input type="radio" name="graduation_type" v-model="j_graduation" value="YN">학력무관
-          </div>
-        </div>
-        <div id="field">
-          <label class="field_name">상세 내용</label>
+      </div>
+      <div id="field">
+        <label class="field_name">상세 내용</label>
 
-          <div class="content">나중에@@@@</div>
+        <div class="content">나중에@@@@</div>
 
-        </div>
-        <div id="field">
-          <label class="field_name">전형 절차</label>
-          <div id="">
-            <div id="process_wrap">
-              <input type="text" id="process" value="서류전형" readonly>
-            </div>
-            <div id="process_add">
-              <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
-                style="margin-bottom: 15px;">
-                1차면접
-                <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
-              </button>
-            </div>
-            <div id="process_wrap" ref="interview1" style="display: none;">
-              <input type="text" id="process" value="A" readonly>
-              <img class="deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
-            </div>
-            <div id="process_add">
-              <button type="button" class="add_btn" name="interview2" @click="addBtn" ref="btn2">
-                2차면접
-                <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
-              </button>
-            </div>
-            <div id="process_wrap" ref="interview2" style="display: none;">
-              <input type="text" id="process" value="B" readonly>
-              <img class="deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
-            </div>
-            <div id="process_wrap">
-              <input type="text" id="process" value="최종합격" readonly>
-            </div>
+      </div>
+      <div id="field">
+        <label class="field_name">전형 절차</label>
+        <div id="">
+          <div id="process_wrap">
+            <input type="text" id="process" value="서류전형" readonly>
+          </div>
+          <div id="process_add">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1" style="margin-bottom: 15px;">
+              1차면접
+              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
+            </button>
+          </div>
+          <div id="process_wrap" ref="interview1" style="display: none;">
+            <input type="text" id="process" value="1차면접" readonly>
+            <img class="deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
+          </div>
+          <div id="process_add">
+            <button type="button" class="add_btn" name="interview2" style="display: none;" @click="addBtn" ref="btn2">
+              2차면접
+              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
+            </button>
+          </div>
+          <div id="process_wrap" ref="interview2" style="display: none;">
+            <input type="text" id="process" value="2차면접" readonly>
+            <img class="deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
+          </div>
+          <div id="process_wrap">
+            <input type="text" id="process" value="최종합격" readonly>
           </div>
         </div>
-        <div id="field endDate">
-          <label class="field_name">마감일자</label>
-          <div>(달력api)</div>
-        </div>
-        <div>
-          <button type="button" value="등록" @click="submitForm">수정 완료</button>
-          <button type="button" value="취소" @click="goMain">취소</button>
-        </div>
-      </form>
+      </div>
+      <div id="field endDate">
+        <label class="field_name">마감일자</label><br>
+        <input type="date" v-model="j_end_date">
+      </div>
+      <div>
+        <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
+        <button type="button" value="삭제" @click="deleteForm" style="margin-right: 10px;">삭제</button>
+        <button type="button" value="취소" @click="goMain">취소</button>
+      </div>
     </div>
   </section>
 </template>
@@ -159,6 +142,7 @@ export default {
   name: 'App',
   data() {
     return {
+      j_no: 0,
       j_recruitNum: '',
       j_email: '',
       j_title: '',
@@ -171,6 +155,7 @@ export default {
       j_type: '',
       com_id: '1818',
       list: [],
+      j_end_date: '',
     }
   },
   methods: {
@@ -198,11 +183,10 @@ export default {
         this.$refs.btn2.style.display = "none";
       }
     },
-    submitForm() {
-      console.log(1);
-      this.axios.post('/update',
+    updateForm() {
+      this.axios.post('/jobPostingUpdate',
         {
-          j_no: this.j_no,
+          j_no: this.$route.params.j_no,
           j_recruitNum: this.j_recruitNum,
           j_email: this.j_email,
           j_title: this.j_title,
@@ -214,33 +198,52 @@ export default {
           j_career: this.j_career,
           j_type: this.j_type,
         }
-      ).then(res => {
-        console.log(res);
-        this.$router.push({ path: `/5?${j_no}` });
-        console.log(this.com_id);
-        console.log(this.j_schedule);
+      ).then(() => {
+        this.j_no = this.$route.params.j_no;
+        alert('수정되었습니다.');
+        this.$router.push('/jobPostingDetail/' + this.j_no);
       }).catch(err => {
         console.log(err);
       })
     },
+    deleteForm() {
+      confirm('삭제하시겠습니까?');
+      this.axios.post('/jobPostingDelete', { "j_no": this.$route.params.j_no })
+        .then(() => {
+          alert('삭제되었습니다');
+          this.$router.push('/4');
+        })
+        .catch(err => console.log(err));
+    },
     getJobDetail() {
-      this.axios.get('/getJobDetail',
-        {
-          j_no: this.$route.query.j_no,
-        }
-      ).then(res => {
-        console.log(res.data);
-        console.log(this.$route.query.j_no);
-        this.a = this.$route.query.j_no;
-        this.list = res.data;
-      }).catch(err => {
-        console.log(err);
-      })
+      this.j_no = this.$route.params.j_no;
+      this.axios.get('/jobPostingDetail/' + this.j_no, { params: { "j_no": this.j_no } })
+        .then(res => {
+          this.list = res.data;
+          this.j_schedule = this.list[0].j_schedule;
+          if (this.j_schedule.includes("2차")) {
+            this.$refs.btn1.style.display = "none";
+            this.$refs.btn2.style.display = "none";
+            this.$refs.interview1.style.display = "block";
+            this.$refs.interview2.style.display = "block";
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getTitle(e) {
+      this.j_title = e.target.value;
+    },
+    getEmail(e) {
+      this.j_email = e.target.value;
+    },
+    getRecruitNum(e) {
+      this.j_recruitNum = e.target.value;
     },
   },
   mounted() {
     this.getJobDetail();
-
   },
   components: {
     Hashtags,
@@ -258,27 +261,29 @@ export default {
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  /* font-family: 'Noto Sans KR', sans-serif; */
-}
-
-body {
-  margin: 0;
-  padding: 0;
   font-family: Arial, sans-serif;
 }
 
-form {
-  max-width: 500px;
+#main_wrap {
   margin: auto;
+  max-width: 500px;
 }
 
 #field_name {
   font-weight: bold;
 }
 
-input[type="text"] {
+input[type="text"],
+[type="email"] {
   width: 100%;
   padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+
+#sal_y {
+  width: 50%;
+  padding: 5px;
   margin: 10px 0;
   box-sizing: border-box;
 }

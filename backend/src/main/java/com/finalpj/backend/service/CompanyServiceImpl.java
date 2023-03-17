@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.finalpj.backend.command.JobPostingVO;
+import com.finalpj.backend.util.JobCriteria;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
@@ -20,13 +20,28 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public List<JobPostingVO> getJobDetail() {
-        return mapper.getJobDetail();
+    public List<JobPostingVO> getJobDetail(int j_no) {
+        return mapper.getJobDetail(j_no);
     }
 
     @Override
     public void update(JobPostingVO vo) {
         mapper.update(vo);
+    }
+
+    @Override
+    public void delete(int j_no) {
+        mapper.delete(j_no);
+    }
+
+    @Override
+    public List<JobPostingVO> getJobList(JobCriteria jcri) {
+        return mapper.getJobList(jcri);
+    }
+
+    @Override
+    public int getTotal(JobCriteria jcri) {
+        return mapper.getTotal(jcri);
     }
     
 }

@@ -2,17 +2,11 @@ package com.finalpj.backend.service;
 import com.finalpj.backend.command.CompanyVO;
 import java.util.ArrayList;
 
-public interface AdminCompanyService{
-
+public interface AminCompanyService{
 
 
 
 public ArrayList<CompanyVO> getList();
-
-public ArrayList<CompanyVO> getNlist();
-
-// public int companyModify(CompanyVO vo);
-
-
+// public ArrayList<CompanyVO> getNlist();
 
 }

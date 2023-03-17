@@ -1,5 +1,5 @@
 CREATE TABLE job_posting (
-  j_no int primary key,
+  j_no int primary key AUTO_INCREMENT,
   j_regdate datetime default CURRENT_TIMESTAMP, -- 공고 등록일
   j_recruitNum varchar(4) not null, -- 모집 인원
   j_email varchar(80), -- 담당자 이메일
@@ -12,7 +12,6 @@ CREATE TABLE job_posting (
   j_graduation varchar(1) default 'N', -- 학력
   j_career varchar(1) default 'N', -- 경력
   j_type varchar(10) not null, -- 근무형태
-  com_id varchar(50), foreign key(com_id) references company(com_id) -- fk
+  com_id varchar(50) not null
 );
-ALTER table job_posting MODIFY j_no int AUTO_INCREMENT;
 

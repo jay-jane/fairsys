@@ -5,11 +5,11 @@
 
 
 <mapper namespace="com.finalpj.backend.service.ResumeMapper">
-  <select id="getList" parameterType="ResumeVO" resultType="ResumeVO">
-		select * from resume_list order by r_no desc
+  <select id="ApplyStatus" parameterType="ResumeWriteVO" resultType="ResumeWriteVO">
+		select * from resume_write order by w_no desc;
 	</select>
 
-<insert id="regist" parameterType="ResumeWriteVO">
+<insert id="ResumeRegist" parameterType="ResumeWriteVO">
   		insert into resume_write(w_no,
   							w_name,
   							w_hp,
@@ -28,7 +28,8 @@
                 w_score,
                 w_get,
                 w_license,
-                w_getlicense)
+                w_getlicense
+              )
   		values( #{w_no},
   				#{w_name},
   				#{w_hp},
@@ -47,13 +48,34 @@
           #{w_score},
           #{w_get},
           #{w_license},
-          #{w_getlicense} )
-
-          
-
+          #{w_getlicense}
+           )
+       
   	</insert>
 
 
+<select id="ResumeModify" resultType="ResumeWriteVO">
+    select * from resume_write where w_no=#{w_no} 
+  </select>
+
+
+<update id="ResumeUpdate" parameterType="ResumeWriteVO">
+update resume_write set w_address = #{w_address}, w_level = #{w_level}, w_finish = #{w_finish},
+w_major = #{w_major}, w_fndate = #{w_fndate}, w_com = #{w_com},
+w_position = #{w_position}, w_join = #{w_join}, w_leave = #{w_leave},
+w_subject = #{w_subject}, w_score = #{w_score}, w_get = #{w_get},
+w_license = #{w_license}, w_getlicense = #{w_getlicense}
+where w_no = #{w_no};
+</update>
+  
+<select id="UserMyPage" parameterType="ResumeWriteVO" resultType="ResumeWriteVO">
+		select * from resume_write order by w_no desc;
+</select>
+
+
+<delete id="delete" parameterType="ResumeWriteVO">
+    delete from resume_write where w_no  = #{w_no};
+</delete>
 
 </mapper>
 
