@@ -21,7 +21,6 @@ export default {
 /* footer 디자인 */
 #bottom {
   height: 200px;
-  margin-left: 200px;
   background-color: #263238;
   top: 0;
   color: white;
