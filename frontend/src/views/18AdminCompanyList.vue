@@ -17,8 +17,7 @@
             <th class="jb-th-1">번호</th>
             <th class="jb-th-2">회사이름</th>
             <th class="jb-th-3">신청일자</th>
-            <th class="jb-th-3">승인일자</th>
-
+            <th class="jb-th-3">승인일자d</th>
           </tr>
         </thead>
         <tbody>
@@ -54,8 +53,8 @@
     </div>
 
 
-  </section>
 
+  </section>
 
   <footer id="ft" style="border-top: 1px solid">
     <h3>여기 푸터야</h3>

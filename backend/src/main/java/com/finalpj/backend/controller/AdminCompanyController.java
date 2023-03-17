@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -33,7 +34,7 @@ public class AdminCompanyController {
             return list;
         }
 
-         @GetMapping("/19")
+         @GetMapping("/19/1")
          public  ArrayList<CompanyVO> Nlist (){
     
             ArrayList<CompanyVO> list = admincompanyService.getNlist();
@@ -41,6 +42,10 @@ public class AdminCompanyController {
             return list;
          }    
 
+         @PostMapping("/19/2")
+         public void companyModify(@RequestBody CompanyVO vo){
+            admincompanyService.companyModify(vo.getCom_id());
+         }
 
     }
 

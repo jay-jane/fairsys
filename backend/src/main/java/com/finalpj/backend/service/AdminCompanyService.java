@@ -11,7 +11,8 @@ public ArrayList<CompanyVO> getList();
 
 public ArrayList<CompanyVO> getNlist();
 
-// public int companyModify(CompanyVO vo);
+
+public int companyModify(String com_id);
 
 
 

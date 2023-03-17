@@ -23,12 +23,12 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
   }
 
 
-  // @Override
-  // public int companyModify(CompanyVO vo) {
-  //   return adminCompanyMapper.companyModify(vo);
+   @Override
+   public int companyModify(String com_id) {
+     return adminCompanyMapper.companyModify(com_id);
     
   }
-
+}
 
 
   

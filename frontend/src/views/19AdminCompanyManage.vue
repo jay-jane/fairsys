@@ -71,9 +71,9 @@
             <td class="date">{{ item.com_Application_date }}</td>
             <td class="date">2023.03.09</td>
             <td>
-              <button class="btn">승인</button>
+              <button class="btn" @click="yesbtn(item.com_id)">승인</button>
               <div class="space"></div>
-              <button>거절</button>
+              <button @click="nobtn">거절</button>
             </td>
           </tr>
 
@@ -112,14 +112,30 @@ export default {
     return {
       모달창열렸니: false,
       list: "",
+      com_id: "",
     };
   },
   methods: {
     logout() {
       location.href = "/3";
     },
+    yesbtn(com_id) {
+      if (confirm("승인하시겠습니까?")) {
+        Axios.post("/19/2", { com_id: com_id })
+          .then((res) => {
+            alert("승인되었습니다.");
+            this.$router.go("/19");
+          })
+          .catch((err) => console.log(err));
+      }
+    },
+
+    nobtn() {
+      console.log(vo.toString());
+    },
+
     async get() {
-      let res = await Axios.get("/19");
+      let res = await Axios.get("/19/1");
       this.list = res.data;
       console.log(this.list);
     },
