@@ -16,13 +16,13 @@
 
 	<update id="companyModify" parameterType="String">
 		update company 
-		set com_status = 'y'
+		set com_status = 'y', com_registration_date = now()
     where com_id = #{com_id}
 	</update>
 
 
 
-  <delete id="companyDelete" parameterType="int">
+  <delete id="companyDelete" parameterType="String">
 		delete from company where com_id = #{com_id}
 	</delete>
 

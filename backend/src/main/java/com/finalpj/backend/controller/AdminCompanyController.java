@@ -1,4 +1,5 @@
 package com.finalpj.backend.controller;
+import java.io.Console;
 import java.util.ArrayList;
 
 
@@ -45,6 +46,12 @@ public class AdminCompanyController {
          @PostMapping("/19/2")
          public void companyModify(@RequestBody CompanyVO vo){
             admincompanyService.companyModify(vo.getCom_id());
+         }
+
+         @PostMapping("/19/3")
+         public void companyDelete(@RequestBody CompanyVO vo){
+            System.out.println("ㅇㅇㅇ");  
+            admincompanyService.companyDelete(vo.getCom_id());    
          }
 
     }

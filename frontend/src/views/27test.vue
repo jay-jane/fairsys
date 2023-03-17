@@ -1,57 +1,46 @@
-<template>
-  <div class="black-bg" v-if="모달창열렸니 == true">
-    <div class="white-bg">
-      <h4>
-        <td>{{ com_ceo }}</td>
-      </h4>
-      <p>상페이지내용임</p>
-      <button @click="모달창열렸니 = false">닫기</button>
-    </div>
-  </div>
+<!-- Q&A 페이지 -->
 
+<template>
   <section>
-    <div class="bg">
-      <h3 class="first_name">기업관리</h3>
+    <div class="main">
+      <h3 class="first_name">기업</h3>
       <table>
         <thead>
           <tr>
             <th class="jb-th-1">번호</th>
             <th class="jb-th-2">회사이름</th>
             <th class="jb-th-3">신청일자</th>
-            <th class="jb-th-3">마감일자</th>
-            <th class="jb-th-4">인가</th>
+            <th class="jb-th-3">승인일자</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, index) in list" v-bind:key="index">
-            <th>{{ index + 1 }}</th>
-            <td>
-              <h4 @click="모달창열렸니 = true">{{ item.com_name }}</h4>
-            </td>
+          <!-- <tr v-for="(item, index) in list" v-bind:key="index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.com_name }}</td>
+            <td>{{ item.com_Application_date }}</td>
+            <td>{{ item.com_registration_date }}</td>
+          </tr> -->
+
+          <tr>
+            <th>2</th>
+            <td>(주)짜장면</td>
+
             <td class="date">2023.03.08</td>
             <td class="date">2023.03.09</td>
-            <td>
-              <button class="btn">승인</button>
-              <div class="space"></div>
-              <button>거절</button>
-            </td>
           </tr>
 
-          <!-- <tr>
-              <th>2</th>
-              <td>(주)짜장면</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-             <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>            
-            </tr>
-
-             <tr>
-              <th>3</th>
-              <td>(주)탕수육</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-              <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>  
-            </tr> -->
+          <tr>
+            <th>2</th>
+            <td>(주)짜장면</td>
+            <td class="date">2023.03.08</td>
+            <td class="date">2023.03.09</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td>(주)탕수육</td>
+            <td class="date">2023.03.08</td>
+            <td class="date">2023.03.09</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -70,7 +59,6 @@ export default {
 
   data() {
     return {
-      모달창열렸니: false,
       list: "",
     };
   },
@@ -79,7 +67,7 @@ export default {
       location.href = "/3";
     },
     async get() {
-      let res = await Axios.get("/27");
+      let res = await Axios.get("/18");
       this.list = res.data;
       console.log(this.list);
     },
@@ -89,80 +77,57 @@ export default {
   },
 };
 </script>
-
 <style>
-* {
-  margin: 0;
-  padding: 0;
+body {
+  color: #666;
+  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light",
+    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
 }
 
-.space {
-  width: 10px;
-  height: auto;
-  display: inline-block;
+.main {
+  margin: 100px 0 0 200px;
+  padding: 30px;
 }
 
 table {
-  padding: auto;
-  margin: auto;
-  border: 1px solid black;
-  border-collapse: collapse;
-  border-radius: 5px;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 70%;
 }
 
-th {
-  border: 1px solid black;
-}
-
+th,
 td {
-  border: 1px solid black;
-  text-align: center;
+  padding: 6px 15px;
 }
-
-.jb-th-1 {
-  width: 200px;
-  background-color: bisque;
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
 }
-
-.jb-th-2 {
-  width: 600px;
-  background-color: bisque;
-  text-align: center;
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
 }
-
-.jb-th-3 {
-  width: 200px;
-  background-color: bisque;
-  text-align: center;
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
 }
-
-.jb-th-4 {
-  width: 100px;
-  background-color: bisque;
-  text-align: center;
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
 }
 
 .date {
   text-align: center;
-}
-
-div {
-  box-sizing: border-box;
-}
-
-.black-bg {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 20px;
-}
-
-.white-bg {
-  width: 50%;
-  height: 300px;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
 }
 </style>

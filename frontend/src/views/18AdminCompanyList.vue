@@ -1,15 +1,8 @@
 <!-- Q&A 페이지 -->
 
 <template>
-
-  <!-- <select v-model="com_id">
-    <option value="1">1개 보기</option>
-    <option value="2">2개 보기</option>
-    <option value="3">3개 보기</option>
-  </select> -->
   <section>
-
-    <div class="bg">
+    <div class="main">
       <h3 class="first_name">기업</h3>
       <table>
         <thead>
@@ -17,7 +10,7 @@
             <th class="jb-th-1">번호</th>
             <th class="jb-th-2">회사이름</th>
             <th class="jb-th-3">신청일자</th>
-            <th class="jb-th-3">승인일자d</th>
+            <th class="jb-th-3">승인일자</th>
           </tr>
         </thead>
         <tbody>
@@ -34,7 +27,6 @@
 
             <td class="date">2023.03.08</td>
             <td class="date">2023.03.09</td> -->
-          </tr>
 
           <!-- <tr>
             <th>2</th>
@@ -51,9 +43,6 @@
         </tbody>
       </table>
     </div>
-
-
-
   </section>
 
   <footer id="ft" style="border-top: 1px solid">
@@ -62,7 +51,6 @@
 </template>
 
 <script>
-
 import Axios from "axios";
 
 export default {
@@ -86,7 +74,6 @@ export default {
   mounted() {
     this.get();
   },
-
 };
 </script>
 <style>
@@ -95,42 +82,47 @@ export default {
   padding: 0;
 }
 
+.main {
+  margin: 100px 0 0 200px;
+  padding: 30px;
+}
+
 table {
-  padding: auto;
-  margin: auto;
-
-  border: 1px solid black;
-  border-collapse: collapse;
-  border-radius: 5px;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 70%;
 }
 
-th {
-  border: 1px solid black;
-
-}
-
+th,
 td {
-  border: 1px solid black;
-  text-align: center;
+  padding: 6px 15px;
 }
-
-
-.jb-th-1 {
-  width: 200px;
-  background-color: bisque;
+th {
+  background: #42444e;
+  color: #fff;
+  text-align: left;
 }
-
-
-.jb-th-2 {
-  width: 600px;
-  background-color: bisque;
-  text-align: center;
+tr:first-child th:first-child {
+  border-top-left-radius: 6px;
 }
-
-.jb-th-3 {
-  width: 200px;
-  background-color: bisque;
-  text-align: center;
+tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+td {
+  border-right: 1px solid #c6c9cc;
+  border-bottom: 1px solid #c6c9cc;
+}
+td:first-child {
+  border-left: 1px solid #c6c9cc;
+}
+tr:nth-child(even) td {
+  background: #eaeaed;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
 }
 
 .date {
