@@ -15,7 +15,7 @@
             <th class="jb-th-1">번호</th>
             <th class="jb-th-2">회사이름</th>
             <th class="jb-th-3">신청일자</th>
-            <th class="jb-th-3">승인일자</th>
+            <th class="jb-th-3">승인일자d</th>
           </tr>
         </thead>
         <tbody>
