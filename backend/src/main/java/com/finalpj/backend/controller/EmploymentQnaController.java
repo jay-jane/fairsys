@@ -48,15 +48,15 @@ public class EmploymentQnaController {
                             String user_id){
         
         ArrayList<EmploymentQnaVO> list = eqs.getDetail(qa_no, "aaa123");
-        System.out.println(list.toString());
+        //System.out.println(list.toString());
 
         return list;
     }
 
     @PostMapping("/13")
     public void write(@RequestBody EmploymentQnaVO vo){
-        System.out.println("실행쓰");
-        System.out.println(vo.toString());
+        //System.out.println("실행쓰");
+        //System.out.println(vo.toString());
         eqs.regist(vo);
     }
     
