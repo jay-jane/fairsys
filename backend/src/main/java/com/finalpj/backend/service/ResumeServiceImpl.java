@@ -22,13 +22,13 @@ public class ResumeServiceImpl implements ResumeService{
     // }
 
     @Override
-    public int ResumeRegist(ResumeWriteVO vo) {
-        return resumemapper.ResumeRegist(vo);
+    public void ResumeRegist(ResumeWriteVO vo) {
+        resumemapper.ResumeRegist(vo);
     }
 
     @Override
-    public List<ResumeWriteVO> ResumeModify() {
-        return resumemapper.ResumeModify();
+    public List<ResumeWriteVO> ResumeModify(int w_no) {
+        return resumemapper.ResumeModify(w_no);
        
     }
 

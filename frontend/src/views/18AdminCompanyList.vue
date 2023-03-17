@@ -1,4 +1,4 @@
-<!-- Q&A 페이지 -->
+Q&A 페이지
 
 <template>
 
@@ -33,9 +33,9 @@
             <td>(주)짜장면</td>
 
             <td class="date">2023.03.08</td>
-            <td class="date">2023.03.09</td> -->
+            <td class="date">2023.03.09</td> 
           </tr>
-
+            -->
           <!-- <tr>
             <th>2</th>
             <td>(주)짜장면</td>

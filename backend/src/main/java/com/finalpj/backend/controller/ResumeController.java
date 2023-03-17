@@ -48,18 +48,16 @@ public class ResumeController {
    
        //이력서 작성
        @PostMapping("/ResumeRegist")
-       public String ResumeRegist(@RequestBody ResumeWriteVO vo){
+       public void ResumeRegist(@RequestBody ResumeWriteVO vo){
    
            System.out.println(vo.toString());
            resumeService.ResumeRegist(vo);
-         
-           return "ResumeModify";
        }
    
        //이력서 상세조회
-       @GetMapping("/ResumeModify")
-       public List<ResumeWriteVO> ResumeModify() {
-           List<ResumeWriteVO> list = resumeService.ResumeModify();
+       @GetMapping("/ResumeModify/{w_no}")
+       public List<ResumeWriteVO> ResumeModify(@PathVariable(value = "w_no") int w_no)  {
+           List<ResumeWriteVO> list = resumeService.ResumeModify(w_no);
            return list;
        }
    

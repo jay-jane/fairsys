@@ -12,11 +12,11 @@ import com.finalpj.backend.util.ResumeCriteria;
 @Mapper
 public interface ResumeMapper {
     
-    public int ResumeRegist(ResumeWriteVO vo); 
+    public void ResumeRegist(ResumeWriteVO vo); 
     
     // public ResumeWriteVO ResumeModify();
    
-    public List<ResumeWriteVO> ResumeModify();
+    public List<ResumeWriteVO> ResumeModify(int w_no);
     public void ResumeUpdate(ResumeWriteVO vo);
     public ArrayList<ResumeWriteVO> UserMyPage();
     public void delete(int w_no);
