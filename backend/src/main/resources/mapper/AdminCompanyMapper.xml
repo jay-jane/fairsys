@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-  <mapper namespace="com.finalpj.backend.service.CompanyMapper">
+  <mapper namespace="com.finalpj.backend.service.AdminCompanyMapper">
   <select id="getList" resultType="CompanyVO">
     select * from Company where com_id = #{com_id}
   </select>

@@ -9,16 +9,17 @@ import org.springframework.stereotype.Service;
 @Service("adminCompanyService")
 public class AdminCompanyServiceimpl implements AdminCompanyService {
 
-    
-    @Autowired
-    private AdminCompanyMapper adminCompanyMapper ;
 
-    @Override
+	@Autowired
+	private AdminCompanyMapper adminCompanyMapper ;
+
+	@Override
 	public ArrayList<CompanyVO> getList(String com_id) {
+		
 		return adminCompanyMapper.getList(com_id);
-    
-    }
-    
+
+	}
+
 
 
 }

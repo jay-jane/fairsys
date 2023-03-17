@@ -24,7 +24,7 @@ public class AdminCompanyController {
         @Qualifier("adminCompanyService")
         private AdminCompanyService admincompanyService;
     
-        @GetMapping("/")
+        @GetMapping("/data")
         public  ArrayList<CompanyVO> list (String com_id){
     
             ArrayList<CompanyVO> list = admincompanyService.getList(com_id);

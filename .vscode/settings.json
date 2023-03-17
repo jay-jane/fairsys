@@ -4,5 +4,6 @@
     "javascript": "javascriptreact",
     "vue-html": "html",
     "vue": "html"
-  }
+  },
+  "java.compile.nullAnalysis.mode": "automatic"
 }

@@ -1,4 +1,8 @@
 package com.finalpj.backend.command;
+import java.sql.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +26,9 @@ public class CompanyVO {
     private String com_status;
     private String com_email;
     private String ut_no;
-    private String com_registration_date;
-    private String com_Application_date;
+    private String c_no;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date com_registration_date;
+    private Date com_Application_date;
 
 }
