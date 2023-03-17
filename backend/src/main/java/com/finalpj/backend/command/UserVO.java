@@ -1,6 +1,7 @@
 package com.finalpj.backend.command;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,4 +21,5 @@ public class UserVO {
     private String user_detail_address;
     private String ut_no;
     private String u_no;
+    
 }
