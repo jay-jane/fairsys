@@ -4,10 +4,10 @@
   <!-- 여기는 상단바 -->
   <header id="header">
 
-    
+
     <!-- 메뉴바 -->
     <div id="menu">
-      
+
       <ul>
         <!-- 로고 -->
         <li><img src=""></li>
@@ -15,31 +15,31 @@
         <li><a href="page15">기업/연봉</a></li>
         <li><a href="page12">마이페이지</a></li>
         <li><a href="page2">로그인</a></li>
-      </ul> 
+      </ul>
     </div>
-      
+
     <!-- 로그인버튼 -->
 
   </header>
 
 
   <section id="section">
-    
+
     <ul id="section_menu">
       <li><a href="회원정보 수정페이지">회원 정보 수정</a></li>
       <li>탈퇴</li>
       <!-- 회원정보 수정 및 탈퇴를 위해서는 비밀번호 입력을 하게 해야할듯? -->
-      
+
       <li><a href="page13">이력서 작성</a></li>
       <li><a href="지원 현황 확인 페이지">지원 현황 확인</a></li>
 
       <li><a href="page16">Q&A</a></li>
       <li><a href="쪽지함 페이지 ">쪽지함</a></li>
-    
-      
+
+
     </ul>
-    
-    여기에는 광고 배너 및 공고 들어가고<br/>
+
+    여기에는 광고 배너 및 공고 들어가고<br />
 
   </section>
 
@@ -49,47 +49,70 @@
     저작권 정보?
 
   </footer>
-
 </template>
 
 <script>
+import axios from 'axios';
+
 
 export default {
-  name: 'App'
+  name: 'App',
+
+  methods: {
+    get() {
+     
+      axios.get('/6/mypage',
+        {
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          }
+        }).then(res => {
+          console.log(res)
+        }).catch(err => {
+          console.log(err)
+        })
+        
+
+    }
+  },
+  mounted(){
+    this.get()
+  }
 }
 </script>
 
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
   list-style: none;
   text-align: center;
 }
 
-#menu li{
+#menu li {
   display: inline;
   padding-left: 20px;
 }
 
-#section_menu{
+#section_menu {
   display: flex;
   justify-content: space-around;
   flex: auto;
 
 }
 
-#menu li{
+#menu li {
   width: 100px;
   height: 50px;
-  }
+}
 
 
-#section{
+#section {
   line-height: 100px;
 }
 
-#footer{
+#footer {
   height: 200px;
 }
 </style>
