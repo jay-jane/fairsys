@@ -70,7 +70,6 @@
             <option value="30">30개씩 보기</option>
           </select>
           <button type="button" @click="addPosting" style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white;">
-            <!-- <router-link :to="{path: '/registJobPosting?com_id=1818'}">공고 등록</router-link> -->
             공고 등록
           </button>
         </div>
@@ -294,7 +293,15 @@ export default {
       this.get();
     },
     addPosting() {
-      this.$router.push('/registJobPosting', {com_id: 1818});
+      this.$router.push({
+        path: '/registJobPosting',
+        name: 'jobPostingRegist',
+        params: { 'com_id': sessionStorage.getItem("com_id") },
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          },
+      })
     },
   },
   mounted() {

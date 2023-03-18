@@ -2,6 +2,9 @@ package com.finalpj.backend.controller.company;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,20 +48,17 @@ public class JobPostingController {
 
     @PostMapping("/jobPostingRegist")
     public void regist(@RequestBody JobPostingVO vo) {
-        System.out.println(vo.toString());
         service.regist(vo);
     }
 
     @GetMapping("/jobPostingDetail/{j_no}")
     public List<JobPostingVO> getJobDetail(@PathVariable(value = "j_no", required = false) int j_no) {
-        System.out.println();
         List<JobPostingVO> list = service.getJobDetail(j_no);
         return list;
     }
 
     @PostMapping("/jobPostingUpdate")
     public void update(@RequestBody JobPostingVO vo) {
-        System.out.println(vo.toString());
         service.update(vo);
     }
 
@@ -72,9 +72,9 @@ public class JobPostingController {
         
     }
 
-    @GetMapping("/registJobPosting/{com_id}")
-    public List<CompanyVO> posting(@PathVariable("com_id") String com_id) {
-        System.out.println(com_id);
+    @GetMapping("/getCompanyVO/{com_id}")
+    public List<CompanyVO> getCompanyVO(HttpServletRequest request, HttpServletResponse response) {
+        String com_id = request.getParameter("com_id");
         List<CompanyVO> list = service.getCompanyVO(com_id);
         return list;
     }

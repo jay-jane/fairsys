@@ -149,7 +149,7 @@ export default {
             this.errorMsg = null;
             this.value = null;
             this.$refs.input.focus();
-            this.$router.push({path: "/16", query: {valList: this.valList}});
+            this.$router.push({path: '/registJobPosting/' + sessionStorage.getItem("com_id"), query: {valList: this.valList}});
         },        
     },
    

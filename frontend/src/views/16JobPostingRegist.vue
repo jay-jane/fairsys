@@ -10,23 +10,24 @@
           <input type="text" id="j_title" v-model="j_title">
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">담당자 성함</label>
-        <div id="">
-          <input type="text">
+      <div v-for="item in com_list">
+        <div id="field">
+          <label class="field_name">담당자 성함</label>
+          <div id="">
+            <input type="text" :value="item.com_manager_name" style="border: 0;" readonly>
+          </div>
         </div>
-      </div>
-      <div id="field">
-        <label class="field_name">기업명</label>
-        <div id="">
-          <input type="text">
+        <div id="field">
+          <label class="field_name">기업명</label>
+          <div id="">
+            <input type="text" :value="item.com_name" style="border: 0;" readonly>
+          </div>
         </div>
-      </div>
-      <div class="field tel-number">
-        <label class="field_name">휴대폰 번호</label>
-        <div class="tel_number_input">
-          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
-            id="tel_number_3">
+        <div class="field tel-number">
+          <label class="field_name">휴대폰 번호</label>
+          <div class="tel_number_input">
+            <input type="text" id="tel_number" :value="item.com_manager_phone" style="border: 0;" readonly>
+          </div>
         </div>
       </div>
       <div id="field">
@@ -42,7 +43,7 @@
         </div>
       <!-- <div v-for="item in $route.query.valList">
           {{ item }}
-                          </div> -->
+                            </div> -->
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
@@ -117,7 +118,7 @@
                       <div class="image-box">
                       <!-- <div class="image-profile">
             <img :src="profileImage" />
-                        </div>-->
+                          </div>-->
                         <label for="file">일반 사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageUpload" multiple />
                       </div>
@@ -223,9 +224,7 @@ export default {
       j_end_date: '',
       com_id: '1818',
       endDate: '',
-
-      // hash: [],
-      // valList: '',
+      com_list: '',
 
       files: [], //업로드용 파일
       filesPreview: [],
@@ -388,8 +387,12 @@ export default {
         });
     },
     getCompanyVO() {
-      console.log(this.$route.params.com_id);
-      this.axios.get("/registJobPosting", {})
+      this.com_id = this.$route.params.com_id;
+      this.axios.get("/getCompanyVO/" + this.com_id, { params: { "com_id": this.com_id } })
+        .then(res => {
+          this.com_list = res.data;
+        })
+        .catch(err => console.log(err));
     }
   },
   components: {
@@ -412,9 +415,7 @@ export default {
   },
   mounted() {
     // this.getJobDetail();
-    // this.getCompanyVO();
-    console.log(this.$route.query.com_id);
-    console.log(this.$route.params.com_id);
+    this.getCompanyVO();
   }
 }
 
@@ -475,7 +476,7 @@ button[type="submit"] {
 }
 
 .tel_number_input>input {
-  width: 50px;
+  width: 150px;
 }
 
 button[type="submit"]:hover {
