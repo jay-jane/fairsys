@@ -13,20 +13,19 @@
       <div id="field">
         <label class="field_name">담당자 성함</label>
         <div id="">
-          <input type="text">
+          <input type="text" :value="item.com_manager_name" readonly style="border: 0;">
         </div>
       </div>
       <div id="field">
         <label class="field_name">기업명</label>
         <div id="">
-          <input type="text">
+          <input type="text" :value="item.com_name" readonly style="border: 0;">
         </div>
       </div>
       <div class="field tel-number">
         <label class="field_name">휴대폰 번호</label>
         <div class="tel_number_input">
-          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
-            id="tel_number_3">
+          <input type="text" id="tel_number" :value="item.com_manager_phone" readonly style="border: 0;">
         </div>
       </div>
       <div id="field">
@@ -38,7 +37,7 @@
       <div id="field">
         <label class="field_name">모집 분야</label>
         <div id="job_type">
-          <Hashtags></Hashtags>
+          {{ item.j_department }}
         </div>
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-bind:value="item.j_recruitNum"
@@ -48,42 +47,37 @@
       </div>
       <div id="field">
         <label class="field_name">경력 여부</label>
-        <div id="career" style="display: inline-block;">
-          <input type="radio" name="career_type" v-bind:value="j_career" value="N">신입
-          <input type="radio" name="career_type" v-bind:value="j_career" value="Y">경력
-          <input type="radio" name="career_type" v-bind:value="j_career" value="B">경력무관
+        <div id="career">
+          {{ item.j_career }}
         </div>
       </div>
       <div id="field">
         <label class="field_name">근무지역</label>
-        <div class="kakaoAPI">(카카오맵api)</div>
+        <div class="kakaoAPI">
+          {{ item.com_detail_address }}
+          (카카오맵api)
+        </div>
       </div>
       <div id="field">
         <label class="field_name">급여(연봉)</label>
         <div id="sal_wrap">
-          <select id="sal_y" v-bind:value="j_salary">
-            <option value="2200~2800">2,200만원 ~ 2,800만원</option>
-            <option value="2800~3200">2,800만원 ~ 3,200만원</option>
-            <option value="3200~3600">3,200만원 ~ 3,600만원</option>
-            <option value="3600~4000">3,600만원 ~ 4,000만원</option>
-          </select>
+          {{ item.j_salary }}
         </div>
       </div>
       <div id="field">
         <label class="field_name">근무 형태</label>
-        <div style="display: inline-block;">
-          <input type="radio" name="work_type" v-bind:value="j_type" value="Y">정규직
-          <input type="radio" name="work_type" v-bind:value="j_type" value="N">계약직
-          <input type="radio" name="work_type" v-bind:value="j_type" value="F">인턴
+        <div>
+          {{ item.j_type }}
         </div>
       </div>
       <div id="field">
-        <label class="field_name">학력</label>
-        <div style="display: inline-block;">
-          <input type="radio" name="graduation_type" v-bind:value="j_graduation" value="Y">대졸
-          <input type="radio" name="graduation_type" v-bind:value="j_graduation" value="N">고졸/초대졸
-          <input type="radio" name="graduation_type" v-bind:value="j_graduation" value="YN">학력무관
-        </div>
+        <label class="field_name">학력</label><br>
+        {{ item.j_graduation }}
+        <!-- <div>
+          <input type="radio" id="대졸" name="graduation_type" v-bind:value="j_graduation" value="대졸">대졸
+          <input type="radio" id="고졸" name="graduation_type" v-bind:value="j_graduation" value="고졸/초대졸">고졸/초대졸
+          <input type="radio" id="무관" name="graduation_type" v-bind:value="j_graduation" value="학력무관">학력무관
+        </div> -->
       </div>
       <div id="field">
         <label class="field_name">상세 내용</label>
@@ -94,37 +88,8 @@
       <div id="field">
         <label class="field_name">전형 절차</label>
         <div id="">
-          <div id="process_wrap">
-            <input type="text" id="process" value="서류전형" readonly>
-          </div>
-          <div id="process_add">
-            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1" style="margin-bottom: 15px;">
-              1차면접
-              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
-            </button>
-          </div>
-          <div id="process_wrap" ref="interview1" style="display: none;">
-            <input type="text" id="process" value="1차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
-          </div>
-          <div id="process_add">
-            <button type="button" class="add_btn" name="interview2" style="display: none;" @click="addBtn" ref="btn2">
-              2차면접
-              <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
-            </button>
-          </div>
-          <div id="process_wrap" ref="interview2" style="display: none;">
-            <input type="text" id="process" value="2차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
-          </div>
-          <div id="process_wrap">
-            <input type="text" id="process" value="최종합격" readonly>
-          </div>
+          서류 심사 > {{ item.j_schedule }} 합격
         </div>
-      </div>
-      <div id="field endDate">
-        <label class="field_name">마감일자</label><br>
-        <input type="date" v-bind:value="j_end_date">
       </div>
       <div>
         <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
@@ -146,10 +111,10 @@ export default {
       j_recruitNum: '',
       j_email: '',
       j_title: '',
-      j_content: '상세 내용12345',
+      j_content: '',
       j_salary: '',
-      j_department: '임시',
-      j_schedule: 'A',
+      j_department: '',
+      j_schedule: '',
       j_graduation: '',
       j_career: '',
       j_type: '',
@@ -159,29 +124,8 @@ export default {
     }
   },
   methods: {
-    goMain: () => {
-      location.href = "/";
-    },
-    deleteItem: function (e) {
-      if (e.target.tagName != "IMG") return;
-      if (e.target.name == "interview1") {
-        this.$refs.interview1.style.display = "none";
-        this.$refs.btn1.style.display = "inline-block";
-      } else {
-        this.$refs.interview2.style.display = "none";
-        this.$refs.btn2.style.display = "inline-block";
-      }
-
-    },
-    addBtn: function (e) {
-      if (e.target.tagName != "BUTTON") return;
-      if (e.target.name == 'interview1') {
-        this.$refs.interview1.style.display = "block";
-        this.$refs.btn1.style.display = "none";
-      } else {
-        this.$refs.interview2.style.display = "block";
-        this.$refs.btn2.style.display = "none";
-      }
+    goMain() {
+      this.$router.push('/4');
     },
     updateForm() {
       this.axios.post('/jobPostingUpdate',
@@ -207,13 +151,14 @@ export default {
       })
     },
     deleteForm() {
-      confirm('삭제하시겠습니까?');
-      this.axios.post('/jobPostingDelete', { "j_no": this.$route.params.j_no })
-        .then(() => {
-          alert('삭제되었습니다');
-          this.$router.push('/4');
-        })
-        .catch(err => console.log(err));
+      if (confirm('삭제하시겠습니까?')) {
+        this.axios.post('/jobPostingDelete', { "j_no": this.$route.params.j_no })
+          .then(() => {
+            alert('삭제되었습니다');
+            this.$router.push('/4');
+          })
+          .catch(err => console.log(err));
+      }
     },
     getJobDetail() {
       this.j_no = this.$route.params.j_no;
@@ -221,12 +166,7 @@ export default {
         .then(res => {
           this.list = res.data;
           this.j_schedule = this.list[0].j_schedule;
-          if (this.j_schedule.includes("2차")) {
-            this.$refs.btn1.style.display = "none";
-            this.$refs.btn2.style.display = "none";
-            this.$refs.interview1.style.display = "block";
-            this.$refs.interview2.style.display = "block";
-          }
+          this.list[0].j_department = this.list[0].j_department.replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "").replaceAll(",", " / ");
         })
         .catch(err => {
           console.log(err);
@@ -241,9 +181,19 @@ export default {
     getRecruitNum(e) {
       this.j_recruitNum = e.target.value;
     },
+    getGraduation() {
+      // if(this.list[0].j_graduation == '대졸') {
+      //   console.log(document.getElementById("대졸"));
+      // } else if(this.list[0].j_graduation == '고졸/초대졸') {
+
+      // } else {
+
+      // }
+    }
   },
   mounted() {
     this.getJobDetail();
+    this.getGraduation();
   },
   components: {
     Hashtags,
@@ -308,7 +258,7 @@ button[type="submit"] {
 }
 
 .tel_number_input>input {
-  width: 50px;
+  width: 200px;
 }
 
 button[type="submit"]:hover {

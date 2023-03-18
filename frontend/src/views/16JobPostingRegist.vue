@@ -42,7 +42,7 @@
         </div>
       <!-- <div v-for="item in $route.query.valList">
           {{ item }}
-                        </div> -->
+                          </div> -->
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
@@ -117,7 +117,7 @@
                       <div class="image-box">
                       <!-- <div class="image-profile">
             <img :src="profileImage" />
-                      </div>-->
+                        </div>-->
                         <label for="file">일반 사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageUpload" multiple />
                       </div>
@@ -146,7 +146,7 @@
           </div>
         </div>
       </div>
-      <div id="field">
+      <div id="field_process">
         <label class="field_name">전형 절차</label>
         <div id="">
           <div id="process_wrap">
@@ -180,7 +180,6 @@
       </div>
       <div id="field endDate">
         <label class="field_name">마감일자</label><br>
-        <!-- <input type="date" v-model="j_end_date"> -->
         <div class="date_Select">
           <table>
             <tbody>
@@ -202,7 +201,7 @@
 
 <script>
 import Hashtags from '../components/Hashtags.vue';
-import { ref, reactive, watch } from 'vue';
+import { ref, reactive } from 'vue';
 import Datepicker from 'vue3-datepicker';
 import { ko } from 'date-fns/locale';
 
@@ -275,30 +274,33 @@ export default {
           alert('글 제목은 필수 입력 항목입니다');
           document.getElementById("j_title").focus();
           return;
-        } else {
-          this.axios.post('/jobPostingRegist',
-            {
-              j_recruitNum: this.j_recruitNum,
-              j_email: this.j_email,
-              j_title: this.j_title,
-              j_content: this.j_content,
-              j_salary: this.j_salary,
-              j_department: JSON.stringify(this.$route.query.valList),
-              j_schedule: this.j_schedule,
-              j_graduation: this.j_graduation,
-              j_end_date: this.endDate,
-              j_career: this.j_career,
-              j_type: this.j_type,
-              com_id: this.com_id,
-            }
-          ).then(() => {
-            alert('등록되었습니다!');
-            this.$router.push({ path: '/4' });
-          }).catch(err => {
-            console.log(err);
-
-          });
         }
+        const now = new Date();
+        if (now > this.endDate) {
+          alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
+          return;
+        }
+        this.axios.post('/jobPostingRegist',
+          {
+            j_recruitNum: this.j_recruitNum,
+            j_email: this.j_email,
+            j_title: this.j_title,
+            j_content: this.j_content,
+            j_salary: this.j_salary,
+            j_department: JSON.stringify(this.$route.query.valList),
+            j_schedule: this.j_schedule,
+            j_graduation: this.j_graduation,
+            j_end_date: this.endDate,
+            j_career: this.j_career,
+            j_type: this.j_type,
+            com_id: this.com_id,
+          }
+        ).then(() => {
+          alert('등록되었습니다!');
+          this.$router.push({ path: '/4' });
+        }).catch(err => {
+          console.log(err);
+        });
       }
     },
     previewFile(file) {
@@ -373,6 +375,22 @@ export default {
       this.files = this.files.filter(data => data.number !== Number(name));
       // console.log(this.files);
     },
+    getJobDetail() {
+      this.j_no = this.$route.params.j_no;
+      this.axios.get('/jobPostingDetail/' + this.j_no, { params: { "j_no": this.j_no } })
+        .then(res => {
+          this.list = res.data;
+          this.j_schedule = this.list[0].j_schedule;
+          this.list[0].j_department = this.list[0].j_department.replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "").replaceAll(",", " / ");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    getCompanyVO() {
+      console.log(this.$route.params.com_id);
+      this.axios.get("/registJobPosting", {})
+    }
   },
   components: {
     Hashtags,
@@ -386,22 +404,16 @@ export default {
     const now = new Date();
     let endDate = ref(new Date(now.setDate(now.getDate())));
 
-    console.log("now : " + now);
-    console.log(endDate);
-
-    watch(endDate, (newEndDate) => {
-      console.log("new end : " + newEndDate);
-      if (now > newEndDate) {
-        alert('마감일은 오늘 날짜 이후로 설정 가능합니다.');
-      }
-    });
-
     return {
       endDate,
       locale,
       inputFormat
     }
   },
+  mounted() {
+    // this.getJobDetail();
+    this.getCompanyVO();
+  }
 }
 
 </script>
@@ -527,7 +539,7 @@ button[type="submit"]:hover {
 
 
 .main-container {
-  width: 800px;
+  width: 500px;
   height: 400px;
   margin: 0 auto;
 }
@@ -826,5 +838,9 @@ button[type="submit"]:hover {
 
 .room-write-button:hover {
   opacity: 0.8;
+}
+
+#field_process {
+  margin-top: 200px;
 }
 </style>

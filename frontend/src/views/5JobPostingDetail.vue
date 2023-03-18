@@ -34,7 +34,7 @@
             <div id="qualify">
               <span id="q_left">고용형태</span> <span id="q_right">{{ item.j_type }}</span><br>
               <span id="q_left">급여</span> <span id="q_right">{{ item.j_salary }}</span><br>
-              <span id="q_left">근무지역</span> <span id="q_right"> 아직 안 만듦 </span>
+              <span id="q_left">근무지역</span> <span id="q_right"> {{ item.com_address }} </span>
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
             <div id="qualify">
               <span id="q_left">산업(업종)</span> <span id="q_right">company테이블 접근</span><br>
               <span id="q_left">설립년도</span> <span id="q_right">company테이블 접근</span><br>
-              <span id="q_left">주소</span> <span id="q_right">company테이블 접근</span><br>
+              <span id="q_left">주소</span> <span id="q_right">{{ item.com_detail_address }}</span><br>
               <span id="q_left">홈페이지</span> <span id="q_right">company테이블 접근</span>
             </div>
           </div>
@@ -57,8 +57,8 @@
             </div><br>
             <h4>채용 담당자</h4>
             <div id="qualify">
-              <span id="q_left">담당자</span> <span id="q_right">company테이블 접근</span><br>
-              <span id="q_left">핸드폰 번호</span> <span id="q_right">company테이블 접근</span><br>
+              <span id="q_left">담당자</span> <span id="q_right">{{ item.com_manager_name }}</span><br>
+              <span id="q_left">핸드폰 번호</span> <span id="q_right">{{ item.com_manager_phone }}</span><br>
               <span id="q_left">이메일</span> <span id="q_right">{{ item.j_email }}</span><br>
             </div>
           </div>
@@ -80,7 +80,7 @@
       </div>
 
       <div id="button_wrap" style="margin-top: 20px;">
-        <a href="#">입사지원</a><br>
+        <button type="button" @click="apply">입사지원</button> <br>
         <router-link :to="{name: 'jobPostingModify', params: {j_no: item.j_no}}">수정/삭제</router-link><br>
         <router-link to="/4">목록</router-link>
       </div>
@@ -104,9 +104,11 @@ export default {
   },
   methods: {
     getJobDetail() {
+      console.log(this.com_id)
       this.j_no = this.$route.params.j_no;
       this.axios.get('/jobPostingDetail/' + this.j_no, {params: {"j_no": this.j_no}})
         .then(res => {
+          console.log(res.data);
           this.list = res.data;
           this.j_end_date = res.data[0].j_end_date.substring(0, 10);
           this.j_department = JSON.parse(res.data[0].j_department);
@@ -115,6 +117,15 @@ export default {
           console.log(err);
         });
     },
+    // apply() {
+    //   if(confirm('지원하시겠습니까?')) {
+    //     this.axios.post("/apply", {"com_id": 1818})
+    //               .then(() => {
+    //                 alert("등록되었습니다");
+    //               })
+    //               .catch(err => console.log(err));
+    //   }
+    // },
   },
   mounted() {
     this.getJobDetail();
