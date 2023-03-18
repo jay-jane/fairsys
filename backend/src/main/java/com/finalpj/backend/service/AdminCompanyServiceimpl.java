@@ -17,6 +17,7 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
 
   }
 
+
   @Override
   public ArrayList<CompanyVO> getNlist() {
     return adminCompanyMapper.getNlist();
