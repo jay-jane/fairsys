@@ -1,6 +1,9 @@
 
 <template>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46
   <div class="admin_nav">
     <ul>
       <li class="sub_menu_toggle">
@@ -16,7 +19,11 @@
         <a href="#">이력서</a>
         <ul class="sub_menu">
           <li><router-link to="/ResumeRegist">이력서 작성</router-link></li>
+<<<<<<< HEAD
+          <li><router-link to="/UserMypage">이력서 목록</router-link></li>
+=======
           <li><a href="#"></a></li>
+>>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46
         </ul>
       </li>
 
@@ -32,7 +39,11 @@
         <a href="#">회사정보수정</a>
         <ul class="sub_menu">
           <li><router-link to="/9">회원정보수정</router-link></li>
+<<<<<<< HEAD
+          <li><a href="#">회원탈퇴</a></li>
+=======
           <li><a href="page34">회원탈퇴</a></li>
+>>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46
         </ul>
       </li>
     </ul>
@@ -65,10 +76,15 @@
                 </div>
               </li>
             </ul>
+<<<<<<< HEAD
+          </div>
+        </div>
+=======
 
           </div>
         </div>
 
+>>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46
       </table>
       <table>
         <caption class="my_resume">나의 이력서</caption>
@@ -83,11 +99,19 @@
           </tr>
         </thead>
         <tbody id="table-body">
+<<<<<<< HEAD
+          <tr v-for="(item, index) in list">
+            <td>{{ item.w_no }}</td>
+            <td>{{ item.w_name }}</td>
+            <td><router-link :to="`/ResumeModify?w_no=${item.w_no}`">조회</router-link></td>
+            <td><router-link :to="`/ResumeUpdate?w_no=${item.w_no}`">수정</router-link></td>
+=======
           <tr v-for="(item, index) in list" v-bind:key="index">
             <td>{{ index }}</td>
             <td>{{ item.w_name }}</td>
             <td @click.prevent="ResumeModify(item.w_no)">조회</td>
             <td><router-link :to="{name: 'ResumeUpdate', params: {w_no: item.user_no}}">수정</router-link></td>
+>>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46
             <td><button type="button" value="삭제" @click="deleteForm(item.w_no)" style="margin-right: 10px;">삭제</button>
             </td>
           </tr>
@@ -125,6 +149,45 @@ export default {
         .catch(err => {
           console.log(err);
         });
+<<<<<<< HEAD
+    },
+    updateForm() {
+      this.axios.post('/ResumeUpdate',
+        {
+          w_no: this.$route.params.w_no,
+          w_name: this.w_name,
+          w_hp: this.w_hp,
+          w_email: this.w_email,
+          w_address: this.w_address,
+          w_gender: this.w_gender,
+          w_level: this.w_level,
+          w_finish: this.w_finish,
+          w_major: this.w_major,
+          w_fndate: this.w_fndate,
+          w_com: this.w_com,
+          w_position: this.w_position,
+          w_join: this.w_join,
+          w_leave: this.w_leave,
+          w_subject: this.w_subject,
+          w_score: this.w_score,
+          w_get: this.w_get,
+          w_license: this.w_license,
+          w_getlicense: this.w_getlicense,
+        }
+      ).then(() => {
+        this.w_no = this.$route.params.w_no;
+        console.log(1)
+        alert('수정되었습니다.');
+        this.$router.push('/ResumeModify' + this.w_no);
+      }).catch(err => {
+        console.log("에러");
+        console.log(err);
+      })
+    },
+    deleteForm(w_no) {
+      if (confirm('삭제하시겠습니까?')) {
+
+=======
     },
     ResumeModify(user_no) {
 
@@ -137,6 +200,7 @@ this.$router.push({
     deleteForm(w_no) {
       if (confirm('삭제하시겠습니까?')) {
 
+>>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46
         this.axios.post('/ResumeDelete', { "w_no": w_no })
           .then(() => {
             alert('삭제되었습니다');

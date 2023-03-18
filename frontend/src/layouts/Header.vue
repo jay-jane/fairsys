@@ -3,7 +3,7 @@
     <nav id="top">
       <div id="logo"><router-link to="/">중앙정보 취업 박람회</router-link></div>
       <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용정보</router-link></div>
-      <div id="menu"><router-link to="/6" @mouseover="doDropmenu">마이페이지</router-link></div>
+      <div id="menu"><router-link to="/6/mypage" @mouseover="doDropmenu">마이페이지</router-link></div>
       <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
     </nav>
     <nav id="drop_top" @mouseleave="doHidden">
@@ -13,7 +13,7 @@
         <p><router-link to="/4" class="drop_menu">지역별</router-link></p>
       </div>
       <div id="drop">
-        <p><router-link to="/10" class="drop_menu">지원현황</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
+        <p><router-link to="/applystatus" class="drop_menu">지원현황</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
         <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
       </div>
     </nav>
@@ -32,6 +32,7 @@ export default {
       } else {
         sessionStorage.clear();
         alert("로그아웃 되었습니다.")
+        this.$router.push({ path: '/' })
         this.$store.commit("setLogInOut","로그인")
       }
       // location.href = "/2";

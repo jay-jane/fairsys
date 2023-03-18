@@ -1,7 +1,7 @@
 <template>
   <Header></Header>
   
-  <!-- <AdminHeader></AdminHeader> -->
+  <!-- <AdminHeader class="name"></AdminHeader> -->
   <Side></Side>
   <router-view />
   <Footer></Footer>
@@ -26,4 +26,7 @@ export default {
 </script>
 
 <style>
+.name{
+  display: none;
+}
 </style>
