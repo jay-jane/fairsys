@@ -23,10 +23,6 @@
     <div class="main">
       <div class="container">
         <h3>기업관리</h3>
-        <div class="searchBox">
-          <input type="text" value="title"/>
-          <button @click="search($event.target)">검색</button>
-        </div>
 
         <select v-model="amount" class="view" @change="loglist_view">
           <option value="10">10개씩 보기</option>
@@ -60,19 +56,30 @@
           </tbody>
         </table>
 
+      <div class="serch_box">
+
+        <select name="" id="">
+            <option value="title">회사이름</option>
+        </select>
+
+        <input type="text"  >
+        <button @click="search($event.target)">검색</button>
+
+      </div>
+
           <!-- 페이지 이동 -->
       <div class="page">
         <ul>
           <li>
             <!-- 맨앞으로 가기 -->
-            <router-link :to="{path: '/11/?page=1&amount='+amount}" @click="goFirstPage">
+            <router-link :to="{path: '/19/?page=1&amount='+amount}" @click="goFirstPage">
               <i class="fa fa-angle-double-left" aria-hidden="true">&lt;&lt;</i>
             </router-link>
           </li>
 
           <!-- 앞으로 가기 -->
             <li style="margin-right:5px;">
-              <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goBeforePage">
+              <router-link :to="{path: '/19?page='+page+'&amount='+amount}" @click="goBeforePage">
                 <i class="fa fa-angle-left" aria-hidden="true">&lt;</i>
               </router-link>
             </li>
@@ -80,7 +87,7 @@
            <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <div v-for="(item, index) in pageList" :key="index" class="page_btn">
             <li v-bind:class="{ 'on' : item === page}">
-              <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="thisPage($event.target)">
+              <router-link :to="{path: '/19?page='+page+'&amount='+amount}" @click="thisPage($event.target)">
                 {{item}}
               </router-link>
             </li>
@@ -88,14 +95,14 @@
 
           <!-- 뒤로 가기 -->
 					<li style="margin-left:5px;">
-            <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goNextPage">
+            <router-link :to="{path: '/19?page='+page+'&amount='+amount}" @click="goNextPage">
               <i class="fa fa-angle-right" aria-hidden="true">></i>
             </router-link>
           </li>
 
           <!-- 맨뒤로 가기 -->
 					<li>
-            <router-link :to="{path: '/11/?page='+realEnd+'&amount='+amount}" @click="goLastPage">
+            <router-link :to="{path: '/19?page='+realEnd+'&amount='+amount}" @click="goLastPage">
               <i class="fa fa-angle-double-right" aria-hidden="true">>></i>
             </router-link>
           </li>
@@ -230,17 +237,19 @@ export default {
       this.get();
     },
 
-    search(target) {
-      //검색버튼 선택
+       search(target){ //검색버튼 선택
 
-      const userselect =
-        target.previousElementSibling.previousElementSibling.value;
+      const userselect = target.previousElementSibling.previousElementSibling.value;
+      const usertext = target.previousElementSibling.value;
       
-      if (userselect === "title") {
+      if(userselect === "title"){
         this.searchTitle = usertext;
         this.get();
       }
-    },
+      
+
+    }
+
   },
   mounted() {
     this.get();
@@ -399,4 +408,30 @@ div {
   justify-content: center;
   align-items: center;
 }
+
+  .serch_box{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .serch_box select,input,button{
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .serch_box input{
+    width: 50%;
+    border-radius: 35px;
+    border: 1px solid #ddd;
+  }
+
+  .serch_box button {
+    width: 10%;
+    background-color: orange;
+    border: none;
+    color: white;
+    font-size: 16px;
+  }
+
 </style>

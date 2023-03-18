@@ -6,11 +6,6 @@
       <div class="container">
         <h1>기업목록</h1>
 
-        <div class="searchBox">
-          <input type="text" />
-          <button @click="search($event.target)">검색</button>
-        </div>
-
         <select v-model="amount" class="view" @change="loglist_view">
           <option value="10">10개씩 보기</option>
           <option value="30">30개씩 보기</option>
@@ -36,6 +31,21 @@
             </tr>
           </tbody>
         </table>
+
+      <div class="serch_box">
+
+        <select name="" id="">
+            <option value="title">회사이름</option>
+        </select>
+
+        <input type="text"  >
+        <button @click="search($event.target)">검색</button>
+
+      </div>
+
+
+
+
 
         <!-- 페이지 이동 -->
       <div class="page">
@@ -79,19 +89,6 @@
 
 				</ul>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       </div>
     </div>
@@ -145,7 +142,7 @@ export default {
           this.searchContent
       );
       this.list = res.data.list;
-      console.log(this.list);
+     
 
       this.pages = res.data.pageVO;
       this.pageList = this.pages.pageList;
@@ -195,18 +192,18 @@ export default {
       this.get();
     },
 
-    search(target) {
-      //검색버튼 선택
+    search(target){ //검색버튼 선택
 
-      const userselect =
-        target.previousElementSibling.previousElementSibling.value;
+      const userselect = target.previousElementSibling.previousElementSibling.value;
       const usertext = target.previousElementSibling.value;
-
-      if (userselect === "title") {
+      
+      if(userselect === "title"){
         this.searchTitle = usertext;
         this.get();
       }
-    },
+      
+
+    }
   },
   mounted() {
     this.get();
@@ -327,4 +324,32 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+
+
+  .serch_box{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .serch_box select,input,button{
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .serch_box input{
+    width: 50%;
+    border-radius: 35px;
+    border: 1px solid #ddd;
+  }
+
+  .serch_box button {
+    width: 10%;
+    background-color: orange;
+    border: none;
+    color: white;
+    font-size: 16px;
+  }
+
 </style>
