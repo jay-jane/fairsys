@@ -85,7 +85,7 @@
             <td>{{ item.w_no }}</td>
             <td>{{ item.w_name }}</td>
             <td @click.prevent="ResumeModify(item.w_no)">조회</td>
-            <td @click.prevent="updateForm(item.w_no)">수정</td>
+            <td><router-link :to="{name: 'ResumeUpdate', params: {w_no: item.w_no}}">수정</router-link></td>
             <td><button type="button" value="삭제" @click="deleteForm(item.w_no)" style="margin-right: 10px;">삭제</button>
             </td>
           </tr>

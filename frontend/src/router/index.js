@@ -51,7 +51,7 @@ const routes = [
     component: () => import("../views/7ResumeRegist.vue"),
   },
   {
-    path: "/ResumeModify/:w_no",
+    path: "/ResumeModify/:user_no",
     name: "ResumeModify",
     component: () => import("../views/8ResumeModify.vue"),
   },
@@ -138,7 +138,7 @@ const routes = [
     component: () => import("../views/25test.vue"),
   },
   {
-    path: '/ResumeUpdate/',
+    path: '/ResumeUpdate/:w_no',
     name: 'ResumeUpdate',
     component: () => import('../views/ResumeUpdate.vue')
   },

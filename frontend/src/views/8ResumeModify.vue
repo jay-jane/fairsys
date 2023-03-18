@@ -7,16 +7,25 @@
 
       <div class="resume-main">
         <div class="resume-part-title">개인이력서</div>
-
+        <div class="resume-status-update" style="float: right;">
+          <select id="" @change="getStatusValue">
+            <option value="대기">대기</option>
+            <option value="진행중">진행중</option>
+            <option value="합격">합격</option>
+            <option value="불합격">불합격</option>
+          </select>
+          <button type="button" @click="updateStatus">적용</button>
+        </div>
         <div v-for="(item, index) in list">
-          <div v-if="item.w_no == w_no">
+          <div >
             <h3 style="text-align: left;">개인정보</h3>
             <div class="resume-part2-box">
               <table class="resume-part2-input">
-
+                
                 <tr>
                   <th><label for="w_level">이름</label></th>
                   <td>
+                    <input type="hidden" :value="item.user_no">
                     {{ item.w_name }}
                   </td>
                   <th class="pl-15"><label for="w_finish">연락처</label></th>
@@ -165,6 +174,8 @@
       </div>
     </div>
 
+    
+
 
   </section>
 </template>
@@ -194,20 +205,38 @@ export default {
       w_license: "",
       w_getlicense: "",
       user_id: "",
+      com_id:"",
       list: [],
+      
+      //진행 상황
+      status: '',
     }
   },
   methods: {
     ResumeModify() {
-      this.w_no = this.$route.params.w_no;
-      this.axios.get('/ResumeModify/' + this.w_no, { params: { "w_no": this.w_no } })
+      this.user_no = this.$route.params.user_no;
+      this.axios.get('/ResumeModify/' + this.user_no, { params: { "user_no": this.user_no } })
         .then(res => {
           this.list = res.data;
+          console.log(this.list)
         })
         .catch(err => {
           console.log(err);
         });
     },
+    getStatusValue(e) {
+      this.status = e.target.value;
+    },
+    updateStatus() {
+      console.log(this.status);
+      console.log(this.list[0].com_id);
+      console.log(this.list[0].w_no);
+      this.axios.post("/updateStatus", {user_no: this.list[0].user_no, status: this.status, com_id: this.list[0].com_id} )
+                .then(() => {
+                  this.$router.push('/ApplyStatus');
+                })
+                .catch(err => console.log(err));
+    }
   },
   mounted() {
     this.ResumeModify();

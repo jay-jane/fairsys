@@ -28,11 +28,11 @@
 
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ item.w_no }}</td>
-            <td>{{ item.w_email }}</td>
+            <td>{{ index }}</td>
+            <td>{{ item.w_name }}</td>
             <td>{{ item.w_gender }}</td>
-            <td @click.prevent="ResumeModify(item.w_no)">이력서열람</td>
-            <td>{{ 1 }}</td>
+            <td @click.prevent="ResumeModify(item.user_no)">이력서열람</td>
+            <td>{{ item.status }}</td>
           </tr>
         </tbody>
       </table>
@@ -155,12 +155,13 @@ export default {
 
     },
 
-    ResumeModify(w_no) {
+    ResumeModify(user_no) {
 
       this.$router.push({
         path: '/ResumeModify/',
         name: 'ResumeModify',
-        params: { "w_no": w_no }
+        // params: { "w_no": w_no }
+        params: { "user_no": user_no }
       })
 
     },

@@ -155,9 +155,9 @@
           </table>
         </div>
 
-        <button type="button" value="수정완료" @click="updateForm">수정 완료</button>
-        <button type="button" value="취소" @click="cancle">취소</button>
+        <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
 
+        <button type="button" value="취소" @click="cancel">취소</button>
       </div>
 
     </div>
@@ -190,48 +190,47 @@ export default {
       w_license: "",
       w_getlicense: "",
       user_id: "",
+      com_id:"",
       list: []
     };
   },
   methods: {
-    cancle() {
-      location.href = "/UserMyPage";
+    cancel: () => {
+      location.href = "/";
     },
-    // updateForm() {
-    //   this.axios.post('/ResumeUpdate',
-    //     {
-    //       w_no: this.$route.params.w_no,
-    //       w_hp: this.w_hp,
-    //       w_email: this.w_email,
-    //       w_address: this.w_address,
-    //       w_gender: this.w_gender,
-    //       w_level: this.w_level,
-    //       w_finish: this.w_finish,
-    //       w_major: this.w_major,
-    //       w_fndate: this.w_fndate,
-    //       w_com: this.w_com,
-    //       w_position: this.w_position,
-    //       w_join: this.w_join,
-    //       w_leave: this.w_leave,
-    //       w_subject: this.w_subject,
-    //       w_score: this.w_score,
-    //       w_get: this.w_get,
-    //       w_license: this.w_license,
-    //       w_getlicense: this.w_getlicense,
-    //       user_id: this.user_id
-    //     }
-    //   ).then(res => {
-    //     console.log(res)
-    //     this.w_no = this.$route.params.w_no;
-    //     alert('수정이 완료되었습니다.!')
-    //     this.$router.push('/ResumeModify/' + this.w_no);
-    //     // this.$router.push('/ResumeModify?user_id=' + this.w_no);
-    //   }).catch(err => {
-    //     console.log(err);
-    //   })
-    // }, getName(e) {
-    //   this.w_Name = e.target.value;
-    // },
+    updateForm() {
+      this.axios.post('/ResumeUpdate',
+        {
+          w_no: this.$route.params.w_no,
+          w_name: this.w_name,
+          w_hp: this.w_hp,
+          w_email: this.w_email,
+          w_address: this.w_address,
+          w_gender: this.w_gender,
+          w_level: this.w_level,
+          w_finish: this.w_finish,
+          w_major: this.w_major,
+          w_fndate: this.w_fndate,
+          w_com: this.w_com,
+          w_position: this.w_position,
+          w_join: this.w_join,
+          w_leave: this.w_leave,
+          w_subject: this.w_subject,
+          w_score: this.w_score,
+          w_get: this.w_get,
+          w_license: this.w_license,
+          w_getlicense: this.w_getlicense,
+          user_id: this.user_id,
+          com_id: this.com_id
+        }
+      ).then(() => {
+        this.w_no = this.$route.params.w_no;
+        alert('수정되었습니다.');
+        this.$router.push('/ResumeModify/' + this.w_no);
+      }).catch(err => {
+        console.log(err);
+      })
+    },
   }
 };
 

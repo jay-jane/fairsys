@@ -31,7 +31,7 @@
             </tr>
             <tr>
               <th><label for="w_gender">성별</label></th>
-              <select class="select-graduation" v-model="w_finish">
+              <select class="select-graduation" v-model="w_gender">
                 <option value="남">남</option>
                 <option value="여">여</option>
               </select>
@@ -63,10 +63,10 @@
               <td>
                 <input v-model="w_major" required type="text">
               </td>
-              <th style="padding-top:10px"><label for="w_getlicense">졸업예정날짜</label></th>
+              <th style="padding-top:10px"><label for="w_fndate">졸업예정날짜</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="w_fndate" required type="date">
 
               </td>
             </tr>
@@ -90,17 +90,17 @@
               </td>
             </tr>
             <tr>
-              <th style="padding-top:10px"><label for="w_getlicense">입사일</label></th>
+              <th style="padding-top:10px"><label for="w_join">입사일</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="w_join" required type="date">
 
               </td>
 
-              <th style="padding-top:10px"><label for="w_getlicense">퇴사일</label></th>
+              <th style="padding-top:10px"><label for="w_leave">퇴사일</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="w_leave" required type="date">
 
               </td>
             </tr>
@@ -123,10 +123,10 @@
               </td>
             </tr>
             <tr>
-              <th style="padding-top:10px"><label for="w_getlicense">취득일</label></th>
+              <th style="padding-top:10px"><label for="w_get">취득일</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="w_get" required type="date">
 
               </td>
 
@@ -190,7 +190,7 @@ export default {
       w_license: "",
       w_getlicense: "",
       user_id: "",
-      // user_id: sessionStorage.getItem("user_id")
+      com_id:"",
     };
   },
   methods: {
@@ -199,15 +199,6 @@ export default {
     },
 
     async submitForm() {
-
-
-      // let data = await fetch("/test/registForm", {
-      //     method: "post", 
-      //     body: JSON.stringify({ user_id: "Xxxx" }),
-      //     headers: { "Content-Type": "application/json", }
-      //     })
-      // let result = await data.text();
-      // console.log(result)
 
       this.axios.post('/ResumeRegist',
         {
@@ -230,7 +221,8 @@ export default {
           w_get: this.w_get,
           w_license: this.w_license,
           w_getlicense: this.w_getlicense,
-          user_id: this.user_id
+          user_id: this.user_id,
+          com_id: this.com_id
         }
       ).then(res => {
         console.log(this.user_id)
@@ -300,7 +292,7 @@ export default {
   width: 90%;
 }
 
-.resume-part2-input>tr>td>input {
+.resume-part2-input tr td input {
   width: 10vw;
   margin: 10px;
   border-radius: 5px;

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalpj.backend.command.ResumeWriteVO;
+import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.util.ResumeCriteria;
 
 @Service
@@ -27,8 +28,8 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     @Override
-    public List<ResumeWriteVO> ResumeModify(int w_no) {
-        return resumemapper.ResumeModify(w_no);
+    public List<UserStatusVO> ResumeModify(int user_no) {
+        return resumemapper.ResumeModify(user_no);
        
     }
 
@@ -49,12 +50,17 @@ public class ResumeServiceImpl implements ResumeService{
 
 
     @Override
-    public ArrayList<ResumeWriteVO> getList(ResumeCriteria cri) {
+    public ArrayList<UserStatusVO> getList(ResumeCriteria cri) {
         return resumemapper.getList(cri);
     }
 
     @Override
     public int getTotal(ResumeCriteria cri) {
         return resumemapper.getTotal(cri);
+    }
+
+    @Override
+    public void updateStatus(UserStatusVO vo) {
+        resumemapper.updateStatus(vo);
     }
 }
