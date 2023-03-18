@@ -3,52 +3,42 @@
 <template>
   <section>
     <div class="main">
-      <h3 class="first_name">기업</h3>
-      <table>
-        <thead>
-          <tr>
-            <th class="jb-th-1">번호</th>
-            <th class="jb-th-2">회사이름</th>
-            <th class="jb-th-3">신청일자</th>
-            <th class="jb-th-3">승인일자</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ index + 1 }}</td>
-            <td>{{ item.com_name }}</td>
-            <td>{{ item.com_Application_date }}</td>
-            <td>{{ item.com_registration_date }}</td>
-          </tr> -->
+      <div class="container">
+        <h1>기업목록</h1>
 
-          <tr>
-            <th>2</th>
-            <td>(주)짜장면</td>
+        <div class="searchBox">
+          <input type="text" />
+          <button>검색하기</button>
+        </div>
 
-            <td class="date">2023.03.08</td>
-            <td class="date">2023.03.09</td>
-          </tr>
+        <select v-model="amount" class="list_view">
+          <option value="10" selected>10개씩 보기</option>
+          <option value="30">30개씩 보기</option>
+          <option value="50">50개씩 보기</option>
+          <option value="100">100개씩 보기</option>
+        </select>
 
-          <tr>
-            <th>2</th>
-            <td>(주)짜장면</td>
-            <td class="date">2023.03.08</td>
-            <td class="date">2023.03.09</td>
-          </tr>
-          <tr>
-            <th>3</th>
-            <td>(주)탕수육</td>
-            <td class="date">2023.03.08</td>
-            <td class="date">2023.03.09</td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="list">
+          <thead class="head">
+            <tr>
+              <th class="q">번호</th>
+              <th class="q">회사이름</th>
+              <th class="q">신청일자</th>
+              <th class="q">승인일자</th>
+            </tr>
+          </thead>
+          <tbody class="body">
+            <tr v-for="(item, index) in list" v-bind:key="index">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.com_name }}</td>
+              <td>{{ item.com_Application_date }}</td>
+              <td>{{ item.com_registration_date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
-
-  <footer id="ft" style="border-top: 1px solid">
-    <h3>여기 푸터야</h3>
-  </footer>
 </template>
 
 <script>
@@ -60,6 +50,7 @@ export default {
   data() {
     return {
       list: "",
+      amount: 10,
     };
   },
   methods: {
@@ -78,10 +69,13 @@ export default {
 };
 </script>
 <style>
-body {
-  color: #666;
-  font: 14px/24px "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light",
-    "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Sans-Serif;
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .main {
@@ -89,45 +83,56 @@ body {
   padding: 30px;
 }
 
-table {
-  border-collapse: separate;
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container select {
+  float: left;
+  margin: 10px 0;
+}
+
+.searchBox {
+  float: right;
+  margin: 10px 0;
+}
+
+.list {
+  width: 100%;
+  border-collapse: collapse;
   border-spacing: 0;
-  width: 70%;
 }
 
-th,
-td {
-  padding: 6px 15px;
-}
-th {
-  background: #42444e;
-  color: #fff;
-  text-align: left;
-}
-tr:first-child th:first-child {
-  border-top-left-radius: 6px;
-}
-tr:first-child th:last-child {
-  border-top-right-radius: 6px;
-}
-td {
-  border-right: 1px solid #c6c9cc;
-  border-bottom: 1px solid #c6c9cc;
-}
-td:first-child {
-  border-left: 1px solid #c6c9cc;
-}
-tr:nth-child(even) td {
-  background: #eaeaed;
-}
-tr:last-child td:first-child {
-  border-bottom-left-radius: 6px;
-}
-tr:last-child td:last-child {
-  border-bottom-right-radius: 6px;
-}
-
-.date {
+.head {
+  background-color: #263238;
   text-align: center;
+}
+
+.q {
+  color: #f9f9f9;
+}
+.head th {
+  padding: 1em;
+}
+
+.body tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.body td {
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.body td a {
+  color: #333;
+  text-decoration: none;
+}
+
+.body td a:hover {
+  text-decoration: underline;
 }
 </style>

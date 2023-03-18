@@ -21,82 +21,92 @@
 
   <section>
     <div class="main">
-      <h3 class="first_name">기업관리</h3>
-      <table>
-        <thead>
-          <tr>
-            <th class="jb-th-1">번호</th>
-            <th class="jb-th-2">회사이름</th>
-            <th class="jb-th-3">신청일자</th>
-            <th class="jb-th-4">인가</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item, index) in list" v-bind:key="index">
-            <th>{{ index + 1 }}</th>
-            <td>
-              <!--<a href="#pop1" class="btn" -->
-              <a @click="모달창열렸니 = true">{{ item.com_name }}</a>
-              <!--
-              <div class="POPUP" id="pop1">
-                <h3>{{ item.com_name }}</h3>
-                <table class="poptab">
-                  <thead>
-                    <tr>
-                      <th>회사대표자</th>
-                      <th>담당자</th>
-                      <th>담당자번호</th>
-                      <th>주소</th>
-                      <th>사업자번호</th>
-                    </tr>
-                  </thead>
+      <div class="container">
+        <h3>기업관리</h3>
+        <div class="searchBox">
+          <input type="text" value="title"/>
+          <button @click="search($event.target)">검색</button>
+        </div>
 
-                  <tbody>
-                    <tr>
-                      <td>{{ item.com_ceo }}</td>
-                      <td>{{ item.com_manager }}</td>
-                      <td>{{ item.com_manager_phone }}</td>
-                      <td>{{ item.com_address }}</td>
-                      <td>{{ item.com_postcode }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <a href="#a">닫기</a>
-              </div>
-              <div class="dim"></div>
-              -->
-            </td>
-            <td class="date">{{ item.com_Application_date }}</td>
-            <td>
-              <button class="btn" @click="yesbtn(item.com_id)">승인</button>
-              <div class="space"></div>
-              <button @click="nobtn(item.com_id)">거절</button>
-            </td>
-          </tr>
+        <select v-model="amount" class="view" @change="loglist_view">
+          <option value="10">10개씩 보기</option>
+          <option value="30">30개씩 보기</option>
+          <option value="50">50개씩 보기</option>
+          <option value="100">100개씩 보기</option>
+        </select>
 
-          <!-- <tr>
-              <th>2</th>
-              <td>(주)짜장면</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-             <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>            
+        <table class="list">
+          <thead class="head">
+            <tr>
+              <th class="q">번호</th>
+              <th class="q">회사이름</th>
+              <th class="q">신청일자</th>
+              <th class="q">인가</th>
             </tr>
+          </thead>
+          <tbody class="body">
+            <tr v-for="(item, index) in list" v-bind:key="index">
+              <td>{{ index + 1 }}</td>
+              <td>
+                <a @click="모달창열렸니 = true">{{ item.com_name }}</a>
+              </td>
+              <td class="date">{{ item.com_Application_date }}</td>
+              <td>
+                <button class="btn" @click="yesbtn(item.com_id)">승인</button>
+                <div class="space"></div>
+                <button @click="nobtn(item.com_id)">거절</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
-             <tr>
-              <th>3</th>
-              <td>(주)탕수육</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-              <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>  
-            </tr> -->
-        </tbody>
-      </table>
+          <!-- 페이지 이동 -->
+      <div class="page">
+        <ul>
+          <li>
+            <!-- 맨앞으로 가기 -->
+            <router-link :to="{path: '/11/?page=1&amount='+amount}" @click="goFirstPage">
+              <i class="fa fa-angle-double-left" aria-hidden="true">&lt;&lt;</i>
+            </router-link>
+          </li>
+
+          <!-- 앞으로 가기 -->
+            <li style="margin-right:5px;">
+              <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goBeforePage">
+                <i class="fa fa-angle-left" aria-hidden="true">&lt;</i>
+              </router-link>
+            </li>
+
+           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
+          <div v-for="(item, index) in pageList" :key="index" class="page_btn">
+            <li v-bind:class="{ 'on' : item === page}">
+              <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="thisPage($event.target)">
+                {{item}}
+              </router-link>
+            </li>
+          </div>              
+
+          <!-- 뒤로 가기 -->
+					<li style="margin-left:5px;">
+            <router-link :to="{path: '/11/?page='+page+'&amount='+amount}" @click="goNextPage">
+              <i class="fa fa-angle-right" aria-hidden="true">></i>
+            </router-link>
+          </li>
+
+          <!-- 맨뒤로 가기 -->
+					<li>
+            <router-link :to="{path: '/11/?page='+realEnd+'&amount='+amount}" @click="goLastPage">
+              <i class="fa fa-angle-double-right" aria-hidden="true">>></i>
+            </router-link>
+          </li>
+
+				</ul>
+			</div>
+
+
+      </div>
     </div>
   </section>
-
-  <footer id="ft" style="border-top: 1px solid">
-    <h3>여기 푸터야</h3>
-  </footer>
 </template>
 
 <script>
@@ -108,10 +118,29 @@ export default {
   data() {
     return {
       모달창열렸니: false,
-      list: "",
-      com_id: "",
+       list: "",
+      pages: "", //pageVO
+      pageList: "", //pageVO.pageList 배열값
+      detailNum: "",
+
+      //페이지이동에 필요한 초기값들
+      page: 1,
+      amount: 10,
+      searchTitle: "",
+      searchContent: "",
+      prev: "",
+      pageStart: "",
+      pageEnd: "",
+      realEnd: "",
     };
   },
+
+ watch: {
+    amount: function () {
+      this.get();
+    },
+ },
+
   methods: {
     logout() {
       location.href = "/3";
@@ -140,9 +169,77 @@ export default {
     },
 
     async get() {
-      let res = await Axios.get("/19/1");
-      this.list = res.data;
+      let res = await Axios.get(
+         "/19/1/?amount=" +
+          this.amount +
+          "&page=" +
+          this.page +
+          "&searchTitle=" +
+          this.searchTitle +
+          "&searchContent=" +
+          this.searchContent
+      );
+      this.list = res.data.list;
       console.log(this.list);
+
+      this.pages = res.data.pageVO;
+      this.pageList = this.pages.pageList;
+
+      //페이지이동에 필요한 데이터 담기
+      this.page = this.pages.page;
+      this.searchTitle = this.pages.cri.searchTitle;
+      this.searchContent = this.pages.cri.searchContent;
+      this.prev = this.pages.prev;
+      this.pageStart = this.pages.pageStart;
+      this.pageEnd = this.pages.pageEnd;
+      this.realEnd = this.pages.realEnd;
+    },
+    loglist_view() {
+      this.amount = this.amount;
+    },
+
+    goFirstPage() {
+      this.page = 1;
+      this.get();
+    },
+
+    goBeforePage() {
+      if (this.page > 1) {
+        this.page = this.page - 1;
+      } else {
+        alert("첫번째 페이지입니다.");
+      }
+    },
+
+    thisPage(target) {
+      this.page = target.innerHTML;
+      this.get();
+    },
+
+    goNextPage() {
+      if (this.page < this.realEnd) {
+        this.page = this.page + 1;
+        this.get();
+      } else {
+        alert("마지막 페이지입니다.");
+      }
+    },
+
+    goLastPage() {
+      this.page = this.realEnd;
+      this.get();
+    },
+
+    search(target) {
+      //검색버튼 선택
+
+      const userselect =
+        target.previousElementSibling.previousElementSibling.value;
+      
+      if (userselect === "title") {
+        this.searchTitle = usertext;
+        this.get();
+      }
     },
   },
   mounted() {
@@ -157,104 +254,82 @@ export default {
   padding: 0;
 }
 
-.space {
-  width: 10px;
-  height: auto;
-  display: inline-block;
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  text-decoration: none;
+  box-sizing: border-box;
 }
+
 .main {
   margin: 100px 0 0 200px;
   padding: 30px;
 }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 70%;
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-th,
-td {
-  padding: 6px 15px;
+.container select {
+  float: left;
+  margin: 10px 0;
 }
-th {
-  background: #42444e;
-  color: #fff;
-  text-align: left;
+
+.searchBox {
+  float: right;
+  margin: 10px 0;
 }
-tr:first-child th:first-child {
-  border-top-left-radius: 6px;
+
+.list {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-tr:first-child th:last-child {
-  border-top-right-radius: 6px;
+
+.head {
+  background-color: #263238;
+  text-align: center;
 }
-td {
-  border-right: 1px solid #c6c9cc;
-  border-bottom: 1px solid #c6c9cc;
+
+.head th {
+  padding: 1em;
 }
-td:first-child {
-  border-left: 1px solid #c6c9cc;
+
+.body tr:nth-child(even) {
+  background-color: #f9f9f9;
 }
-tr:nth-child(even) td {
-  background: #eaeaed;
+
+.body td {
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
 }
-tr:last-child td:first-child {
-  border-bottom-left-radius: 6px;
+
+.body td a {
+  color: #333;
+  text-decoration: none;
 }
-tr:last-child td:last-child {
-  border-bottom-right-radius: 6px;
+
+.body td a:hover {
+  text-decoration: underline;
+}
+
+.q {
+  color: #f9f9f9;
+}
+
+.space {
+  width: 10px;
+  height: auto;
+  display: inline-block;
 }
 
 .date {
   text-align: center;
-}
-
-.POPUP {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  box-sizing: border-box;
-  background: #fff;
-  z-index: 5;
-  width: 500px;
-  height: 300px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 5);
-  border-radius: 5px;
-  text-align: right;
-  opacity: 0;
-  transition: all 0.5s;
-}
-.POPUP:target {
-  opacity: 1;
-}
-.POPUP:target + .dim {
-  opacity: 1;
-  z-index: 2;
-}
-
-.POPUP a {
-  color: grey;
-  text-decoration: none;
-}
-
-.dim {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  opacity: 0;
-  transition: all 0.5s;
-}
-
-.poptab {
-  float: left;
-  width: 50%;
-  height: 50%;
 }
 
 div {
@@ -275,5 +350,53 @@ div {
   background: white;
   border-radius: 8px;
   padding: 20px;
+}
+
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.page ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.page li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 14px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+.page li.on {
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.page i {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+.page_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

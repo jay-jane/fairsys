@@ -47,7 +47,7 @@
           <option value="content">내용</option>
         </select>
 
-        <input type="text">
+        <input type="text" value="title" >
         <button @click="search($event.target)">검색</button>
 
       </div>
@@ -402,4 +402,3 @@ export default {
   }
 
 </style>
-
