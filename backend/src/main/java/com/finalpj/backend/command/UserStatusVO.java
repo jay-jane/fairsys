@@ -37,7 +37,7 @@ public class UserStatusVO {
     private Date w_leave;
     private String w_subject;
     private String w_score;
-    private Date w_get;
+    private Date w_get; 
     private String w_license;
     private Date w_getlicense;
     private int user_no;
