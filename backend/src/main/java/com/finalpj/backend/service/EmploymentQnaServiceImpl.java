@@ -9,7 +9,7 @@ import com.finalpj.backend.command.EmploymentQnaVO;
 import com.finalpj.backend.util.Criteria;
 
 @Service("EmploymentQnaService")
-public class EmploymentQnaMapperImpl implements EmploymentQnaService {
+public class EmploymentQnaServiceImpl implements EmploymentQnaService {
     
     @Autowired
     private EmploymentQnaMapper eqm;

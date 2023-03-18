@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service("AdminCompanyService")
 public class AdminCompanyServiceimpl implements AdminCompanyService {
 
-
+  @Autowired AdminCompanyMapper adminCompanyMapper;
 
     @Override
 	public ArrayList<CompanyVO> getList() {
