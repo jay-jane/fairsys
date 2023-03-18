@@ -20,14 +20,14 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/2Login.vue"),
   },
   {
-    path: "/3",
+    path: "/3-1",
     name: "join",
-    component: () => import("../views/3Join.vue"),
+    component: () => import("../views/3-1join.vue"),
   },
   {
-    path: "/33",
+    path: "/3-2",
     name: "join1",
-    component: () => import("../views/3join1.vue"),
+    component: () => import("../views/3-2join.vue"),
   },
   {
     path: "/4",
@@ -40,7 +40,7 @@ const routes = [
     component: () => import("../views/5JobPostingDetail.vue"),
   },
   {
-    path: "/6",
+    path: "/6/mypage",
     name: "mypage",
     component: () => import("../views/6MyPage.vue"),
   },
@@ -57,9 +57,14 @@ const routes = [
     component: () => import("../views/8ResumeModify.vue"),
   },
   {
-    path: "/9",
+    path: "/9-1",
     name: "userInfoModify",
-    component: () => import("../views/9UserInfoModify.vue"),
+    component: () => import("../views/9-1UserInfoModify.vue"),
+  },
+  {
+    path: "/9-2",
+    name: "CompanyInfoModify",
+    component: () => import("../views/9-2CompanyInfoModify.vue"),
   },
   {
 

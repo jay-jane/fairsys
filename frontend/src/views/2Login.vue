@@ -19,23 +19,17 @@
               <label for="check"><span class="icon"></span>로그인 정보 저장</label>
             </div>
             <div class="group">
-              <button type="button" class="button" @click="loginForm">로그인</button>
+              <button type="button" class="button" @click="loginForm1">login</button>
             </div>
             <a href="#">아이디찾기 </a><br>
             <a href="#">비밀번호찾기</a>
-            <br><router-link to="/33">회원가입</router-link>
+            <br><router-link to="/3-1">회원가입</router-link>
 
             <div class="hr"></div>
             <div class="sns">소셜 계정으로 간편 로그인</div>
 
-            <div class="simple_login_box">
-              <div class="simple_login_btn">
-                <div class="login_icon">
-                  <a href="#" class="kakao_login"><img src="" alt="카카오로그인"></a>
-                  <a href="#" class="naver_login"><img src="" alt="네이버로그인"></a>
-                </div>
-              </div>
-            </div>
+            <a @click="kakaoLogin()"><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
+                width="222" alt="카카오 로그인 버튼" /></a>
           </div>
 
 
@@ -54,19 +48,19 @@
               <label for="check1"><span class="icon"></span>로그인 정보 저장 </label>
             </div>
             <div class="group">
-              <button value=2 type="button" class="button" @click="loginForm">로그인</button>
+              <button value=2 type="button" class="button" @click="loginForm2">로그인</button>
             </div>
             <a href="#">아이디찾기 </a><br>
             <a href="#">비밀번호찾기</a><br>
-            <router-link to="/3">회원가입</router-link>
+            <router-link to="/3-2">회원가입</router-link>
             <div class="hr"></div>
             <div class="sns">소셜 계정으로 간편 로그인</div>
-
             <div class="simple_login_box">
               <div class="simple_login_btn">
                 <div class="login_icon">
-                  <a href="#" class="kakao_login"><img src="" alt="카카오로그인"></a>
-                  <a href="#" class="naver_login"><img src="" alt="네이버로그인"></a>
+                  <a class="kakao_login" @click="kakaoLogin()"><img
+                      src="https://k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" alt="카카오로그인"></a>
+                  <a class="naver_login"><img src="" alt="네이버로그인"></a>
                 </div>
               </div>
             </div>
@@ -90,8 +84,8 @@ export default {
     }
   },
   methods: {
-    async loginForm() {
-      this.axios.post('/33/loginForm',
+    async loginForm1() {
+      this.axios.post('/3-1/loginForm',
         {
           user_id: this.user_id,
           user_pw: this.user_pw,
@@ -101,7 +95,7 @@ export default {
         //sessionStorage에 id / auth 추가
         // sessionStorage.setItem('user_id',JSON.stringify(res.data.user_id))
         // sessionStorage.setItem('user_auth',JSON.stringify(res.data.mg_auth))
-        
+
         console.log(res.headers.authorization)
 
         sessionStorage.setItem('user_auth', res.headers.authorization.substr(7))
@@ -110,7 +104,7 @@ export default {
         console.log(sessionStorage)
         this.$router.push({ path: '/' })
         console.log(this.$store.state.logInOut)
-        this.$store.commit("setLogInOut","로그아웃")
+        this.$store.commit("setLogInOut", "로그아웃")
 
 
 
@@ -127,27 +121,82 @@ export default {
           alert("아뒤 비번좀 봐라")
         }
       })
-    }
-    // loginForm : function(e) {
-    //   console.log(e.target.value)
-    //   if(e.target.value==1){
-    //     console.log("이건개인");
-    //     this.axios.post('/33/loginForm', {user_id: this.user_id,user_pw: this.user_pw})
-    //     .then(res => {
-    //         console.log(res);
+    },
+    async loginForm2() {
+      this.axios.post('/3-2/loginForm',
+        {
+          com_id: this.com_id,
+          com_pw: this.com_pw,
+        }
+      ).then(res => {
+        console.log(res)
+        //sessionStorage에 id / auth 추가
+        // sessionStorage.setItem('user_id',JSON.stringify(res.data.user_id))
+        // sessionStorage.setItem('user_auth',JSON.stringify(res.data.mg_auth))
+
+        console.log(res.headers.authorization)
+
+        sessionStorage.setItem('com_auth', res.headers.authorization.substr(7))
+        sessionStorage.setItem('com_id', res.data.com_id)
+        sessionStorage.setItem('ut_no', res.data.ut_no)
+        console.log(sessionStorage)
+        this.$router.push({ path: '/' })
+        console.log(this.$store.state.logInOut)
+        this.$store.commit("setLogInOut", "로그아웃")
+
+
+
+        //서버에서 로그인 성공시 data에는 회원아이디 정도만 저장해서 반환
+        //헤더에 담긴 오소라이제이션 토큰의 bearer를 제외헌 부분을 세션스토리지(브라우저끄면 사라짐) or 스토어에 저장
+        //아이디도 세션스토리지(브라우저끄면 사라짐) or 스토어에 저장
+
+        //회원정보를 가져올때는 header에 토큰을 담아서 항상 보내야됨
+        //서버에서는 filter or 인터셉터로 header에 담긴 토큰의 유효성을 검사하고, 
+        //토큰이 유효하면 컨트롤러, 만료되거나 위조되었으면 거부
+
+      }).catch(err => {
+        if (err.response.status == 401) {
+          alert("아뒤 비번좀 봐라")
+        }
+      })
+    },
+
+    // kakaoLogin() {
+    //   this.axios.get('/api/login')
+    //     .then((response) => {
+    //       console.log(response.data)
+    //       console.warn("warn : " + response);
+    //       window.location.href = response.data;
     //     })
     //     .catch(err=>{
-    //       console.log(err);
+    //       console.log(err)
     //     })
+    // },
+  
 
-    //   }else{
-    //     console.log("이건기업");
-    //   }
+  // getKakaoAccount() {
+  //   window.Kakao.API.request({
+  //     url: '/v2/user/me',
+  //     success: res => {
+  //       const kakao_account = res.kakao_account;
+  //       console.log(res)
+  //       const profile_nickname = kakao_account.profile.nickname;//카카오 닉네임
+  //       const account_email = kakao_account.email;//카카오 닉네임
+  //       console.log('profile_nickname', profile_nickname)
+  //       console.log('account_email', account_email)
+  //       //로그인 처리 구현
+  //       alert("로그인 성공!")
+  //     },
+  //     fail: error => {
+  //       console.log(error);
+  //     }
+  //   })
+  // }
 
-  },
-  mounted(){
-    
-  }
+},
+mounted(){
+
+}
 }
 
 </script>
@@ -361,7 +410,7 @@ a {
   margin-bottom: 30px;
 }
 
-.simple_login_btn .login_icon {
+/* .simple_login_btn .login_icon {
   display: inline;
   margin: 0 auto;
 
@@ -385,6 +434,10 @@ a {
 
 .login_icon .naver_login {
   margin-right: 30px;
+} */
+
+.btn_login {
+  text-align: center;
 }
 </style>
 

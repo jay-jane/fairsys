@@ -1,4 +1,3 @@
-
 <template>
   <div class="admin_nav">
     <ul>
@@ -30,33 +29,99 @@
       <li class="sub_menu_toggle">
         <a href="#">회사정보수정</a>
         <ul class="sub_menu">
-          <li><router-link to="/9">회원정보수정</router-link></li>
+          <li><router-link to="/9-1">회원정보수정</router-link></li>
           <li><a href="#">회원탈퇴</a></li>
         </ul>
       </li>
     </ul>
   </div>
 
-</template>
 
+
+  <div class="my_content_main">
+    <div class="my_content">
+      <table>
+        <div id="my_salary_list_wrap">
+          <div id="my_salary_list_total">
+            <ul>
+              <li class="my_com_info">
+                <div class="my_company_info">
+                  <strong class="my_title">{{userInfo.user_name}}님 안녕하세요</strong>
+                  <a href="#" class="mark">채용중</a>
+                  <dl class="my_info_item">
+                    <dt>이름</dt>
+                    <dd>내용1</dd>
+                  </dl>
+                  <dl class="my_info_item">
+                    <dt>정보2</dt>
+                    <dd>내용2</dd>
+                  </dl>
+                  <dl class="my_info_item">
+                    <dt>정보3</dt>
+                    <dd>내용3</dd>
+                  </dl>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </table>
+      
+
+
+
+    </div>
+
+  </div>
+</template>
+  
 <script>
+import axios from 'axios';
+
 export default {
 
   name: 'App',
   data() {
     return {
-
+     userInfo:'',
     }
 
   },
   methods: {
+    get() {
+     
+      axios.get('/6/mypage',
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          }
+        }).then(res => {
+          console.log(res)
+          console.log(res.data)
+          this.userInfo=res.data
+          
+        }).catch(err => {
+          console.log(err)
+          alert("로그인이 필요한 서비스입니다.")
+          sessionStorage.clear();
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/2' })
 
+        })
+        
+
+    }
+  },
+  mounted(){
+    this.get()
   }
 }
 
 </script>
-
-
+  
+  
 <style>
 * {
   margin: 0;
@@ -65,6 +130,7 @@ export default {
   text-decoration: none;
   color: black;
   box-sizing: border-box;
+  list-style: none;
 }
 
 .my_title {
