@@ -54,16 +54,6 @@
             <a href="#">비밀번호찾기</a><br>
             <router-link to="/3-2">회원가입</router-link>
             <div class="hr"></div>
-            <div class="sns">소셜 계정으로 간편 로그인</div>
-            <div class="simple_login_box">
-              <div class="simple_login_btn">
-                <div class="login_icon">
-                  <a class="kakao_login" @click="kakaoLogin()"><img
-                      src="https://k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" alt="카카오로그인"></a>
-                  <a class="naver_login"><img src="" alt="네이버로그인"></a>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -172,31 +162,31 @@ export default {
     //       console.log(err)
     //     })
     // },
-  
 
-  // getKakaoAccount() {
-  //   window.Kakao.API.request({
-  //     url: '/v2/user/me',
-  //     success: res => {
-  //       const kakao_account = res.kakao_account;
-  //       console.log(res)
-  //       const profile_nickname = kakao_account.profile.nickname;//카카오 닉네임
-  //       const account_email = kakao_account.email;//카카오 닉네임
-  //       console.log('profile_nickname', profile_nickname)
-  //       console.log('account_email', account_email)
-  //       //로그인 처리 구현
-  //       alert("로그인 성공!")
-  //     },
-  //     fail: error => {
-  //       console.log(error);
-  //     }
-  //   })
-  // }
 
-},
-mounted(){
+    // getKakaoAccount() {
+    //   window.Kakao.API.request({
+    //     url: '/v2/user/me',
+    //     success: res => {
+    //       const kakao_account = res.kakao_account;
+    //       console.log(res)
+    //       const profile_nickname = kakao_account.profile.nickname;//카카오 닉네임
+    //       const account_email = kakao_account.email;//카카오 닉네임
+    //       console.log('profile_nickname', profile_nickname)
+    //       console.log('account_email', account_email)
+    //       //로그인 처리 구현
+    //       alert("로그인 성공!")
+    //     },
+    //     fail: error => {
+    //       console.log(error);
+    //     }
+    //   })
+    // }
 
-}
+  },
+  mounted() {
+
+  }
 }
 
 </script>
