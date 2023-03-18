@@ -1,10 +1,7 @@
-<<<<<<< HEAD:backend/src/main/java/com/finalpj/backend/controller/admin/AdminCompanyController.java
 package com.finalpj.backend.controller.admin;
-=======
-package com.finalpj.backend.controller;
 
 import java.io.Console;
->>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46:backend/src/main/java/com/finalpj/backend/controller/AdminCompanyController.java
+
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.GetMapping;
