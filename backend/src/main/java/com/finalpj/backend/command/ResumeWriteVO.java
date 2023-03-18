@@ -34,4 +34,5 @@ public class ResumeWriteVO {
     private String w_license;
     private Date w_getlicense;
     private String user_id;
+    private String com_id;
 }
