@@ -24,14 +24,14 @@ public class JwtInterceptor implements HandlerInterceptor {
         if(request.getMethod().equals("OPTIONS")) {
 			return true;
 		}
-        // request의 헤더에서 jwt-auth-token으로 넘어온 녀석을 찾아본다.
+        // request의 헤더에서 Authorization으로 넘어온 녀석을 찾아본다.
 		String authToken = request.getHeader("Authorization");
 		authToken = authToken.substring(7);
-		System.out.println(authToken);
 		log.debug("경로: {}, 토큰: {}", request.getServletPath(), authToken);
         
 		if (authToken != null) {
 			// 유효한 토큰이면 진행, 그렇지 않으면 예외를 발생시킨다.
+			System.out.println("인터셉터가 받은 토큰: "+authToken);
 			jwtUtil.checkAndGetClaims(authToken);
 			return true;
 		} else {

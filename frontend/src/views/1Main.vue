@@ -2,154 +2,151 @@
 
 <template>
   <section class="">
-      <div role="region" aria-label="추천공고" id="section_contents" class="cont_top">
-          <div class="inner">
-              <div class="wrap_service">
+    <div role="region" aria-label="추천공고" id="section_contents" class="cont_top">
+      <div class="inner">
+        <div class="wrap_service">
 
-                  <div id="lbl-theme-specific-service" class="service_header">
-                      <div role="region">
-                          <ul class="menu_list">
-                              <li><button type="button" class="btn on">1</button>
-                                  <div class="content_body">
-                                      <div class="area_slide">
-                                          <div class="box_btn_prev">
-                                              <div class="slide_step"></div>
-                                              <button type="button" class="btn_prev" style="display: block;"><span
-                                                      class="blind">이전</span></button>
-                                          </div>
-                                          <div class="box_btn_next">
-                                              <div class="slide_step"></div>
-                                              <button type="button" class="btn_next" style="display: block;"><span
-                                                      class="blind">다음</span></button>
-                                          </div>
-                                          <div class="wrap_card">
-                                              <div class="card_list" style="width: 5124px;">
-                                                  <div class="slide">
-                                                      <div class="card _rcmd_recruit recomm_notice">
-
-                                                          <!--가운데 컨텐츠-->
-                                                          <a href="page10">
-                                                              <div class="card_detail">
-                                                                  <div class="logo empty"><img src=""></div>
-                                                                  <div class="box_bubble"><span class="txt">내일 마감</span>
-                                                                  </div>
-                                                                  <div class="box_text"><strong class="tit_type2">회사명</strong></div>
-                                                                  <div class="box_source">
-                                                                      <p class="corp">회사명</p>
-                                                                  </div>
-                                                                  
-                                                              </div>
-                                                          </a>
-                                                          <button class="btn_scrap2"><span
-                                                                  class="blind">스크랩</span></button>
-                                                      </div>
-                                                      <div class="card _rcmd_recruit recomm_notice">
-
-                                                          <a href="page20">
-                                                            <div class="card_detail">
-                                                                  <div class="logo empty"><img src=""></div>
-                                                                  <div class="box_bubble"><span class="txt">회사명</span>
-                                                                  </div>
-                                                                  <div class="box_text"><strong class="tit_type2">[모집중]</strong></div>
-                                                                  <div class="box_source">
-                                                                      <p class="corp">회사명</p>
-                                                                  </div>
-                                                                  
-                                                              </div>
-                                                          </a>
-                                                          <button class="btn_scrap2"><span
-                                                                  class="blind">스크랩</span></button>
-                                                      </div>
-                                                      <div class="card _rcmd_recruit recomm_notice">
-
-                                                          <a href="page30">
-                                                            <div class="card_detail">
-                                                                  <div class="logo empty"><img src=""></div>
-                                                                  <div class="box_bubble"><span class="txt">내일 마감</span>
-                                                                  </div>
-                                                                  <div class="box_text"><strong class="tit_type2">[모집중]</strong></div>
-                                                                  <div class="box_source">
-                                                                      <p class="corp">회사명</p>
-                                                                  </div>
-                                                                  
-                                                              </div>
-                                                          </a>
-                                                          <button class="btn_scrap2"><span
-                                                                  class="blind">스크랩</span></button>
-                                                      </div>
-                                                      <div class="card recomm_notice">
-                                                          <div class="card_detail empty">
-                                                              <svg class="img"></svg>
-                                                              <strong class="title">나에게 딱 매칭되는 공고만<br>모아서 보고싶다면?</strong>
-                                                              <a href="" class="btn_link">Ai매치 공고 더보기</a>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </li>
-                              <li><a href="" class="btn">2</a></li>
-                              <li><a href="" class="btn"><svg class="icon"></svg>3</a></li>
-                              <li><button type="button" class="btn"><svg class="icon"></svg>4</button>
-                                  <div class="content_body">
-                                  </div>
-                              </li>
-                              <li><button type="button" class="btn"><svg class="icon"></svg>5</button>
-                                  <div class="content_body">
-                                  </div>
-                              </li>
-                              <li><button type="button" class="btn"><svg class="icon"></svg>6</button>
-                                  <div class="content_body">
-                                  </div>
-                              </li>
-                              <li><button type="button" class="btn"><svg class="icon"></svg>7</button>
-                                  <div class="content_body">
-                                  </div>
-                              </li>
-                          </ul>
+          <div id="lbl-theme-specific-service" class="service_header">
+            <div role="region">
+              <ul class="menu_list">
+                <li><button type="button" class="btn on"><svg class="icon"></svg>1</button>
+                  <div class="content_body">
+                    <div class="area_slide">
+                      <div class="box_btn_prev">
+                        <div class="slide_step"></div>
+                        <button type="button" class="btn_prev" style="display: block;"><span
+                            class="blind">이전</span></button>
                       </div>
-                  </div>
-                  <div class="service_container">
-  
-                  </div>
-              </div>
-              <div class="wrap_service_aside">
-                  <a href="" class="area_matching banner01" style="display: none;">
-                      
-                  </a>
-                  <a href="" class="area_matching banner02" style="display:">
-                    
-                  </a>
-                  <a href="" class="area_matching banner03" style="display: none;">
-                      
-                  </a>
-                  <div class="area_banner">
-                      <a href="" target="_blank"><img src="" alt="배너넣기" width="292"></a>
-                  </div>
-              </div>
-          </div>
+                      <div class="box_btn_next">
+                        <div class="slide_step"></div>
+                        <button type="button" class="btn_next" style="display: block;"><span
+                            class="blind">다음</span></button>
+                      </div>
+                      <div class="wrap_card">
+                        <div class="card_list" style="width: 5124px;">
+                          <div class="slide">
+                            <div class="card _rcmd_recruit recomm_notice">
 
+                              <!--가운데 컨텐츠-->
+                              <a href="page10">
+                                <div class="card_detail">
+                                  <div class="logo empty"><img src=""></div>
+                                  <div class="box_bubble"><span class="txt">내일 마감</span>
+                                  </div>
+                                  <div class="box_text"><strong class="tit_type2">회사명</strong></div>
+                                  <div class="box_source">
+                                    <p class="corp">회사명</p>
+                                  </div>
+
+                                </div>
+                              </a>
+                              <button class="btn_scrap2"><span class="blind">스크랩</span></button>
+                            </div>
+                            <div class="card _rcmd_recruit recomm_notice">
+
+                              <a href="page20">
+                                <div class="card_detail">
+                                  <div class="logo empty"><img src=""></div>
+                                  <div class="box_bubble"><span class="txt">회사명</span>
+                                  </div>
+                                  <div class="box_text"><strong class="tit_type2">[모집중]</strong></div>
+                                  <div class="box_source">
+                                    <p class="corp">회사명</p>
+                                  </div>
+
+                                </div>
+                              </a>
+                              <button class="btn_scrap2"><span class="blind">스크랩</span></button>
+                            </div>
+                            <div class="card _rcmd_recruit recomm_notice">
+
+                              <a href="page30">
+                                <div class="card_detail">
+                                  <div class="logo empty"><img src=""></div>
+                                  <div class="box_bubble"><span class="txt">내일 마감</span>
+                                  </div>
+                                  <div class="box_text"><strong class="tit_type2">[모집중]</strong></div>
+                                  <div class="box_source">
+                                    <p class="corp">회사명</p>
+                                  </div>
+
+                                </div>
+                              </a>
+                              <button class="btn_scrap2"><span class="blind">스크랩</span></button>
+                            </div>
+                            <div class="card recomm_notice">
+                              <div class="card_detail empty">
+                                <svg class="img"></svg>
+                                <strong class="title">나에게 딱 매칭되는 공고만<br>모아서 보고싶다면?</strong>
+                                <a href="" class="btn_link">Ai매치 공고 더보기</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li><a href="" class="btn"><svg class="icon"></svg>2</a></li>
+                <li><a href="" class="btn"><svg class="icon"></svg>3</a></li>
+                <li><button type="button" class="btn"><svg class="icon"></svg>4</button>
+                  <div class="content_body">
+                  </div>
+                </li>
+                <li><button type="button" class="btn"><svg class="icon"></svg>5</button>
+                  <div class="content_body">
+                  </div>
+                </li>
+                <li><button type="button" class="btn"><svg class="icon"></svg>6</button>
+                  <div class="content_body">
+                  </div>
+                </li>
+                <li><button type="button" class="btn"><svg class="icon"></svg>7</button>
+                  <div class="content_body">
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="service_container">
+
+          </div>
+        </div>
+        <div class="wrap_service_aside">
+          <a href="" class="area_matching banner01" style="display: none;">
+
+          </a>
+          <a href="" class="area_matching banner02" style="display:">
+
+          </a>
+          <a href="" class="area_matching banner03" style="display: none;">
+
+          </a>
+          <div class="area_banner">
+            <a href="" target="_blank"><img src="" alt="배너넣기" width="292"></a>
+          </div>
+        </div>
       </div>
 
-     
-      <div class="company">
-        <div class="com_item"  v-for="작명 in 16" :key="작명">
-          <div class="com_line">
-               <a class="menu">
-                  <ul>
-                      <li><img src="" alt="" width="300px"></li>
-                      <!-- <a href="page16">회사명</a> -->
-                      <li><a href="page1" style="margin-top: 10px;">회사명</a></li>
-                      <li>ㅇㅇㅇ(주)</li>
-                      <li>신입/경력채용</li>
-                      <li>마감일자</li>
-                  </ul>
-              </a>
-              </div>
-          </div>
+    </div>
+
+
+    <div class="company">
+      <div class="com_item" v-for="작명 in 16" :key="작명">
+        <div class="com_line">
+          <a class="menu">
+            <ul>
+              <li><img src="" alt="" width="300px"></li>
+              <!-- <a href="page16">회사명</a> -->
+              <li><a href="page1" style="margin-top: 10px;">회사명</a></li>
+              <li>ㅇㅇㅇ(주)</li>
+              <li>신입/경력채용</li>
+              <li>마감일자</li>
+            </ul>
+          </a>
+        </div>
       </div>
+    </div>
 
   </section>
 </template>
@@ -158,7 +155,7 @@
 
 export default {
   name: 'App'
- 
+
 }
 </script>
  
@@ -174,7 +171,25 @@ body {
   -webkit-text-size-adjust: none
 }
 
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,input,p,
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+input,
+p,
 button {
   margin: 0;
   padding: 0;
@@ -768,8 +783,8 @@ button {
   width: 508px;
   font-size: 12px;
   letter-spacing: -0.5px;
-  line-height: 20px;  
-      
+  line-height: 20px;
+
 }
 
 .cont_top .service_container .area_info .notice_list .list.active {
@@ -867,7 +882,9 @@ button {
 }
 
 
-
+#app{
+  margin-left: 200px;
+}
 
 
 .cont_top .wrap_service_aside .area_matching .btn {
@@ -890,31 +907,65 @@ button {
 /* ////////////////////////////// 하단부 */
 
 .company {
-  width:1300px;
-  overflow: hidden; 
-  padding-top : 30px;
-  margin: 0 auto; 
+  width: 1300px;
+  overflow: hidden;
+  padding-top: 30px;
+  margin: 0 auto;
 }
-.com_item {display: inline; float: left;}
+
+.com_item {
+  display: inline;
+  float: left;
+}
 
 .company a {
-     /* display:block;  */
-        padding:10px;
-       width:305px;
-      float: left;
-      text-decoration: none;}
-.company ul {position: relative;}
-.company ul li {display:block;
-           text-align: left;
-          }
-.menu ul {box-sizing: border-box;}
-.company a ul li:nth-child(2) {font-size:25px;width:305px;border-bottom:1px solid #d6d6d6;padding:20px 0;}
-.company a ul li:nth-child(3) {padding: 5px 0 20px 0;}
+  /* display:block;  */
+  padding: 10px;
+  width: 305px;
+  float: left;
+  text-decoration: none;
+}
+
+.company ul {
+  position: relative;
+}
+
+.company ul li {
+  display: block;
+  text-align: left;
+}
+
+.menu ul {
+  box-sizing: border-box;
+}
+
+.company a ul li:nth-child(2) {
+  font-size: 25px;
+  width: 305px;
+  border-bottom: 1px solid #d6d6d6;
+  padding: 20px 0;
+}
+
+.company a ul li:nth-child(3) {
+  padding: 5px 0 20px 0;
+}
+
 .company a ul li:nth-child(3),
-.company a ul li:nth-child(4)
-{color:#777777;}
-.company a ul li:nth-child(5) {position:absolute;top:280px;right:0;background-color: rgb(38, 92, 255);padding:5px 20px;color:white;border-radius: 17px;}
+.company a ul li:nth-child(4) {
+  color: #777777;
+}
 
-
+.company a ul li:nth-child(5) {
+  position: absolute;
+  top: 280px;
+  right: 0;
+  background-color: rgb(38, 92, 255);
+  padding: 5px 20px;
+  color: white;
+  border-radius: 17px;
+}
+.btn_login {
+    text-align: center;
+}
 </style>
  

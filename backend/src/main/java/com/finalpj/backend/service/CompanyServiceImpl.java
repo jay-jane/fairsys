@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
 import com.finalpj.backend.util.JobCriteria;
 
@@ -42,6 +43,11 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public int getTotal(JobCriteria jcri) {
         return mapper.getTotal(jcri);
+    }
+
+    @Override
+    public List<CompanyVO> getCompanyVO(String com_id) {
+        return mapper.getCompanyVO(com_id);
     }
     
 }

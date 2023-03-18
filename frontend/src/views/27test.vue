@@ -1,65 +1,44 @@
+<!-- Q&A 페이지 -->
+
 <template>
-  <div class="black-bg" v-if="모달창열렸니 == true">
-    <div class="white-bg">
-      <h4>
-        <td>{{ com_ceo }}</td>
-      </h4>
-      <p>상페이지내용임</p>
-      <button @click="모달창열렸니 = false">닫기</button>
-    </div>
-  </div>
-
   <section>
-    <div class="bg">
-      <h3 class="first_name">기업관리</h3>
-      <table>
-        <thead>
-          <tr>
-            <th class="jb-th-1">번호</th>
-            <th class="jb-th-2">회사이름</th>
-            <th class="jb-th-3">신청일자</th>
-            <th class="jb-th-3">마감일자</th>
-            <th class="jb-th-4">인가</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(item, index) in list" v-bind:key="index">
-            <th>{{ index + 1 }}</th>
-            <td>
-              <h4 @click="모달창열렸니 = true">{{ item.com_name }}</h4>
-            </td>
-            <td class="date">2023.03.08</td>
-            <td class="date">2023.03.09</td>
-            <td>
-              <button class="btn">승인</button>
-              <div class="space"></div>
-              <button>거절</button>
-            </td>
-          </tr>
+    <div class="main">
+      <div class="container">
+        <h1>기업목록</h1>
 
-          <!-- <tr>
-              <th>2</th>
-              <td>(주)짜장면</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-             <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>            
+        <div class="searchBox">
+          <input type="text" />
+          <button>검색하기</button>
+        </div>
+
+        <select v-model="amount" class="list_view">
+          <option value="10" selected>10개씩 보기</option>
+          <option value="30">30개씩 보기</option>
+          <option value="50">50개씩 보기</option>
+          <option value="100">100개씩 보기</option>
+        </select>
+
+        <table class="list">
+          <thead class="head">
+            <tr>
+              <th class="q">번호</th>
+              <th class="q">회사이름</th>
+              <th class="q">신청일자</th>
+              <th class="q">승인일자</th>
             </tr>
-
-             <tr>
-              <th>3</th>
-              <td>(주)탕수육</td>
-              <td class="date">2023.03.08</td>
-              <td class="date">2023.03.09</td>
-              <td><button class="btn">승인</button><div class="space"></div><button>거절</button></td>  
-            </tr> -->
-        </tbody>
-      </table>
+          </thead>
+          <tbody class="body">
+            <tr v-for="(item, index) in list" v-bind:key="index">
+              <td>{{ index + 1 }}</td>
+              <td>{{ item.com_name }}</td>
+              <td>{{ item.com_Application_date }}</td>
+              <td>{{ item.com_registration_date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
-
-  <footer id="ft" style="border-top: 1px solid">
-    <h3>여기 푸터야</h3>
-  </footer>
 </template>
 
 <script>
@@ -70,8 +49,8 @@ export default {
 
   data() {
     return {
-      모달창열렸니: false,
       list: "",
+      amount: 10,
     };
   },
   methods: {
@@ -79,7 +58,7 @@ export default {
       location.href = "/3";
     },
     async get() {
-      let res = await Axios.get("/27");
+      let res = await Axios.get("/18");
       this.list = res.data;
       console.log(this.list);
     },
@@ -89,80 +68,71 @@ export default {
   },
 };
 </script>
-
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap");
 * {
-  margin: 0;
   padding: 0;
-}
-
-.space {
-  width: 10px;
-  height: auto;
-  display: inline-block;
-}
-
-table {
-  padding: auto;
-  margin: auto;
-  border: 1px solid black;
-  border-collapse: collapse;
-  border-radius: 5px;
-}
-
-th {
-  border: 1px solid black;
-}
-
-td {
-  border: 1px solid black;
-  text-align: center;
-}
-
-.jb-th-1 {
-  width: 200px;
-  background-color: bisque;
-}
-
-.jb-th-2 {
-  width: 600px;
-  background-color: bisque;
-  text-align: center;
-}
-
-.jb-th-3 {
-  width: 200px;
-  background-color: bisque;
-  text-align: center;
-}
-
-.jb-th-4 {
-  width: 100px;
-  background-color: bisque;
-  text-align: center;
-}
-
-.date {
-  text-align: center;
-}
-
-div {
+  margin: 0;
+  font-family: "Noto Sans KR", sans-serif;
+  text-decoration: none;
   box-sizing: border-box;
 }
 
-.black-bg {
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  padding: 20px;
+.main {
+  margin: 100px 0 0 200px;
+  padding: 30px;
 }
 
-.white-bg {
-  width: 50%;
-  height: 300px;
-  background: white;
-  border-radius: 8px;
-  padding: 20px;
+.container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.container select {
+  float: left;
+  margin: 10px 0;
+}
+
+.searchBox {
+  float: right;
+  margin: 10px 0;
+}
+
+.list {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.head {
+  background-color: #263238;
+  text-align: center;
+}
+
+.q {
+  color: #f9f9f9;
+}
+.head th {
+  padding: 1em;
+}
+
+.body tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.body td {
+  padding: 1em;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.body td a {
+  color: #333;
+  text-decoration: none;
+}
+
+.body td a:hover {
+  text-decoration: underline;
 }
 </style>

@@ -131,6 +131,7 @@ export default {
 
       if (newStartDate && newEndDate && newStartDate > newEndDate) {
         alert('시작일은 종료일보다 작거나 같아야합니다.');
+        this.startDate = this.startDate;
       }
 
     });

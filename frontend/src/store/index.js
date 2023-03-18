@@ -1,6 +1,9 @@
 import { createStore } from 'vuex'
+import {createVuexPersistedState} from "vue-persistedstate";
 
 export default createStore({
+  plugins: [createVuexPersistedState()],
+
   state: {
     logInOut:'로그인',
   },
@@ -13,5 +16,6 @@ export default createStore({
   actions: {
   },
   modules: {
-  }
+  },
+
 })
