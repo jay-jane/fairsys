@@ -15,7 +15,7 @@
           <a href="#">이력서</a>
           <ul class="sub_menu">
             <li><router-link to="/ResumeRegist">이력서 작성</router-link></li>
-            <li><a href="#"></a></li>
+            <li><router-link to="/UserMypage">이력서 목록</router-link></li>
           </ul>
         </li>
   
@@ -31,7 +31,7 @@
           <a href="#">회사정보수정</a>
           <ul class="sub_menu">
             <li><router-link to="/9">회원정보수정</router-link></li>
-            <li><a href="page34">회원탈퇴</a></li>
+            <li><a href="#">회원탈퇴</a></li>
           </ul>
         </li>
       </ul>

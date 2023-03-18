@@ -11,25 +11,22 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
 
   @Autowired AdminCompanyMapper adminCompanyMapper;
 
-    @Override
-	public ArrayList<CompanyVO> getList() {
-		return adminCompanyMapper.getList();
-    
-    }
-    
+
   @Override
-	public ArrayList<CompanyVO> getNlist() {
-	return adminCompanyMapper.getNlist();
+  public ArrayList<CompanyVO> getList() {
+    return adminCompanyMapper.getList();
+
   }
 
 
-   @Override
-   public int companyModify(String com_id) {
-     return adminCompanyMapper.companyModify(com_id);
-    
+  @Override
+  public ArrayList<CompanyVO> getNlist() {
+    return adminCompanyMapper.getNlist();
+  }
+
+  @Override
+  public int companyModify(String com_id) {
+    return adminCompanyMapper.companyModify(com_id);
+
   }
 }
-
-
-  
-
