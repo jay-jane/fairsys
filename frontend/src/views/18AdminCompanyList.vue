@@ -28,7 +28,6 @@
             <td>{{ item.com_registration_date }}</td>
           </tr>
 
- 
 
           <!-- <tr>
             <th>2</th>

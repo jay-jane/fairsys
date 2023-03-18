@@ -11,6 +11,7 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
 
   @Autowired AdminCompanyMapper adminCompanyMapper;
 
+
   @Override
   public ArrayList<CompanyVO> getList() {
     return adminCompanyMapper.getList();

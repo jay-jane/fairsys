@@ -1,5 +1,5 @@
 CREATE TABLE job_posting (
-  j_no int primary key AUTO_INCREMENT,
+  j_no int primary key auto_increment,
   j_regdate datetime default CURRENT_TIMESTAMP, -- 공고 등록일
   j_recruitNum varchar(4) not null, -- 모집 인원
   j_email varchar(80), -- 담당자 이메일
@@ -8,10 +8,10 @@ CREATE TABLE job_posting (
   j_end_date datetime, -- 마감일
   j_salary varchar(100) not null, -- 급여(연봉)
   j_department varchar(50) not null, -- 모집 분야(부서)
-  j_schedule varchar(1) default 'A', -- 전형 절차
-  j_graduation varchar(1) default 'N', -- 학력
-  j_career varchar(1) default 'N', -- 경력
+  j_schedule varchar(200), -- 전형 절차
+  j_graduation varchar(30) not null, -- 학력
+  j_career varchar(10) not null, -- 경력
   j_type varchar(10) not null, -- 근무형태
-  com_id varchar(50) not null
+  com_id varchar(50) -- fk
 );
 
