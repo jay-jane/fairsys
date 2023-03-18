@@ -412,7 +412,9 @@ export default {
   },
   mounted() {
     // this.getJobDetail();
-    this.getCompanyVO();
+    // this.getCompanyVO();
+    console.log(this.$route.query.com_id);
+    console.log(this.$route.params.com_id);
   }
 }
 
