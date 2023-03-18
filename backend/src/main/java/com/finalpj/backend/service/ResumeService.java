@@ -21,7 +21,7 @@ public interface ResumeService {
  
  
  public void ResumeUpdate(ResumeWriteVO vo); //이력서 수정
- public ArrayList<ResumeWriteVO> UserMyPage(); //마이페이지
+ public ArrayList<UserStatusVO> UserMyPage(); //마이페이지
  public void delete(int w_no); //삭제
  public ArrayList<UserStatusVO> getList(ResumeCriteria cri); //이력서 조회
  public int getTotal(ResumeCriteria cri); //페이지네이션

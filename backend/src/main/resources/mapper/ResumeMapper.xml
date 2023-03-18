@@ -75,9 +75,9 @@
 		where w_no = #{w_no};
 	</update>
 
-	<select id="UserMyPage" parameterType="ResumeWriteVO"
-		resultType="ResumeWriteVO">
-		select * from resume_write order by w_no desc;
+	<select id="UserMyPage" parameterType="UserStatusVO"
+		resultType="UserStatusVO">
+		select * from user_status order by user_no desc;
 	</select>
 
 

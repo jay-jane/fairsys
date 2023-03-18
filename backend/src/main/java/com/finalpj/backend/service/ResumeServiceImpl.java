@@ -39,7 +39,7 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     @Override
-    public ArrayList<ResumeWriteVO> UserMyPage() {
+    public ArrayList<UserStatusVO> UserMyPage() {
         return resumemapper.UserMyPage();
     }
 

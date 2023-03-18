@@ -26,7 +26,7 @@ public class ResumeController {
 
     @GetMapping("/ApplyStatus")
     public ResumeOneGate list(ResumeCriteria cri) {
-                //페이지네이션 처리
+                //페이지네이션 처리 page - ApplyStatus
                 // System.out.println(1);
                 int total =  resumeService.getTotal(cri);
                 ResumePageVO pageVO = new ResumePageVO(cri, total);
@@ -83,9 +83,9 @@ public class ResumeController {
 
         //이력서 마이페이지
         @GetMapping("/UserMyPage")
-        public ArrayList<ResumeWriteVO> UserMyPage (){
+        public ArrayList<UserStatusVO> UserMyPage (){
     
-            ArrayList<ResumeWriteVO> UserMyPage = resumeService.UserMyPage();
+            ArrayList<UserStatusVO> UserMyPage = resumeService.UserMyPage();
             System.out.println(UserMyPage.toString());
             resumeService.UserMyPage();
             return UserMyPage;

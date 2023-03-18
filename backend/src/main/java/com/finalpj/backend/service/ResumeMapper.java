@@ -19,7 +19,7 @@ public interface ResumeMapper {
    
     public List<UserStatusVO> ResumeModify(@Param("user_no") int user_no);
     public void ResumeUpdate(ResumeWriteVO vo);
-    public ArrayList<ResumeWriteVO> UserMyPage();
+    public ArrayList<UserStatusVO> UserMyPage();
     public void delete(int w_no);
     public int getTotal();
     
