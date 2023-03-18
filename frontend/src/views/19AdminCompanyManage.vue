@@ -11,7 +11,7 @@
           </tr>
         </thead>
         <tr v-for="(item, index) in list" :key="index">
-          <td>{{ item.com_ceo }}</td>
+          <td>{{ item.com_ceo}}</td>
           <td>{{ item.com_postcode }}</td>
         </tr>
       </table>
@@ -62,7 +62,7 @@
             <option value="title">회사이름</option>
         </select>
 
-        <input type="text"  >
+        <input type="text">
         <button @click="search($event.target)">검색</button>
 
       </div>
