@@ -42,7 +42,7 @@
           </thead>
           <tbody class="body">
             <tr v-for="(item, index) in list" v-bind:key="index">
-              <td>{{ index + 1 }}</td>
+              <td>{{item.c_no}}</td>
               <td>
                 <a @click="모달창열렸니 = true">{{ item.com_name }}</a>
               </td>
