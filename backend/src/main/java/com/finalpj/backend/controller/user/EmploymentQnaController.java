@@ -27,7 +27,7 @@ public class EmploymentQnaController {
 
 
     @GetMapping("/11/")
-    public  OneGate list (String user_id, Criteria cri){
+    public  OneGate<EmploymentQnaVO> list (String user_id, Criteria cri){
 
         //페이지네이션 처리
         int total = eqs.getTotal("aaa123", cri);
@@ -36,10 +36,10 @@ public class EmploymentQnaController {
         
        //게시글 처리
         ArrayList<EmploymentQnaVO> list =eqs.getList("aaa123", cri);
-        OneGate ogate = new OneGate(list,pageVO);
+        OneGate<EmploymentQnaVO> ogate = new OneGate<>(list,pageVO);
 
         //System.out.println(ogate.toString());
-        //System.out.println(list.toString());
+        System.out.println(list.toString());
         return ogate;
     }
 

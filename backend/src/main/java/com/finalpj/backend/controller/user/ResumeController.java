@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.finalpj.backend.command.ResumeWriteVO;
+import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.service.ResumeService;
 import com.finalpj.backend.util.ResumeCriteria;
 import com.finalpj.backend.util.ResumeOneGate;
@@ -25,12 +26,17 @@ public class ResumeController {
 
     @GetMapping("/ApplyStatus")
     public ResumeOneGate list(ResumeCriteria cri) {
-                //페이지네이션 처리
+                //페이지네이션 처리 page - ApplyStatus
+                // System.out.println(1);
                 int total =  resumeService.getTotal(cri);
                 ResumePageVO pageVO = new ResumePageVO(cri, total);
+                // System.out.println(2);
                 //게시글 처리
-                ArrayList<ResumeWriteVO> list = resumeService.getList(cri);
+                ArrayList<UserStatusVO> list = resumeService.getList(cri);
+                // System.out.println(3);
                 ResumeOneGate ogate = new ResumeOneGate(list, pageVO);
+                
+                
                 // System.out.println(list.toString());
                 return ogate;
     }
@@ -48,20 +54,22 @@ public class ResumeController {
    
        //이력서 작성
        @PostMapping("/ResumeRegist")
-       public String ResumeRegist(@RequestBody ResumeWriteVO vo){
+       public void ResumeRegist(@RequestBody ResumeWriteVO vo){
    
            System.out.println(vo.toString());
            resumeService.ResumeRegist(vo);
-         
-           return "ResumeModify";
        }
    
        //이력서 상세조회
-       @GetMapping("/ResumeModify")
-       public List<ResumeWriteVO> ResumeModify() {
-           List<ResumeWriteVO> list = resumeService.ResumeModify();
+       @GetMapping("/ResumeModify/{user_no}")
+       public List<UserStatusVO> ResumeModify(@PathVariable(value = "user_no") int user_no)  {
+        System.out.println(1);
+           List<UserStatusVO> list = resumeService.ResumeModify(user_no);
+           System.out.println(list.toString());
            return list;
        }
+
+       
    
        //이력서 수정
       
@@ -75,9 +83,9 @@ public class ResumeController {
 
         //이력서 마이페이지
         @GetMapping("/UserMyPage")
-        public ArrayList<ResumeWriteVO> UserMyPage (){
+        public ArrayList<UserStatusVO> UserMyPage (){
     
-            ArrayList<ResumeWriteVO> UserMyPage = resumeService.UserMyPage();
+            ArrayList<UserStatusVO> UserMyPage = resumeService.UserMyPage();
             System.out.println(UserMyPage.toString());
             resumeService.UserMyPage();
             return UserMyPage;
@@ -89,7 +97,16 @@ public class ResumeController {
             System.out.println(vo.getW_no());
             resumeService.delete(vo.getW_no());
         
-        
-}
+            
+        }
+
+        //진행 상황 갱신
+        @PostMapping("/updateStatus")
+        public void updateStatus(@RequestBody UserStatusVO vo) {
+            System.out.println(vo.getW_no());
+            System.out.println(vo.getStatus());
+            System.out.println(vo.getCom_id());
+            resumeService.updateStatus(vo);
+        }
 
 }

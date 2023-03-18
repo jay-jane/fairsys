@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
+import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.service.CompanyService;
 import com.finalpj.backend.util.JobCriteria;
 import com.finalpj.backend.util.JobOneGate;
@@ -49,6 +51,7 @@ public class JobPostingController {
 
     @GetMapping("/jobPostingDetail/{j_no}")
     public List<JobPostingVO> getJobDetail(@PathVariable(value = "j_no", required = false) int j_no) {
+        System.out.println();
         List<JobPostingVO> list = service.getJobDetail(j_no);
         return list;
     }
@@ -62,6 +65,18 @@ public class JobPostingController {
     @PostMapping("/jobPostingDelete")
     public void delete(@RequestBody JobPostingVO vo) {
         service.delete(vo.getJ_no());
+    }
+
+    @PostMapping("/apply")
+    public void apply(@RequestBody UserStatusVO vo) {
+        
+    }
+
+    @GetMapping("/registJobPosting/{com_id}")
+    public List<CompanyVO> posting(@PathVariable("com_id") String com_id) {
+        System.out.println(com_id);
+        List<CompanyVO> list = service.getCompanyVO(com_id);
+        return list;
     }
 
 }

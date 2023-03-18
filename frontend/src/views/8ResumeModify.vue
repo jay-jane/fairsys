@@ -2,62 +2,55 @@
 <template>
   <section id="section">
     <div class="resume">
-      <div class="resume-wrapper">
-        <ul class="step-progress">
-          <li class="step-progress-item current">
-            <router-link to="#"> <strong>기본정보</strong></router-link>
-          </li>
-          <li class="step-progress-item">
-            <router-link to="#"> <strong>학력/경력</strong></router-link>
-          </li>
-          <li class="step-progress-item">
-            <router-link to="#"><strong>어학/자격증</strong></router-link>
-          </li>
-          <li class="step-progress-item">
-            <router-link to="#"><strong>???</strong></router-link>
-          </li>
-          <li class="step-progress-item">
-            <router-link to="#"><strong>???</strong></router-link>
-          </li>
-        </ul>
-        <div class="resume-btn-box">
-          <div>
-            <!-- <div class="resume-save-btn" @click="submitForm">수정</div>
-            <div class="resume-exit-btn" @click="exit">종료</div> -->
-          </div>
-        </div>
-      </div>
+
 
 
       <div class="resume-main">
-        <div class="resume-part-title">이력서</div>
- 
+        <div class="resume-part-title">개인이력서</div>
+        <div class="resume-status-update" style="float: right;">
+          <select id="" @change="getStatusValue">
+            <option value="대기">대기</option>
+            <option value="진행중">진행중</option>
+            <option value="합격">합격</option>
+            <option value="불합격">불합격</option>
+          </select>
+          <button type="button" @click="updateStatus">적용</button>
+        </div>
         <div v-for="(item, index) in list">
-          <div v-if="item.w_no == w_no">
-            <div class="resume-part-box">
-
-              <table class="resume-part-table">
+          <div >
+            <h3 style="text-align: left;">개인정보</h3>
+            <div class="resume-part2-box">
+              <table class="resume-part2-input">
+                
                 <tr>
-                  <th><label for="w_name">이름</label></th>
-                  <td>{{ item.w_name }}</td>
-                </tr>
-                <tr>
-                  <th><label for="w_hp">연락처</label></th>
+                  <th><label for="w_level">이름</label></th>
                   <td>
-                    {{ item.w_hp }}
+                    <input type="hidden" :value="item.user_no">
+                    {{ item.w_name }}
+                  </td>
+                  <th class="pl-15"><label for="w_finish">연락처</label></th>
+                  <td>
+                    <div class="graduation">
+
+                      {{ item.w_hp }}
+
+                    </div>
                   </td>
                 </tr>
                 <tr>
-                  <th><label for="w_email">이메일</label></th>
-                  <td>{{ item.w_email }}</td>
-                </tr>
-                <tr>
-                  <th><label for="w_address">주소</label></th>
+                  <th><label for="w_level">이메일</label></th>
                   <td>
-                    {{ item.w_address }} </td>
-                </tr>
-                <tr>
-                  <th><label for="w_gender">성별</label></th>
+                    {{ item.w_email }}
+                  </td>
+                  <th class="text_resume"><label for="w_finish">주소</label></th>
+                  <td>
+                    <div class="graduation">
+
+                      {{ item.w_address }}
+
+                    </div>
+                  </td>
+                  <th><label for="w_level">성별</label></th>
                   <td>
                     {{ item.w_gender }}
                   </td>
@@ -65,51 +58,40 @@
 
               </table>
             </div>
+
+
             <h3 style="text-align: left;">학력</h3>
             <div class="resume-part2-box">
               <table class="resume-part2-input">
-
                 <tr>
-                  <th><label for="w_level">최종학력</label></th>
+                  <th><label for="w_com">최종학력</label></th>
                   <td>
                     {{ item.w_level }}
                   </td>
-                  <th class="pl-15"><label for="w_finish">졸업여부</label></th>
+                  <th><label for="w_position">졸업여부</label></th>
                   <td>
-                    <div class="graduation">
-
-                      {{ item.w_finish }}
-                      
-                    </div>
+                    {{ item.w_finish }}
                   </td>
                 </tr>
                 <tr>
-                  <th><label for="w_major">전공</label></th>
-                  <td>
-                    {{ item.w_major }}
-                  </td>
-                  <th style="padding-top:10px"><label for="w_fndate">졸업/졸업예정날짜</label></th>
+                  <th style="padding-top:10px"><label for="w_join">전공</label></th>
                   <td>
 
-                    <label for="w_fndate">
+                    <label for="w_join">
+                      {{ item.w_major }}
+                    </label>
+                  </td>
+                  <th style="padding-top:10px"><label for="w_leave">졸업/졸업예정날짜</label></th>
+                  <td>
+
+                    <label for="w_leave">
                       {{ item.w_fndate }}
                     </label>
                   </td>
                 </tr>
-              <!-- <tr>
-          <th style="padding-top:10px">입학</th>
-          <td>
-            <v-app class="date-pick">
-            </v-app>
-          </td>
-          <th class="pl-15" style="padding-top:10px">졸업</th>
-          <td>
-            
-          </td>
-          </tr> -->
+
               </table>
             </div>
-
 
             <!-- /// -->
             <h3 style="text-align: left;">경력</h3>
@@ -154,7 +136,7 @@
                   <td>
                     {{ item.w_subject }}
                   </td>
-                  <th class="pl-15"><label for="w_score">점수</label></th>
+                  <th class="text_resume"><label for="w_score">점수</label></th>
                   <td>
                     {{ item.w_score }}
                   </td>
@@ -168,17 +150,6 @@
                   </td>
                 </tr>
 
-              <!-- <tr>
-          <th style="padding-top:10px">입학</th>
-          <td>
-            <v-app class="date-pick">
-            </v-app>
-          </td>
-          <th class="pl-15" style="padding-top:10px">졸업</th>
-          <td>
-            
-          </td>
-          </tr> -->
               </table>
             </div>
 
@@ -187,7 +158,7 @@
             <div class="resume-part2-box">
               <table class="resume-part2-input">
                 <tr>
-                  <th class="pl-15"><label for="w_license">자격증명</label></th>
+                  <th class="text_resume"><label for="w_license">자격증명</label></th>
                   <td>
                     {{ item.w_license }}
                   </td>
@@ -203,6 +174,8 @@
       </div>
     </div>
 
+    
+
 
   </section>
 </template>
@@ -212,43 +185,61 @@ export default {
   name: 'App',
   data() {
     return {
-                  w_no: "",
-                  w_name: "",
-                  w_hp: "",
-                  w_email: "",
-                  w_address: "",
-                  w_gender: "",
-                  w_level: "",
-                  w_finish: "",
-                  w_major: "",
-                  w_fndate: "",
-                  w_com: "",
-                  w_position: "",
-                  w_join: "",
-                  w_leave: "",
-                  w_subject: "",
-                  w_score: "",
-                  w_get: "",
-                  w_license: "",
-                  w_getlicense: "",
+      w_no: "",
+      w_name: "",
+      w_hp: "",
+      w_email: "",
+      w_address: "",
+      w_gender: "",
+      w_level: "",
+      w_finish: "",
+      w_major: "",
+      w_fndate: "",
+      w_com: "",
+      w_position: "",
+      w_join: "",
+      w_leave: "",
+      w_subject: "",
+      w_score: "",
+      w_get: "",
+      w_license: "",
+      w_getlicense: "",
+      user_id: "",
+      com_id:"",
       list: [],
+      
+      //진행 상황
+      status: '',
     }
   },
   methods: {
-    ApplyStatus() {
-      this.axios.get("/ApplyStatus/")
+    ResumeModify() {
+      this.user_no = this.$route.params.user_no;
+      this.axios.get('/ResumeModify/' + this.user_no, { params: { "user_no": this.user_no } })
         .then(res => {
-          this.a = this.$route.query.w_no;
-          this.w_no = this.$route.query.w_no;
           this.list = res.data;
+          console.log(this.list)
         })
         .catch(err => {
           console.log(err);
         });
     },
+    getStatusValue(e) {
+      this.status = e.target.value;
+    },
+    updateStatus() {
+      console.log(this.status);
+      console.log(this.list[0].com_id);
+      console.log(this.list[0].w_no);
+      this.axios.post("/updateStatus", {user_no: this.list[0].user_no, status: this.status, com_id: this.list[0].com_id} )
+                .then(() => {
+                  this.$router.push('/ApplyStatus');
+                })
+                .catch(err => console.log(err));
+    }
   },
   mounted() {
-    this.ApplyStatus();
+    this.ResumeModify();
   },
 };
 </script>
@@ -272,123 +263,6 @@ export default {
 }
 
 
-.step-progress {
-  padding-left: 50px;
-}
-
-
-.step-progress {
-  position: relative;
-  list-style: none;
-  padding-left: 45px;
-}
-
-.step-progress::before {
-  display: inline-block;
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 24px;
-  width: 10px;
-  height: 92%;
-  border-left: 2px solid #ccc;
-}
-
-.step-progress-item {
-  position: relative;
-  counter-increment: list;
-  padding-top: 10px;
-  padding-left: 15px;
-  cursor: pointer;
-  padding-bottom: 30px;
-}
-
-.step-progress::before {
-  display: inline-block;
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 24px;
-  width: 10px;
-  height: 92%;
-  border-left: 2px solid #ccc;
-}
-
-.step-progress-item::after {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: -38px;
-  width: 32px;
-  height: 32px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  background-color: #fff;
-  text-align: center;
-  line-height: 30px;
-  content: attr(data-step);
-}
-
-.step-progress-item.current::after {
-  background-size: 24px 24px;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 32px;
-  height: 32px;
-  top: 0;
-  left: -38px;
-  font-size: 14px;
-  text-align: center;
-  background-color: black;
-  color: white;
-
-}
-
-.step-progress strong {
-  display: block;
-}
-
-
-.resume-save-btn {
-  margin-top: 50px;
-  width: 120px;
-  text-align: center;
-  line-height: 50px;
-  height: 50px;
-  background-color: black;
-  border-radius: 30px;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  background-size: 300% 100%;
-  border-radius: 50px;
-}
-
-.resume-exit-btn {
-  margin-top: 20px;
-  width: 120px;
-  text-align: center;
-  line-height: 50px;
-  height: 50px;
-  background-color: black;
-  border-radius: 30px;
-  color: white;
-  font-weight: 700;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 50px;
-}
-
-.resume-btn-box {
-  display: flex;
-  justify-content: center;
-}
-
-
-
 /* 본문 */
 .resume-part-title {
   font-size: 40px;
@@ -396,61 +270,16 @@ export default {
   font-weight: bold;
 }
 
-.resume-part-sub {
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 50px;
-}
-
-.image-label {
-  display: flex;
-  width: 10vw;
-  height: 20vh;
-  cursor: pointer;
-  border: 2px solid #ccc;
-  overflow: hidden;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-}
-
 .resume-part-box {
   display: flex;
   text-align: left;
   justify-content: center;
   align-items: center;
-  /* background-color: rgba(230, 230, 230, 0.12); */
   padding: 30px 0px;
   margin: 20px 0px;
   border-radius: 30px;
   box-shadow: 0 2px 6px rgb(0 0 0 / 20%);
   width: 42vw;
-}
-
-.resume-part-table {
-  padding-left: 40px;
-  display: inline-block;
-}
-
-.resume-part-table>tr>td {
-  padding-left: 20px;
-}
-
-.resume-part-table>tr>td>input {
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  padding: 2px 3px;
-  margin: 1%;
-  width: 13vw;
-}
-
-.resume-part-table>tr>td>textarea {
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  padding: 2px 3px;
-  margin: 1%;
-  width: 13vw;
 }
 
 .resume-part2-box {
@@ -477,121 +306,10 @@ export default {
   padding: 2px 3px;
 }
 
-.pl-15 {
-  padding-left: 15px;
-}
-
-.hr-border-m-40 {
-  width: 40vw;
-  height: 1px;
-  background-color: #c9c8c8f6;
-  margin: 40px 0px;
-}
 
 .graduation {
   display: inline-block;
   margin: 8px;
-}
-
-.select-graduation {
-  width: 10vw;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  padding: 2px 3px;
-}
-
-.select-graduation:focus {
-  outline: none;
-  border: 2px solid rgb(85, 153, 255);
-}
-
-.select-graduation>option:hover {
-  background-color: #ccc;
-}
-
-.resume-p2-career {
-  margin: 10px;
-  width: 93%;
-  height: 50px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  resize: none;
-  margin-top: 5%;
-}
-
-.resume-p2-exp {
-  margin: 10px;
-  width: 95%;
-  height: 50px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  resize: none;
-  margin-top: 5%;
-}
-
-.plus-btn-box {
-  display: flex;
-  align-items: center;
-}
-
-.plus-btn {
-  display: inline-block;
-  margin-left: 10px;
-  font-size: 18px;
-  width: 26px;
-  height: 26px;
-  border-radius: 26px;
-  border: 2px solid #ccc;
-  text-align: center;
-  cursor: pointer;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.resume-p2-award {
-  margin: 10px;
-  width: 95%;
-  height: 50px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  resize: none;
-  margin-top: 10px;
-}
-
-.resume textarea:focus {
-  outline: none;
-  border: 2px solid rgb(85, 153, 255);
-}
-
-.resume-p5-project {
-  margin: 10px;
-  width: 95%;
-  height: 50px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  resize: none;
-}
-
-.resume-p5-summary {
-  margin: 10px;
-  height: 30px;
-  border-radius: 5px;
-  border: 2px solid #ccc;
-  resize: none;
-  margin-top: 10px;
-}
-
-.tech-stack-box {
-  display: inline-block;
-  height: 10%;
-  border-radius: 5px;
-  padding: 2% 5%;
-  margin-right: 5px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 14px;
 }
 </style>
   

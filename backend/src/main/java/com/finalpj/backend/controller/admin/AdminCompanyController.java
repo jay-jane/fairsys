@@ -1,51 +1,68 @@
+<<<<<<< HEAD:backend/src/main/java/com/finalpj/backend/controller/admin/AdminCompanyController.java
 package com.finalpj.backend.controller.admin;
+=======
+package com.finalpj.backend.controller;
+
+import java.io.Console;
+>>>>>>> 60259da595dd0d854d9257c9d63942c7cc902e46:backend/src/main/java/com/finalpj/backend/controller/AdminCompanyController.java
 import java.util.ArrayList;
-
-
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.service.AdminCompanyService;
-
+import com.finalpj.backend.util.AdminGate;
+import com.finalpj.backend.util.Criteria;
+import com.finalpj.backend.util.PageVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 
 @RestController
 
 public class AdminCompanyController {
-    
-         
-        @Autowired
-        private AdminCompanyService admincompanyService;
-    
 
-        @GetMapping("/18")
-        public  ArrayList<CompanyVO> list (){
+   @Autowired
+   private AdminCompanyService admincompanyService;
 
-    
-            ArrayList<CompanyVO> list = admincompanyService.getList();
-            System.out.println(list.toString());    
-            return list;
-        }
+   @GetMapping("/18/")
+   public AdminGate list(Criteria cri) {
 
-         @GetMapping("/19/1")
-         public  ArrayList<CompanyVO> Nlist (){
-    
-            ArrayList<CompanyVO> list = admincompanyService.getNlist();
-            System.out.println(list.toString());    
-            return list;
-         }    
+      int total = admincompanyService.getTotal(cri);
+      PageVO pageVO = new PageVO(cri, total);
 
-         @PostMapping("/19/2")
-         public void companyModify(@RequestBody CompanyVO vo){
-            admincompanyService.companyModify(vo.getCom_id());
-         }
+      ArrayList<CompanyVO> list = admincompanyService.getList(cri);
+      AdminGate adminGate = new AdminGate(list, pageVO);
 
-    }
+      System.out.println(list.toString());
+      return adminGate;
+   }
 
+   @GetMapping("/19/1/")
+   public AdminGate Nlist(Criteria cri) {
+
+      int total = admincompanyService.getTotal(cri);
+      PageVO pageVO = new PageVO(cri, total);
+
+      ArrayList<CompanyVO> list = admincompanyService.getNlist(cri);
+      System.out.println("ㅇㅇㅇ");
+      AdminGate adminGate = new AdminGate(list, pageVO);
+
+      System.out.println(list.toString());
+      return adminGate;
+   }
+
+   @PostMapping("/19/2")
+   public void companyModify(@RequestBody CompanyVO vo) {
+      admincompanyService.companyModify(vo.getCom_id());
+   }
+
+   @PostMapping("/19/3")
+   public void companyDelete(@RequestBody CompanyVO vo) {
+      System.out.println("ㅇㅇㅇ");
+      admincompanyService.companyDelete(vo.getCom_id());
+   }
+
+}
