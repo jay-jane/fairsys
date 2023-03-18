@@ -23,5 +23,12 @@ public class JobPostingVO {
     private String j_graduation;
     private String j_career;
     private String j_type;
+
     private String com_id;
+    private String com_name;
+    private String com_ceo_name;
+    private String com_manager_name;
+    private String com_manager_phone;
+    private String com_address;
+    private String com_detail_address;
 }

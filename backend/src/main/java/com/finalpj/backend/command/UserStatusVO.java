@@ -1,8 +1,10 @@
 package com.finalpj.backend.command;
 
+
 import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,7 @@ public class UserStatusVO {
     private String gender;
     private String status;
     private int w_no;
+
 
     //////////////////////////////////
     private String w_name;
@@ -43,3 +46,4 @@ public class UserStatusVO {
     private int user_no;
     
 }
+
