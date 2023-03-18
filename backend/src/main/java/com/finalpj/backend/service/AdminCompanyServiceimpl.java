@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service("AdminCompanyService")
 public class AdminCompanyServiceimpl implements AdminCompanyService {
 
+
   @Autowired
   AdminCompanyMapper adminCompanyMapper;
 
@@ -23,11 +24,13 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
   @Override
   public ArrayList<CompanyVO> getNlist(Criteria cri) {
     return adminCompanyMapper.getNlist(cri);
+
   }
 
   @Override
   public void companyModify(String com_id) {
     adminCompanyMapper.companyModify(com_id);
+
 
   }
 
@@ -39,5 +42,6 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
   @Override
   public int getTotal(Criteria cri) {
     return adminCompanyMapper.getTotal(cri);
+
   }
 }

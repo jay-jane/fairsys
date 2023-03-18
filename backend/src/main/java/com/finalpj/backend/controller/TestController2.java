@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,14 +61,12 @@ public class TestController2 {
 		return true;
 	}
 
-//	//마이페이지
-//	@PostMapping("/6/mypage")
-//	public ResponseEntity mypage(@RequestBody UserVO vo, HttpServletResponse res,HttpServletRequest req){
-//		
-//		HttpHeaders header = new HttpHeaders();
-//		
-//		return ResponseEntity;
-//	}
+	//마이페이지
+	@GetMapping("/6/mypage")
+	public String mypage(){
+		
+		return "success";
+	}
 	//개인 로그인
 	@PostMapping("/33/loginForm")
 	public ResponseEntity login(@RequestBody UserVO vo, HttpServletResponse res,HttpServletRequest req){

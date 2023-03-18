@@ -1,8 +1,10 @@
 package com.finalpj.backend.command;
 
+
 import java.sql.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +13,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResumeWriteVO {
+public class UserStatusVO {
+    private String user_id;
+    private String com_id;
+    private String user_name;
+    private String gender;
+    private String status;
     private int w_no;
+
+
+    //////////////////////////////////
     private String w_name;
     private String w_hp;
     private String w_email;
@@ -33,6 +43,7 @@ public class ResumeWriteVO {
     private Date w_get;
     private String w_license;
     private Date w_getlicense;
-    private String user_id;
-    private String com_id;
+    private int user_no;
+    
 }
+

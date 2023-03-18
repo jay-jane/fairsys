@@ -5,94 +5,104 @@
 
 
 <mapper namespace="com.finalpj.backend.service.ResumeMapper">
-  <!-- <select id="ApplyStatus" parameterType="ResumeWriteVO" resultType="ResumeWriteVO">
-		select * from resume_write order by w_no desc;
-	</select> -->
+	<!-- <select id="ApplyStatus" parameterType="ResumeWriteVO" resultType="ResumeWriteVO"> 
+		select * from resume_write order by w_no desc; </select> -->
 
-<insert id="ResumeRegist" parameterType="ResumeWriteVO">
-  		insert into resume_write(w_no,
-  							w_name,
-  							w_hp,
-  							w_email,
-  							w_address,
-  							w_gender,
-  							w_level,
-  							w_finish,
-  							w_major,
-  							w_fndate,
-                w_com,
-                w_position,
-                w_join,
-                w_leave,
-                w_subject,
-                w_score,
-                w_get,
-                w_license,
-                w_getlicense
-              )
-  		values( #{w_no},
-  				#{w_name},
-  				#{w_hp},
-  				#{w_email},
-  				#{w_address},
-  				#{w_gender},
-  				#{w_level},
-  				#{w_finish},
-  				#{w_major},
-  				#{w_fndate},
-          #{w_com},
-          #{w_position}, 
-          #{w_join},
-          #{w_leave},
-          #{w_subject},
-          #{w_score},
-          #{w_get},
-          #{w_license},
-          #{w_getlicense}
-           )
-       
-  	</insert>
+	<insert id="ResumeRegist" parameterType="ResumeWriteVO">
+		insert into resume_write(w_no,
+								 w_name,
+								 w_hp,
+								 w_email,
+								 w_address,
+								 w_gender,
+								 w_level,
+								 w_finish,
+								 w_major,
+								 w_fndate,
+								 w_com,
+								 w_position,
+								 w_join,
+								 w_leave,
+								 w_subject,
+								 w_score,
+								 w_get,
+								 w_license,
+								 w_getlicense,
+								 user_id,
+								 com_id
+										)
+		values( #{w_no},
+		#{w_name},
+		#{w_hp},
+		#{w_email},
+		#{w_address},
+		#{w_gender},
+		#{w_level},
+		#{w_finish},
+		#{w_major},
+		#{w_fndate},
+		#{w_com},
+		#{w_position},
+		#{w_join},
+		#{w_leave},
+		#{w_subject},
+		#{w_score},
+		#{w_get},
+		#{w_license},
+		#{w_getlicense},
+		#{user_id},
+		#{com_id} )
 
-
-<select id="ResumeModify" resultType="ResumeWriteVO">
-    select * from resume_write where w_no=#{w_no} 
-  </select>
+	</insert>
 
 
-<update id="ResumeUpdate" parameterType="ResumeWriteVO">
-update resume_write set w_address = #{w_address}, w_level = #{w_level}, w_finish = #{w_finish},
-w_major = #{w_major}, w_fndate = #{w_fndate}, w_com = #{w_com},
-w_position = #{w_position}, w_join = #{w_join}, w_leave = #{w_leave},
-w_subject = #{w_subject}, w_score = #{w_score}, w_get = #{w_get},
-w_license = #{w_license}, w_getlicense = #{w_getlicense}
-where w_no = #{w_no};
-</update>
-  
-<select id="UserMyPage" parameterType="ResumeWriteVO" resultType="ResumeWriteVO">
-		select * from resume_write order by w_no desc;
-</select>
+	<select id="ResumeModify" resultType="UserStatusVO">
+		<!-- select * from resume_write where w_no= #{w_no} -->
+		 select * from user_status where user_no= #{user_no}
+	</select>
+
+	
 
 
-<delete id="delete" parameterType="ResumeWriteVO">
-    delete from resume_write where w_no  = #{w_no};
-</delete>
+	<update id="ResumeUpdate" parameterType="ResumeWriteVO">
+		update resume_write set w_no = {#w_no}, w_name = #{w_name}, w_hp = #{w_hp}, w_email = #{w_email}, w_address = #{w_address},
+		w_gender = #{w_gender},  w_level = #{w_level},
+		w_finish = #{w_finish},
+		w_major = #{w_major}, w_fndate = #{w_fndate}, w_com = #{w_com},
+		w_position = #{w_position}, w_join = #{w_join}, w_leave = #{w_leave},
+		w_subject = #{w_subject}, w_score = #{w_score}, w_get = #{w_get},
+		w_license = #{w_license}, w_getlicense = #{w_getlicense}, user_id = #{user_id}, com_id = #{com_id}
+		where w_no = #{w_no};
+	</update>
+
+	<select id="UserMyPage" parameterType="UserStatusVO"
+		resultType="UserStatusVO">
+		select * from user_status order by user_no desc;
+	</select>
 
 
- <select id="getList" resultType="ResumeWriteVO">
-    select * from resume_write
-     <!-- <if test="cri.searchTitle != null and cri.searchTitle !='' ">
-			<![CDATA[ where r_title like concat('%', #{cri.searchTitle}, '%')]]>
-		</if> -->
-    order by w_no desc
-    limit #{cri.pageStart}, #{cri.amount}
-  </select>
+	<delete id="delete" parameterType="ResumeWriteVO">
+		delete from resume_write where w_no = #{w_no};
+	</delete>
 
-      <select id="getTotal" resultType="int">
-     	select count(*) as total from resume_write
-      <!-- <if test="cri.searchTitle != null and cri.searchTitle !='' ">
-			  <![CDATA[ where r_title like concat('%', #{cri.searchTitle}, '%')]]>
-		</if> -->
-     </select>
+
+	<select id="getList" resultType="UserStatusVO">
+		select * from user_status
+		<!-- <if test="cri.searchTitle != null and cri.searchTitle !='' "> <![CDATA[ 
+			where r_title like concat('%', #{cri.searchTitle}, '%')]]> </if> -->
+		limit #{cri.pageStart}, #{cri.amount}
+	</select>
+
+	<select id="getTotal" resultType="int">
+		select count(*) as total from user_status
+		<!-- <if test="cri.searchTitle != null and cri.searchTitle !='' "> <![CDATA[ 
+			where r_title like concat('%', #{cri.searchTitle}, '%')]]> </if> -->
+	</select>
+
+	<update id="updateStatus" parameterType="UserStatusVO">
+		<!-- update user_status set status = #{status} where w_no = #{w_no} and com_id = #{com_id} -->
+		update user_status set status = #{status} where user_no = #{user_no} and com_id = #{com_id}
+	</update>
 
 
 

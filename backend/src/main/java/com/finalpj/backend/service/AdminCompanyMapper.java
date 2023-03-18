@@ -11,6 +11,7 @@ import java.util.ArrayList;
 @Mapper
 public interface AdminCompanyMapper {
 
+
     public ArrayList<CompanyVO> getList(@Param("cri") Criteria cri);
 
     public ArrayList<CompanyVO> getNlist(@Param("cri") Criteria cri);
@@ -18,6 +19,7 @@ public interface AdminCompanyMapper {
     public void companyModify(String com_id);
 
     public void companyDelete(String com_id);
+
 
     public int getTotal(@Param("cri") Criteria cri);
 }

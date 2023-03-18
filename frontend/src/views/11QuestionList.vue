@@ -29,12 +29,12 @@
         <tbody class="body">
 
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
-          <tr v-for="(item,index) in list" v-bind:key="index">
+          <tr v-for="(item,index) in list" v-bind:key="index" @click.prevent="goDetail(item.qa_no)" style="cursor: pointer;">
             <td>{{ item.qa_no }}</td>
-            <td @click.prevent="goDetail(item.qa_no)">{{ item.qa_title }}</td>
+            <td>{{ item.qa_title }}</td>
             <td>{{ item.user_id }}</td>
             <td>{{ item.qa_date }}</td>
-            <td>{{ item.qa_answer }}</td>
+            <td>{{ item.qa_answertype }}</td>
           </tr>
 
         </tbody>
@@ -147,16 +147,23 @@ export default {
       this.list = response.data.list;
       this.pages = response.data.pageVO;
       this.pageList = this.pages.pageList;
+   
+      if(this.pages.total == 0){
 
-      //페이지이동에 필요한 데이터 담기
-      this.page = this.pages.page;
-      this.searchTitle = this.pages.cri.searchTitle;
-      this.searchContent = this.pages.cri.searchContent;
-      this.prev = this.pages.prev;
-      this.pageStart = this.pages.pageStart;
-      this.pageEnd = this.pages.pageEnd;
-      this.realEnd = this.pages.realEnd;
+        this.list.qa_title = '등록된 게시글이 없습니다.'
 
+      }else{
+
+        //페이지이동에 필요한 데이터 담기
+        this.page = this.pages.page;
+        this.searchTitle = this.pages.cri.searchTitle;
+        this.searchContent = this.pages.cri.searchContent;
+        this.prev = this.pages.prev;
+        this.pageStart = this.pages.pageStart;
+        this.pageEnd = this.pages.pageEnd;
+        this.realEnd = this.pages.realEnd;
+
+      }
     },
 
     goDetail(qa_no){

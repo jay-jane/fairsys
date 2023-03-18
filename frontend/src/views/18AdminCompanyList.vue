@@ -1,4 +1,4 @@
-<!-- Q&A 페이지 -->
+Q&A 페이지
 
 <template>
   <section>
