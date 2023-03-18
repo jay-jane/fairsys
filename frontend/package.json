@@ -16,9 +16,7 @@
     "vue-chartjs": "^5.2.0",
     "vue-router": "^4.0.3",
     "vue3-datepicker": "^0.3.4",
-
     "vuex": "^4.0.0"
-
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
