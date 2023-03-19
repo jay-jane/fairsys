@@ -35,7 +35,8 @@
   </delete>
 
   <select id="getJobList" resultType="JobPostingVO">
-    select * from job_posting
+    select j.*, c.com_name from job_posting j
+    left join company c on j.com_id = c.com_id
     <if test="jcri.searchTitle != '' ">
 			<![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>

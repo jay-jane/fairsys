@@ -80,7 +80,7 @@
                 <a href="#" class="logo" @click.prevent="getDetail(item.j_no)"><img src="" alt="로고"></a>
                 <div class="company_info">
                   <strong class="title">
-                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_title}} {{ item.j_no }}</span>
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.com_name}} {{ item.j_no }}</span>
                   </strong>
                   <a href="#" class="mark" @click="(e) => { e.preventDefault(); }" style="cursor: default;">채용중</a>
                   <div class="recruit_title">
