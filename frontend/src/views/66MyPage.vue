@@ -1,4 +1,3 @@
-
 <template>
   <div class="admin_nav">
     <ul>
@@ -52,7 +51,7 @@
             <ul>
               <li class="my_com_info">
                 <div class="my_company_info">
-                  <strong class="my_title">이름님 안녕하세요</strong>
+                  <strong class="my_title">{{user_id}}님 안녕하세요</strong>
                   <a href="#" class="mark">채용중</a>
                   <dl class="my_info_item">
                     <dt>이름</dt>
@@ -91,13 +90,15 @@
         <tbody id="table-body">
 
           <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ index }}</td>
-            <td>{{ item.w_name }}</td>
-            <td @click.prevent="ResumeModify(item.w_no)">조회</td>
+            <td>{{ item.w_no }}</td>
+            <td>{{ item.com_id }}</td>
+            <!-- <td @click.prevent="ResumeModify(item.w_no)">조회</td>
             <td><router-link :to="{ name: 'ResumeUpdate', params: { w_no: item.user_no } }">수정</router-link></td>
-
-            <td><button type="button" value="삭제" @click="deleteForm(item.w_no)" style="margin-right: 10px;">삭제</button>
-            </td>
+            -->  
+            <td @click.prevent="ResumeModify(item.w_no)">조회</td>
+            <td><router-link :to="{name: 'ResumeUpdate', params: {w_no: item.w_no}}">수정/삭제</router-link></td>
+             <td><button type="button" value="삭제" @click="deleteForm(item.w_no)" style="margin-right: 10px;">삭제</button>
+            </td> 
           </tr>
 
         </tbody>
@@ -112,74 +113,46 @@
   
 <script>
 export default {
-
   name: 'App',
   data() {
     return {
       w_no: '',
       list: [],
       a: '',
+      user_id:'',
     }
-
   },
   methods: {
     UserMyPage() {
-      this.axios.get('/UserMyPage')
+      this.axios.get('/UserMyPage',
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          }
+        })
         .then(res => {
-          this.a = this.$route.query.w_no;
+          // this.w_no = this.$route.query.w_no;
           this.w_name = this.$route.query.w_name;
+          console.log(res)
           this.list = res.data;
+          console.log(res.data)
         })
         .catch(err => {
           console.log(err);
         });
-
     },
-    updateForm() {
-      this.axios.post('/ResumeUpdate',
-        {
-          w_no: this.$route.params.w_no,
-          w_name: this.w_name,
-          w_hp: this.w_hp,
-          w_email: this.w_email,
-          w_address: this.w_address,
-          w_gender: this.w_gender,
-          w_level: this.w_level,
-          w_finish: this.w_finish,
-          w_major: this.w_major,
-          w_fndate: this.w_fndate,
-          w_com: this.w_com,
-          w_position: this.w_position,
-          w_join: this.w_join,
-          w_leave: this.w_leave,
-          w_subject: this.w_subject,
-          w_score: this.w_score,
-          w_get: this.w_get,
-          w_license: this.w_license,
-          w_getlicense: this.w_getlicense,
-        }
-      ).then(() => {
-        this.w_no = this.$route.params.w_no;
-        console.log(1)
-        alert('수정되었습니다.');
-        this.$router.push('/ResumeModify' + this.w_no);
-      }).catch(err => {
-        console.log("에러");
-        console.log(err);
-      })
-    },
- 
-    ResumeModify(user_no) {
 
+    ResumeModify(w_no) {
       this.$router.push({
         path: '/ResumeModify/',
         name: 'ResumeModify',
-        params: { "user_no": user_no }
+        params: { "w_no": w_no }
       })
     },
     deleteForm(w_no) {
       if (confirm('삭제하시겠습니까?')) {
-
         this.axios.post('/ResumeDelete', { "w_no": w_no })
           .then(() => {
             alert('삭제되었습니다');
@@ -193,7 +166,6 @@ export default {
     this.UserMyPage();
   },
 }
-
 </script>
   
   
@@ -290,9 +262,7 @@ table th {
   background-color: #d1cece;
   color: #000;
   padding: 10px;
-
 }
-
 
 .view,
 .delete {
@@ -310,11 +280,9 @@ table th {
   margin-left: 50px;
 }
 
-
 #my_salary_list_wrap {
   padding: 57px 0 65px;
 }
-
 
 #my_salary_list_wrap #salary_list_total {
   overflow: hidden;
@@ -396,6 +364,4 @@ table th {
 
 .my_com_info {
   margin-left: 140px;
-}
-</style>
-  
+}</style>

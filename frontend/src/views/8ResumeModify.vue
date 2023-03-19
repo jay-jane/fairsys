@@ -214,8 +214,8 @@ export default {
   },
   methods: {
     ResumeModify() {
-      this.user_no = this.$route.params.user_no;
-      this.axios.get('/ResumeModify/' + this.user_no, { params: { "user_no": this.user_no } })
+      this.w_no = this.$route.params.w_no;
+      this.axios.get('/ResumeModify/' + this.w_no, { params: { "w_no": this.w_no } })
         .then(res => {
           this.list = res.data;
           console.log(this.list)
@@ -225,11 +225,12 @@ export default {
         });
     },
     getStatusValue(e) {
-      this.status = e.target.value;
+      this.status = e.target.value; 
     },
     updateStatus() {
       console.log(this.status);
       console.log(this.list[0].com_id);
+      console.log(this.list[0].user_no);
       console.log(this.list[0].w_no);
       this.axios.post("/updateStatus", {user_no: this.list[0].user_no, status: this.status, com_id: this.list[0].com_id} )
                 .then(() => {

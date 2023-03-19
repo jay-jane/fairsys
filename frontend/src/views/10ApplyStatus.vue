@@ -3,7 +3,7 @@
   <div class="main">
     <div class="container">
 
-      <h2>지원자 이력서리스트</h2>
+      <h2>지원자 목록</h2>
 
       <!-- 출력 카테고리 -->
       <select v-model="amount" class="view" @change="loglist_view">
@@ -30,7 +30,7 @@
           <tr v-for="(item, index) in list" v-bind:key="index">
             <td>{{ index }}</td>
             <td>{{ item.w_name }}</td>
-            <td>{{ item.w_gender }}</td>
+            <td>{{ item.gender }}</td>
             <td @click.prevent="ResumeModify(item.user_no)">이력서열람</td>
             <td>{{ item.status }}</td>
           </tr>
@@ -40,8 +40,8 @@
       <div class="serch_box">
 
         <select name="" id="">
-          <option value="title">제목</option>
-          <option value="content">내용</option>
+          <option value="title">이름</option>
+          <option value="content">상태</option>
         </select>
 
         <input type="text">
@@ -143,7 +143,7 @@ export default {
       this.list = response.data.list;
       this.pages = response.data.pageVO;
       this.pageList = this.pages.pageList;
-
+      
       //페이지이동에 필요한 데이터 담기
       this.page = this.pages.page;
       this.searchTitle = this.pages.cri.searchTitle;
@@ -158,8 +158,8 @@ export default {
     ResumeModify(user_no) {
 
       this.$router.push({
-        path: '/ResumeModify/',
-        name: 'ResumeModify',
+        path: '/ResumeComModify/',
+        name: 'ResumeComModify',
         // params: { "w_no": w_no }
         params: { "user_no": user_no }
       })

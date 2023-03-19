@@ -156,7 +156,7 @@
           </table>
         </div>
 
-        <button type="button" @click="submitForm">가입하기</button>
+        <button type="button" @click="submitForm">이력서 등록</button>
       </div>
 
     </div>
@@ -223,6 +223,13 @@ export default {
           w_getlicense: this.w_getlicense,
           user_id: this.user_id,
           com_id: this.com_id
+        },
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          },
         }
       ).then(res => {
         console.log(this.user_id)

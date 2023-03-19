@@ -28,8 +28,8 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     @Override
-    public List<UserStatusVO> ResumeModify(int user_no) {
-        return resumemapper.ResumeModify(user_no);
+    public List<ResumeWriteVO> ResumeModify(int w_no) {
+        return resumemapper.ResumeModify(w_no);
        
     }
 
@@ -39,8 +39,8 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     @Override
-    public ArrayList<UserStatusVO> UserMyPage() {
-        return resumemapper.UserMyPage();
+    public ArrayList<ResumeWriteVO> UserMyPage(String user_id) {
+        return resumemapper.UserMyPage(user_id);
     }
 
     @Override
@@ -50,17 +50,22 @@ public class ResumeServiceImpl implements ResumeService{
 
 
     @Override
-    public ArrayList<UserStatusVO> getList(ResumeCriteria cri) {
-        return resumemapper.getList(cri);
+    public ArrayList<UserStatusVO> getList(ResumeCriteria cri, String com_id) {
+        return resumemapper.getList(cri, com_id);
     }
 
     @Override
-    public int getTotal(ResumeCriteria cri) {
-        return resumemapper.getTotal(cri);
+    public int getTotal(ResumeCriteria cri, String com_id) {
+        return resumemapper.getTotal(cri, com_id);
     }
 
     @Override
     public void updateStatus(UserStatusVO vo) {
         resumemapper.updateStatus(vo);
+    }
+
+    @Override
+    public List<UserStatusVO> ResumeComModify(int user_no) {
+        return resumemapper.ResumeComModify(user_no);
     }
 }

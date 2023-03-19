@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="resume" v-for="item in list">
+    <div class="resume">
 
       <div class="resume-main">
         <div class="resume-part-title">이력서 수정</div>
@@ -11,7 +11,7 @@
             <tr>
               <th><label for="w_name">이름</label></th>
               <td>
-                <input type="text" v-bind:value="item.w_name" @change="getName">
+                <input v-model="w_name" required type="text" >
               </td>
               <th><label for="w_hp">연락처</label></th>
               <td>
@@ -30,7 +30,7 @@
             </tr>
             <tr>
               <th><label for="w_gender">성별</label></th>
-              <select class="select-graduation" v-model="w_finish">
+              <select class="select-graduation" v-model="w_gender">
                 <option value="남">남</option>
                 <option value="여">여</option>
               </select>
@@ -171,7 +171,7 @@ export default {
   name: 'App',
   data() {
     return {
-      w_no: 0,
+      w_name:"",
       w_hp: "",
       w_email: "",
       w_address: "",
@@ -224,15 +224,17 @@ export default {
           com_id: this.com_id
         }
       ).then(() => {
+        console.log(1);
         this.w_no = this.$route.params.w_no;
         alert('수정되었습니다.');
-        this.$router.push('/ResumeModify/' + this.w_no);
+        this.$router.push('/UserMyPage');
       }).catch(err => {
         console.log(err);
       })
     },
   }
 };
+
 
 </script>
 <style>

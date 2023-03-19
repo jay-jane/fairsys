@@ -51,9 +51,14 @@ const routes = [
     component: () => import("../views/7ResumeRegist.vue"),
   },
   {
-    path: "/ResumeModify/:user_no",
+    path: "/ResumeModify/:w_no",
     name: "ResumeModify",
     component: () => import("../views/8ResumeModify.vue"),
+  },
+  {
+    path: "/ResumeComModify/:user_no",
+    name: "ResumeComModify",
+    component: () => import("../views/8ResumeComModify.vue"),
   },
   {
     path: "/9-1",
@@ -143,7 +148,7 @@ const routes = [
     component: () => import("../views/25test.vue"),
   },
   {
-    path: '/ResumeUpdate/:w_no',
+    path: '/ResumeUpdate:w_no',
     name: 'ResumeUpdate',
     component: () => import('../views/ResumeUpdate.vue')
   },
@@ -164,6 +169,7 @@ const routes = [
     name: "27",
     component: () => import("../views/27test.vue"),
   },
+
 ];
 
 const router = createRouter({
