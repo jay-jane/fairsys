@@ -5,6 +5,7 @@ import java.util.List;
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
 import com.finalpj.backend.command.ResumeWriteVO;
+import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.util.JobCriteria;
 
 public interface CompanyService {
@@ -17,5 +18,5 @@ public interface CompanyService {
     int getTotal(JobCriteria jcri);
     List<CompanyVO> getCompanyVO(String com_id);
     ResumeWriteVO apply(String user_id);
-    void applyInsert(ResumeWriteVO vo);
+    void applyInsert(UserStatusVO vo);
 }

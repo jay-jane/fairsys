@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
 import com.finalpj.backend.command.ResumeWriteVO;
+import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.util.JobCriteria;
 
 @Mapper
@@ -20,5 +21,5 @@ public interface CompanyMapper {
     int getTotal(@Param("jcri") JobCriteria jcri);
     List<CompanyVO> getCompanyVO(@Param("com_id") String com_id);
     ResumeWriteVO apply(String user_id);
-    void applyInsert(ResumeWriteVO vo);
+    void applyInsert(UserStatusVO vo);
 }

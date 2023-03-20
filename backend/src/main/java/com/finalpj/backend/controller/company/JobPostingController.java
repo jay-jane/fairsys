@@ -75,8 +75,8 @@ public class JobPostingController {
     }
     @PostMapping("/applyInsert")
     public void applyInsert(@RequestBody UserStatusVO vo) {
-        System.out.println(vo.toString());
-        // service.applyInsert(vo);
+        // System.out.println(vo.toString());
+        service.applyInsert(vo);
     }
 
     @GetMapping("/getCompanyVO/{com_id}")

@@ -162,9 +162,11 @@ export default {
         w_subject: vo.w_subject,
       })
         .then(res => {
+          console.log(2);
           console.log(res);
+          alert('성공적으로 등록되었습니다 !');
         })
-        .then(err => console.log(err));
+        .catch(err => console.log(err));
     }
   },
   mounted() {
