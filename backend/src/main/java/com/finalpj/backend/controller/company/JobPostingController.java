@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
+import com.finalpj.backend.command.ResumeWriteVO;
 import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.service.CompanyService;
 import com.finalpj.backend.util.JobCriteria;
@@ -67,9 +68,15 @@ public class JobPostingController {
         service.delete(vo.getJ_no());
     }
 
-    @PostMapping("/apply")
-    public void apply(@RequestBody UserStatusVO vo) {
-        
+    @GetMapping("/apply")
+    public ResumeWriteVO apply(HttpServletRequest request, HttpServletResponse response) {
+        String user_id = request.getParameter("user_id");
+        return service.apply(user_id);
+    }
+    @PostMapping("/applyInsert")
+    public void applyInsert(@RequestBody UserStatusVO vo) {
+        System.out.println(vo.toString());
+        // service.applyInsert(vo);
     }
 
     @GetMapping("/getCompanyVO/{com_id}")

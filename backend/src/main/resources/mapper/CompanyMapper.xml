@@ -67,4 +67,12 @@
     select * from company where com_id = #{com_id}
   </select>
 
+  <select id="apply" resultType="ResumeWriteVO">
+    select * from resume_write where user_id = #{user_id}
+  </select>
+
+  <insert id="applyInsert" parameterType="ResumeWriteVO">
+    insert into 
+  </insert>
+
 </mapper>

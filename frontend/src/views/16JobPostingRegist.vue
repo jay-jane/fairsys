@@ -154,8 +154,7 @@
             <input type="text" id="process" value="서류전형" readonly>
           </div>
           <div id="process_add">
-            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
-              style="margin-bottom: 15px;">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1" style="margin-bottom: 15px;">
               1차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
