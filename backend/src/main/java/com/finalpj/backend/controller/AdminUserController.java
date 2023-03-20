@@ -3,6 +3,7 @@ package com.finalpj.backend.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.finalpj.backend.util.PageVO;
 public class AdminUserController {
 
     @Autowired
+    @Qualifier("AdminUserService")
     private AdminUserService aus;
 
     

@@ -28,8 +28,8 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     @Override
-    public List<ResumeWriteVO> ResumeModify(int w_no) {
-        return resumemapper.ResumeModify(w_no);
+    public List<ResumeWriteVO> ResumeModify(int user_no) {
+        return resumemapper.ResumeModify(user_no);
        
     }
 
@@ -44,8 +44,8 @@ public class ResumeServiceImpl implements ResumeService{
     }
 
     @Override
-    public void delete(int w_no) {
-        resumemapper.delete(w_no);
+    public void delete(int user_no) {
+        resumemapper.delete(user_no);
     }
 
 

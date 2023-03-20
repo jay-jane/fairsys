@@ -51,7 +51,7 @@
             <ul>
               <li class="my_com_info">
                 <div class="my_company_info">
-                  <strong class="my_title">{{user_id}}님 안녕하세요</strong>
+                  <strong class="my_title">{{list.user_name}}님 안녕하세요</strong>
                   <a href="#" class="mark">채용중</a>
                   <dl class="my_info_item">
                     <dt>이름</dt>
@@ -75,6 +75,8 @@
 
 
       </table>
+
+      
       <table>
         <caption class="my_resume">나의 이력서</caption>
 
@@ -90,14 +92,14 @@
         <tbody id="table-body">
 
           <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ item.w_no }}</td>
+            <td>{{ item.user_no }}</td>
             <td>{{ item.com_id }}</td>
             <!-- <td @click.prevent="ResumeModify(item.w_no)">조회</td>
             <td><router-link :to="{ name: 'ResumeUpdate', params: { w_no: item.user_no } }">수정</router-link></td>
             -->  
-            <td @click.prevent="ResumeModify(item.w_no)">조회</td>
-            <td><router-link :to="{name: 'ResumeUpdate', params: {w_no: item.w_no}}">수정/삭제</router-link></td>
-             <td><button type="button" value="삭제" @click="deleteForm(item.w_no)" style="margin-right: 10px;">삭제</button>
+            <td @click.prevent="ResumeModify(item.user_no)">조회</td>
+            <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.user_no}}">수정</router-link></td>
+             <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
             </td> 
           </tr>
 
@@ -112,14 +114,17 @@
 </template>
   
 <script>
+
 export default {
+  
   name: 'App',
   data() {
     return {
-      w_no: '',
+      user_no: '',
       list: [],
       a: '',
       user_id:'',
+      com_id:'',
     }
   },
   methods: {
@@ -134,7 +139,7 @@ export default {
         })
         .then(res => {
           // this.w_no = this.$route.query.w_no;
-          this.w_name = this.$route.query.w_name;
+          this.user_name = this.$route.query.user_name;
           console.log(res)
           this.list = res.data;
           console.log(res.data)
@@ -144,16 +149,16 @@ export default {
         });
     },
 
-    ResumeModify(w_no) {
+    ResumeModify(user_no) {
       this.$router.push({
         path: '/ResumeModify/',
         name: 'ResumeModify',
-        params: { "w_no": w_no }
+        params: { "user_no": user_no }
       })
     },
-    deleteForm(w_no) {
+    deleteForm(user_no) {
       if (confirm('삭제하시겠습니까?')) {
-        this.axios.post('/ResumeDelete', { "w_no": w_no })
+        this.axios.post('/ResumeDelete', { "user_no": user_no })
           .then(() => {
             alert('삭제되었습니다');
             this.$router.push('/UserMyPage');

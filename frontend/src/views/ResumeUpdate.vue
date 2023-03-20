@@ -9,28 +9,28 @@
           <table class="resume-part2-input">
 
             <tr>
-              <th><label for="w_name">이름</label></th>
+              <th><label for="user_name">이름</label></th>
               <td>
-                <input v-model="w_name" required type="text" >
+                <input v-model="user_name" required type="text" disabled >
               </td>
-              <th><label for="w_hp">연락처</label></th>
+              <th><label for="user_phone">연락처</label></th>
               <td>
-                <input v-model="w_hp" required type="text">
-              </td>
-            </tr>
-            <tr>
-              <th><label for="w_email">이메일</label></th>
-              <td>
-                <input v-model="w_email" required type="text">
-              </td>
-              <th><label for="w_address">주소</label></th>
-              <td>
-                <input v-model="w_address" required type="text">
+                <input v-model="user_phone" required type="text" disabled>
               </td>
             </tr>
             <tr>
-              <th><label for="w_gender">성별</label></th>
-              <select class="select-graduation" v-model="w_gender">
+              <th><label for="user_email">이메일</label></th>
+              <td>
+                <input v-model="user_email" required type="text" disabled>
+              </td>
+              <th><label for="user_address">주소</label></th>
+              <td>
+                <input v-model="user_address" required type="text">
+              </td>
+            </tr>
+            <tr>
+              <th><label for="user_gender">성별</label></th>
+              <select class="select-graduation" v-model="user_gender" disabled>
                 <option value="남">남</option>
                 <option value="여">여</option>
               </select>
@@ -43,14 +43,14 @@
           <table class="resume-part2-input">
 
             <tr>
-              <th><label for="w_level">최종학력</label></th>
+              <th><label for="user_level">최종학력</label></th>
               <td>
-                <input v-model="w_level" required type="text">
+                <input v-model="user_level" required type="text">
               </td>
-              <th class="pl-15"><label for="w_finish">졸업여부</label></th>
+              <th class="pl-15"><label for="user_finish">졸업여부</label></th>
               <td>
                 <div class="graduation">
-                  <select class="select-graduation" v-model="w_finish">
+                  <select class="select-graduation" v-model="user_finish">
                     <option value="졸업">졸업</option>
                     <option value="졸업예정">졸업예정</option>
                   </select>
@@ -58,14 +58,14 @@
               </td>
             </tr>
             <tr>
-              <th><label for="w_major">전공</label></th>
+              <th><label for="user_major">전공</label></th>
               <td>
-                <input v-model="w_major" required type="text">
+                <input v-model="user_major" required type="text">
               </td>
-              <th style="padding-top:10px"><label for="w_getlicense">졸업예정날짜</label></th>
+              <th style="padding-top:10px"><label for="user_getlicense">졸업예정날짜</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="user_getlicense" required type="date">
 
               </td>
             </tr>
@@ -79,27 +79,27 @@
         <div class="resume-part2-box">
           <table class="resume-part2-input">
             <tr>
-              <th><label for="w_com">회사명</label></th>
+              <th><label for="user_com">회사명</label></th>
               <td>
-                <input v-model="w_com" required type="text">
+                <input v-model="user_com" required type="text">
               </td>
-              <th><label for="w_position">직급</label></th>
+              <th><label for="user_position">직급</label></th>
               <td>
-                <input v-model="w_position" required type="text">
+                <input v-model="user_position" required type="text">
               </td>
             </tr>
             <tr>
-              <th style="padding-top:10px"><label for="w_getlicense">입사일</label></th>
+              <th style="padding-top:10px"><label for="user_getlicense">입사일</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="user_getlicense" required type="date">
 
               </td>
 
-              <th style="padding-top:10px"><label for="w_getlicense">퇴사일</label></th>
+              <th style="padding-top:10px"><label for="user_getlicense">퇴사일</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="user_getlicense" required type="date">
 
               </td>
             </tr>
@@ -112,20 +112,20 @@
           <table class="resume-part2-input">
 
             <tr>
-              <th><label for="w_subject">과목</label></th>
+              <th><label for="user_subject">과목</label></th>
               <td>
-                <input v-model="w_subject" required type="text">
+                <input v-model="user_subject" required type="text">
               </td>
-              <th class="pl-15"><label for="w_score">점수</label></th>
+              <th class="pl-15"><label for="user_score">점수</label></th>
               <td>
-                <input v-model="w_score" required type="text">
+                <input v-model="user_score" required type="text">
               </td>
             </tr>
             <tr>
-              <th style="padding-top:10px"><label for="w_getlicense">취득일</label></th>
+              <th style="padding-top:10px"><label for="user_getlicense">취득일</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="user_getlicense" required type="date">
 
               </td>
 
@@ -141,14 +141,14 @@
         <div class="resume-part2-box">
           <table class="resume-part2-input">
             <tr>
-              <th class="pl-15"><label for="w_license">자격증명</label></th>
+              <th class="pl-15"><label for="user_license">자격증명</label></th>
               <td>
-                <input v-model="w_license" required type="text">
+                <input v-model="user_license" required type="text">
               </td>
-              <th style="padding-top:10px"><label for="w_getlicense">취득일</label></th>
+              <th style="padding-top:10px"><label for="user_getlicense">취득일</label></th>
               <td>
 
-                <input v-model="w_getlicense" required type="date">
+                <input v-model="user_getlicense" required type="date">
 
               </td>
             </tr>
@@ -171,24 +171,24 @@ export default {
   name: 'App',
   data() {
     return {
-      w_name:"",
-      w_hp: "",
-      w_email: "",
-      w_address: "",
-      w_gender: "",
-      w_level: "",
-      w_finish: "",
-      w_major: "",
-      w_fndate: "",
-      w_com: "",
-      w_position: "",
-      w_join: "",
-      w_leave: "",
-      w_subject: "",
-      w_score: "",
-      w_get: "",
-      w_license: "",
-      w_getlicense: "",
+      user_name:"",
+      user_phone: "",
+      user_email: "",
+      user_address: "",
+      user_gender: "",
+      user_level: "",
+      user_finish: "",
+      user_major: "",
+      user_fndate: "",
+      user_com: "",
+      user_position: "",
+      user_join: "",
+      user_leave: "",
+      user_subject: "",
+      user_score: "",
+      user_get: "",
+      user_license: "",
+      user_getlicense: "",
       user_id: "",
       com_id:"",
       list: []
@@ -201,31 +201,31 @@ export default {
     updateForm() {
       this.axios.post('/ResumeUpdate',
         {
-          w_no: this.$route.params.w_no,
-          w_name: this.w_name,
-          w_hp: this.w_hp,
-          w_email: this.w_email,
-          w_address: this.w_address,
-          w_gender: this.w_gender,
-          w_level: this.w_level,
-          w_finish: this.w_finish,
-          w_major: this.w_major,
-          w_fndate: this.w_fndate,
-          w_com: this.w_com,
-          w_position: this.w_position,
-          w_join: this.w_join,
-          w_leave: this.w_leave,
-          w_subject: this.w_subject,
-          w_score: this.w_score,
-          w_get: this.w_get,
-          w_license: this.w_license,
-          w_getlicense: this.w_getlicense,
+          user_no: this.$route.params.user_no,
+          user_name: this.user_name,
+          user_phone: this.user_phone,
+          user_email: this.user_email,
+          user_address: this.user_address,
+          user_gender: this.user_gender,
+          user_level: this.user_level,
+          user_finish: this.user_finish,
+          user_major: this.user_major,
+          user_fndate: this.user_fndate,
+          user_com: this.user_com,
+          user_position: this.user_position,
+          user_join: this.user_join,
+          user_leave: this.user_leave,
+          user_subject: this.user_subject,
+          user_score: this.user_score,
+          user_get: this.user_get,
+          user_license: this.user_license,
+          user_getlicense: this.user_getlicense,
           user_id: this.user_id,
           com_id: this.com_id
         }
       ).then(() => {
         console.log(1);
-        this.w_no = this.$route.params.w_no;
+        this.user_no = this.$route.params.user_no;
         alert('수정되었습니다.');
         this.$router.push('/UserMyPage');
       }).catch(err => {

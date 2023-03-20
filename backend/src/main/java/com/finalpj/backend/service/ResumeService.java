@@ -22,9 +22,9 @@ public interface ResumeService {
  //지원자
 public void ResumeRegist(ResumeWriteVO vo);  //지원자 이력서 등록
 public void ResumeUpdate(ResumeWriteVO vo); //지원자이력서 수정
-public void delete(int w_no); //지원자 이력서 삭제
+public void delete(int user_no); //지원자 이력서 삭제
 public ArrayList<ResumeWriteVO> UserMyPage(String user_id); //지원자마이페이지
- public List<ResumeWriteVO> ResumeModify(int w_no); //지원자 마이페이지 이력서 상세조회  
+ public List<ResumeWriteVO> ResumeModify(int user_no); //지원자 마이페이지 이력서 상세조회  
 
 //회사
 

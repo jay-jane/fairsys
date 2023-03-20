@@ -15,7 +15,6 @@ public interface ResumeMapper {
     
     public void ResumeRegist(ResumeWriteVO vo); 
     
-    // public ResumeWriteVO ResumeModify();
    
     // public List<UserStatusVO> ResumeModify(@Param("user_no") int user_no);
     public ArrayList<ResumeWriteVO> UserMyPage(String user_id);
@@ -23,8 +22,8 @@ public interface ResumeMapper {
     
     
     public void ResumeUpdate(ResumeWriteVO vo);  //이력서 수정
-    public List<ResumeWriteVO> ResumeModify(@Param("w_no") int w_no); //마이페이지에서 이력서 조회
-    public void delete(int w_no); //삭제
+    public List<ResumeWriteVO> ResumeModify(@Param("user_no") int user_no); //마이페이지에서 이력서 조회
+    public void delete(int user_no); //삭제
     // public ArrayList<ResumeWriteVO> ApplyStatus();
     public ArrayList<UserStatusVO> getList(@Param("cri") ResumeCriteria cri,
                                             @Param("com_id") String com_id); //리스트조회

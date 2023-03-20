@@ -29,8 +29,8 @@
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <tr v-for="(item, index) in list" v-bind:key="index">
             <td>{{ index }}</td>
-            <td>{{ item.w_name }}</td>
-            <td>{{ item.gender }}</td>
+            <td>{{ item.user_name }}</td>
+            <td>{{ item.user_gender }}</td>
             <td @click.prevent="ResumeModify(item.user_no)">이력서열람</td>
             <td>{{ item.status }}</td>
           </tr>
@@ -41,7 +41,7 @@
 
         <select name="" id="">
           <option value="title">이름</option>
-          <option value="content">상태</option>
+          <option value="status">상태</option>
         </select>
 
         <input type="text">
@@ -115,6 +115,7 @@ export default {
       page: 1,
       amount: 10,
       searchTitle: '',
+      searchStatus: '',
       searchContent: '',
       prev: '',
       pageStart: '',
@@ -137,16 +138,25 @@ export default {
       //console.log(this.list_view);
 
       //화면에 리스트 출력을 위해 필요한 내용 전달
-      let response = await Axios.get("/ApplyStatus/?amount=" + this.amount + "&page=" + this.page + "&searchTitle=" + this.searchTitle + "&searchContent=" + this.searchContent);
+      let response = await Axios.get("/ApplyStatus/?amount=" + this.amount + "&page=" + this.page + "&searchTitle=" + this.searchTitle + "&searchStatus=" + this.searchStatus + "&searchContent=" + this.searchContent,
+        {
+          params: { com_id: sessionStorage.getItem("com_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("com_auth"),
+          },
+        }
+      );
 
       //필요한 공용 데이터를 담기
       this.list = response.data.list;
       this.pages = response.data.pageVO;
       this.pageList = this.pages.pageList;
-      
+
       //페이지이동에 필요한 데이터 담기
       this.page = this.pages.page;
       this.searchTitle = this.pages.cri.searchTitle;
+      this.searchStatus = this.pages.cri.searchStatus;
       this.searchContent = this.pages.cri.searchContent;
       this.prev = this.pages.prev;
       this.pageStart = this.pages.pageStart;
@@ -209,12 +219,18 @@ export default {
 
       const userselect = target.previousElementSibling.previousElementSibling.value;
       const usertext = target.previousElementSibling.value;
+      console.log(userselect);
+      console.log(usertext);
 
       if (userselect === "title") {
         this.searchTitle = usertext;
         this.get();
       } else if (userselect === "content") {
         this.searchContent = usertext;
+        this.get();
+      } else if (userselect === "status") {
+        console.log("여기로")
+        this.searchStatus = usertext;
         this.get();
       }
 
