@@ -12,17 +12,17 @@
             <tr>
               <th><label for="user_name">이름</label></th>
               <td>
-                <input v-model="user_name" required type="text">
+                <input v-model="user_name" required type="text" disabled>
               </td>
               <th><label for="user_phone">연락처</label></th>
               <td>
-                <input v-model="user_phone" required type="text">
+                <input v-model="user_phone" required type="text" disabled>
               </td>
             </tr>
             <tr>
               <th><label for="user_email">이메일</label></th>
               <td>
-                <input v-model="user_email" required type="text">
+                <input v-model="user_email" required type="text" >
               </td>
               <th><label for="user_address">주소</label></th>
               <td>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
               <th><label for="user_gender">성별</label></th>
-              <select class="select-graduation" v-model="user_gender">
+              <select class="select-graduation" v-model="user_gender" disabled>
                 <option value="남">남</option>
                 <option value="여">여</option>
               </select>
