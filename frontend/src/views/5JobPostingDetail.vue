@@ -7,7 +7,7 @@
         <div class="bannerImg"></div>
         <div id="company_logo"><img src="https://picsum.photos/150/150" alt="로고" class="logoImg"></div>
         <div id="company_name">
-          <h3>회사이름</h3>
+          <h3>{{ item.com_name }}</h3>
         </div>
       </div>
       <article id="article_top">
@@ -51,7 +51,8 @@
           <div id="bottom_left">
             <h4>채용정보</h4>
             <div id="qualify">
-              <span id="q_left">채용 분야</span> <span id="q_right" v-for="item in j_department">{{ item }}&nbsp;&nbsp;</span><br>
+              <span id="q_left">채용 분야</span> <span id="q_right" v-for="item in j_department">{{ item
+              }}&nbsp;&nbsp;</span><br>
               <span id="q_left">마감 일자</span> <span id="q_right">{{ j_end_date }}</span><br>
               <span id="q_left">전형 절차</span> <span id="q_right">서류 심사 > {{ item.j_schedule }} 최종 합격</span><br>
             </div><br>
@@ -79,10 +80,10 @@
         </div>
       </div>
 
-      <div id="button_wrap" style="margin-top: 20px;">
-        <button type="button" @click="apply">입사지원</button> <br>
-        <router-link :to="{name: 'jobPostingModify', params: {j_no: item.j_no}}">수정/삭제</router-link><br>
-        <router-link to="/4">목록</router-link>
+      <div id="button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+        <button type="button" id="btnApply" @click="apply" style="border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
+        <router-link :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }" id="btnModify" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</router-link>
+        <router-link to="/4" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">목록</router-link>
       </div>
     </div>
   </section>
@@ -106,7 +107,7 @@ export default {
     getJobDetail() {
       console.log(this.com_id)
       this.j_no = this.$route.params.j_no;
-      this.axios.get('/jobPostingDetail/' + this.j_no, {params: {"j_no": this.j_no}})
+      this.axios.get('/jobPostingDetail/' + this.j_no, { params: { "j_no": this.j_no } })
         .then(res => {
           console.log(res.data);
           this.list = res.data;
@@ -117,18 +118,65 @@ export default {
           console.log(err);
         });
     },
-    // apply() {
-    //   if(confirm('지원하시겠습니까?')) {
-    //     this.axios.post("/apply", {"com_id": 1818})
-    //               .then(() => {
-    //                 alert("등록되었습니다");
-    //               })
-    //               .catch(err => console.log(err));
-    //   }
-    // },
+    apply() {
+      console.log(this.list[0].com_id);
+      console.log(sessionStorage.getItem("user_id"));
+      if (confirm('지원하시겠습니까?')) {
+        this.axios.get("/apply", { params: { "user_id": sessionStorage.getItem("user_id") } })
+          .then(res => {
+            console.log(res);
+            console.log(1);
+            console.log(res.data);
+            this.applyInsert(res.data, this.list[0].com_id);
+          })
+          .catch(() => {
+            console.log(err);
+            alert('등록된 이력서가 없습니다.');
+          });
+      }
+    },
+    applyInsert(vo, com_id) {
+      console.log(vo);
+      console.log(this.list[0].com_id);
+      this.axios.post("/applyInsert", {
+        com_id: com_id,
+        user_id: vo.user_id,
+        w_address: vo.w_address,
+        w_com: vo.w_com,
+        w_email: vo.w_email,
+        w_finish: vo.w_finish,
+        w_fndate: vo.w_fndate,
+        w_gender: vo.w_gender,
+        w_get: vo.w_get,
+        w_getlicense: vo.w_getlicense,
+        w_hp: vo.w_hp,
+        w_join: vo.w_join,
+        w_leave: vo.w_leave,
+        w_level: vo.w_level,
+        w_license: vo.w_license,
+        w_major: vo.w_major,
+        w_name: vo.w_name,
+        w_no: vo.w_no,
+        w_position: vo.w_position,
+        w_score: vo.w_score,
+        w_subject: vo.w_subject,
+      })
+        .then(res => {
+          console.log(2);
+          console.log(res);
+          alert('성공적으로 등록되었습니다 !');
+        })
+        .catch(err => console.log(err));
+    },
+    displayBtn() {
+      if(sessionStorage.getItem("user_id") == '' || sessionStorage.getItem("user_id") == null) {
+        console.log(document.getElementById("btnApply"));
+      }
+    },
   },
   mounted() {
     this.getJobDetail();
+    this.displayBtn();
   },
 }
 </script>
@@ -159,22 +207,26 @@ body {
   padding-left: 20px;
 }
 
-#first_title {
-  padding-top: 20px;
+#top .title {
+  padding-top: 50px;
+  text-align: left;
+  position: absolute;
+  left: 300px;
+
 }
 
 #article_top {
   padding-top: 120px;
 }
 
-#top_top {
-  display: flex;
+#top_bottom {
+  margin-top: 80px;
 }
 
 #company_name {
   position: absolute;
-  top: 240px;
-  left: 360px;
+  top: 200px;
+  left: 330px;
 }
 
 #banner_wrap {
@@ -190,13 +242,15 @@ body {
   background-color: black;
   opacity: 0.5;
   z-index: 9;
+  margin-top: -25px;
+  margin-bottom: 200px;
 }
 
 #company_logo {
   position: absolute;
-  top: 66%;
+  top: 100px;
   left: 10%;
-  z-index: 999;
+  z-index: 998;
   border: 2px solid #fff;
 }
 
@@ -226,7 +280,7 @@ body {
 
 #q_right {
   float: right;
-  color: blue;
+  color: orangered;
 }
 
 #article_bottom {

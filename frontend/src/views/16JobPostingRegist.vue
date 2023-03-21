@@ -10,23 +10,24 @@
           <input type="text" id="j_title" v-model="j_title">
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">담당자 성함</label>
-        <div id="">
-          <input type="text">
+      <div v-for="item in com_list">
+        <div id="field">
+          <label class="field_name">담당자 성함</label>
+          <div id="">
+            <input type="text" :value="item.com_manager_name" style="border: 0;" readonly>
+          </div>
         </div>
-      </div>
-      <div id="field">
-        <label class="field_name">기업명</label>
-        <div id="">
-          <input type="text">
+        <div id="field">
+          <label class="field_name">기업명</label>
+          <div id="">
+            <input type="text" :value="item.com_name" style="border: 0;" readonly>
+          </div>
         </div>
-      </div>
-      <div class="field tel-number">
-        <label class="field_name">휴대폰 번호</label>
-        <div class="tel_number_input">
-          <input type="text" id="tel_number_1"> - <input type="text" id="tel_number_2"> - <input type="text"
-            id="tel_number_3">
+        <div class="field tel-number">
+          <label class="field_name">휴대폰 번호</label>
+          <div class="tel_number_input">
+            <input type="text" id="tel_number" :value="item.com_manager_phone" style="border: 0;" readonly>
+          </div>
         </div>
       </div>
       <div id="field">
@@ -42,7 +43,7 @@
         </div>
       <!-- <div v-for="item in $route.query.valList">
           {{ item }}
-                          </div> -->
+                            </div> -->
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
@@ -90,7 +91,7 @@
       <div id="field">
         <label class="field_name">상세 내용</label>
         <div class="content">
-          <textarea name="" id="" cols="30" rows="10">파일업로드ㅇ해야댐</textarea>
+          <textarea name="" id="" cols="30" rows="10" v-model="j_content">파일업로드ㅇ해야댐</textarea>
           <div class="main-container">
             <div class="room-deal-information-container">
               <div class="room-deal-information-title">사진 등록</div>
@@ -117,7 +118,7 @@
                       <div class="image-box">
                       <!-- <div class="image-profile">
             <img :src="profileImage" />
-                        </div>-->
+                          </div>-->
                         <label for="file">일반 사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageUpload" multiple />
                       </div>
@@ -153,8 +154,7 @@
             <input type="text" id="process" value="서류전형" readonly>
           </div>
           <div id="process_add">
-            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
-              style="margin-bottom: 15px;">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1" style="margin-bottom: 15px;">
               1차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
@@ -212,7 +212,7 @@ export default {
       j_recruitNum: '',
       j_email: '',
       j_title: '',
-      j_content: '업로드 기능 넣어야댐',
+      j_content: '',
       j_salary: '',
       j_department: '',
       j_schedule: '',
@@ -221,11 +221,9 @@ export default {
       j_career: '',
       j_type: '',
       j_end_date: '',
-      com_id: '1818',
+      com_id: '',
       endDate: '',
-
-      // hash: [],
-      // valList: '',
+      com_list: '',
 
       files: [], //업로드용 파일
       filesPreview: [],
@@ -293,7 +291,7 @@ export default {
             j_end_date: this.endDate,
             j_career: this.j_career,
             j_type: this.j_type,
-            com_id: this.com_id,
+            com_id: sessionStorage.getItem("com_id"),
           }
         ).then(() => {
           alert('등록되었습니다!');
@@ -388,8 +386,12 @@ export default {
         });
     },
     getCompanyVO() {
-      console.log(this.$route.params.com_id);
-      this.axios.get("/registJobPosting", {})
+      this.com_id = this.$route.params.com_id;
+      this.axios.get("/getCompanyVO/" + this.com_id, { params: { "com_id": this.com_id } })
+        .then(res => {
+          this.com_list = res.data;
+        })
+        .catch(err => console.log(err));
     }
   },
   components: {
@@ -473,7 +475,7 @@ button[type="submit"] {
 }
 
 .tel_number_input>input {
-  width: 50px;
+  width: 150px;
 }
 
 button[type="submit"]:hover {

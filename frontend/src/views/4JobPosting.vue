@@ -69,7 +69,9 @@
             <option value="10">10개씩 보기</option>
             <option value="30">30개씩 보기</option>
           </select>
-          <button type="button" @click="addPosting" style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white;">공고 등록</button>
+          <button type="button" @click="addPosting" style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white;">
+            공고 등록
+          </button>
         </div>
         <div id="salary_list_total">
           <ul>
@@ -78,7 +80,7 @@
                 <a href="#" class="logo" @click.prevent="getDetail(item.j_no)"><img src="" alt="로고"></a>
                 <div class="company_info">
                   <strong class="title">
-                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.j_title}} {{ item.j_no }}</span>
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.com_name}} {{ item.j_no }}</span>
                   </strong>
                   <a href="#" class="mark" @click="(e) => { e.preventDefault(); }" style="cursor: default;">채용중</a>
                   <div class="recruit_title">
@@ -291,8 +293,15 @@ export default {
       this.get();
     },
     addPosting() {
-      this.$router.push({path: '/registJobPosting', params: {com_id: 1818}});
-      // this.$router.push("/registJobPosting");
+      this.$router.push({
+        path: '/registJobPosting',
+        name: 'jobPostingRegist',
+        params: { 'com_id': sessionStorage.getItem("com_id") },
+        headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          },
+      })
     },
   },
   mounted() {

@@ -92,9 +92,11 @@ export default {
         sessionStorage.setItem('user_id', res.data.user_id)
         sessionStorage.setItem('ut_no', res.data.ut_no)
         console.log(sessionStorage)
-        this.$router.push({ path: '/' })
+        this.$store.commit("setUtNo", 1)
+        location.href = "/";
         console.log(this.$store.state.logInOut)
         this.$store.commit("setLogInOut", "로그아웃")
+
 
 
 
@@ -130,7 +132,8 @@ export default {
         sessionStorage.setItem('com_id', res.data.com_id)
         sessionStorage.setItem('ut_no', res.data.ut_no)
         console.log(sessionStorage)
-        this.$router.push({ path: '/' })
+        this.$store.commit("setUtNo", 2)
+        location.href = "/";
         console.log(this.$store.state.logInOut)
         this.$store.commit("setLogInOut", "로그아웃")
 
@@ -147,6 +150,8 @@ export default {
       }).catch(err => {
         if (err.response.status == 401) {
           alert("아뒤 비번좀 봐라")
+        }else if(err.response.status == 403){
+          alert("관리자의 승인이 필요합니다")
         }
       })
     },

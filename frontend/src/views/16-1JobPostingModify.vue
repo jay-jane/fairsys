@@ -31,7 +31,7 @@
       <div id="field">
         <label class="field_name">이메일 주소</label>
         <div id="">
-          <input type="email" v-bind:value="item.j_email" @change="getEamil">
+          <input type="email" :value="item.j_email" @change="getEmail">
         </div>
       </div>
       <div id="field">
