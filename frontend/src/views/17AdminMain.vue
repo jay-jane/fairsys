@@ -69,6 +69,8 @@
 </template>
 
 <script>
+import Axios from 'axios';
+
 import {Bar, Line, Pie} from 'vue-chartjs';
 import { Chart, registerables} from 'chart.js'
 Chart.register(...registerables)
@@ -82,6 +84,10 @@ export default {
   },
   data(){
     return{
+
+
+
+
       /* 차트데이터 입력 */
       chartData: {
         /* x축 */
@@ -106,7 +112,20 @@ export default {
         responsive: true
       }
     }
+  },
+
+  methods:{
+    async get() {
+      let response = await Axios.get("/17");
+      console.log(response.data);
+    }
+  },
+
+  mounted() {
+    //데이터 출력시키기
+    this.get();
   }
+
 }
 </script>
 
@@ -118,7 +137,7 @@ export default {
   h3{color: white;}
   
   .container{
-    margin-left: 200px;
+    margin-top: 100px;
     padding: 20px;
     background-color: #f5f5f5;
   }

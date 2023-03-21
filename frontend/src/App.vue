@@ -1,10 +1,10 @@
 <template>
-  <Header></Header>
+  <!-- <Header></Header> -->
   
-  <!-- <AdminHeader class="name"></AdminHeader> -->
+  <AdminHeader></AdminHeader>
   <Side></Side>
   <router-view />
-  <Footer></Footer>
+  <!-- <Footer></Footer> -->
 </template>
 
 <script>
@@ -26,7 +26,5 @@ export default {
 </script>
 
 <style>
-.name{
-  display: none;
-}
+
 </style>

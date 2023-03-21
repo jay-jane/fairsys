@@ -22,4 +22,9 @@ public class OneGate<T> {
         this.pageVO = pageVO;
     }
 
+    public OneGate<T> test (ArrayList<T> list, PageVO pageVO){
+        
+        return  new OneGate(list, pageVO);
+    }
+
 }
