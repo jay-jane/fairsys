@@ -18,6 +18,7 @@
       </div>
     </nav>
   </div>
+
 </template>
 <script>
 
@@ -46,6 +47,7 @@ export default {
       dropMenu_hidden.style.display = "none";
     },
 
+    
 
   },
   
@@ -102,6 +104,7 @@ export default {
   width: 100%;
   text-align: center;
   background-color: orange;
+  z-index: 9999;
 }
 
 #drop {

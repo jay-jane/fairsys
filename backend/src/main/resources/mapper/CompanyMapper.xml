@@ -9,9 +9,9 @@
                             j_department, j_schedule, j_graduation,
                             j_career, j_type, com_id, j_end_date)
     values(#{j_recruitNum}, #{j_email},
-            #{j_title}, #{j_content}, #{j_salary},
-            #{j_department}, #{j_schedule}, #{j_graduation},
-            #{j_career}, #{j_type}, #{com_id}, #{j_end_date})
+           #{j_title}, #{j_content}, #{j_salary},
+           #{j_department}, #{j_schedule}, #{j_graduation},
+           #{j_career}, #{j_type}, #{com_id}, #{j_end_date})
   </insert>
 
   <select id="getJobDetail" resultType="JobPostingVO">
@@ -35,7 +35,8 @@
   </delete>
 
   <select id="getJobList" resultType="JobPostingVO">
-    select * from job_posting
+    select j.*, c.com_name from job_posting j
+    left join company c on j.com_id = c.com_id
     <if test="jcri.searchTitle != '' ">
 			<![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>
@@ -65,5 +66,22 @@
   <select id="getCompanyVO" resultType="CompanyVO">
     select * from company where com_id = #{com_id}
   </select>
+
+  <select id="apply" resultType="ResumeWriteVO">
+    select * from resume_write where user_id = #{user_id}
+  </select>
+
+  <insert id="applyInsert" parameterType="UserStatusVO">
+    insert into user_status(user_id, com_id, w_no, w_name, w_hp, w_email, w_address,
+                            w_gender, w_level, w_finish, w_major, w_fndate, w_com,
+                            w_position, w_join, w_leave, w_subject, w_score, w_get,
+                            w_license, w_getlicense)
+    values(#{user_id}, #{com_id}, #{w_no}, #{w_name}, #{w_hp}, #{w_email}, #{w_address},
+           #{w_gender}, #{w_level}, #{w_finish}, #{w_major}, #{w_fndate}, #{w_com},
+           #{w_position}, #{w_join}, #{w_leave}, #{w_subject}, #{w_score}, #{w_get},
+           #{w_license}, #{w_getlicense})
+           
+    <!-- insert into user_status(user_id, com_id) values(#{user_id}, #{com_id}) -->
+  </insert>
 
 </mapper>

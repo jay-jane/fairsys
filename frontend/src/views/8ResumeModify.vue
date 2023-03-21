@@ -23,36 +23,36 @@
               <table class="resume-part2-input">
                 
                 <tr>
-                  <th><label for="w_level">이름</label></th>
+                  <th><label for="user_name">이름</label></th>
                   <td>
                     <input type="hidden" :value="item.user_no">
-                    {{ item.w_name }}
+                    {{ item.user_name }}
                   </td>
-                  <th class="pl-15"><label for="w_finish">연락처</label></th>
+                  <th class="pl-15"><label for="user_phone">연락처</label></th>
                   <td>
                     <div class="graduation">
 
-                      {{ item.w_hp }}
+                      {{ item.user_phone }}
 
                     </div>
                   </td>
                 </tr>
                 <tr>
-                  <th><label for="w_level">이메일</label></th>
+                  <th><label for="user_email">이메일</label></th>
                   <td>
-                    {{ item.w_email }}
+                    {{ item.user_email }}
                   </td>
-                  <th class="text_resume"><label for="w_finish">주소</label></th>
+                  <th class="text_resume"><label for="user_address">주소</label></th>
                   <td>
                     <div class="graduation">
 
-                      {{ item.w_address }}
+                      {{ item.user_address }}
 
                     </div>
                   </td>
-                  <th><label for="w_level">성별</label></th>
+                  <th><label for="user_gender">성별</label></th>
                   <td>
-                    {{ item.w_gender }}
+                    {{ item.user_gender }}
                   </td>
                 </tr>
 
@@ -64,27 +64,27 @@
             <div class="resume-part2-box">
               <table class="resume-part2-input">
                 <tr>
-                  <th><label for="w_com">최종학력</label></th>
+                  <th><label for="user_level">최종학력</label></th>
                   <td>
-                    {{ item.w_level }}
+                    {{ item.user_level }}
                   </td>
-                  <th><label for="w_position">졸업여부</label></th>
+                  <th><label for="user_finish">졸업여부</label></th>
                   <td>
-                    {{ item.w_finish }}
+                    {{ item.user_finish }}
                   </td>
                 </tr>
                 <tr>
-                  <th style="padding-top:10px"><label for="w_join">전공</label></th>
+                  <th style="padding-top:10px"><label for="user_major">전공</label></th>
                   <td>
 
-                    <label for="w_join">
+                    <label for="user_major">
                       {{ item.w_major }}
                     </label>
                   </td>
-                  <th style="padding-top:10px"><label for="w_leave">졸업/졸업예정날짜</label></th>
+                  <th style="padding-top:10px"><label for="user_fndate">졸업/졸업예정날짜</label></th>
                   <td>
 
-                    <label for="w_leave">
+                    <label for="user_fndate">
                       {{ item.w_fndate }}
                     </label>
                   </td>
@@ -98,28 +98,28 @@
             <div class="resume-part2-box">
               <table class="resume-part2-input">
                 <tr>
-                  <th><label for="w_com">회사명</label></th>
+                  <th><label for="user_com">회사명</label></th>
                   <td>
-                    {{ item.w_com }}
+                    {{ item.user_com }}
                   </td>
-                  <th><label for="w_position">직급</label></th>
+                  <th><label for="user_position">직급</label></th>
                   <td>
-                    {{ item.w_position }}
+                    {{ item.user_position }}
                   </td>
                 </tr>
                 <tr>
-                  <th style="padding-top:10px"><label for="w_join">입사일</label></th>
+                  <th style="padding-top:10px"><label for="user_join">입사일</label></th>
                   <td>
 
-                    <label for="w_join">
-                      {{ item.w_join }}
+                    <label for="user_join">
+                      {{ item.user_join }}
                     </label>
                   </td>
-                  <th style="padding-top:10px"><label for="w_leave">퇴사일</label></th>
+                  <th style="padding-top:10px"><label for="user_leave">퇴사일</label></th>
                   <td>
 
-                    <label for="w_leave">
-                      {{ item.w_leave }}
+                    <label for="user_leave">
+                      {{ item.user_leave }}
                     </label>
                   </td>
                 </tr>
@@ -132,20 +132,20 @@
               <table class="resume-part2-input">
 
                 <tr>
-                  <th><label for="w_subject">과목</label></th>
+                  <th><label for="user_subject">과목</label></th>
                   <td>
-                    {{ item.w_subject }}
+                    {{ item.user_subject }}
                   </td>
-                  <th class="text_resume"><label for="w_score">점수</label></th>
+                  <th class="text_resume"><label for="user_score">점수</label></th>
                   <td>
-                    {{ item.w_score }}
+                    {{ item.user_score }}
                   </td>
                 </tr>
                 <tr>
-                  <th style="padding-top:10px"><label for="w_get">취득일</label></th>
+                  <th style="padding-top:10px"><label for="user_get">취득일</label></th>
                   <td>
-                    <label for="w_get">
-                      {{ item.w_get }}
+                    <label for="user_get">
+                      {{ item.user_get }}
                     </label>
                   </td>
                 </tr>
@@ -158,13 +158,13 @@
             <div class="resume-part2-box">
               <table class="resume-part2-input">
                 <tr>
-                  <th class="text_resume"><label for="w_license">자격증명</label></th>
+                  <th class="text_resume"><label for="user_license">자격증명</label></th>
                   <td>
-                    {{ item.w_license }}
+                    {{ item.user_license }}
                   </td>
-                  <th style="padding-top:10px"><label for="w_getlicense">취득일</label></th>
+                  <th style="padding-top:10px"><label for="user_getlicense">취득일</label></th>
                   <td>
-                    {{ item.w_getlicense }}
+                    {{ item.user_getlicense }}
                   </td>
                 </tr>
               </table>
@@ -185,25 +185,25 @@ export default {
   name: 'App',
   data() {
     return {
-      w_no: "",
-      w_name: "",
-      w_hp: "",
-      w_email: "",
-      w_address: "",
-      w_gender: "",
-      w_level: "",
-      w_finish: "",
-      w_major: "",
-      w_fndate: "",
-      w_com: "",
-      w_position: "",
-      w_join: "",
-      w_leave: "",
-      w_subject: "",
-      w_score: "",
-      w_get: "",
-      w_license: "",
-      w_getlicense: "",
+      user_no: "",
+      user_name: "",
+      user_phone: "",
+      user_email: "",
+      user_address: "",
+      user_gender: "",
+      user_level: "",
+      user_finish: "",
+      user_major: "",
+      user_fndate: "",
+      user_com: "",
+      user_position: "",
+      user_join: "",
+      user_leave: "",
+      user_subject: "",
+      user_score: "",
+      user_get: "",
+      user_license: "",
+      user_getlicense: "",
       user_id: "",
       com_id:"",
       list: [],
@@ -225,11 +225,12 @@ export default {
         });
     },
     getStatusValue(e) {
-      this.status = e.target.value;
+      this.status = e.target.value; 
     },
     updateStatus() {
       console.log(this.status);
       console.log(this.list[0].com_id);
+      console.log(this.list[0].user_no);
       console.log(this.list[0].w_no);
       this.axios.post("/updateStatus", {user_no: this.list[0].user_no, status: this.status, com_id: this.list[0].com_id} )
                 .then(() => {

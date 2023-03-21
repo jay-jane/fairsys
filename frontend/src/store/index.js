@@ -7,7 +7,7 @@ export default createStore({
   //공통으로 관리할 데이터
   state: {
     logInOut:'로그인',
-    qa_no:0  //qna글번호
+    ut_no:'',
   },
   
   //state를 변경할때 사용하는 함수의 모음이며 비동기에 대한 처리를 담당안함
@@ -15,8 +15,8 @@ export default createStore({
     setLogInOut(state,data){
       state.logInOut= data;
     },
-    setQnaDetailNo(state,data){
-      state.qa_no= data;
+    setUtNo(state, data){
+      state.ut_no=data;
     }
   },
 
