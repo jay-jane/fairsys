@@ -175,7 +175,6 @@ export default {
           console.log(res)
           console.log(res.data)
 
-
           this.birth.yyyy = res.data.user_birth.substr(0, 4)
           this.birth.mm = res.data.user_birth.substr(4, 2)
           this.birth.dd = res.data.user_birth.substr(6, 2)

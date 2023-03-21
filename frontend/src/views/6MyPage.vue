@@ -67,6 +67,34 @@
         </div>
       </table>
       
+   <table>
+        <caption class="my_resume">나의 이력서</caption>
+
+        <thead class="my_list">
+          <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>조회</th>
+            <th>수정</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+
+          <tr v-for="(item, index) in list" v-bind:key="index">
+            <td>{{ item.user_no }}</td>
+            <td>{{ item.com_id }}</td>
+            <!-- <td @click.prevent="ResumeModify(item.w_no)">조회</td>
+            <td><router-link :to="{ name: 'ResumeUpdate', params: { w_no: item.user_no } }">수정</router-link></td>
+            -->  
+            <td @click.prevent="ResumeModify(item.user_no)">조회</td>
+            <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.user_no}}">수정</router-link></td>
+             <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
+            </td> 
+          </tr>
+
+        </tbody>
+      </table>
 
 
 
@@ -84,6 +112,10 @@ export default {
   data() {
     return {
      userInfo:'',
+     list: [],
+      user_no: '',
+       user_id:'',
+      com_id:'',
     }
 
   },
@@ -108,11 +140,25 @@ export default {
           sessionStorage.clear();
           this.$store.commit("setLogInOut","로그인")
           this.$router.push({ path: '/2' })
-
         })
-        
-
-    }
+    },
+ResumeModify(user_no) {
+      this.$router.push({
+        path: '/ResumeModify/',
+        name: 'ResumeModify',
+        params: { "user_no": user_no }
+      })
+    },
+    deleteForm(user_no) {
+      if (confirm('삭제하시겠습니까?')) {
+        this.axios.post('/ResumeDelete', { "user_no": user_no })
+          .then(() => {
+            alert('삭제되었습니다');
+            this.$router.push('/UserMyPage');
+          })
+          .catch(err => console.log(err));
+      };
+    },
   },
   mounted(){
     this.get()

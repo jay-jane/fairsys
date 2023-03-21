@@ -2,6 +2,8 @@ package com.finalpj.backend.service;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Service;
+
 import com.finalpj.backend.command.UserVO;
 import com.finalpj.backend.util.Criteria;
 

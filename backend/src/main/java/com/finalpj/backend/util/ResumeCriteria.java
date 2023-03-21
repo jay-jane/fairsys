@@ -12,6 +12,7 @@ public class ResumeCriteria {
 	
 	//검색키워드
 	private String searchTitle; //제목
+	private String searchStatus; //상태
 	private String searchContent; //내용
 	
 	public ResumeCriteria() {
