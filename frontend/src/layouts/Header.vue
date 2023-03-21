@@ -102,6 +102,7 @@ export default {
   width: 100%;
   text-align: center;
   background-color: orange;
+  z-index: 9999;
 }
 
 #drop {

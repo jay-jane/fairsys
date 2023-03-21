@@ -81,8 +81,8 @@
       </div>
 
       <div id="button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
-        <button type="button" @click="apply" style="border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
-        <router-link :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</router-link>
+        <button type="button" id="btnApply" @click="apply" style="border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
+        <router-link :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }" id="btnModify" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</router-link>
         <router-link to="/4" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">목록</router-link>
       </div>
     </div>
@@ -160,6 +160,7 @@ export default {
         w_position: vo.w_position,
         w_score: vo.w_score,
         w_subject: vo.w_subject,
+        applyDate: Date(),
       })
         .then(res => {
           console.log(2);
@@ -167,10 +168,16 @@ export default {
           alert('성공적으로 등록되었습니다 !');
         })
         .catch(err => console.log(err));
-    }
+    },
+    displayBtn() {
+      if(sessionStorage.getItem("user_id") == '' || sessionStorage.getItem("user_id") == null) {
+        console.log(document.getElementById("btnApply"));
+      }
+    },
   },
   mounted() {
     this.getJobDetail();
+    this.displayBtn();
   },
 }
 </script>
@@ -201,8 +208,12 @@ body {
   padding-left: 20px;
 }
 
-#first_title {
-  padding-top: 20px;
+#top .title {
+  padding-top: 50px;
+  text-align: left;
+  position: absolute;
+  left: 300px;
+
 }
 
 #article_top {

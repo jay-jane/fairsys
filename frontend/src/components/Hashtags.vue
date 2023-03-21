@@ -150,9 +150,9 @@ export default {
             this.value = null;
             this.$refs.input.focus();
             this.$router.push({path: '/registJobPosting/' + sessionStorage.getItem("com_id"), query: {valList: this.valList}});
-        },        
+        },
     },
-   
+
 };
 </script>
 

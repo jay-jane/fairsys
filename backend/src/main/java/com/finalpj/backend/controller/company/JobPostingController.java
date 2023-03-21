@@ -28,7 +28,7 @@ public class JobPostingController {
     private CompanyService service;
     
     // @GetMapping("/jobPostingList")
-    // public List<JobPostingVO> getJobList(JobCriteria jcri) {
+    // public List<JobPostingVO> getJob4List(JobCriteria jcri) {
     //     return service.getJobList(jcri);
     // }
     @GetMapping("/4/")
