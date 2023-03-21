@@ -80,10 +80,10 @@
         </div>
       </div>
 
-      <div id="button_wrap" style="margin-top: 20px;">
-        <button type="button" @click="apply">입사지원</button> <br>
-        <router-link :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }">수정/삭제</router-link><br>
-        <router-link to="/4">목록</router-link>
+      <div id="button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+        <button type="button" @click="apply" style="border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
+        <router-link :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</router-link>
+        <router-link to="/4" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">목록</router-link>
       </div>
     </div>
   </section>
@@ -209,14 +209,14 @@ body {
   padding-top: 120px;
 }
 
-#top_top {
-  display: flex;
+#top_bottom {
+  margin-top: 80px;
 }
 
 #company_name {
   position: absolute;
-  top: 240px;
-  left: 360px;
+  top: 200px;
+  left: 330px;
 }
 
 #banner_wrap {
@@ -232,13 +232,15 @@ body {
   background-color: black;
   opacity: 0.5;
   z-index: 9;
+  margin-top: -25px;
+  margin-bottom: 200px;
 }
 
 #company_logo {
   position: absolute;
-  top: 66%;
+  top: 100px;
   left: 10%;
-  z-index: 999;
+  z-index: 998;
   border: 2px solid #fff;
 }
 
@@ -268,7 +270,7 @@ body {
 
 #q_right {
   float: right;
-  color: blue;
+  color: orangered;
 }
 
 #article_bottom {

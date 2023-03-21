@@ -91,7 +91,7 @@
       <div id="field">
         <label class="field_name">상세 내용</label>
         <div class="content">
-          <textarea name="" id="" cols="30" rows="10">파일업로드ㅇ해야댐</textarea>
+          <textarea name="" id="" cols="30" rows="10" v-model="j_content">파일업로드ㅇ해야댐</textarea>
           <div class="main-container">
             <div class="room-deal-information-container">
               <div class="room-deal-information-title">사진 등록</div>
@@ -212,7 +212,7 @@ export default {
       j_recruitNum: '',
       j_email: '',
       j_title: '',
-      j_content: '업로드 기능 넣어야댐',
+      j_content: '',
       j_salary: '',
       j_department: '',
       j_schedule: '',
@@ -221,7 +221,7 @@ export default {
       j_career: '',
       j_type: '',
       j_end_date: '',
-      com_id: '1818',
+      com_id: '',
       endDate: '',
       com_list: '',
 
@@ -291,7 +291,7 @@ export default {
             j_end_date: this.endDate,
             j_career: this.j_career,
             j_type: this.j_type,
-            com_id: this.com_id,
+            com_id: sessionStorage.getItem("com_id"),
           }
         ).then(() => {
           alert('등록되었습니다!');
