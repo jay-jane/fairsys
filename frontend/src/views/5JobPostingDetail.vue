@@ -160,7 +160,6 @@ export default {
         w_position: vo.w_position,
         w_score: vo.w_score,
         w_subject: vo.w_subject,
-        applyDate: Date(),
       })
         .then(res => {
           console.log(2);
