@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.finalpj.backend.service.AdminServiceMapper">
+
+    <!-- 전체유저수 추출 -->
+    <select id="getTotalUser" resultType="int">
+        select count(*) as total from User
+    </select>
+
+    <!-- 승인된 회사수 추출 -->
+    <select id="getApproveCompany" resultType="int">
+        select count(*) as total from company where com_status="Y"
+    </select>
+
+    <!-- 승인대기 회사수 추출 -->
+    <select id="getWatingCompany" resultType="int">
+        select count(*) as total from company where com_status="N"
+    </select>
+
+    <!-- 페이지네이션용 토탈 추출 -->
+    <select id="getTotal" resultType="int">
+     	select count(*) as total from User
+		<if test="cri.searchTitle != null and cri.searchTitle !='' ">
+			<![CDATA[ and user_name like concat('%', #{cri.searchTitle}, '%')]]>
+		</if>
+    </select>
+
+    <select id="getList" resultType="UserVO">
+        SELECT * FROM User
+        <if test="cri.searchTitle != null and cri.searchTitle !='' ">
+				  <![CDATA[ and user_name like concat('%', #{cri.searchTitle}, '%')]]>
+		</if>
+        ORDER BY u_no DESC
+        LIMIT #{cri.pageStart}, #{cri.amount}
+    </select>
+
+
+</mapper>

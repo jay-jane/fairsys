@@ -56,13 +56,13 @@ export default {
 
       //공용
       test:'',
-      company:1,
+      company:0,
       
       //전달데이터
       qa_title:'',           //제목 
       qa_content:'',         //내용
-      user_id:'aaa123',      //유저아이디
-      com_id:0               //회사아이디
+      user_id:'',      //유저아이디
+      com_id:''              //회사아이디
     }
   },
   created(){
