@@ -5,7 +5,7 @@
 
       <div class="resume-main">
         <div class="resume-part-title">이력서 작성</div>
-        <h3 style="text-align: left;">학력</h3>
+        <h3 style="text-align: left;">기본정보</h3>
         <div class="resume-part2-box">
           <table class="resume-part2-input">
 
