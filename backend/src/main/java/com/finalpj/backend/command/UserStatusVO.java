@@ -45,5 +45,6 @@ public class UserStatusVO {
     private Date w_getlicense;
     private int user_no;
     
+    private Date applyDate;
 }
 
