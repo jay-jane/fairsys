@@ -72,16 +72,22 @@
   </select>
 
   <insert id="applyInsert" parameterType="UserStatusVO">
-    insert into user_status(user_id, com_id, w_no, w_name, w_hp, w_email, w_address,
-                            w_gender, w_level, w_finish, w_major, w_fndate, w_com,
-                            w_position, w_join, w_leave, w_subject, w_score, w_get,
-                            w_license, w_getlicense)
-    values(#{user_id}, #{com_id}, #{w_no}, #{w_name}, #{w_hp}, #{w_email}, #{w_address},
-           #{w_gender}, #{w_level}, #{w_finish}, #{w_major}, #{w_fndate}, #{w_com},
-           #{w_position}, #{w_join}, #{w_leave}, #{w_subject}, #{w_score}, #{w_get},
-           #{w_license}, #{w_getlicense})
-           
-    <!-- insert into user_status(user_id, com_id) values(#{user_id}, #{com_id}) -->
+    insert into user_status(user_id, com_id, user_no, user_name, user_phone, user_email, user_address,
+                            user_gender, user_level, user_finish, user_major, user_fndate, user_com,
+                            user_position, user_join, user_leave, user_subject, user_score, user_get,
+                            user_license, user_getlicense)
+    values(#{user_id}, #{com_id}, #{user_no}, #{user_name}, #{user_phone}, #{user_email}, #{user_address},
+           #{user_gender}, #{user_level}, #{user_finish}, #{user_major}, #{user_fndate}, #{user_com},
+           #{user_position}, #{user_join}, #{user_leave}, #{user_subject}, #{user_score}, #{user_get},
+           #{user_license}, #{user_getlicense})
   </insert>
+  
+  <select id="checkApply" resultType="int">
+    select count(*) from user_status where user_id = #{user_id} and com_id = #{com_id}
+  </select>
+
+  <select id="checkPosting" resultType="int">
+    select count(*) from job_posting where com_id = #{com_id}
+  </select>
 
 </mapper>

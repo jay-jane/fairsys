@@ -4,7 +4,7 @@
   <!-- <AdminHeader class="name"></AdminHeader> -->
   <Side></Side>
   <router-view />
-  <!-- <Footer></Footer> -->
+  <Footer></Footer>
 </template>
 
 <script>

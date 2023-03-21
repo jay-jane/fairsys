@@ -44,7 +44,7 @@
             <option value="서울">서울</option>
             <option value="경기">경기</option>
             <option value="인천">인천</option>
-            </select> -->
+              </select> -->
         </div>
         <div id="search_type" class="option_box">
           <strong class="option_title">근무형태</strong>
@@ -69,7 +69,8 @@
             <option value="10">10개씩 보기</option>
             <option value="30">30개씩 보기</option>
           </select>
-          <button type="button" @click="addPosting" style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white;">
+          <button type="button" v-if="ut_no == '2'" @click="addPosting"
+            style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white;">
             공고 등록
           </button>
         </div>
@@ -80,7 +81,8 @@
                 <a href="#" class="logo" @click.prevent="getDetail(item.j_no)"><img src="" alt="로고"></a>
                 <div class="company_info">
                   <strong class="title">
-                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.com_name}} {{ item.j_no }}</span>
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.com_name }} {{ item.j_no
+                    }}</span>
                   </strong>
                   <a href="#" class="mark" @click="(e) => { e.preventDefault(); }" style="cursor: default;">채용중</a>
                   <div class="recruit_title">
@@ -167,6 +169,7 @@ export default {
       mid_category1: false,
       mid_category2: false,
       mid_category3: false,
+      ut_no: sessionStorage.getItem("ut_no"),
 
       //공용
       pages: '',   //pageVO
@@ -180,7 +183,7 @@ export default {
       pageStart: '',
       pageEnd: '',
       realEnd: '',
- 
+
       //검색
       searchTitle: '',
       searchRegion: '',
@@ -293,15 +296,24 @@ export default {
       this.get();
     },
     addPosting() {
-      this.$router.push({
-        path: '/registJobPosting',
-        name: 'jobPostingRegist',
-        params: { 'com_id': sessionStorage.getItem("com_id") },
-        headers: {
-            'content-type': 'application/json',
-            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
-          },
-      })
+      this.axios.get("/checkPosting", { params: { "com_id": sessionStorage.getItem("com_id") } })
+        .then(res => {
+          if (res.data == 1) {
+            alert('공고는 최대 1개 까지만 등록하실 수 있습니다.');
+            return;
+          } else {
+            this.$router.push({
+              path: '/registJobPosting',
+              name: 'jobPostingRegist',
+              params: { 'com_id': sessionStorage.getItem("com_id") },
+              headers: {
+                'content-type': 'application/json',
+                'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+              },
+            })
+          }
+        })
+        .catch(err => console.log(err));
     },
   },
   mounted() {

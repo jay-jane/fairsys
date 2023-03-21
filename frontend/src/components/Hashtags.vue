@@ -92,7 +92,7 @@ export default {
             this.initSelectIndex();
             this.tags.splice(idx, 1);
             this.valList.splice(idx, 1);
-            this.$router.push({path: "/16", query: {valList: this.valList}});
+            this.$router.push({path: '/registJobPosting/' + sessionStorage.getItem("com_id"), query: {valList: this.valList}});
         },
 
         initSelect() {

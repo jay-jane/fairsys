@@ -181,19 +181,9 @@ export default {
     getRecruitNum(e) {
       this.j_recruitNum = e.target.value;
     },
-    getGraduation() {
-      // if(this.list[0].j_graduation == '대졸') {
-      //   console.log(document.getElementById("대졸"));
-      // } else if(this.list[0].j_graduation == '고졸/초대졸') {
-
-      // } else {
-
-      // }
-    }
   },
   mounted() {
     this.getJobDetail();
-    this.getGraduation();
   },
   components: {
     Hashtags,

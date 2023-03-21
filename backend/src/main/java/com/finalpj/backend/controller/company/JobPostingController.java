@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.finalpj.backend.command.CompanyVO;
@@ -47,6 +48,10 @@ public class JobPostingController {
         return service.getTotal(jcri);
     }
 
+    @GetMapping("/checkPosting")
+    public int checkPosting(@RequestParam("com_id") String com_id) {
+        return service.checkPosting(com_id);
+    }
     @PostMapping("/jobPostingRegist")
     public void regist(@RequestBody JobPostingVO vo) {
         service.regist(vo);
@@ -68,9 +73,15 @@ public class JobPostingController {
         service.delete(vo.getJ_no());
     }
 
+    @GetMapping("/checkApply")
+    public int checkApply(@RequestParam("user_id") String user_id, @RequestParam("com_id") String com_id) {
+        System.out.println(service.checkApply(user_id, com_id));
+        return service.checkApply(user_id, com_id);
+    }
     @GetMapping("/apply")
     public ResumeWriteVO apply(HttpServletRequest request, HttpServletResponse response) {
         String user_id = request.getParameter("user_id");
+        System.out.println(user_id);
         return service.apply(user_id);
     }
     @PostMapping("/applyInsert")
