@@ -89,7 +89,8 @@ export default {
     golist(){
       location.href = "/11";
     }
-  },mounted(){
+  },
+  mounted(){
     this.getDetail();
   }
 }
