@@ -1,7 +1,7 @@
 <template>
-  <UserHeader v-if="ut_no == 1 || ut_no == null" class="userHeader"  :key="ut_no"></UserHeader>
-  <CompanyHeader v-if="ut_no == 2" class="companyHeader" :key="ut_no"></CompanyHeader>
-  <!-- <AdminHeader class="name"></AdminHeader> -->
+  <!-- <UserHeader v-if="ut_no == 1 || ut_no == null" class="userHeader"  :key="ut_no"></UserHeader> -->
+  <!-- <CompanyHeader v-if="ut_no == 2" class="companyHeader" :key="ut_no"></CompanyHeader> -->
+  <AdminHeader></AdminHeader>
   <Side></Side>
   <router-view />
   <!-- <Footer></Footer> -->

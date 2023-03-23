@@ -85,11 +85,13 @@ export default {
     //글작성 처리
     doRegist(){
       
+      console.log("유저아이디"+this.user_id)
+
       this.axios.post("/13", 
         {
           qa_title: this.qa_title,
           qa_content: this.qa_content,
-          user_id: this.user_id,
+          user_id: sessionStorage.getItem("user_id"),
           com_id: this.com_id
         })
         .then(res => {
