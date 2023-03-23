@@ -2,7 +2,7 @@
 
 <div class="admin_top">
       <div class="admin_logo">
-        <a href="page45">홈으로</a>
+        <router-link to="/17">홈으로</router-link>
       </div>
       <div class="admin_account">
         <span>관리자님 환영합니다!</span>

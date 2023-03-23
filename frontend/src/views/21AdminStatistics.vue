@@ -5,14 +5,13 @@
     <div class="title">
       <h1>통합 통계</h1>
     </div>
-
+    
+    <span>#기업을 별도로 입력하지 않으면 전체 통계로 출력됩니다.</span>
     <div class="wrap">
       <div class="date_Select">
         <table>
           <tbody>
-
             <tr>
-              <td>기간선택</td>
               <td>시작 날짜</td>
               <td>                
                 <Datepicker
@@ -33,7 +32,9 @@
                   :clearable="true"
                 />
               </td>
-              <td><button>검색하기</button></td>
+              <td> 기업</td>
+              <td><input type="text" placeholder="기업명을 입력하세요" v-model="companyName"></td>
+              <td><button @click="doSelectPeriod">검색하기</button></td>
             </tr>
           </tbody>
         </table>
@@ -69,6 +70,8 @@
 </template>
 
 <script>
+import Axios from 'axios';
+
 //데이트피커 관련 자료
 import { ref, reactive, watch} from 'vue';
 import Datepicker from 'vue3-datepicker';
@@ -89,6 +92,10 @@ export default {
   data(){
 
     return{
+
+      sd: null,
+      ed: null,
+      companyName: '',
       /* 차트데이터 입력 */
       chartData: {
           /* x축 */
@@ -142,6 +149,33 @@ export default {
       locale,
       inputFormat
     }
+  },
+  methods: {
+
+    doSelectPeriod(){
+
+      //전달할 날짜 분리하기
+      this.sd = new Date(this.startDate - (this.startDate.getTimezoneOffset() * 60000));
+      this.ed = new Date(this.endDate);
+
+      
+      this.sd = this.sd.toISOString().substring(0,10);
+      this.ed = this.ed.toISOString().substring(0,10);
+
+      this.getData();
+
+    },
+
+    async getData(){
+
+      let res = await Axios.get("/21?sd=" + this.sd + "&ed=" + this.ed + "&companyName=" + this.companyName);
+      console.log(res.data);
+    }
+
+  },
+
+  mounted(){
+    this.getData();
   }
 
 }
@@ -208,8 +242,9 @@ td {
   font-weight: bold;
 }
 
-.date_Select td:nth-child(2),
-.date_Select td:nth-child(4) {
+.date_Select td:nth-child(1),
+.date_Select td:nth-child(3),
+.date_Select td:nth-child(5) {
   font-weight: bold;
   color: #007bff;
 }

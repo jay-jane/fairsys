@@ -144,7 +144,7 @@ const routes = [
     component: () => import("../views/21AdminStatistics.vue"),
   },
   {
-    path: "/test",
+    path: "/22/:com_id",
     name: "test",
     component: () => import("../views/22Test.vue"),
   },
@@ -176,6 +176,15 @@ const routes = [
     name: "27",
     component: () => import("../views/27test.vue"),
   },
+
+
+  {
+    path: "/50/:com_id",
+    name: "AdminCompanyDetail",
+    component: () => import("../views/50AdminCompanyDetail.vue"),
+  },
+
+
 
 ];
 

@@ -23,18 +23,17 @@
               <td>
                 <input v-model="user_email" required type="text" disabled>
               </td>
+              <th><label for="user_gender">성별</label></th>
+              <td> <input v-model="user_gender" required type="text" disabled></td>
+              
+            </tr>
+             <tr>
               <th><label for="user_address">주소</label></th>
               <td>
-                <input v-model="user_address" required type="text">
+                <input v-model="user_address" required type="text" disabled >
               </td>
             </tr>
-            <tr>
-              <th><label for="user_gender">성별</label></th>
-              <select class="select-graduation" v-model="user_gender" disabled>
-                <option value="남">남</option>
-                <option value="여">여</option>
-              </select>
-            </tr>
+
           </table>
         </div>
 
@@ -62,10 +61,10 @@
               <td>
                 <input v-model="user_major" required type="text">
               </td>
-              <th style="padding-top:10px"><label for="user_getlicense">졸업예정날짜</label></th>
+              <th style="padding-top:10px"><label for="user_fndate">졸업예정날짜</label></th>
               <td>
 
-                <input v-model="user_getlicense" required type="date">
+                <input v-model="user_fndate" required type="date">
 
               </td>
             </tr>
@@ -89,17 +88,17 @@
               </td>
             </tr>
             <tr>
-              <th style="padding-top:10px"><label for="user_getlicense">입사일</label></th>
+              <th style="padding-top:10px"><label for="user_join">입사일</label></th>
               <td>
 
-                <input v-model="user_getlicense" required type="date">
+                <input v-model="user_join" required type="date">
 
               </td>
 
-              <th style="padding-top:10px"><label for="user_getlicense">퇴사일</label></th>
+              <th style="padding-top:10px"><label for="user_leave">퇴사일</label></th>
               <td>
 
-                <input v-model="user_getlicense" required type="date">
+                <input v-model="user_leave" required type="date">
 
               </td>
             </tr>
@@ -122,10 +121,10 @@
               </td>
             </tr>
             <tr>
-              <th style="padding-top:10px"><label for="user_getlicense">취득일</label></th>
+              <th style="padding-top:10px"><label for="user_get">취득일</label></th>
               <td>
 
-                <input v-model="user_getlicense" required type="date">
+                <input v-model="user_get" required type="date">
 
               </td>
 
@@ -191,17 +190,17 @@ export default {
       user_getlicense: "",
       user_id: "",
       com_id:"",
-      list: []
+      list: [],
+      userInfo:'',
     };
   },
   methods: {
     cancel: () => {
       location.href = "/";
     },
-    updateForm() {
-      this.axios.post('/ResumeUpdate',
-        {
-          user_no: this.$route.params.user_no,
+    async updateForm() {
+      this.axios.post('/ResumeUpdate/updateForm', {
+        user_no: this.user_no,
           user_name: this.user_name,
           user_phone: this.user_phone,
           user_email: this.user_email,
@@ -222,20 +221,50 @@ export default {
           user_getlicense: this.user_getlicense,
           user_id: this.user_id,
           com_id: this.com_id
+        },
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          },
         }
-      ).then(() => {
-        console.log(1);
-        this.user_no = this.$route.params.user_no;
-        alert('수정되었습니다.');
+      ).then(res => {
+        console.log(this.user_id)
+        alert('작성이 완료되었습니다.!');
+        console.log(res)
         this.$router.push('/UserMyPage');
       }).catch(err => {
-        console.log(err);
+        console.log(err)
       })
     },
+    async get() {
+
+this.axios.get('/ResumeRegist',
+  {
+    params: { user_id: sessionStorage.getItem("user_id") },
+    headers: {
+      'content-type': 'application/json',
+      'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+    },
   }
+).then(res => {
+  console.log(res)
+  this.user_name=res.data.user_name
+  this.user_phone=res.data.user_phone
+  this.user_email=res.data.user_email
+  this.user_address=res.data.user_address + res.data.user_detail_address
+  this.user_gender = res.data.user_gender == 'M' ? "남자" : "여자"
+}).catch(err => {
+  console.log(err)
+})
+}
+},
+
+mounted(){
+this.get()
+}
 };
-
-
 </script>
 <style>
 .resume {
@@ -298,6 +327,7 @@ export default {
   border: 2px solid #ccc;
   padding: 2px 3px;
 }
+
 
 .graduation {
   display: inline-block;

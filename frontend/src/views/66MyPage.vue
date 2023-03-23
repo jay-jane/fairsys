@@ -51,20 +51,18 @@
             <ul>
               <li class="my_com_info">
                 <div class="my_company_info">
-                  <strong class="my_title">{{list.user_name}}님 안녕하세요</strong>
-                  <a href="#" class="mark">채용중</a>
-                  <dl class="my_info_item">
+                  <strong class="my_title">{{user_id}}님 안녕하세요</strong>
+                  <a href="#" class="mark">MyPage</a>
+                  <div v-for="(item, index) in list">
+                  <dl class="my_info_item" >
                     <dt>이름</dt>
-                    <dd>내용1</dd>
+                    <dd>{{item.user_name}}</dd>
                   </dl>
                   <dl class="my_info_item">
-                    <dt>정보2</dt>
-                    <dd>내용2</dd>
+                    <dt>이메일</dt>
+                    <dd>{{ item.user_email}}</dd>
                   </dl>
-                  <dl class="my_info_item">
-                    <dt>정보3</dt>
-                    <dd>내용3</dd>
-                  </dl>
+                </div>
                 </div>
               </li>
             </ul>
@@ -83,7 +81,7 @@
         <thead class="my_list">
           <tr>
             <th>번호</th>
-            <th>제목</th>
+            <th>진행상황</th>
             <th>조회</th>
             <th>수정</th>
             <th>삭제</th>
@@ -125,8 +123,11 @@ export default {
       a: '',
       user_id:'',
       com_id:'',
+      user_phone:'',
+      user_name:'',
     }
   },
+  
   methods: {
     UserMyPage() {
       this.axios.get('/UserMyPage',
@@ -140,6 +141,11 @@ export default {
         .then(res => {
           // this.w_no = this.$route.query.w_no;
           this.user_name = this.$route.query.user_name;
+          this.user_phone = this.$route.query.user_phone;
+          this.user_id = sessionStorage.getItem("user_id")
+
+          console.log(this.user_id)
+          console.log(this.user_name)
           console.log(res)
           this.list = res.data;
           console.log(res.data)
@@ -156,26 +162,30 @@ export default {
         params: { "user_no": user_no }
       })
     },
+
     deleteForm(user_no) {
       if (confirm('삭제하시겠습니까?')) {
         this.axios.post('/ResumeDelete', { "user_no": user_no })
           .then(() => {
             alert('삭제되었습니다');
-            this.$router.push('/UserMyPage');
+            this.$router.go('/UserMyPage');
           })
           .catch(err => console.log(err));
       };
     },
   },
+
   mounted() {
     this.UserMyPage();
   },
 }
+
 </script>
   
   
 <style>
 * {
+  list-style: none;
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans KR', sans-serif;

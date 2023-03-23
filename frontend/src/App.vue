@@ -1,8 +1,10 @@
 <template>
+
   <UserHeader v-if="ut_no == 1 || ut_no == null" class="userHeader"  :key="ut_no"></UserHeader>
   <CompanyHeader v-if="ut_no == 2" class="companyHeader" :key="ut_no"></CompanyHeader>
   <AdminHeader v-if="ut_no==3" ></AdminHeader> 
   <Side v-if="ut_no==3"></Side>
+
   <router-view />
   <Footer></Footer>
 </template>

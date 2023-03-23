@@ -2,11 +2,13 @@ package com.finalpj.backend.service;
 
 import java.util.ArrayList;
 
+import com.finalpj.backend.command.ApplicantsbyDateVO;
 import com.finalpj.backend.command.UserVO;
 import com.finalpj.backend.util.Criteria;
 
 public interface AdminService {
     
+    //어드민 메인페이지용
 
     //전체유저수 추출
     public int getTotalUser();
@@ -17,7 +19,19 @@ public interface AdminService {
     //승인대기 회사수 추출
     public int getWatingCompany();
 
-    
+    //최근 7일자별 지원자 추출
+    public ArrayList<ApplicantsbyDateVO> getApplicantsbyDate();
+
+    //합격자 중 남성
+    public int getPasserMale();
+
+    //합격자 중 여성
+    public int getPasserFemale();
+
+    //통계페이지 용//////////////////////////////////////////
+
+    public ArrayList<ApplicantsbyDateVO> getJoinUser();
+
 
     //유저리스트
     public ArrayList<UserVO> getList(Criteria cri);

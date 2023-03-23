@@ -99,7 +99,7 @@ public class EmploymentQnaController {
     @PostMapping("/13")
     public void write(@RequestBody EmploymentQnaVO vo){
         //System.out.println("실행쓰");
-        //System.out.println(vo.toString());
+        System.out.println(vo.toString());
         eqs.regist(vo);
     }
 

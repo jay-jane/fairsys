@@ -54,15 +54,24 @@ public class ResumeController {
                 return ogate;
     }
      
-       //지원자 이력서 작성
-       @PostMapping("/ResumeRegist")
-       public void ResumeRegist(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
+       //지원자 이력서 페이지
+       @GetMapping("/ResumeRegist")
+       public UserVO ResumeGet(HttpServletRequest request, HttpServletResponse response){
    		   String user_id = request.getParameter("user_id");
    		   UserVO userVO = testService.getUserInfo(user_id);
    		   System.out.println(userVO.toString());
+   		   return userVO;
+       }
+       //지원자 이력서 작성폼
+       @PostMapping("/ResumeRegist/submitForm")
+       public void ResumeRegist(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
+    	   String user_id = request.getParameter("user_id");
+    	   UserVO userVO = testService.getUserInfo(user_id);
+    	   System.out.println(userVO.toString());
     	   vo.setUser_id(user_id);
+    	   
 //           System.out.println(vo.toString());
-           resumeService.ResumeRegist(vo);
+    	   resumeService.ResumeRegist(vo);
        }
    
        //나의이력서 상세조회
@@ -87,19 +96,34 @@ public class ResumeController {
    
        //이력서 수정
       
-       @PostMapping("/ResumeUpdate")
-       public void ResumeUpdate(@RequestBody ResumeWriteVO vo) {
-           System.out.println(1);
-           System.out.println(vo.toString());
-           resumeService.ResumeUpdate(vo);    
-       }
+    //    @PostMapping("/ResumeUpdate")
+    //    public void ResumeUpdate(@RequestBody ResumeWriteVO vo) {
+    //        System.out.println(1);
+    //        System.out.println(vo.toString());
+    //        resumeService.ResumeUpdate(vo);    
+    //    }
     
+      //지원자 이력서 수정
+      @PostMapping("/ResumeUpdate/updateForm")
+      public void ResumeUpdate(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
+          String user_id = request.getParameter("user_id");
+          UserVO userVO = testService.getUserInfo(user_id);
+          System.out.println(userVO.toString());
+          vo.setUser_id(user_id);
+          
+//           System.out.println(vo.toString());
+          resumeService.ResumeUpdate(vo);
+      }
+
+
+
+
         //지원자 이력서 마이페이지
         @GetMapping("/UserMyPage")
         public ArrayList<ResumeWriteVO> UserMyPage (HttpServletRequest request, HttpServletResponse response){
     
     		String user_id = request.getParameter("user_id");
-    	
+    		System.out.println(user_id);
 
             ArrayList<ResumeWriteVO> resumeWriteVO = resumeService.UserMyPage(user_id);
             
@@ -125,5 +149,13 @@ public class ResumeController {
             System.out.println(vo.getCom_id());
             resumeService.updateStatus(vo);
         }
+
+       
+    @GetMapping("/getUserVO/{user_id}")
+    public List<UserVO> getUserVO(HttpServletRequest request, HttpServletResponse response) {
+        String user_id = request.getParameter("user_id");
+        List<UserVO> list = resumeService.getUserVO(user_id);
+        return list;
+    }
 
 }

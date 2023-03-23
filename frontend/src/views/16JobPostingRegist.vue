@@ -43,7 +43,7 @@
         </div>
       <!-- <div v-for="item in $route.query.valList">
           {{ item }}
-                            </div> -->
+                                </div> -->
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
@@ -59,7 +59,14 @@
       </div>
       <div id="field">
         <label class="field_name">근무지역</label>
-        <div class="kakaoAPI">(카카오맵api)</div>
+        <div class="postAPI">
+          <label for="address" style="font-size: 14px;"> - 주소</label>
+          <input type="text" v-model="j_postcode" placeholder="우편번호">
+          <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"
+            style="cursor: pointer; border: 0; width: 120px; height: 30px; color: orangered; font-weight: bold; background-color: #efefef;"><br>
+          <input type="text" v-model="j_address" placeholder="주소"><br>
+          <input type="text" v-model="j_detail_address" placeholder="상세주소">
+        </div>
       </div>
       <div id="field">
         <label class="field_name">급여(연봉)</label>
@@ -112,13 +119,13 @@
                       실사진 최소 3장 이상 등록하셔야 하며, 가로사진을 권장합니다.
                     </div>
                     <div class="room-file-notice-item room-file-notice-item-red">
-                      로고를 제외한 불필요한 정보(워터마크,상호,전화번호 등)가 있는 매물은 비공개처리됩니다
+                      설명
                     </div>
                     <div class="room-file-notice-item room-file-upload-button">
                       <div class="image-box">
                       <!-- <div class="image-profile">
             <img :src="profileImage" />
-                          </div>-->
+                              </div>-->
                         <label for="file">일반 사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageUpload" multiple />
                       </div>
@@ -154,7 +161,8 @@
             <input type="text" id="process" value="서류전형" readonly>
           </div>
           <div id="process_add">
-            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1" style="margin-bottom: 15px;">
+            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
+              style="margin-bottom: 15px;">
               1차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
@@ -227,7 +235,13 @@ export default {
 
       files: [], //업로드용 파일
       filesPreview: [],
-      uploadImageIndex: 0 // 이미지 업로드를 위한 변수
+      uploadImageIndex: 0, // 이미지 업로드를 위한 변수
+
+      j_postcode: '',
+      j_address: '',
+      j_detail_address: '',
+      detailAddress: '',
+
     }
   },
   methods: {
@@ -292,6 +306,9 @@ export default {
             j_career: this.j_career,
             j_type: this.j_type,
             com_id: sessionStorage.getItem("com_id"),
+            j_postcode: this.j_postcode,
+            j_address: this.j_address,
+            j_detail_address: this.j_detail_address,
           }
         ).then(() => {
           alert('등록되었습니다!');
@@ -392,7 +409,47 @@ export default {
           this.com_list = res.data;
         })
         .catch(err => console.log(err));
-    }
+    },
+    execDaumPostcode() {
+      new window.daum.Postcode({
+        oncomplete: (data) => {
+          if (this.j_detail_address !== "") {
+            this.j_detail_address = "";
+          }
+          if (data.userSelectedType === "R") {
+            // 사용자가 도로명 주소를 선택했을 경우
+            this.j_address = data.roadAddress;
+          } else {
+            // 사용자가 지번 주소를 선택했을 경우(J)
+            this.j_address = data.jibunAddress;
+          }
+
+          // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+          if (data.userSelectedType === "R") {
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+              this.j_detail_address += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== "" && data.apartment === "Y") {
+              this.j_detail_address +=
+                this.j_detail_address !== ""
+                  ? `, ${data.buildingName}`
+                  : data.buildingName;
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (this.j_detail_address !== "") {
+              this.j_detail_address = `(${this.j_detail_address})`;
+            }
+          } else {
+            this.j_detail_address = "";
+          }
+          // 우편번호를 입력한다.
+          this.j_postcode = data.zonecode;
+        },
+      }).open();
+    },
   },
   components: {
     Hashtags,

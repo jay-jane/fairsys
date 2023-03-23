@@ -19,4 +19,7 @@ public interface CompanyService {
     List<CompanyVO> getCompanyVO(String com_id);
     ResumeWriteVO apply(String user_id);
     void applyInsert(UserStatusVO vo);
+    int checkApply(String user_id, String com_id);
+    int checkPosting(String com_id);
+    String getJno(String com_id);
 }
