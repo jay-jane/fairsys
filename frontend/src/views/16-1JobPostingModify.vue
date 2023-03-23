@@ -54,8 +54,7 @@
       <div id="field">
         <label class="field_name">근무지역</label>
         <div class="kakaoAPI">
-          {{ item.com_detail_address }}
-          (카카오맵api)
+          {{ item.j_address }} {{ item.j_detail_address }}
         </div>
       </div>
       <div id="field">
@@ -82,7 +81,7 @@
       <div id="field">
         <label class="field_name">상세 내용</label>
 
-        <div class="content">나중에@@@@</div>
+        <div class="content">{{ item.j_content }}</div>
 
       </div>
       <div id="field">

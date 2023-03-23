@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +28,7 @@ public class JobPostingController {
 
     @Autowired
     private CompanyService service;
-    
-    // @GetMapping("/jobPostingList")
-    // public List<JobPostingVO> getJob4List(JobCriteria jcri) {
-    //     return service.getJobList(jcri);
-    // }
+
     @GetMapping("/4/")
     public JobOneGate list(JobCriteria jcri) {
         //페이지네이션 처리
@@ -95,6 +92,12 @@ public class JobPostingController {
         String com_id = request.getParameter("com_id");
         List<CompanyVO> list = service.getCompanyVO(com_id);
         return list;
+    }
+
+    @GetMapping("/getJno")
+    public String getJno(HttpServletRequest request, HttpServletResponse response) {
+        String com_id = request.getParameter("com_id");
+        return service.getJno(com_id);
     }
 
 }

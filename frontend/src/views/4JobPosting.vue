@@ -24,34 +24,33 @@
               <img src="https://picsum.photos/10/10" alt="r"> 초기화
             </span>
           </strong>
-          <ul class="categoryList" style="float: left;">
+          <ul class="category-list-left" style="float: left;">
             <li><a href="#" @click.prevent="getCategory_List" name="1">서울</a></li>
             <li><a href="#" @click.prevent="getCategory_List" name="2">경기</a></li>
             <li><a href="#" @click.prevent="getCategory_List" name="3">인천</a></li>
           </ul>
-          <ul class="categoryList">
-            <li><a href="#" class="서울시" v-if="mid_category1" @click.prevent="getCategory">&gt; 강남구</a></li>
-            <li><a href="#" class="서울시" v-if="mid_category1" @click.prevent="getCategory">&gt; 서초구</a></li>
-            <li><a href="#" class="서울시" v-if="mid_category1" @click.prevent="getCategory">&gt; 강서구</a></li>
-            <li><a href="#" class="경기도" v-if="mid_category2" @click.prevent="getCategory">&gt; 수원</a></li>
-            <li><a href="#" class="경기도" v-if="mid_category2" @click.prevent="getCategory">&gt; 성남</a></li>
-            <li><a href="#" class="경기도" v-if="mid_category2" @click.prevent="getCategory">&gt; 안산</a></li>
+          <ul class="category-list-right" style="float: left;">
+            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 서울 전체</a></li>
+            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 강남구</a></li>
+            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 서초구</a></li>
+            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 강서구</a></li>
+            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 마포구</a></li>
+            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 경기 전체</a></li>
+            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 수원시</a></li>
+            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 성남시</a></li>
+            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 안산시</a></li>
+            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 화성시</a></li>
+            <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 인천 전체</a></li>
             <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 연수구</a></li>
             <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 서구</a></li>
           </ul>
-        <!-- <select @change="getRegion" id="salary">
-            <option value="" selected></option>
-            <option value="서울">서울</option>
-            <option value="경기">경기</option>
-            <option value="인천">인천</option>
-              </select> -->
         </div>
         <div id="search_type" class="option_box">
           <strong class="option_title">근무형태</strong>
           <div id="job_type">
             <input @click="getCareer" type="radio" name="job_type" value="신입">신입
             <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력">경력
-            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="무관">경력무관
+            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
           </div>
         </div>
         <div id="search_btn">
@@ -81,8 +80,7 @@
                 <a href="#" class="logo" @click.prevent="getDetail(item.j_no)"><img src="" alt="로고"></a>
                 <div class="company_info">
                   <strong class="title">
-                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.com_name }} {{ item.j_no
-                    }}</span>
+                    <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.com_name }}</span>
                   </strong>
                   <a href="#" class="mark" @click="(e) => { e.preventDefault(); }" style="cursor: default;">채용중</a>
                   <div class="recruit_title">
@@ -96,7 +94,7 @@
                       <dt>{{ item.j_graduation }}</dt>
                     </dl>
                     <dl class="info_item">
-                      <dt>지역</dt>
+                      <dt>{{ item.j_address.substr(0,2) }}</dt>
                     </dl>
                   </div>
                 </div>
@@ -147,7 +145,6 @@
             <i class="fa fa-angle-double-right" aria-hidden="true"> &gt;&gt; </i>
           </router-link>
         </li>
-
       </ul>
     </div>
 
@@ -231,8 +228,10 @@ export default {
       }
     },
     getCategory: function (e) {
-      console.log(e.target.className);
-      this.category = e.target.className + " " + e.target.innerHTML.substr(4);
+      console.log("클래스(도/시) : " + e.target.className);
+      console.log("클릭값(시/구) : " + e.target.innerHTML.substr(5));
+      this.category = e.target.className + " " + e.target.innerHTML.substr(5);
+      
     },
     getDetail(j_no) {
       this.$router.push({
@@ -252,7 +251,9 @@ export default {
       //페이지이동에 필요한 데이터 담기
       this.page = this.pages.page;
       this.searchTitle = this.pages.cri.searchTitle;
-      this.searchContent = this.pages.cri.searchContent;
+      this.searchCareer = this.pages.cri.searchCareer;
+      this.searchRegion = this.pages.cri.searchRegion;
+      console.log(this.searchRegion);
       this.prev = this.pages.prev;
       this.pageStart = this.pages.pageStart;
       this.pageEnd = this.pages.pageEnd;
@@ -292,7 +293,9 @@ export default {
     searchItem() {
       this.searchTitle = this.companyName;
       this.searchCareer = this.career;
+      this.searchRegion = this.category;
       console.log(this.searchCareer);
+      console.log(this.searchRegion);
       this.get();
     },
     addPosting() {
@@ -593,5 +596,18 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.category-list-left {
+  float: left;
+  width: 100px;
+}
+.category-list-right {
+  float: left;
+  width: 100px;
+}
+.category-list-right li {
+  float: left;
+  margin-left: 5px;
 }
 </style>

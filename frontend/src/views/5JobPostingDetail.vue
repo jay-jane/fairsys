@@ -44,7 +44,7 @@
             <div id="qualify">
               <span id="q_left">산업(업종)</span> <span id="q_right">company테이블 접근</span><br>
               <span id="q_left">설립년도</span> <span id="q_right">company테이블 접근</span><br>
-              <span id="q_left">주소</span> <span id="q_right">{{ item.com_detail_address }}</span><br>
+              <span id="q_left">주소</span> <span id="q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
               <span id="q_left">홈페이지</span> <span id="q_right">company테이블 접근</span>
             </div>
           </div>
@@ -74,7 +74,8 @@
         </div>
       </article>
       <div id="location_wrap">
-        기업 위치
+        <span>기업 위치</span><br>
+        <span>{{ item.j_address }} {{ item.j_detail_address }}</span>
         <div id="kakao">
           (카카오맵api)
         </div>
@@ -114,7 +115,8 @@ export default {
       this.axios.get('/jobPostingDetail/' + this.j_no, { params: { "j_no": this.j_no } })
         .then(res => {
           this.list = res.data;
-          this.j_end_date = res.data[0].j_end_date.substring(0, 10);
+          this.j_end_date = new Date(new Date(res.data[0].j_end_date) - (new Date(res.data[0].j_end_date).getTimezoneOffset() * 60000));
+          this.j_end_date = new Date(this.j_end_date).toISOString().substring(0, 10);
           this.j_department = JSON.parse(res.data[0].j_department);
         })
         .catch(err => {

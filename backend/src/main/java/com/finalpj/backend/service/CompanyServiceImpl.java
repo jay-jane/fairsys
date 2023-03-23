@@ -72,5 +72,10 @@ public class CompanyServiceImpl implements CompanyService {
     public int checkPosting(String com_id) {
         return mapper.checkPosting(com_id);
     }
+
+    @Override
+    public String getJno(String com_id) {
+        return mapper.getJno(com_id);
+    }
     
 }
