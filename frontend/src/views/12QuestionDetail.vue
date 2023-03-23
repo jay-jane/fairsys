@@ -105,7 +105,6 @@ export default {
         this.list = this.list[0];
 
       }else{ //ut_no가 2 회사라면
-
         const answer_list = document.querySelector(".answer_list");
         answer_list.style = "display:none";
 
@@ -155,7 +154,9 @@ export default {
       location.href = '/11';
     }
 
-  },mounted(){
+  },
+  
+mounted(){
     this.getDetail();
   }
 }

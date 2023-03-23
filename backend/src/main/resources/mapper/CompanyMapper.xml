@@ -3,19 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.finalpj.backend.service.CompanyMapper">
+
   <insert id="regist" parameterType="JobPostingVO">
     insert into job_posting(j_recruitNum, j_email,
                             j_title, j_content, j_salary,
                             j_department, j_schedule, j_graduation,
-                            j_career, j_type, com_id, j_end_date)
+                            j_career, j_type, com_id, j_end_date,
+                            j_postcode, j_address, j_detail_address)
     values(#{j_recruitNum}, #{j_email},
            #{j_title}, #{j_content}, #{j_salary},
            #{j_department}, #{j_schedule}, #{j_graduation},
-           #{j_career}, #{j_type}, #{com_id}, #{j_end_date})
+           #{j_career}, #{j_type}, #{com_id}, #{j_end_date},
+           #{j_postcode}, #{j_address}, #{j_detail_address})
   </insert>
 
   <select id="getJobDetail" resultType="JobPostingVO">
-    <!-- select * from job_posting where j_no = #{j_no} -->
     select j.*, c.com_name, c.com_ceo_name, c.com_manager_name, c.com_manager_phone, c.com_address, c.com_detail_address
     from job_posting j
     left join company c on j.com_id = c.com_id
@@ -25,9 +27,6 @@
   <update id="update" parameterType="JobPostingVO">
     update job_posting set j_title = #{j_title}, j_email = #{j_email}, j_recruitNum = #{j_recruitNum}
     where j_no = #{j_no}
-    <!-- update job_posting set j_title = #{j_title}, j_email = #{j_email},
-    j_recruitNum = #{j_recruitNum}, j_salary = #{j_salary}, j_graduation = #{j_graduation}
-    where j_no = #{j_no} -->
   </update>
 
   <delete id="delete" parameterType="JobPostingVO">
@@ -37,29 +36,37 @@
   <select id="getJobList" resultType="JobPostingVO">
     select j.*, c.com_name from job_posting j
     left join company c on j.com_id = c.com_id
+    where 1 = 1
     <if test="jcri.searchTitle != '' ">
-			<![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
+			<![CDATA[ and com_name like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>
-    <if test="jcri.searchCareer != '' and jcri.searchTitle == '' ">
-			<![CDATA[ where j_career like concat('%', #{jcri.searchCareer}, '%')]]>
+
+    <if test="jcri.searchCareer != '' ">
+			<![CDATA[ and j_career = #{jcri.searchCareer}]]>
 		</if>
-    <if test="jcri.searchTitle != '' and jcri.searchCareer != '' ">
-      <![CDATA[ and j_career like concat('%', #{jcri.searchCareer}, '%')]]>
-    </if>
+    <if test="jcri.searchRegion != '' ">
+      <if test="!jcri.searchRegion.contains('전체') ">
+			  <![CDATA[ and j_address like concat('%', #{jcri.searchRegion}, '%')]]>
+		  </if>
+      <if test="jcri.searchRegion.contains('전체') ">
+			  <![CDATA[ and j_address like concat('%', #{substr(jcri.searchRegion, 0, 2)}, '%')]]>
+		  </if>
+		</if>
     order by j_no desc
     limit #{jcri.pageStart}, #{jcri.amount}
+    <!-- #{jcri.page} -->
   </select>
 
   <select id="getTotal" resultType="int">
     select count(*) as total from job_posting
     <if test="jcri.searchTitle != '' ">
-			<![CDATA[ where j_title like concat('%', #{jcri.searchTitle}, '%')]]>
+			<![CDATA[ where com_id in (select com_id from company where com_name like concat('%', #{jcri.searchTitle}, '%'))]]>
 		</if>
     <if test="jcri.searchCareer != '' and jcri.searchTitle == '' ">
-			<![CDATA[ where j_career like concat('%', #{jcri.searchCareer}, '%')]]>
+      <![CDATA[ where j_career = #{jcri.searchCareer}]]>
 		</if>
     <if test="jcri.searchTitle != '' and jcri.searchCareer != '' ">
-      <![CDATA[ and j_career like concat('%', #{jcri.searchCareer}, '%')]]>
+      <![CDATA[ and j_career = #{jcri.searchCareer}]]>
     </if>
   </select>
 
@@ -72,16 +79,26 @@
   </select>
 
   <insert id="applyInsert" parameterType="UserStatusVO">
-    insert into user_status(user_id, com_id, w_no, w_name, w_hp, w_email, w_address,
-                            w_gender, w_level, w_finish, w_major, w_fndate, w_com,
-                            w_position, w_join, w_leave, w_subject, w_score, w_get,
-                            w_license, w_getlicense)
-    values(#{user_id}, #{com_id}, #{w_no}, #{w_name}, #{w_hp}, #{w_email}, #{w_address},
-           #{w_gender}, #{w_level}, #{w_finish}, #{w_major}, #{w_fndate}, #{w_com},
-           #{w_position}, #{w_join}, #{w_leave}, #{w_subject}, #{w_score}, #{w_get},
-           #{w_license}, #{w_getlicense})
-           
-    <!-- insert into user_status(user_id, com_id) values(#{user_id}, #{com_id}) -->
+    insert into user_status(user_id, com_id, user_no, user_name, user_phone, user_email, user_address,
+                            user_gender, user_level, user_finish, user_major, user_fndate, user_com,
+                            user_position, user_join, user_leave, user_subject, user_score, user_get,
+                            user_license, user_getlicense)
+    values(#{user_id}, #{com_id}, #{user_no}, #{user_name}, #{user_phone}, #{user_email}, #{user_address},
+           #{user_gender}, #{user_level}, #{user_finish}, #{user_major}, #{user_fndate}, #{user_com},
+           #{user_position}, #{user_join}, #{user_leave}, #{user_subject}, #{user_score}, #{user_get},
+           #{user_license}, #{user_getlicense})
   </insert>
+  
+  <select id="checkApply" resultType="int">
+    select count(*) from user_status where user_id = #{user_id} and com_id = #{com_id}
+  </select>
+
+  <select id="checkPosting" resultType="int">
+    select count(*) from job_posting where com_id = #{com_id}
+  </select>
+
+  <select id="getJno" resultType="String">
+    select j_no from job_posting where com_id = #{com_id}
+  </select>
 
 </mapper>

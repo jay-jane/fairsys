@@ -62,5 +62,20 @@ public class CompanyServiceImpl implements CompanyService {
         System.out.println(vo.toString());
         mapper.applyInsert(vo);
     }
+
+    @Override
+    public int checkApply(String user_id, String com_id) {
+        return mapper.checkApply(user_id, com_id);
+    }
+
+    @Override
+    public int checkPosting(String com_id) {
+        return mapper.checkPosting(com_id);
+    }
+
+    @Override
+    public String getJno(String com_id) {
+        return mapper.getJno(com_id);
+    }
     
 }

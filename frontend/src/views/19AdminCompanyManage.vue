@@ -1,7 +1,8 @@
 <!-- Q&A 페이지 -->
 
 <template>
-  <div class="black-bg" v-if="모달창열렸니 == true">
+ 
+  <!-- <div class="black-bg" v-if="모달창열렸니 == true"> 
     <div class="white-bg">
       <table>
         <thead>
@@ -10,14 +11,14 @@
             <th class="jb-th-2">회사이름</th>
           </tr>
         </thead>
-        <tr v-for="(item, index) in list" :key="index">
+        <tr v-for="(item,index) in list" :key="index">
           <td>{{ item.com_ceo}}</td>
           <td>{{ item.com_postcode }}</td>
         </tr>
       </table>
       <button @click="모달창열렸니 = false">닫기</button>
     </div>
-  </div>
+ </div> -->
 
   <section>
     <div class="main">
@@ -41,10 +42,11 @@
             </tr>
           </thead>
           <tbody class="body">
-            <tr v-for="(item, index) in list" v-bind:key="index">
-              <td>{{item.c_no}}</td>
+            <tr v-for="(item, index) in list" v-bind:key="index" @click.prevent="goDetail(item.com_id)">
+              <td>{{index + 1}}</td>
               <td>
-                <a @click="모달창열렸니 = true">{{ item.com_name }}</a>
+                <!-- <a @click="모달창열렸니 = true">{{ item.com_name }}</a> -->
+                <a>{{ item.com_name }}</a>
               </td>
               <td class="date">{{ item.com_Application_date }}</td>
               <td>
@@ -149,6 +151,14 @@ export default {
  },
 
   methods: {
+
+    getCompanydetail(com_id) {
+      this.$router.push({
+        path: '/50/',
+        params: { 'com_id':com_id }
+      })
+    },
+
     logout() {
       location.href = "/3";
     },
@@ -201,6 +211,11 @@ export default {
       this.pageEnd = this.pages.pageEnd;
       this.realEnd = this.pages.realEnd;
     },
+
+    goDetail(com_id){
+      this.$router.push({name: "AdminCompanyDetail", params: {"com_id": com_id}});
+    },
+
     loglist_view() {
       this.amount = this.amount;
     },

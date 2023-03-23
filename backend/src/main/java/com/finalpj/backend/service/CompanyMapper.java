@@ -22,4 +22,7 @@ public interface CompanyMapper {
     List<CompanyVO> getCompanyVO(@Param("com_id") String com_id);
     ResumeWriteVO apply(String user_id);
     void applyInsert(UserStatusVO vo);
+    int checkApply(@Param("user_id") String user_id, @Param("com_id") String com_id);
+    int checkPosting(@Param("com_id") String com_id);
+    String getJno(String com_id);
 }

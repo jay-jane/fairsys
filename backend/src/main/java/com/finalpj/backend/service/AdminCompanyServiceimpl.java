@@ -1,6 +1,7 @@
 package com.finalpj.backend.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.util.Criteria;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service("AdminCompanyService")
 public class AdminCompanyServiceimpl implements AdminCompanyService {
-
 
   @Autowired
   AdminCompanyMapper adminCompanyMapper;
@@ -31,7 +31,6 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
   public void companyModify(String com_id) {
     adminCompanyMapper.companyModify(com_id);
 
-
   }
 
   @Override
@@ -43,5 +42,10 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
   public int getTotal(Criteria cri) {
     return adminCompanyMapper.getTotal(cri);
 
+  }
+
+  @Override
+  public ArrayList<CompanyVO> Companydetail(String com_id) {
+    return adminCompanyMapper.Companydetail(com_id);
   }
 }

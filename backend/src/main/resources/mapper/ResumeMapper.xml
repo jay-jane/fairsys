@@ -87,7 +87,7 @@
 
 
 	<select id="getList" resultType="UserStatusVO">
-		select * from user_status  <!-- where com_id = #{com_id}-->
+		select * from user_status where com_id = #{com_id}
 		<if test="cri.searchTitle != null and cri.searchTitle !='' "> <![CDATA[ 
 			where user_name like concat('%', #{cri.searchTitle}, '%')]]> </if>
 

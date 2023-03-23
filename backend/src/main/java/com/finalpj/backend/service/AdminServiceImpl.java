@@ -2,6 +2,7 @@ package com.finalpj.backend.service;
 
 import java.util.ArrayList;
 
+import com.finalpj.backend.command.ApplicantsbyDateVO;
 import com.finalpj.backend.command.UserVO;
 import com.finalpj.backend.util.Criteria;
 
@@ -28,6 +29,29 @@ public class AdminServiceImpl implements AdminService {
     public int getWatingCompany(){
         return asm.getWatingCompany();
     };
+
+    //최근 7일자별 지원자 추출
+    public ArrayList<ApplicantsbyDateVO> getApplicantsbyDate(){
+        return asm.getApplicantsbyDate();
+    };
+
+    //합격자 중 남성
+    public int getPasserMale(){
+        return asm.getPasserMale();
+    };
+
+    //합격자 중 여성
+    public int getPasserFemale(){
+        return asm.getPasserFemale();
+    };
+
+
+    //통계페이지 용//////////////////////////////////////////
+
+    public ArrayList<ApplicantsbyDateVO> getJoinUser(){
+        return asm.getJoinUser();
+    };
+
 
     //유저리스트
     public ArrayList<UserVO> getList(Criteria cri){

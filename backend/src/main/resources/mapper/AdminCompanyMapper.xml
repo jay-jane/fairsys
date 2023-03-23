@@ -41,6 +41,12 @@
     where com_id = #{com_id}
 	</update>
 
+  <select id="Companydetail" resultType="CompanyVO">
+    select *
+    from company
+    where com_id=#{com_id}
+  </select>
+
 
 
   <delete id="companyDelete" parameterType="String">
