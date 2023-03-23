@@ -9,6 +9,13 @@ const routes = [
     // path: 유저가 접속하는 url주소 정의
     // name: views 폴더의 vue 파일 내부 사용할 클래스 명
     // component: import한 vue 파일의 이름
+    
+  },
+  {
+    path: "/main2",
+    name: "main2",
+    component: () =>
+    import(/* webpackChunkName: "about" */ "../views/Main2.vue"),
   },
   {
     path: "/2",

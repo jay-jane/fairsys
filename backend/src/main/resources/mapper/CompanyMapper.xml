@@ -16,7 +16,7 @@
 
   <select id="getJobDetail" resultType="JobPostingVO">
     <!-- select * from job_posting where j_no = #{j_no} -->
-    select j.*, c.com_name, c.com_ceo_name, c.com_manager_name, c.com_manager_phone, c.com_address, c.com_detail_address
+    select j.*, c.com_name, c.com_ceo, c.com_manager, c.com_manager_phone, c.com_address, c.com_detail_address
     from job_posting j
     left join company c on j.com_id = c.com_id
     where j_no = #{j_no}

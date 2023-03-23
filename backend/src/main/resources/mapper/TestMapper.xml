@@ -3,6 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.finalpj.backend.service.TestMapper">
+
+  <!-- 메인 페이지 -->
+  <select id="main2" resultType="JobPostingVO">
+  	    select j.*, c.com_name, c.com_ceo, c.com_manager, c.com_manager_phone, c.com_address, c.com_detail_address
+        from job_posting j
+        left join company c on j.com_id = c.com_id
+  </select>
+  
+  <select id="getList" resultType="JobPostingVO">
+    select j.*, c.com_name from job_posting j
+    left join company c on j.com_id = c.com_id
+    order by j_no desc
+    limit #{jcri.pageStart}, #{jcri.amount}
+  </select>
+  
+  <select id="getTotal" resultType="int">
+    select count(*) as total from job_posting
+  </select>
+
   <!-- 개인회원가입  -->
   <insert id="regist" parameterType="UserVO">
   		insert into user(user_id,

@@ -58,7 +58,7 @@
             </div><br>
             <h4>채용 담당자</h4>
             <div id="qualify">
-              <span id="q_left">담당자</span> <span id="q_right">{{ item.com_manager_name }}</span><br>
+              <span id="q_left">담당자</span> <span id="q_right">{{ item.com_manager}}</span><br>
               <span id="q_left">핸드폰 번호</span> <span id="q_right">{{ item.com_manager_phone }}</span><br>
               <span id="q_left">이메일</span> <span id="q_right">{{ item.j_email }}</span><br>
             </div>

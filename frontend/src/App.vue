@@ -1,10 +1,10 @@
 <template>
   <UserHeader v-if="ut_no == 1 || ut_no == null" class="userHeader"  :key="ut_no"></UserHeader>
   <CompanyHeader v-if="ut_no == 2" class="companyHeader" :key="ut_no"></CompanyHeader>
-  <!-- <AdminHeader class="name"></AdminHeader> -->
-  <Side></Side>
+  <AdminHeader v-if="ut_no==3" ></AdminHeader> 
+  <Side v-if="ut_no==3"></Side>
   <router-view />
-  <!-- <Footer></Footer> -->
+  <Footer></Footer>
 </template>
 
 <script>
@@ -41,10 +41,15 @@ export default {
         this.$store.commit("setUtNo", 1)
         this.ut_no = this.$store.state.ut_no
         console.log(this.ut_no)
-      } else {
+      } else if(sessionUtNo == 2 || sessionUtNo == null) {
         this.$store.commit("setUtNo", 2)
         this.ut_no = this.$store.state.ut_no
         console.log(this.ut_no)
+      }else{
+        this.$store.commit("setUtNo", 3)
+        this.ut_no = this.$store.state.ut_no
+        console.log(this.ut_no)
+        this.$router.push({ path: '/17' })
       }
     },
   },
