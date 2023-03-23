@@ -23,6 +23,9 @@ public class JobPostingVO {
     private String j_graduation;
     private String j_career;
     private String j_type;
+    private String j_postcode;
+    private String j_address;
+    private String j_detail_address;
 
     private String com_id;
     private String com_name;

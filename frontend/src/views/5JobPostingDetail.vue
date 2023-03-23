@@ -44,7 +44,7 @@
             <div id="qualify">
               <span id="q_left">산업(업종)</span> <span id="q_right">company테이블 접근</span><br>
               <span id="q_left">설립년도</span> <span id="q_right">company테이블 접근</span><br>
-              <span id="q_left">주소</span> <span id="q_right">{{ item.com_detail_address }}</span><br>
+              <span id="q_left">주소</span> <span id="q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
               <span id="q_left">홈페이지</span> <span id="q_right">company테이블 접근</span>
             </div>
           </div>
@@ -74,16 +74,21 @@
         </div>
       </article>
       <div id="location_wrap">
-        기업 위치
+        <span>기업 위치</span><br>
+        <span>{{ item.j_address }} {{ item.j_detail_address }}</span>
         <div id="kakao">
           (카카오맵api)
         </div>
       </div>
 
-      <div id="button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
-        <button type="button" id="btnApply" @click="apply" style="border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
-        <router-link :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }" id="btnModify" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</router-link>
-        <router-link to="/4" style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">목록</router-link>
+      <div id="button_wrap"
+        style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+        <button type="button" v-if="ut_no == '1'" class="btnApply" @click="apply"
+          style="border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
+        <button v-if="ut_no == '2'" class="btnModify" @click="checkComId"
+          style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</button>
+        <router-link to="/4"
+          style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">목록</router-link>
       </div>
     </div>
   </section>
@@ -100,18 +105,18 @@ export default {
       list: [],
       j_end_date: '',
       j_department: [],
+      ut_no: sessionStorage.getItem("ut_no"),
     }
 
   },
   methods: {
     getJobDetail() {
-      console.log(this.com_id)
       this.j_no = this.$route.params.j_no;
       this.axios.get('/jobPostingDetail/' + this.j_no, { params: { "j_no": this.j_no } })
         .then(res => {
-          console.log(res.data);
           this.list = res.data;
-          this.j_end_date = res.data[0].j_end_date.substring(0, 10);
+          this.j_end_date = new Date(new Date(res.data[0].j_end_date) - (new Date(res.data[0].j_end_date).getTimezoneOffset() * 60000));
+          this.j_end_date = new Date(this.j_end_date).toISOString().substring(0, 10);
           this.j_department = JSON.parse(res.data[0].j_department);
         })
         .catch(err => {
@@ -119,64 +124,76 @@ export default {
         });
     },
     apply() {
-      console.log(this.list[0].com_id);
-      console.log(sessionStorage.getItem("user_id"));
-      if (confirm('지원하시겠습니까?')) {
-        this.axios.get("/apply", { params: { "user_id": sessionStorage.getItem("user_id") } })
-          .then(res => {
-            console.log(res);
-            console.log(1);
-            console.log(res.data);
-            this.applyInsert(res.data, this.list[0].com_id);
-          })
-          .catch(() => {
-            console.log(err);
-            alert('등록된 이력서가 없습니다.');
-          });
-      }
+      this.axios.get("/checkApply", { params: { "user_id": sessionStorage.getItem("user_id"), "com_id": this.list[0].com_id } })
+        .then(res => {
+          console.log(res.data);
+          if (res.data == 1) {
+            alert('해당 공고에 이미 지원하셨습니다.');
+            return;
+          } else {
+            if (confirm('지원하시겠습니까?')) {
+              this.axios.get("/apply", { params: { "user_id": sessionStorage.getItem("user_id") } })
+                .then(res => {
+                  console.log(res);
+                  this.applyInsert(res.data, this.list[0].com_id);
+                })
+                .catch(() => {
+                  console.log(err);
+                  alert('등록된 이력서가 없습니다.');
+                });
+            }
+          }
+        })
+        .catch(err => console.log(err));
     },
     applyInsert(vo, com_id) {
-      console.log(vo);
-      console.log(this.list[0].com_id);
       this.axios.post("/applyInsert", {
         com_id: com_id,
         user_id: vo.user_id,
-        w_address: vo.w_address,
-        w_com: vo.w_com,
-        w_email: vo.w_email,
-        w_finish: vo.w_finish,
-        w_fndate: vo.w_fndate,
-        w_gender: vo.w_gender,
-        w_get: vo.w_get,
-        w_getlicense: vo.w_getlicense,
-        w_hp: vo.w_hp,
-        w_join: vo.w_join,
-        w_leave: vo.w_leave,
-        w_level: vo.w_level,
-        w_license: vo.w_license,
-        w_major: vo.w_major,
-        w_name: vo.w_name,
-        w_no: vo.w_no,
-        w_position: vo.w_position,
-        w_score: vo.w_score,
-        w_subject: vo.w_subject,
+        user_address: vo.user_address,
+        user_com: vo.user_com,
+        user_email: vo.user_email,
+        user_finish: vo.user_finish,
+        user_fndate: vo.user_fndate,
+        user_gender: vo.user_gender,
+        user_get: vo.user_get,
+        user_getlicense: vo.user_getlicense,
+        user_phone: vo.user_phone,
+        user_join: vo.user_join,
+        user_leave: vo.user_leave,
+        user_level: vo.user_level,
+        user_license: vo.user_license,
+        user_major: vo.user_major,
+        user_name: vo.user_name,
+        user_no: vo.user_no,
+        user_position: vo.user_position,
+        user_score: vo.user_score,
+        user_subject: vo.user_subject,
       })
         .then(res => {
-          console.log(2);
           console.log(res);
-          alert('성공적으로 등록되었습니다 !');
+          alert('성공적으로 지원되었습니다 !');
         })
         .catch(err => console.log(err));
     },
     displayBtn() {
-      if(sessionStorage.getItem("user_id") == '' || sessionStorage.getItem("user_id") == null) {
-        console.log(document.getElementById("btnApply"));
+      if (sessionStorage.getItem("ut_no") != '1') {
+        console.log(1234);
+        console.log(this.$refs.btnApply);
       }
     },
+    checkComId() {
+      if(sessionStorage.getItem("com_id") != this.list[0].com_id) {
+        alert('권한이 없습니다.');
+        return;
+      } else {
+        this.$router.push({name: 'jobPostingModify', params: { j_no: this.list[0].j_no } });
+        // :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }
+      }
+    }
   },
   mounted() {
     this.getJobDetail();
-    this.displayBtn();
   },
 }
 </script>
@@ -292,5 +309,4 @@ footer {
   background-color: #f2f2f2;
   padding: 10px;
   font-size: 14px;
-}
-</style>
+}</style>

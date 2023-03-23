@@ -204,7 +204,7 @@ export default {
         {
           user_no: this.user_no,
           user_name: this.user_name,
-          user_phone: this.user_pheon,
+          user_phone: this.user_phone,
           user_email: this.user_email,
           user_address: this.user_address,
           user_gender: this.user_gender,
