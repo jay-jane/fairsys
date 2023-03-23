@@ -7,15 +7,26 @@ import com.finalpj.backend.util.Criteria;
 
 public interface EmploymentQnaService {
     
-    //리스트 출력
+    //유저 리스트 출력
     public ArrayList<EmploymentQnaVO> getList(String user_id, Criteria cri);
+
+    //기업 리스트 출력
+    public ArrayList<EmploymentQnaVO> getCompanyList(String com_id, Criteria cri);
 
     //페이지네이션용
     public int getTotal(String user_id, Criteria cri);
 
+    //기업 페이지네이션용
+    public int getCompanyTotal(String com_id, Criteria cri);
+
     //게시글 상세내용
     public ArrayList<EmploymentQnaVO> getDetail(int qa_no, String user_id);
 
+    //기업게시글 상세내용 요청
+    public ArrayList<EmploymentQnaVO> getDetailCompany(int qa_no, String com_id);
     //게시글 작성
     public void regist(EmploymentQnaVO vo);
+
+    //답변등록
+    public void registAnswer(EmploymentQnaVO vo);
 }

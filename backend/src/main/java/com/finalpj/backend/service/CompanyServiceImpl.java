@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
+import com.finalpj.backend.command.ResumeWriteVO;
+import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.util.JobCriteria;
 
 @Service
@@ -48,6 +50,17 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<CompanyVO> getCompanyVO(String com_id) {
         return mapper.getCompanyVO(com_id);
+    }
+
+    @Override
+    public ResumeWriteVO apply(String user_id) {
+        return mapper.apply(user_id);
+    }
+
+    @Override
+    public void applyInsert(UserStatusVO vo) {
+        System.out.println(vo.toString());
+        mapper.applyInsert(vo);
     }
     
 }

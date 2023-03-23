@@ -220,8 +220,8 @@ export default {
 }
 
 .main {
-  margin: 100px 0 0 200px;
-  padding: 30px;
+  margin: 100px 0 0 0;
+  /* padding: 30px; */
 }
 
 .container {

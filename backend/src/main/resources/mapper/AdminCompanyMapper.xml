@@ -37,7 +37,7 @@
 
 	<update id="companyModify" parameterType="String">
 		update company 
-		set com_status = 'y', com_registration_date = now()
+		set com_status = 'Y', com_registration_date = now()
     where com_id = #{com_id}
 	</update>
 

@@ -56,6 +56,11 @@ const routes = [
     component: () => import("../views/8ResumeModify.vue"),
   },
   {
+    path: "/ResumeComModify/:user_no",
+    name: "ResumeComModify",
+    component: () => import("../views/8ResumeComModify.vue"),
+  },
+  {
     path: "/9-1",
     name: "userInfoModify",
     component: () => import("../views/9-1UserInfoModify.vue"),
@@ -97,7 +102,7 @@ const routes = [
     component: () => import("../views/15JobPostingAndApplicants.vue"),
   },
   {
-    path: "/registJobPosting",
+    path: "/registJobPosting/:com_id",
     name: "jobPostingRegist",
     component: () => import("../views/16JobPostingRegist.vue"),
   },
@@ -143,7 +148,7 @@ const routes = [
     component: () => import("../views/25test.vue"),
   },
   {
-    path: '/ResumeUpdate/:w_no',
+    path: '/ResumeUpdate:user_no',
     name: 'ResumeUpdate',
     component: () => import('../views/ResumeUpdate.vue')
   },
@@ -165,11 +170,13 @@ const routes = [
     component: () => import("../views/27test.vue"),
   },
 
+
   {
     path: "/50/:com_id",
     name: "AdminCompanyDetail",
     component: () => import("../views/50AdminCompanyDetail.vue"),
   },
+
 
 
 ];

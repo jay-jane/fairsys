@@ -5,9 +5,10 @@
 
 <mapper namespace="com.finalpj.backend.service.EmploymentQnaMapper">
 
+	<!-- 유저리스트 출력 -->
     <select id="getList" resultType="EmploymentQnaVO">
         SELECT * FROM employment_qa
-        WHERE user_id = 'aaa123'
+        WHERE user_id = #{user_id}
         <if test="cri.searchTitle != null and cri.searchTitle !='' ">
 				  <![CDATA[ and qa_title like concat('%', #{cri.searchTitle}, '%')]]>
 				</if>
@@ -15,13 +16,27 @@
 				  <![CDATA[ and qa_content like concat('%', #{cri.searchContent}, '%')]]>
 				</if>
         ORDER BY qa_no DESC
-        LIMIT #{cri.pageStart}, #{cri.amount};
-
+        LIMIT #{cri.pageStart}, #{cri.amount}
     </select>
 
+	<!-- 기업리스트 출력 -->
+	<select id="getCompanyList" resultType="EmploymentQnaVO">
+        SELECT * FROM employment_qa
+        WHERE com_id = #{com_id}
+        <if test="cri.searchTitle != null and cri.searchTitle !='' ">
+				  <![CDATA[ and qa_title like concat('%', #{cri.searchTitle}, '%')]]>
+				</if>
+				<if test="cri.searchContent != null and cri.searchContent !='' ">
+				  <![CDATA[ and qa_content like concat('%', #{cri.searchContent}, '%')]]>
+				</if>
+        ORDER BY qa_no DESC
+        LIMIT #{cri.pageStart}, #{cri.amount}
+    </select>
+
+	<!-- 유저 토탈 -->
     <select id="getTotal" resultType="int">
      	select count(*) as total from employment_qa
-     	where user_id = 'aaa123'
+     	where user_id = #{user_id}
 		<if test="cri.searchTitle != null and cri.searchTitle !='' ">
 			<![CDATA[ and qa_title like concat('%', #{cri.searchTitle}, '%')]]>
 		</if>
@@ -30,13 +45,38 @@
 		</if>
     </select>
 
+	<!-- 기업 토탈 -->
+	<select id="getCompanyTotal" resultType="int">
+     	select count(*) as total from employment_qa
+     	where com_id = #{com_id}
+		<if test="cri.searchTitle != null and cri.searchTitle !='' ">
+			<![CDATA[ and qa_title like concat('%', #{cri.searchTitle}, '%')]]>
+		</if>
+		<if test="cri.searchContent != null and cri.searchContent !='' ">
+			<![CDATA[ and qa_content like concat('%', #{cri.searchContent}, '%')]]>
+		</if>
+    </select>
+
+	<!-- 유저 디테일 요청 처리 -->
 	<select id="getDetail" resultType="EmploymentQnaVO">
-		select * from employment_qa where qa_no= #{qa_no} and user_id = 'aaa123'
+		select * from employment_qa where qa_no= #{qa_no} and user_id = #{user_id}
 	</select>
 
+	<!-- 기업 디테일 요청 처리 -->
+	<select id="getDetailCompany" resultType="EmploymentQnaVO">
+		select * from employment_qa where qa_no= #{qa_no} and com_id = #{com_id}
+	</select>
+
+	<!-- 유저 문의 등록 -->
 	<insert id="regist" parameterType="EmploymentQnaVO">
 		INSERT INTO employment_qa (qa_title, qa_content, user_id, com_id) 
 		values (#{qa_title}, #{qa_content}, #{user_id}, #{com_id})
 	</insert>
+
+	<!-- 기업 답변 등록-->
+	<update id="registAnswer" parameterType="EmploymentQnaVO">
+		update employment_qa set qa_answertype=#{qa_answertype}, qa_answer=#{qa_answer} 
+		where qa_no = #{qa_no}
+	</update>
 
 </mapper>

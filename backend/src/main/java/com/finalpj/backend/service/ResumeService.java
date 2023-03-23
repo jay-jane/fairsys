@@ -12,18 +12,25 @@ import com.finalpj.backend.util.ResumeCriteria;
 public interface ResumeService {
 
 //  public ArrayList<ResumeWriteVO> ApplyStatus(); //이력서 조회
- public void ResumeRegist(ResumeWriteVO vo);  //이력서 등록
 //  public ResumeWriteVO ResumeModify(); //이력서 상세조회
 
- public List<UserStatusVO> ResumeModify(int user_no); //이력서 상세조회
+
+
+
  
- 
- 
- 
- public void ResumeUpdate(ResumeWriteVO vo); //이력서 수정
- public ArrayList<UserStatusVO> UserMyPage(); //마이페이지
- public void delete(int w_no); //삭제
- public ArrayList<UserStatusVO> getList(ResumeCriteria cri); //이력서 조회
- public int getTotal(ResumeCriteria cri); //페이지네이션
+
+ //지원자
+public void ResumeRegist(ResumeWriteVO vo);  //지원자 이력서 등록
+public void ResumeUpdate(ResumeWriteVO vo); //지원자이력서 수정
+public void delete(int user_no); //지원자 이력서 삭제
+public ArrayList<ResumeWriteVO> UserMyPage(String user_id); //지원자마이페이지
+ public List<ResumeWriteVO> ResumeModify(int user_no); //지원자 마이페이지 이력서 상세조회  
+
+//회사
+
+ public ArrayList<UserStatusVO> getList(ResumeCriteria cri, String com_id); //회사에 등록된 이력서 조회
+ public int getTotal(ResumeCriteria cri, String com_id); //페이지네이션
  public void updateStatus(UserStatusVO vo); //진행상황 업데이트
+ public List<UserStatusVO> ResumeComModify(int user_no); //기업에서 지원자 이력서 상세조회  
+
 }

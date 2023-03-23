@@ -135,7 +135,7 @@ public class TestController2 {
 		testService.modifyForm(vo);
 		return "success";
 	}
-
+	
 
 
 
@@ -186,13 +186,20 @@ public class TestController2 {
 //			System.out.println(companyVO.toString());
 //
 //		}
-
+		String com_status=companyVO.getCom_status();
+		System.out.println(com_status);
+		//어드민으로부터 승인이 나지 않았을 경우 로그인 불가
+		if(com_status.equals("N")) {
+			return new ResponseEntity (HttpStatus.FORBIDDEN);
+		}
+		
 		if(companyVO!=null) {
 			Map<String, Object> resultMap = new HashMap<>();
+			
 			String com_id = companyVO.getCom_id();
 			String ut_no = companyVO.getUt_no();
 			String authToken = jwtUtil.createAuthToken(com_id);
-
+			
 			//resultMap.put("jwt-auth-token", authToken);
 			resultMap.put("com_id", com_id);
 			resultMap.put("ut_no", ut_no);
@@ -207,9 +214,4 @@ public class TestController2 {
 		}
 		return new ResponseEntity (HttpStatus.UNAUTHORIZED);
 	}
-	
-
-
-
-
 }
