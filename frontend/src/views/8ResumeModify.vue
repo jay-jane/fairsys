@@ -6,8 +6,8 @@
 
 
       <div class="resume-main">
-        <div class="resume-part-title">개인이력서</div>
-        <div class="resume-status-update" style="float: right;">
+        <div class="resume-part-title"></div>
+        <!-- <div class="resume-status-update" style="float: right;">
           <select id="" @change="getStatusValue">
             <option value="대기">대기</option>
             <option value="진행중">진행중</option>
@@ -15,7 +15,7 @@
             <option value="불합격">불합격</option>
           </select>
           <button type="button" @click="updateStatus">적용</button>
-        </div>
+        </div> -->
         <div v-for="(item, index) in list">
           <div >
             <h3 style="text-align: left;">개인정보</h3>
@@ -28,7 +28,7 @@
                     <input type="hidden" :value="item.user_no">
                     {{ item.user_name }}
                   </td>
-                  <th class="pl-15"><label for="user_phone">연락처</label></th>
+                  <th class="text_resume"><label for="user_phone">연락처</label></th>
                   <td>
                     <div class="graduation">
 
@@ -78,14 +78,14 @@
                   <td>
 
                     <label for="user_major">
-                      {{ item.w_major }}
+                      {{ item.user_major }}
                     </label>
                   </td>
                   <th style="padding-top:10px"><label for="user_fndate">졸업/졸업예정날짜</label></th>
                   <td>
 
                     <label for="user_fndate">
-                      {{ item.w_fndate }}
+                      {{ item.user_fndate }}
                     </label>
                   </td>
                 </tr>

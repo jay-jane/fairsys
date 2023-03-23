@@ -111,6 +111,11 @@
 	</update>
 
 
+<select id="getUserVO" resultType="UserVO">
+    select * from user where user_id = #{user_id}
+  </select>
+
+
 
 </mapper>
 

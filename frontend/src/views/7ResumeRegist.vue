@@ -22,20 +22,20 @@
             <tr>
               <th><label for="user_email">이메일</label></th>
               <td>
-                <input v-model="user_email" required type="text" >
+                <input v-model="user_email" required type="text" disabled>
               </td>
               <th><label for="user_address">주소</label></th>
               <td>
-                <input v-model="user_address" required type="text">
+                <input v-model="user_address" required type="text" disabled>
               </td>
+              
             </tr>
             <tr>
               <th><label for="user_gender">성별</label></th>
-              <select class="select-graduation" v-model="user_gender" disabled>
-                <option value="남">남</option>
-                <option value="여">여</option>
-              </select>
+              <td> <input v-model="user_gender" required type="text" disabled></td>
             </tr>
+           
+            
           </table>
         </div>
 
@@ -46,7 +46,10 @@
             <tr>
               <th><label for="user_level">최종학력</label></th>
               <td>
-                <input v-model="user_level" required type="text">
+                <select class="select-graduation" v-model="user_level">
+                    <option value="대졸">대졸</option>
+                    <option value="고졸">고졸</option>
+                  </select>
               </td>
               <th class="pl-15"><label for="user_finish">졸업여부</label></th>
               <td>
@@ -166,7 +169,10 @@
 </template>
   
 <script>
+import Datepicker from 'vue3-datepicker';
+
 export default {
+  components : {Datepicker},
   name: 'App',
   data() {
     return {
@@ -190,21 +196,22 @@ export default {
       user_license: "",
       user_getlicense: "",
       user_id: "",
-      com_id:"",
+      com_id: "",
+      userInfo:'',
     };
   },
   methods: {
     btn_view() {
       location.href = "page1";
     },
-    
+
     async submitForm() {
 
-      this.axios.post('/ResumeRegist',
+      this.axios.post('/ResumeRegist/submitForm',
         {
           user_no: this.user_no,
           user_name: this.user_name,
-          user_phone: this.user_pheon,
+          user_phone: this.user_phone,
           user_email: this.user_email,
           user_address: this.user_address,
           user_gender: this.user_gender,
@@ -239,7 +246,32 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+    },
+    async get() {
+
+      this.axios.get('/ResumeRegist',
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          },
+        }
+      ).then(res => {
+        console.log(res)
+        this.user_name=res.data.user_name
+        this.user_phone=res.data.user_phone
+        this.user_email=res.data.user_email
+        this.user_address=res.data.user_address + res.data.user_detail_address
+        this.user_gender = res.data.user_gender == 'M' ? "M" : "F"
+      }).catch(err => {
+        console.log(err)
+      })
     }
+  },
+
+  mounted(){
+    this.get()
   }
 };
 </script>

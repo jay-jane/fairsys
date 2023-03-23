@@ -122,7 +122,7 @@ export default {
   methods: {
     get() {
      
-      axios.get('/6/mypage',
+     this. axios.get('/6/mypage',
         {
           params: { user_id: sessionStorage.getItem("user_id") },
           headers: {
