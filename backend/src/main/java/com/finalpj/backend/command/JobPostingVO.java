@@ -29,8 +29,8 @@ public class JobPostingVO {
 
     private String com_id;
     private String com_name;
-    private String com_ceo_name;
-    private String com_manager_name;
+    private String com_ceo;
+    private String com_manager;
     private String com_manager_phone;
     private String com_address;
     private String com_detail_address;

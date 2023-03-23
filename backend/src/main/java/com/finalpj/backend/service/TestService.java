@@ -1,9 +1,21 @@
 package com.finalpj.backend.service;
 
+import java.util.List;
+
 import com.finalpj.backend.command.CompanyVO;
+import com.finalpj.backend.command.JobPostingVO;
 import com.finalpj.backend.command.UserVO;
+import com.finalpj.backend.util.JobCriteria;
 
 public interface TestService {
+	
+	public List<JobPostingVO> main2();
+    int getTotal();
+    List<JobPostingVO> getList(JobCriteria jcri);
+
+	
+	//-------------------------------------------//
+	
 	//개인 회원 가입 
 	public int regist(UserVO vo);
 	// 개인 회원 아이디 중복 체크

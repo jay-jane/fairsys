@@ -1,14 +1,36 @@
 package com.finalpj.backend.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.finalpj.backend.command.CompanyVO;
+import com.finalpj.backend.command.JobPostingVO;
 import com.finalpj.backend.command.UserVO;
+import com.finalpj.backend.util.JobCriteria;
 
 @Service("TestService")
 public class TestServiceImpl implements TestService {
 
+	@Override
+	public List<JobPostingVO> main2() {
+		return mapper.main2();
+	}
+	
+	@Override
+	public int getTotal() {
+		return mapper.getTotal();
+	}
+	
+	@Override
+	public List<JobPostingVO> getList(JobCriteria jcri) {
+        return mapper.getList(jcri);
+	}
+
+	
+	//----------------------------------------------/
+	
 	@Autowired
 	private TestMapper mapper;
 	
@@ -70,6 +92,10 @@ public class TestServiceImpl implements TestService {
 		
 		return mapper.login2(vo);
 	}
+
+
 	
+
+
 	
 }
