@@ -20,6 +20,37 @@
         select count(*) as total from company where com_status="N"
     </select>
 
+    <!-- 최근 7일자별 지원자 리스트 -->
+    <select id="getApplicantsbyDate" resultType="ApplicantsbyDateVO">
+        SELECT DATE(apply_date) AS date, COUNT(*) AS count
+        FROM user_status
+        WHERE apply_date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
+        GROUP BY DATE(apply_date)
+        ORDER BY DATE(apply_date) DESC
+    </select>
+
+    <!-- 합격자 중 남성 추출 -->
+    <select id="getPasserMale" resultType="int">
+        SELECT COUNT(*) AS total FROM user_status WHERE user_gender = 'M' AND status = '합격'
+    </select>
+
+    <!-- 합격자 중 여성 추출 -->
+    <select id="getPasserFemale" resultType="int">
+        SELECT COUNT(*) AS total FROM user_status WHERE user_gender = 'F' AND status = '합격'
+    </select>
+
+
+    <!-- 통계페이지 전용 -->
+    <!-- 최근 7일자별 가입자수 -->
+    <select id="getJoinUser" resultType="ApplicantsbyDateVO">
+        SELECT DATE(user_join_date) AS date, COUNT(*) AS count
+        FROM user
+        WHERE user_join_date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
+        GROUP BY DATE(user_join_date)
+        ORDER BY DATE(user_join_date) DESC
+    </select>
+
+
     <!-- 페이지네이션용 토탈 추출 -->
     <select id="getTotal" resultType="int">
      	select count(*) as total from User

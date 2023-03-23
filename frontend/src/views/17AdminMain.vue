@@ -27,21 +27,21 @@
         <h3>전체 유저</h3>
         <span>명</span>
         <!-- db에서 전체유저 검색해서 값 넣어야함 -->
-        <b>9,999</b>
+        <b>{{ totalUser }}</b>
       </div>
       
       <div class="approved_company">
         <h3>승인완료 기업</h3>
         <span>기업</span>
         <!-- db에서 승인완료된 기업 검색해서 값 넣어야함-->
-        <b>217</b>
+        <b>{{ approveCompany }}</b>
       </div>
       
       <div class="waiting_company">
         <h3>승인대기 기업</h3>
         <span>기업</span>
         <!-- db에서 승인대기 기업 몇개인지 검색해서 값 넣어야함-->
-        <b>8</b>
+        <b>{{ waitCompany }}</b>
       </div>
     </div>
 
@@ -49,13 +49,13 @@
     <div class="wrap_middle">
 
       <div class="date_apply_user">
-        <Line class="barchart"
+        <Bar class="barchart"
           :data="chartData"
         />
       </div>
 
       <div class="date_pass_user">
-        <Bar class="barchart"
+        <Pie class="barchart"
           :data="chartData2"
           :options="options"
         />
@@ -85,27 +85,34 @@ export default {
   data(){
     return{
 
-
-
+      //통계출력용 
+      date:[],
+      count:[],
+      approveCompany: '',
+      passerFemale: '',
+      passerMale:'',
+      totalUser:'',
+      waitCompany:'',
 
       /* 차트데이터 입력 */
       chartData: {
         /* x축 */
-        labels: [ '1일', '2일', '3일', '4일', '5일','6일','7일' ],
-        /* Y축 */
-        datasets: [ { 
-          label: '일자별 전체 지원자 수',
-          data: [40, 20, 12, 22, 80, 60, 100]
-         } ]
-      },
-      chartData2: {
-        /* x축 */
-        labels: [ '여자', '남자'],
+        labels: [],
         /* Y축 */
         datasets: [ { 
           //그래프 명
-          label: '전체 합격자 성별 비율',
-          data: [40, 20] 
+          label: '',
+          data: [] 
+        } ],
+      },
+      chartData2: {
+        /* x축 */
+        labels: [],
+        /* Y축 */
+        datasets: [ { 
+          //그래프 명
+          label: '',
+          data: [] 
         } ],
       },
       options:{
@@ -114,16 +121,48 @@ export default {
     }
   },
 
-  methods:{
-    async get() {
-      let response = await Axios.get("/17");
-      console.log(response.data);
-    }
-  },
-
   mounted() {
     //데이터 출력시키기
     this.get();
+  },
+
+  methods:{
+    async get() {
+      let response = await Axios.get("/17");
+      response = response.data;
+
+      //단일데이터 저장
+      this.totalUser = response.totalUser;
+      this.approveCompany = response.approveCompany;
+      this.waitCompany = response.waitCompany;
+      this.passerFemale = response.passerFemale;
+      this.passerMale = response.passerMale;
+
+      //배열형 데이터 저장
+      response = response.ApplicantsbyDate;
+      
+      for(var i = 0; i < response.length; i++){
+        this.date.unshift(response[i].date);
+        this.count.unshift(response[i].count);
+      }
+
+      // console.log(this.date);
+      // console.log(this.count);
+
+      this.chartData = {labels: this.date,
+                        datasets: [{
+                          label:'일자별 합격자',
+                          data:this.count
+                        }]}
+
+      this.chartData2 = {labels: ['남자', '여자'],
+                         datasets: [{
+                          label: '합격자 성별비율',
+                          data:[this.passerMale, this.passerFemale]
+                         }]}
+          
+
+    }
   }
 
 }
