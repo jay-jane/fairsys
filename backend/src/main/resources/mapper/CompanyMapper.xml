@@ -19,7 +19,7 @@
 
   <select id="getJobDetail" resultType="JobPostingVO">
     <!-- select * from job_posting where j_no = #{j_no} -->
-    select j.*, c.com_name, c.com_ceo, c.com_manager, c.com_manager_phone, c.com_address, c.com_detail_address
+    select j.*, c.com_name, c.com_ceo, c.com_manager, c.com_manager_phone, c.com_category, c.com_address, c.com_detail_address
 
     from job_posting j
     left join company c on j.com_id = c.com_id
@@ -76,10 +76,12 @@
     select * from company where com_id = #{com_id}
   </select>
 
+  <!-- 채용 공고에 지원(취준생 입장) -->
   <select id="apply" resultType="ResumeWriteVO">
     select * from resume_write where user_id = #{user_id}
   </select>
 
+  <!-- 채용 공고에 지원(취준생 입장) -->
   <insert id="applyInsert" parameterType="UserStatusVO">
     insert into user_status(user_id, com_id, user_no, user_name, user_phone, user_email, user_address,
                             user_gender, user_level, user_finish, user_major, user_fndate, user_com,
@@ -102,5 +104,11 @@
   <select id="getJno" resultType="String">
     select j_no from job_posting where com_id = #{com_id}
   </select>
+
+  <insert id="uploadImg" parameterType="String">
+    update job_posting
+    set j_img_uuid = #{j_img_uuid}, j_img_fileName = #{j_img_fileName}
+    where com_id = #{com_id}
+  </insert>
 
 </mapper>

@@ -3,7 +3,7 @@
       <nav id="top">
         <div id="logo"><router-link to="/">중앙정보 취업 박람회</router-link></div>
         <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용공고</router-link></div>
-        <div id="menu"><router-link to="/" @mouseover="doDropmenu">기업정보</router-link></div>
+        <div id="menu"><router-link to="" @mouseover="doDropmenu">기업정보</router-link></div>
         <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
       </nav>
       <nav id="drop_top" @mouseleave="doHidden">
@@ -13,9 +13,9 @@
           <p><router-link to="/ApplyStatus" class="drop_menu">지원자 목록</router-link></p>
         </div>
         <div id="drop">
-          <p><router-link to="/#" class="drop_menu">기업정보 수정</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
-          <p><router-link to="/#" class="drop_menu">회원 탈퇴</router-link></p>
-          <p><router-link to="/#" class="drop_menu">문의하기</router-link></p>
+          <p><router-link to="/" class="drop_menu">내 정보</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
+          <p><router-link to="/11" class="drop_menu">Q & A</router-link></p>
+          <p><a href="#" class="drop_menu" @click.prevnet="" style="color: orangered;">회원 탈퇴</a></p>
         </div>
       </nav>
     </div>

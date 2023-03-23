@@ -42,8 +42,8 @@
           <div id="bottom_left">
             <h4>기업정보</h4>
             <div id="qualify">
-              <span id="q_left">산업(업종)</span> <span id="q_right">company테이블 접근</span><br>
-              <span id="q_left">설립년도</span> <span id="q_right">company테이블 접근</span><br>
+              <span id="q_left">대표자</span> <span id="q_right">{{ item.com_ceo }}</span><br>
+              <span id="q_left">산업(업종)</span> <span id="q_right">{{ item.com_category }}</span><br>
               <span id="q_left">주소</span> <span id="q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
               <span id="q_left">홈페이지</span> <span id="q_right">company테이블 접근</span>
             </div>
@@ -58,7 +58,7 @@
             </div><br>
             <h4>채용 담당자</h4>
             <div id="qualify">
-              <span id="q_left">담당자</span> <span id="q_right">{{ item.com_manager}}</span><br>
+              <span id="q_left">담당자</span> <span id="q_right">{{ item.com_manager }}</span><br>
               <span id="q_left">핸드폰 번호</span> <span id="q_right">{{ item.com_manager_phone }}</span><br>
               <span id="q_left">이메일</span> <span id="q_right">{{ item.j_email }}</span><br>
             </div>
@@ -71,6 +71,10 @@
         <div id="section_bottom">
           <h3>상세 내용</h3>
           <p>{{ item.j_content }}</p>
+          <div id="posting_container">
+            <!-- <img src="@/img/" /> -->
+            {{ item.j_img_fileName }}
+          </div>
         </div>
       </article>
       <div id="location_wrap">
@@ -84,7 +88,7 @@
       <div id="button_wrap"
         style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
         <button type="button" v-if="ut_no == '1'" class="btnApply" @click="apply"
-          style="border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
+          style="border: 0; width: 120px; height: 40px; line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px; font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
         <button v-if="ut_no == '2'" class="btnModify" @click="checkComId"
           style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</button>
         <router-link to="/4"
