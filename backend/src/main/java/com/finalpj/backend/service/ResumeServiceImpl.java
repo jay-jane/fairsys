@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.finalpj.backend.command.ResumeWriteVO;
 import com.finalpj.backend.command.UserStatusVO;
+import com.finalpj.backend.command.UserVO;
 import com.finalpj.backend.util.ResumeCriteria;
 
 @Service
@@ -67,5 +68,16 @@ public class ResumeServiceImpl implements ResumeService{
     @Override
     public List<UserStatusVO> ResumeComModify(int user_no) {
         return resumemapper.ResumeComModify(user_no);
+    }
+
+    @Override
+    public List<UserVO> getUserVO(String user_id) {
+        return resumemapper.getUserVO(user_id);
+    }
+
+    @Override
+    public List<UserStatusVO> UserStatus(String user_id) {
+        return resumemapper.UserStatus(user_id);
+    
     }
 }

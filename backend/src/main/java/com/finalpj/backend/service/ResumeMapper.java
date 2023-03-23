@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.finalpj.backend.command.ResumeWriteVO;
 import com.finalpj.backend.command.UserStatusVO;
+import com.finalpj.backend.command.UserVO;
 import com.finalpj.backend.util.ResumeCriteria;
 
 @Mapper
@@ -32,4 +33,10 @@ public interface ResumeMapper {
 
     public void updateStatus(UserStatusVO vo); //진행상황 업데이트
     public List<UserStatusVO> ResumeComModify(@Param("user_no") int user_no); //기업에서  지원자 이력서 조회
+    public List<UserVO> getUserVO(String user_id);  
+
+    //
+    public List<UserStatusVO> UserStatus(String user_id); // 상태값 변경
+
+    
 }

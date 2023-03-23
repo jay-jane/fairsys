@@ -3,7 +3,7 @@
     <nav id="top">
       <div id="logo"><router-link to="/">중앙정보 취업 박람회</router-link></div>
       <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용정보</router-link></div>
-      <div id="menu"><router-link to="/6/mypage" @mouseover="doDropmenu">마이페이지</router-link></div>
+      <div id="menu"><router-link to="/UserMyPage" @mouseover="doDropmenu">마이페이지</router-link></div>
       <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
     </nav>
     <nav id="drop_top" @mouseleave="doHidden">
