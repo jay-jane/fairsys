@@ -240,7 +240,7 @@ export default {
   }
 
   .date_apply_user, .date_pass_user{
-    border: 1px solid grey;
+    border: 1px solid palevioletred;
     width: 700px;
     padding: 25px;
   }

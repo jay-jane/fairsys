@@ -30,7 +30,14 @@ public interface AdminService {
 
     //통계페이지 용//////////////////////////////////////////
 
-    public ArrayList<ApplicantsbyDateVO> getJoinUser();
+    //기간별 가입자
+    public ArrayList<ApplicantsbyDateVO> getJoinUser(String ed, String day);
+
+    //기간별 합격자
+    public ArrayList<ApplicantsbyDateVO> getPassUser(String ed, String day);
+
+    //기간별 지원자
+    public ArrayList<ApplicantsbyDateVO> getApplyUser(String ed, String day);
 
 
     //유저리스트
