@@ -16,10 +16,7 @@
               <select v-model="com_id" @change="selectCompany">
                 <!-- 회사정보 가져와서 value와 태그사이 둘다입력 필요 -->
                 <option value="0">문의할 회사를 선택해 주세요.</option>
-                <option value="1">선택한 회사1</option>
-                <option value="2">선택한 회사2</option>
-                <option value="3">선택한 회사3</option>
-                <option value="4">선택한 회사4</option>
+                <option v-for="(item, index) in list"> {{ item.name }}</option>
               </select>
             </td>
           </tr>
@@ -46,7 +43,8 @@
 </template>
 
 <script>
-import { Axios, axios } from 'axios';
+import Axios from 'axios';
+import axios from 'axios';
 
 
 export default {
@@ -57,12 +55,13 @@ export default {
       //공용
       test:'',
       company:0,
+      list:[{ id: '' , name: ''}],
       
       //전달데이터
       qa_title:'',           //제목 
       qa_content:'',         //내용
-      user_id:'',      //유저아이디
-      com_id:0              //회사아이디
+      user_id:'',            //유저아이디
+      com_id:0               //회사아이디
     }
   },
   created(){
@@ -73,9 +72,17 @@ export default {
     async get(){
 
       this.user_id = sessionStorage.getItem("user_id");
-
       let res = await Axios.get("/13?user_id=" + this.user_id);
+      res = res.data;
       console.log(res);
+      for(var i = 0; i < this.list.length; i++){
+        this.list= [{
+          id: res[i].com_id,
+          name: res[i].com_name
+        }]
+      }
+
+      console.log(this.list);
 
     },  
 
@@ -87,9 +94,8 @@ export default {
       location.href = "/11";
     },
 
-    selectCompany(){
-      this.company =this.company;
-      console.log(this.company);
+    selectCompany(event){
+      this.company = this.list.find(item => item.name === this.com_id).id;
     },
     //글작성 처리
     doRegist(){
@@ -99,7 +105,7 @@ export default {
           qa_title: this.qa_title,
           qa_content: this.qa_content,
           user_id: sessionStorage.getItem("user_id"),
-          com_id: this.com_id
+          com_id: this.company
         })
         .then(res => {
           console.log(res.data);
@@ -110,6 +116,11 @@ export default {
 
       location.href= "/11";
     }
+  },
+  mounted(){
+
+    this.get();
+
   }
 }
 

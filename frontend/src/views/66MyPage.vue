@@ -31,8 +31,9 @@
 
       <li class="hw_sub_menu_toggle">
         <a href="#">회사정보수정</a>
-        <ul class="hw_sub_menu">
-          <li><router-link to="/9">회원정보수정</router-link></li>
+
+        <ul class="sub_menu">
+          <li><router-link to="/9-1">회원정보수정</router-link></li>
 
           <li><a href="#" @click="deleteUser">회원탈퇴</a></li>
         </ul>

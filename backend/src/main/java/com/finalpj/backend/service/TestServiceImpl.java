@@ -99,6 +99,17 @@ public class TestServiceImpl implements TestService {
 		return mapper.login2(vo);
 	}
 	
+	@Override
+	public CompanyVO getComInfo(String com_id) {
+		return mapper.getComInfo(com_id);
+	}
+
+	@Override
+	public void modifyForm2(CompanyVO vo) {
+		mapper.modifyForm2(vo);
+		
+	}
+	
 	//기업 회원 탈퇴
 	@Override
 	public void deleteForm2(String com_id) {
@@ -106,6 +117,8 @@ public class TestServiceImpl implements TestService {
 		mapper.deleteForm2(com_id);
 		
 	}
+
+
 
 
 
