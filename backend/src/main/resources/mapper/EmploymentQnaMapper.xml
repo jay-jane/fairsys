@@ -68,8 +68,8 @@
 	</select>
 
 	<!-- 기업 이름 가져오기 -->
-	<select id="getComName" resultType="String">
-		SELECT c.com_name
+	<select id="getComName" resultType="CompanyVO">
+		SELECT c.com_id, c.com_name
 		FROM company c
 		INNER JOIN user_status u ON c.com_id = u.com_id
 		WHERE u.user_id = #{user_id}

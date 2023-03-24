@@ -1,14 +1,14 @@
 
 <template>
   <section>
-    <div class="resume">
+    <div class="hw_resume">
 
-      <div class="resume-main">
-        <div class="resume-part-title">이력서 작성</div>
+      <div class="hw_resume-main">
+        <div class="hw_resume-part-title">이력서 작성</div>
         <h3 style="text-align: left;">기본정보</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
-
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
+            
             <tr>
               <th><label for="user_name">이름</label></th>
               <td>
@@ -40,21 +40,21 @@
         </div>
 
         <h3 style="text-align: left;">학력</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
 
             <tr>
               <th><label for="user_level">최종학력</label></th>
               <td>
-                <select class="select-graduation" v-model="user_level">
+                <select class="hw_select-graduation" v-model="user_level">
                     <option value="대졸">대졸</option>
                     <option value="고졸">고졸</option>
                   </select>
               </td>
               <th class="pl-15"><label for="user_finish">졸업여부</label></th>
               <td>
-                <div class="graduation">
-                  <select class="select-graduation" v-model="user_finish">
+                <div class="hw_graduation">
+                  <select class="hw_select-graduation" v-model="user_finish">
                     <option value="졸업">졸업</option>
                     <option value="졸업예정">졸업예정</option>
                   </select>
@@ -80,8 +80,8 @@
 
         <!-- /// -->
         <h3 style="text-align: left;">경력</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
             <tr>
               <th><label for="user_com">회사명</label></th>
               <td>
@@ -112,8 +112,8 @@
         </div>
 
         <h3 style="text-align: left;">어학</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
 
             <tr>
               <th><label for="user_subject">과목</label></th>
@@ -142,8 +142,8 @@
 
         <!-- /// -->
         <h3 style="text-align: left;">자격증</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
             <tr>
               <th class="pl-15"><label for="user_license">자격증명</label></th>
               <td>
@@ -278,7 +278,7 @@ export default {
 
   
 <style>
-.resume {
+.hw_resume {
   width: 30vw;
   margin: 0 auto;
   display: grid;
@@ -286,7 +286,7 @@ export default {
   height: 100%;
 }
 
-.resume-wrapper {
+.hw_resume-wrapper {
   margin: 0 auto;
   width: 200px;
   font-size: 14px;
@@ -297,13 +297,13 @@ export default {
 
 
 /* 본문 */
-.resume-part-title {
+.hw_resume-part-title {
   font-size: 40px;
   color: black;
   font-weight: bold;
 }
 
-.resume-part-box {
+.hw_resume-part-box {
   display: flex;
   text-align: left;
   justify-content: center;
@@ -315,7 +315,7 @@ export default {
   width: 42vw;
 }
 
-.resume-part2-box {
+.hw_resume-part2-box {
   display: flex;
   text-align: left;
   justify-content: center;
@@ -326,12 +326,12 @@ export default {
   width: 42vw;
 }
 
-.resume-part2-input {
+.hw_resume-part2-input {
   border-spacing: 2px 5px;
   width: 90%;
 }
 
-.resume-part2-input tr td input {
+.hw_resume-part2-input tr td input {
   width: 10vw;
   margin: 10px;
   border-radius: 5px;
@@ -340,7 +340,7 @@ export default {
 }
 
 
-.graduation {
+.hw_graduation {
   display: inline-block;
   margin: 8px;
 }

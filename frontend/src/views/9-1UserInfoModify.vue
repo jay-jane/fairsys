@@ -59,8 +59,8 @@
 
 
         <button type="button" @click="modifyForm">수정하기</button>
-        <button class="view" @click="btn_list"><router-link to="/1">목록</router-link></button>
-        <button class="view" @click="btn_view">회원탈퇴</button>
+        <button class="view" @click="btn_list"><router-link to="/UserMyPage">목록</router-link></button>
+        <button class="view" @click="deleteUser">회원탈퇴</button>
       </div>
     </section>
 
@@ -162,9 +162,29 @@ export default {
         },
       }).open();
     },
+
+    deleteUser(){
+      if(confirm('아이디를 삭제하시겠습니까?')){
+        this.axios.get('/UserMyPage/deleteForm',
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          }
+        }
+        ).then(res => {
+          alert('아이디가 삭제되었습니다.')
+          sessionStorage.clear();
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/' })
+        })
+      }
+     
+    },
     get() {
 
-      axios.get('/6/mypage',
+      axios.get('/9-1',
         {
           params: { user_id: sessionStorage.getItem("user_id") },
           headers: {
@@ -209,7 +229,7 @@ export default {
       // let result = await data.text();
       // console.log(result)
 
-      this.axios.post('/9/modifyForm',
+      this.axios.post('/9-1/modifyForm',
         {
           user_pw: this.user_pw,
           user_phone: this.user_phone,
@@ -283,7 +303,7 @@ input {
 button[type="button"] {
   padding: 10px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: orange;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -293,7 +313,7 @@ button[type="button"] {
 .view {
   padding: 10px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: orange;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -301,7 +321,7 @@ button[type="button"] {
 }
 
 button:hover {
-  background-color: #005fa3;
+  background-color: orange;
 }
 
 .cont_division {
