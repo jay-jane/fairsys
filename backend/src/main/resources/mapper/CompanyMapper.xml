@@ -27,7 +27,7 @@
   </select>
 
   <update id="update" parameterType="JobPostingVO">
-    update job_posting set j_title = #{j_title}, j_email = #{j_email}, j_recruitNum = #{j_recruitNum}
+    update job_posting set j_title = #{j_title}, j_email = #{j_email}, j_recruitNum = #{j_recruitNum}, j_content = #{j_content}
     where j_no = #{j_no}
   </update>
 
@@ -42,34 +42,59 @@
     <if test="jcri.searchTitle != '' ">
 			<![CDATA[ and com_name like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>
-
     <if test="jcri.searchCareer != '' ">
 			<![CDATA[ and j_career = #{jcri.searchCareer}]]>
 		</if>
+
     <if test="jcri.searchRegion != '' ">
       <if test="!jcri.searchRegion.contains('전체') ">
 			  <![CDATA[ and j_address like concat('%', #{jcri.searchRegion}, '%')]]>
 		  </if>
+
       <if test="jcri.searchRegion.contains('전체') ">
-			  <![CDATA[ and j_address like concat('%', #{substr(jcri.searchRegion, 0, 2)}, '%')]]>
+        <if test="jcri.searchRegion.contains('서울') ">
+          <![CDATA[ and j_address like concat('%', '서울', '%')]]>
+        </if>
+        <if test="jcri.searchRegion.contains('경기') ">
+          <![CDATA[ and j_address like concat('%', '경기', '%')]]>
+        </if>
+        <if test="jcri.searchRegion.contains('인천') ">
+          <![CDATA[ and j_address like concat('%', '인천', '%')]]>
+        </if>
 		  </if>
 		</if>
     order by j_no desc
     limit #{jcri.pageStart}, #{jcri.amount}
-    <!-- #{jcri.page} -->
   </select>
 
   <select id="getTotal" resultType="int">
-    select count(*) as total from job_posting
+    select count(*) as total from job_posting j
+    left join company c on j.com_id = c.com_id
+    where 1 = 1
     <if test="jcri.searchTitle != '' ">
-			<![CDATA[ where com_id in (select com_id from company where com_name like concat('%', #{jcri.searchTitle}, '%'))]]>
+			<![CDATA[ and com_name like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>
-    <if test="jcri.searchCareer != '' and jcri.searchTitle == '' ">
-      <![CDATA[ where j_career = #{jcri.searchCareer}]]>
+    <if test="jcri.searchCareer != '' ">
+			<![CDATA[ and j_career = #{jcri.searchCareer}]]>
 		</if>
-    <if test="jcri.searchTitle != '' and jcri.searchCareer != '' ">
-      <![CDATA[ and j_career = #{jcri.searchCareer}]]>
-    </if>
+
+    <if test="jcri.searchRegion != '' ">
+      <if test="!jcri.searchRegion.contains('전체') ">
+			  <![CDATA[ and j_address like concat('%', #{jcri.searchRegion}, '%')]]>
+		  </if>
+
+      <if test="jcri.searchRegion.contains('전체') ">
+        <if test="jcri.searchRegion.contains('서울') ">
+          <![CDATA[ and j_address like concat('%', '서울', '%')]]>
+        </if>
+        <if test="jcri.searchRegion.contains('경기') ">
+          <![CDATA[ and j_address like concat('%', '경기', '%')]]>
+        </if>
+        <if test="jcri.searchRegion.contains('인천') ">
+          <![CDATA[ and j_address like concat('%', '인천', '%')]]>
+        </if>
+		  </if>
+		</if>
   </select>
 
   <select id="getCompanyVO" resultType="CompanyVO">

@@ -103,7 +103,6 @@ public class EmploymentQnaController {
 
         System.out.println("문의작성" + user_id);
         ArrayList<CompanyVO> list = eqs.getComName(user_id);
-
         return list;
     }
 

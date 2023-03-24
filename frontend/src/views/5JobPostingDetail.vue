@@ -45,7 +45,6 @@
               <span id="q_left">대표자</span> <span id="q_right">{{ item.com_ceo }}</span><br>
               <span id="q_left">산업(업종)</span> <span id="q_right">{{ item.com_category }}</span><br>
               <span id="q_left">주소</span> <span id="q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
-              <span id="q_left">홈페이지</span> <span id="q_right">company테이블 접근</span>
             </div>
           </div>
           <div id="bottom_left">
@@ -72,8 +71,7 @@
           <h3>상세 내용</h3>
           <p>{{ item.j_content }}</p>
           <div id="posting_container">
-            <!-- <img src="@/img/" /> -->
-            {{ item.j_img_fileName }}
+            <img v-if="!this.imgUrl.includes('null')" :src="require(`@/img/${this.imgUrl}`)" :alt="item.j_img_fileName" id="detailImg" />
           </div>
         </div>
       </article>
@@ -110,6 +108,9 @@ export default {
       j_end_date: '',
       j_department: [],
       ut_no: sessionStorage.getItem("ut_no"),
+      uuid: '',
+      fileName: '',
+      imgUrl: '',
     }
 
   },
@@ -122,6 +123,9 @@ export default {
           this.j_end_date = new Date(new Date(res.data[0].j_end_date) - (new Date(res.data[0].j_end_date).getTimezoneOffset() * 60000));
           this.j_end_date = new Date(this.j_end_date).toISOString().substring(0, 10);
           this.j_department = JSON.parse(res.data[0].j_department);
+          this.uuid = res.data[0].j_img_uuid;
+          this.fileName = res.data[0].j_img_fileName;
+          this.imgUrl = this.uuid + "_" + this.fileName;
         })
         .catch(err => {
           console.log(err);
