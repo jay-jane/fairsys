@@ -97,6 +97,7 @@ public class EmploymentQnaController {
         return list;
     }
 
+
     @GetMapping("/13")
     public ArrayList<CompanyVO> myCompany(@RequestParam("user_id") String user_id){
 
@@ -105,6 +106,7 @@ public class EmploymentQnaController {
 
         return list;
     }
+
 
     @PostMapping("/13")
     public void write(@RequestBody EmploymentQnaVO vo){

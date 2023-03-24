@@ -77,5 +77,10 @@ public class CompanyServiceImpl implements CompanyService {
     public String getJno(String com_id) {
         return mapper.getJno(com_id);
     }
+
+    @Override
+    public void uploadImg(String j_img_uuid, String j_img_fileName, String com_id) {
+        mapper.uploadImg(j_img_uuid, j_img_fileName, com_id);
+    }
     
 }

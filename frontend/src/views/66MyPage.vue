@@ -4,8 +4,7 @@
       <li class="sub_menu_toggle">
         <a class="sub menu select">채용공고</a>
         <ul class="sub_menu" style="display: block;">
-          <li><router-link to="/16">공고목록</router-link></li>
-          <li><a href="">공고 수정</a></li>
+          <li><router-link to="/4">공고목록</router-link></li>
           <!-- <router-link :to="{name:'page8'}">공고수정</router-link> -->
         </ul>
       </li>
@@ -33,9 +32,9 @@
       <li class="sub_menu_toggle">
         <a href="#">회사정보수정</a>
         <ul class="sub_menu">
-          <li><router-link to="/9">회원정보수정</router-link></li>
+          <li><router-link to="/9-1">회원정보수정</router-link></li>
 
-          <li><a href="page34">회원탈퇴</a></li>
+          <li><a href="#" @click="deleteUser">회원탈퇴</a></li>
         </ul>
       </li>
     </ul>
@@ -52,7 +51,8 @@
               <li class="my_com_info">
                 <div class="my_company_info">
                   <strong class="my_title">{{user_id}}님 안녕하세요</strong>
-                  <a href="#" class="mark">MyPage</a>
+                  <br>
+              
                   <div v-for="(item, index) in list">
                   <dl class="my_info_item" >
                     <dt>이름</dt>
@@ -61,6 +61,10 @@
                   <dl class="my_info_item">
                     <dt>이메일</dt>
                     <dd>{{ item.user_email}}</dd>
+                  </dl>
+                  <dl class="my_info_item">
+                    <dt>전화번호</dt>
+                    <dd>{{ item.user_phone}}</dd>
                   </dl>
                 </div>
                 </div>
@@ -76,7 +80,7 @@
 
       
       <table>
-        <caption class="my_resume">나의 이력서</caption>
+
 
         <thead class="my_list">
           <tr>
@@ -90,8 +94,8 @@
         <tbody id="table-body">
 
           <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ item.user_no }}</td>
             <td>{{ item.com_id }}</td>
+            <td>{{ item.status}}</td>
             <!-- <td @click.prevent="ResumeModify(item.w_no)">조회</td>
             <td><router-link :to="{ name: 'ResumeUpdate', params: { w_no: item.user_no } }">수정</router-link></td>
             -->  
@@ -121,7 +125,7 @@ export default {
       user_no: '',
       list: [],
       a: '',
-      user_id:'',
+      user_id:sessionStorage.getItem("user_id"),
       com_id:'',
       user_phone:'',
       user_name:'',
@@ -152,8 +156,33 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          alert("로그인이 필요한 서비스입니다.")
+          sessionStorage.clear();
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/2' })
         });
     },
+
+    deleteUser(){
+      if(confirm('아이디를 삭제하시겠습니까?')){
+        this.axios.get('/UserMyPage/deleteForm',
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          }
+        }
+        ).then(res => {
+          alert('아이디가 삭제되었습니다.')
+          sessionStorage.clear();
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/' })
+        })
+      }
+     
+    },
+
 
     ResumeModify(user_no) {
       this.$router.push({
@@ -325,7 +354,7 @@ table th {
 
 #my_salary_list_wrap #my_salary_list_total .my_company_info {
   float: left;
-  padding: 26px 60px 0 20px;
+  padding: 26px 60px 40px 20px;
   width: 570px;
   box-sizing: border-box;
 }
@@ -375,8 +404,6 @@ table th {
   font-size: 13px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  float: left;
 }
-
-.my_com_info {
-  margin-left: 140px;
-}</style>
+</style>

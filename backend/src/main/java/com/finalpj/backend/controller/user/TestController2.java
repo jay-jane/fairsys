@@ -46,12 +46,12 @@ public class TestController2 {
 
 	@GetMapping("/main2/")
 	public JobOneGate list(JobCriteria jcri) {
-	
+
 		System.out.println(jcri.toString());
-		
+
 		//페이지네이션 처리
 		int total =  testService.getTotal();
-		JobPageVO pageVO = new JobPageVO(jcri, total);
+		JobPageVO pageVO = new JobPageVO(jcri, 15);
 		//게시글 처리
 		List<JobPostingVO> list = testService.getList(jcri);
 		System.out.println(list.size());
@@ -150,7 +150,7 @@ public class TestController2 {
 	}
 
 	//회원정보수정페이지
-	@GetMapping("/9")
+	@GetMapping("/9-1")
 	public UserVO getuserInfo(HttpServletRequest request, HttpServletResponse response){
 
 		String user_id = request.getParameter("user_id");
@@ -160,7 +160,7 @@ public class TestController2 {
 	}
 
 	//회원정보수정
-	@PostMapping("/9/modifyForm")
+	@PostMapping("/9-1/modifyForm")
 	public String modifyForm(HttpServletRequest request, HttpServletResponse response, @RequestBody UserVO vo){
 
 		System.out.println(vo.toString());
@@ -168,6 +168,15 @@ public class TestController2 {
 		System.out.println(user_id);
 		vo.setUser_id(user_id); 
 		testService.modifyForm(vo);
+		return "success";
+	}
+
+	//회원 탈퇴
+	@GetMapping("/UserMyPage/deleteForm")
+	public String deleteForm(HttpServletRequest request, HttpServletResponse response) {
+		String user_id = request.getParameter("user_id");
+		System.out.println("여기 들어오는가?");
+		testService.deleteForm(user_id);
 		return "success";
 	}
 
@@ -248,5 +257,36 @@ public class TestController2 {
 			return new ResponseEntity( resultMap, header, HttpStatus.ACCEPTED);
 		}
 		return new ResponseEntity (HttpStatus.UNAUTHORIZED);
+	}
+
+	//회원정보수정페이지
+	@GetMapping("/9-2")
+	public CompanyVO getComInfo(HttpServletRequest request, HttpServletResponse response){
+
+		String com_id = request.getParameter("com_id");
+		CompanyVO vo = testService.getComInfo(com_id);
+
+		return vo;
+	}
+
+	//회원정보수정
+	@PostMapping("/9-2/modifyForm")
+	public String modifyForm2(HttpServletRequest request, HttpServletResponse response, @RequestBody CompanyVO vo){
+
+		System.out.println(vo.toString());
+		String com_id = request.getParameter("com_id");
+		System.out.println(com_id);
+		vo.setCom_id(com_id); 
+		testService.modifyForm2(vo);
+		return "success";
+	}
+
+	//회원 탈퇴
+	@GetMapping("/Company/deleteForm")
+	public String deleteForm2(HttpServletRequest request, HttpServletResponse response) {
+		String com_id = request.getParameter("com_id");
+		System.out.println("여기 들어오는가?2");
+		testService.deleteForm2(com_id);
+		return "success";
 	}
 }

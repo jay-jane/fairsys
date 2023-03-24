@@ -29,7 +29,8 @@ public interface TestMapper {
 	public UserVO getUserInfo(String user_id);
 	//회원 정보 수정하기
 	public void modifyForm(UserVO vo);
-
+	//회원 탈퇴
+	public void deleteForm(String user_id);
 	//----------------------------------------------------------------//
 	// 기업 회원 가입
 	public int regist2(CompanyVO vo);
@@ -37,4 +38,10 @@ public interface TestMapper {
 	public int checkId2(String com_id);
 	// 기업 회원 로그인
 	public CompanyVO login2(CompanyVO vo);
+	//회원정보 가져오기
+	public CompanyVO getComInfo(String com_id);
+	//회원 정보 수정하기
+	public void modifyForm2(CompanyVO vo);
+	//회원 탈퇴
+	public void deleteForm2(String com_id);
 }
