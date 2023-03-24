@@ -103,39 +103,41 @@ public class ResumeController {
     //        resumeService.ResumeUpdate(vo);    
     //    }
     
-      //지원자 이력서 수정
-      @PostMapping("/ResumeUpdate/updateForm")
-      public void ResumeUpdate(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
-          String user_id = request.getParameter("user_id");
-          UserVO userVO = testService.getUserInfo(user_id);
-          System.out.println(userVO.toString());
-          vo.setUser_id(user_id);
-          
-//           System.out.println(vo.toString());
-          resumeService.ResumeUpdate(vo);
-      }
+      
 
 
 
 
         //지원자 이력서 마이페이지
         @GetMapping("/UserMyPage")
-        public ArrayList<ResumeWriteVO> UserMyPage (HttpServletRequest request, HttpServletResponse response){
+        public ArrayList<UserStatusVO> UserMyPage (HttpServletRequest request, HttpServletResponse response){
     
     		String user_id = request.getParameter("user_id");
     		System.out.println(user_id);
 
-            ArrayList<ResumeWriteVO> resumeWriteVO = resumeService.UserMyPage(user_id);
+            ArrayList<UserStatusVO> resumeWriteVO = resumeService.UserMyPage(user_id);
             
             System.out.println(resumeWriteVO.toString());
          
             return resumeWriteVO;
         }
   
+        //지원자 이력서 수정
+      @PostMapping("/ResumeUpdate/updateForm")
+      public void ResumeUpdate(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
+          String user_id = request.getParameter("user_id");
+          UserVO userVO = testService.getUserInfo(user_id);
+//          System.out.println(userVO.toString());
+          vo.setUser_id(user_id);
+          
+        // System.out.println(vo.toString());
+          resumeService.ResumeUpdate(vo);
+      }
+
         
         //이력서 삭제
         @PostMapping("/ResumeDelete")
-        public void delete(@RequestBody ResumeWriteVO vo) {
+        public void delete(@RequestBody UserStatusVO vo) {
             System.out.println(vo.getUser_no());
             resumeService.delete(vo.getUser_no());
                 
