@@ -110,14 +110,14 @@
       <ul>
         <li>
           <!-- 맨앞으로 가기 -->
-          <router-link :to="{ path: '/4/?page=1&amount=' + amount }" @click="goFirstPage">
+          <router-link :to="{ path: '/4/?page=1&amount=' + amount }" @click="goFirstPage" style="padding: 10px">
             <i class="fa fa-angle-double-left" aria-hidden="true"> &lt;&lt; </i>
           </router-link>
         </li>
 
         <!-- 앞으로 가기 -->
         <li style="margin-right:5px;">
-          <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" @click="goBeforePage">
+          <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" @click="goBeforePage" style="padding: 10px">
             <i class="fa fa-angle-left" aria-hidden="true"> &lt; </i>
           </router-link>
         </li>
@@ -134,14 +134,14 @@
 
         <!-- 뒤로 가기 -->
         <li style="margin-left:5px;">
-          <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" @click="goNextPage">
+          <router-link :to="{ path: '/4/?page=' + page + '&amount=' + amount }" @click="goNextPage" style="padding: 10px">
             <i class="fa fa-angle-right" aria-hidden="true"> &gt; </i>
           </router-link>
         </li>
 
         <!-- 맨뒤로 가기 -->
         <li>
-          <router-link :to="{ path: '/4/?page=' + realEnd + '&amount=' + amount }" @click="goLastPage">
+          <router-link :to="{ path: '/4/?page=' + realEnd + '&amount=' + amount }" @click="goLastPage" style="padding: 10px">
             <i class="fa fa-angle-double-right" aria-hidden="true"> &gt;&gt; </i>
           </router-link>
         </li>
