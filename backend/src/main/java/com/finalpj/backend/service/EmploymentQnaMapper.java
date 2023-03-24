@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.EmploymentQnaVO;
 import com.finalpj.backend.util.Criteria;
 
@@ -36,7 +37,7 @@ public interface EmploymentQnaMapper {
                                                        @Param("com_id") String com_id);
 
     //지원한 회사이름 가져오기
-    public ArrayList<String> getComName(@Param("user_id") String user_id);
+    public ArrayList<CompanyVO> getComName(@Param("user_id") String user_id);
 
     //게시글 작성
     public void regist(EmploymentQnaVO vo);
