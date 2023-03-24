@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.EmploymentQnaVO;
 import com.finalpj.backend.util.Criteria;
 
@@ -46,7 +47,7 @@ public class EmploymentQnaServiceImpl implements EmploymentQnaService {
     };
 
     //지원한 회사이름 가져오기
-    public ArrayList<String> getComName(String user_id){
+    public ArrayList<CompanyVO> getComName(String user_id){
         return eqm.getComName(user_id);
     }
 

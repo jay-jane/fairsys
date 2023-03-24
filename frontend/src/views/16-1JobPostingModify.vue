@@ -81,7 +81,9 @@
       <div id="field">
         <label class="field_name">상세 내용</label>
 
-        <div class="content">{{ item.j_content }}</div>
+        <div class="content">
+          <textarea name="" id="" cols="70" rows="20" v-bind:value="item.j_content" @change="getContent"></textarea>
+        </div>
 
       </div>
       <div id="field">
@@ -166,10 +168,17 @@ export default {
           this.list = res.data;
           this.j_schedule = this.list[0].j_schedule;
           this.list[0].j_department = this.list[0].j_department.replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "").replaceAll(",", " / ");
+          this.getOriginal();
         })
         .catch(err => {
           console.log(err);
         });
+    },
+    getOriginal() {
+      this.j_title = this.list[0].j_title;
+      this.j_email = this.list[0].j_email;
+      this.j_recruitNum = this.list[0].j_recruitNum;
+      this.j_content = this.list[0].j_content;
     },
     getTitle(e) {
       this.j_title = e.target.value;
@@ -179,6 +188,9 @@ export default {
     },
     getRecruitNum(e) {
       this.j_recruitNum = e.target.value;
+    },
+    getContent(e) {
+      this.j_content = e.target.value;
     },
   },
   mounted() {

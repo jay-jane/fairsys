@@ -1,20 +1,20 @@
 
 <template>
-  <div class="main">
-    <div class="container">
+  <div class="hw_main">
+    <div class="hw_container">
 
       <h2>지원자 목록</h2>
 
       <!-- 출력 카테고리 -->
-      <select v-model="amount" class="view" @change="loglist_view">
+      <select v-model="amount" class="hw_view" @change="loglist_view">
         <option value="10">10개 보기</option>
         <option value="20">20개 보기</option>
         <option value="30">30개 보기</option>
       </select>
 
 
-      <table class="list">
-        <thead class="head">
+      <table class="hw_list">
+        <thead class="hw_head">
           <tr>
             <th>번호</th>
             <th>이름</th>
@@ -24,7 +24,7 @@
           </tr>
         </thead>
 
-        <tbody class="body">
+        <tbody class="hw_body">
 
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <tr v-for="(item, index) in list" v-bind:key="index">
@@ -37,7 +37,7 @@
         </tbody>
       </table>
 
-      <div class="serch_box">
+      <div class="hw_serch_box">
 
         <select name="" id="">
           <option value="title">이름</option>
@@ -50,7 +50,7 @@
       </div>
 
       <!-- 페이지 이동 -->
-      <div class="page">
+      <div class="hw_page">
         <ul>
           <li>
             <!-- 맨앞으로 가기 -->
@@ -257,23 +257,23 @@ export default {
 
 /* 문의사항 목록  */
 
-.main {
+.hw_main {
   display: flex;
   justify-content: center;
   height: auto;
 }
 
-.container {
+.hw_container {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.container h2 {
+.hw_container h2 {
   margin: 20px 0;
 }
 
-.btn_write {
+.hw_btn_write {
   float: right;
   margin: 10px 0;
   border-radius: 3px;
@@ -285,85 +285,85 @@ export default {
   padding: 10px 20px;
 }
 
-.view {
+.hw_view {
   float: right;
   margin: 10px 0;
   padding: 10px 20px;
 }
 
 
-.list {
+.hw_list {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 
-.head {
+.hw_head {
   background-color: #f5f5f5;
   text-align: center;
 }
 
-.head th {
+.hw_head th {
   padding: 1em;
 }
 
-.head th:first-child {
+.hw_head th:first-child {
   border-top-left-radius: 10px;
 }
 
-.head th:last-child {
+.hw_head th:last-child {
   border-top-right-radius: 10px;
 }
 
-.body tr:nth-child(even) {
+.hw_body tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.body td {
+.hw_body td {
   padding: 1em;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-.body td:first-child {
+.hw_body td:first-child {
   border-left: 1px solid #ddd;
   border-bottom-left-radius: 10px;
 }
 
-.body td:last-child {
+.hw_body td:last-child {
   border-right: 1px solid #ddd;
   border-bottom-right-radius: 10px;
 }
 
-.body td a {
+.hw_body td a {
   color: #333;
   text-decoration: none;
 }
 
-.body td a:hover {
+.hw_body td a:hover {
   text-decoration: underline;
 }
 
 
-.serch_box {
+.hw_serch_box {
   margin-top: 20px;
 }
 
-.serch_box select,
+.hw_serch_box select,
 input,
 button {
   padding: 5px;
   margin: 5px;
 }
 
-.serch_box input {
+.hw_serch_box input {
   width: 50%;
   border-radius: 35px;
   border: 1px solid #ddd;
 }
 
-.serch_box button {
+.hw_serch_box button {
   width: 10%;
   background-color: orange;
   border: none;
@@ -371,20 +371,20 @@ button {
   font-size: 16px;
 }
 
-.page {
+.hw_page {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
 }
 
-.page ul {
+.hw_page ul {
   display: flex;
   align-items: center;
   list-style: none;
 }
 
-.page li {
+.hw_page li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -398,21 +398,21 @@ button {
   border: 1px solid #ccc;
 }
 
-.page li.on {
+.hw_page li.on {
   font-weight: bold;
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: orange;
+  border-color: orange;
 }
 
-.page i {
+.hw_page i {
   font-size: 14px;
   margin: 0;
   padding: 0;
   line-height: 1;
 }
 
-.page_btn {
+.hw_page_btn {
   display: flex;
   justify-content: center;
   align-items: center;
