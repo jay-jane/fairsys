@@ -3,7 +3,6 @@
 package com.finalpj.backend.controller.user;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,8 +75,8 @@ public class EmploymentQnaController {
                                                 @RequestParam String user_id,
                                                 @RequestParam String com_id){
         
-        System.out.println(user_id);
-        System.out.println(com_id);   
+        // System.out.println(user_id);
+        // System.out.println(com_id);   
 
         ArrayList<EmploymentQnaVO> list = new ArrayList<>();
         
@@ -99,11 +98,10 @@ public class EmploymentQnaController {
     }
 
     @GetMapping("/13")
-    public ArrayList<String> myCompany(@RequestParam("user_id") String user_id){
+    public ArrayList<CompanyVO> myCompany(@RequestParam("user_id") String user_id){
 
-        System.out.println(user_id);
-        ArrayList<String> list = eqs.getComName(user_id);
-        System.out.println(list);
+        System.out.println("문의작성" + user_id);
+        ArrayList<CompanyVO> list = eqs.getComName(user_id);
 
         return list;
     }
