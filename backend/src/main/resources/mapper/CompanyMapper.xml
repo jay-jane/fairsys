@@ -83,11 +83,11 @@
 
   <!-- 채용 공고에 지원(취준생 입장) -->
   <insert id="applyInsert" parameterType="UserStatusVO">
-    insert into user_status(user_id, com_id, user_no, user_name, user_phone, user_email, user_address,
+    insert into user_status(user_id, com_id, user_name, user_phone, user_email, user_address,
                             user_gender, user_level, user_finish, user_major, user_fndate, user_com,
                             user_position, user_join, user_leave, user_subject, user_score, user_get,
                             user_license, user_getlicense)
-    values(#{user_id}, #{com_id}, #{user_no}, #{user_name}, #{user_phone}, #{user_email}, #{user_address},
+    values(#{user_id}, #{com_id}, #{user_name}, #{user_phone}, #{user_email}, #{user_address},
            #{user_gender}, #{user_level}, #{user_finish}, #{user_major}, #{user_fndate}, #{user_com},
            #{user_position}, #{user_join}, #{user_leave}, #{user_subject}, #{user_score}, #{user_get},
            #{user_license}, #{user_getlicense})
