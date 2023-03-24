@@ -54,8 +54,8 @@
 	</insert>
 
 
-	<select id="ResumeModify" resultType="ResumeWriteVO">
-		select * from resume_write where user_no= #{user_no}
+	<select id="ResumeModify" resultType="UserStatusVO">
+		select * from user_status where user_no= #{user_no}
 		 <!-- select * from user_status where user_no= #{user_no} -->
 	</select>
 
@@ -65,8 +65,8 @@
 	</select>
 
 
-	<update id="ResumeUpdate" parameterType="ResumeWriteVO">
-		update resume_write set user_name = #{user_name}, user_phone = #{user_phone}, user_email = #{user_email}, user_address = #{user_address},
+	<update id="ResumeUpdate" parameterType="UserStatusVO">
+		update user_status set user_name = #{user_name}, user_phone = #{user_phone}, user_email = #{user_email}, user_address = #{user_address},
 		user_gender = #{user_gender},  user_level = #{user_level},
 		user_finish = #{user_finish},
 		user_major = #{user_major}, user_fndate = #{user_fndate}, user_com = #{user_com},
@@ -76,7 +76,7 @@
 	
 	</update>
 
-	<select id="UserMyPage"  resultType="UserStatusVO">
+	<select id="UserMyPage"  resultType="UserStatusVO"> 
 			select * from user_status where user_id= #{user_id}
 	</select>
 
