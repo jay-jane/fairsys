@@ -80,37 +80,26 @@ public class AdminController {
     @GetMapping("/21")
     public Map<String, Object> getStatistics(@RequestParam("sd") String sd,
                                              @RequestParam("ed") String ed,
-                                             @RequestParam("companyName") String companyName){
+                                             @RequestParam("day") String day){
                                              
 
         Map<String, Object> smap = new HashMap<>();
         
         System.out.println(sd);
         System.out.println(ed);
-        System.out.println(companyName);
 
-        //전체 통계출력일때
-        if(companyName.equals("")){
-            System.out.println("전체통계");
+        //기간별 사이트 가입자수
+        ArrayList<ApplicantsbyDateVO>  joinUser = asi.getJoinUser(ed, day);
+        smap.put("joinUser", joinUser);
 
-            //최근 7일자별 사이트 가입자수
-            ArrayList<ApplicantsbyDateVO>  weekJoinUser = asi.getJoinUser();
-            smap.put("weekJoinUser", weekJoinUser);
+           //기간별 지원자수
+        ArrayList<ApplicantsbyDateVO> applyUser = asi.getApplyUser(ed, day);
+        smap.put("applyUser", applyUser);
 
-            //전체합격자 중 남성
-            int passerMale = asi.getPasserMale();
-            smap.put("passerMale", passerMale);
-    
-            //전체합격자 중 여성
-            int passerFemale = asi.getPasserFemale();
-            smap.put("passerFemale", passerFemale);
+        //기간별 합격자수
+        ArrayList<ApplicantsbyDateVO> passUser = asi.getPassUser(ed, day);
+        smap.put("passUser", passUser);
 
-
-
-        //특정 기업 통계일때
-        }else if(!companyName.equals("")){
-            System.out.println("기업통계");
-        }
 
 
 

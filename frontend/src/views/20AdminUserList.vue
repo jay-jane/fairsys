@@ -36,7 +36,7 @@
             <td>{{ item.u_no }}</td>
             <td>{{ item.user_name }}</td>
             <td>{{ item.user_id }}</td>
-            <td> 가입일 출력되어야 함</td>
+            <td>{{ item.user_join_date}}</td>
             <td> 선택</td>
           </tr>
 

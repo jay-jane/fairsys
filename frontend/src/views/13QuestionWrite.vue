@@ -62,7 +62,7 @@ export default {
       qa_title:'',           //제목 
       qa_content:'',         //내용
       user_id:'',      //유저아이디
-      com_id:''              //회사아이디
+      com_id:0              //회사아이디
     }
   },
   created(){
@@ -70,8 +70,17 @@ export default {
   },  
   methods:{
 
+    async get(){
+
+      this.user_id = sessionStorage.getItem("user_id");
+
+      let res = await Axios.get("/13?user_id=" + this.user_id);
+      console.log(res);
+
+    },  
+
     doLogout(){
-      location.href ="page2";
+      location.href ="/";
     },
 
     doCancel(){
@@ -84,8 +93,6 @@ export default {
     },
     //글작성 처리
     doRegist(){
-      
-      console.log("유저아이디"+this.user_id)
 
       this.axios.post("/13", 
         {

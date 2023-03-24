@@ -67,6 +67,15 @@
 		select * from employment_qa where qa_no= #{qa_no} and com_id = #{com_id}
 	</select>
 
+	<!-- 기업 이름 가져오기 -->
+	<select id="getComName" resultType="String">
+		SELECT c.com_name
+		FROM company c
+		INNER JOIN user_status u ON c.com_id = u.com_id
+		WHERE u.user_id = #{user_id}
+		ORDER BY c.com_name
+	</select>
+
 	<!-- 유저 문의 등록 -->
 	<insert id="regist" parameterType="EmploymentQnaVO">
 		INSERT INTO employment_qa (qa_title, qa_content, user_id, com_id) 

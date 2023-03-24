@@ -38,6 +38,13 @@ public interface AdminServiceMapper {
 
     //통계페이지 용//////////////////////////////////////////
 
-    public ArrayList<ApplicantsbyDateVO> getJoinUser();
+    public ArrayList<ApplicantsbyDateVO> getJoinUser(
+                                                     @Param("ed") String ed,
+                                                     @Param("day") String day);
 
+    //기간별 합격자
+    public ArrayList<ApplicantsbyDateVO> getPassUser(@Param("ed") String ed, @Param("day") String day);
+
+    //기간별 지원자
+    public ArrayList<ApplicantsbyDateVO> getApplyUser(@Param("ed") String ed, @Param("day") String day);                                                 
 }

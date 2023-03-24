@@ -3,6 +3,7 @@
 package com.finalpj.backend.controller.user;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.EmploymentQnaVO;
 import com.finalpj.backend.service.EmploymentQnaService;
 import com.finalpj.backend.util.Criteria;
@@ -50,12 +52,12 @@ public class EmploymentQnaController {
             list = eqs.getList(user_id, cri);
             ogate = ogate.test(list, pageVO);
 
-            System.out.println(ogate.toString());
+            //System.out.println(ogate.toString());
 
         //리스트를 확인하려는 사람이 기업이라면
         } else if (user_id.equals("")) {
 
-            System.out.println(1);
+            //System.out.println(1);
 
             total = eqs.getCompanyTotal(com_id, cri);
             pageVO = new PageVO(cri, total);
@@ -63,7 +65,7 @@ public class EmploymentQnaController {
             list = eqs.getCompanyList(com_id, cri);
             ogate = ogate.test(list, pageVO);
 
-            System.out.println(ogate.toString());
+            //System.out.println(ogate.toString());
         }
 
         return ogate;
@@ -88,7 +90,7 @@ public class EmploymentQnaController {
         }else if(user_id.equals("")){
 
             list = eqs.getDetailCompany(qa_no, com_id);
-            System.out.println(list.toString());
+            //System.out.println(list.toString());
 
         }
         //System.out.println(list.toString());
@@ -96,10 +98,20 @@ public class EmploymentQnaController {
         return list;
     }
 
+    @GetMapping("/13")
+    public ArrayList<String> myCompany(@RequestParam("user_id") String user_id){
+
+        System.out.println(user_id);
+        ArrayList<String> list = eqs.getComName(user_id);
+        System.out.println(list);
+
+        return list;
+    }
+
     @PostMapping("/13")
     public void write(@RequestBody EmploymentQnaVO vo){
         //System.out.println("실행쓰");
-        System.out.println(vo.toString());
+        //System.out.println(vo.toString());
         eqs.regist(vo);
     }
 
