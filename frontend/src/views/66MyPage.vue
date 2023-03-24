@@ -4,8 +4,7 @@
       <li class="sub_menu_toggle">
         <a class="sub menu select">채용공고</a>
         <ul class="sub_menu" style="display: block;">
-          <li><router-link to="/16">공고목록</router-link></li>
-          <li><a href="">공고 수정</a></li>
+          <li><router-link to="/4">공고목록</router-link></li>
           <!-- <router-link :to="{name:'page8'}">공고수정</router-link> -->
         </ul>
       </li>

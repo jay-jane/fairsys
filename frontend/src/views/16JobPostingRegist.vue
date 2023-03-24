@@ -14,7 +14,7 @@
         <div id="field">
           <label class="field_name">담당자 성함</label>
           <div id="">
-            <input type="text" :value="item.com_manager_name" style="border: 0;" readonly>
+            <input type="text" :value="item.com_manager" style="border: 0;" readonly>
           </div>
         </div>
         <div id="field">
@@ -41,9 +41,6 @@
         <div id="job_type">
           <Hashtags></Hashtags>
         </div>
-      <!-- <div v-for="item in $route.query.valList">
-          {{ item }}
-                                </div> -->
         <div id="recruit_type" style="display: inline-block;">
           <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
@@ -72,10 +69,10 @@
         <label class="field_name">급여(연봉)</label>
         <div id="sal_wrap">
           <select id="sal_y" v-model="j_salary">
-            <option value="2200~2800">2,200만원 ~ 2,800만원</option>
-            <option value="2800~3200">2,800만원 ~ 3,200만원</option>
-            <option value="3200~3600">3,200만원 ~ 3,600만원</option>
-            <option value="3600~4000">3,600만원 ~ 4,000만원</option>
+            <option value="2,200만원 ~ 2,800만원">2,200만원 ~ 2,800만원</option>
+            <option value="2,800만원 ~ 3,200만원">2,800만원 ~ 3,200만원</option>
+            <option value="3,200만원 ~ 3,600만원">3,200만원 ~ 3,600만원</option>
+            <option value="3,600만원 ~ 4,000만원">3,600만원 ~ 4,000만원</option>
           </select>
         </div>
       </div>
@@ -98,36 +95,32 @@
       <div id="field">
         <label class="field_name">상세 내용</label>
         <div class="content">
-          <textarea name="" id="" cols="30" rows="10" v-model="j_content">파일업로드ㅇ해야댐</textarea>
+          <textarea name="" id="" cols="30" rows="10" v-model="j_content"></textarea>
           <div class="main-container">
             <div class="room-deal-information-container">
               <div class="room-deal-information-title">사진 등록</div>
               <div class="room-picture-notice">
                 <ul class="room-write-wrapper">
-                  <li>
-                    사진은 가로로 찍은 사진을 권장합니다. (가로 사이즈 최소 800px)
-                  </li>
-                  <li>사진 용량은 사진 한 장당 10MB 까지 등록이 가능합니다.</li>
-
+                  <li>사진 한 장당 10MB 까지 등록이 가능합니다.</li>
                 </ul>
               </div>
               <div class="room-file-upload-wrapper">
                 <div v-if="!files.length" class="room-file-upload-example-container">
                   <div class="room-file-upload-example">
                     <div class="room-file-image-example-wrapper">이미지</div>
-                    <div class="room-file-notice-item">
-                      실사진 최소 3장 이상 등록하셔야 하며, 가로사진을 권장합니다.
-                    </div>
-                    <div class="room-file-notice-item room-file-notice-item-red">
+                  <!-- <div class="room-file-notice-item">
                       설명
+                              </div> -->
+                    <div class="room-file-notice-item room-file-notice-item-red">
+                      <!-- 이미지는 최대 3개 까지 첨부하실 수 있습니다. -->
                     </div>
                     <div class="room-file-notice-item room-file-upload-button">
                       <div class="image-box">
                       <!-- <div class="image-profile">
-            <img :src="profileImage" />
-                              </div>-->
-                        <label for="file">일반 사진 등록</label>
-                        <input type="file" id="file" ref="files" @change="imageUpload" multiple />
+                        <img :src="profileImage" />
+                                </div> -->
+                        <label for="file">사진 등록</label>
+                        <input type="file" id="file" ref="files" @change="imageUpload" accept="image/*" multiple />
                       </div>
                     </div>
                   </div>
@@ -140,12 +133,11 @@
                       </div>
                       <img :src="file.preview" />
                     </div>
-                    <div class="file-preview-wrapper-upload">
+                    <div v-if="files.length < 1" class="file-preview-wrapper-upload">
                       <div class="image-box">
                         <label for="file">추가 사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageAddUpload" multiple />
                       </div>
-                      <!-- <div class="file-close-button" @click="fileDeleteButton" :name="file.number">x</div> -->
                     </div>
                   </div>
                 </div>
@@ -233,9 +225,13 @@ export default {
       endDate: '',
       com_list: '',
 
+      file: '',
       files: [], //업로드용 파일
       filesPreview: [],
       uploadImageIndex: 0, // 이미지 업로드를 위한 변수
+      j_img_name: '',
+      j_img_size: '',
+      j_img_path: '',
 
       j_postcode: '',
       j_address: '',
@@ -309,8 +305,10 @@ export default {
             j_postcode: this.j_postcode,
             j_address: this.j_address,
             j_detail_address: this.j_detail_address,
+
           }
         ).then(() => {
+          this.uploadImg(sessionStorage.getItem("com_id"));
           alert('등록되었습니다!');
           this.$router.push({ path: '/4' });
         }).catch(err => {
@@ -329,8 +327,7 @@ export default {
       }, false);
     },
     imageUpload() {
-      console.log(this.$refs.files.files);
-
+      // console.log(this.$refs.files.files);
       // this.files = [...this.files, this.$refs.files.files];
       //하나의 배열로 넣기
       let num = -1;
@@ -355,14 +352,13 @@ export default {
         // ];
       }
       this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
-      console.log(this.files);
-      // console.log(this.filesPreview);
+      this.j_img_name = URL.createObjectURL(this.files[0].file);
+      this.j_img_size = this.files[0].file.size;
     },
     imageAddUpload() {
-      console.log(this.$refs.files.files);
-
+      // console.log(this.$refs.files.files);
       // this.files = [...this.files, this.$refs.files.files];
-      //하나의 배열로 넣기c
+      //하나의 배열로 넣기
       let num = -1;
       for (let i = 0; i < this.$refs.files.files.length; i++) {
         console.log(this.uploadImageIndex);
@@ -381,8 +377,6 @@ export default {
         num = i;
       }
       this.uploadImageIndex = this.uploadImageIndex + num + 1;
-
-      console.log(this.files);
       // console.log(this.filesPreview);
     },
     fileDeleteButton(e) {
@@ -449,6 +443,19 @@ export default {
           this.j_postcode = data.zonecode;
         },
       }).open();
+    },
+    uploadImg(com_id) {
+      console.log(this.files[0].file);
+      console.log(com_id);
+      const form = new FormData();
+      form.append('file', this.files[0].file);
+      form.append('com_id', com_id);
+      this.axios.post("/uploadImg", form)
+                .then(() => console.log("imgUp"))
+                .catch(err => {
+                  alert('이미지 업로드에 실패하였습니다.');
+                  console.log(err);
+                });
     },
   },
   components: {
@@ -819,7 +826,7 @@ button[type="submit"]:hover {
 .image-box label {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #232d4a;
+  background-color: orangered;
   color: #fff;
   vertical-align: middle;
   font-size: 15px;

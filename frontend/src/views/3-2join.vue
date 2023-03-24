@@ -236,7 +236,7 @@ export default {
       ).then(res => {
         console.log(res)
         console.log(res.config.data)
-        // this.$router.push({ path: '/' })
+        this.$router.push({ path: '/' })
       }).catch(err => {
         console.log(err)
       })
