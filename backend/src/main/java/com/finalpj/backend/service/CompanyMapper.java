@@ -25,4 +25,5 @@ public interface CompanyMapper {
     int checkApply(@Param("user_id") String user_id, @Param("com_id") String com_id);
     int checkPosting(@Param("com_id") String com_id);
     String getJno(String com_id);
+    void uploadImg(@Param("j_img_uuid") String j_img_uuid, @Param("j_img_fileName") String j_img_fileName, @Param("com_id") String com_id);
 }

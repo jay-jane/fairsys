@@ -48,8 +48,18 @@ public class AdminServiceImpl implements AdminService {
 
     //통계페이지 용//////////////////////////////////////////
 
-    public ArrayList<ApplicantsbyDateVO> getJoinUser(){
-        return asm.getJoinUser();
+    public ArrayList<ApplicantsbyDateVO> getJoinUser(String ed, String day){
+        return asm.getJoinUser(ed,day);
+    };
+
+    //기간별 합격자
+    public ArrayList<ApplicantsbyDateVO> getPassUser(String ed, String day){
+        return asm.getPassUser(ed, day);
+    };
+
+    //기간별 지원자
+    public ArrayList<ApplicantsbyDateVO> getApplyUser(String ed, String day){
+        return asm.getApplyUser(ed, day);
     };
 
 

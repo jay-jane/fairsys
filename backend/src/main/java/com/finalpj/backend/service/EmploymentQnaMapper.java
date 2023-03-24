@@ -35,6 +35,9 @@ public interface EmploymentQnaMapper {
     public ArrayList<EmploymentQnaVO> getDetailCompany(@Param("qa_no") int qa_no, 
                                                        @Param("com_id") String com_id);
 
+    //지원한 회사이름 가져오기
+    public ArrayList<String> getComName(@Param("user_id") String user_id);
+
     //게시글 작성
     public void regist(EmploymentQnaVO vo);
 

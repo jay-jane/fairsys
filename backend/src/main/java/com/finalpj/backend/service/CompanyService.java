@@ -22,4 +22,5 @@ public interface CompanyService {
     int checkApply(String user_id, String com_id);
     int checkPosting(String com_id);
     String getJno(String com_id);
+    void uploadImg(String j_img_uuid, String j_img_fileName, String com_id);
 }

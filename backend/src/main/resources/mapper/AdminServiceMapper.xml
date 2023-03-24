@@ -41,14 +41,67 @@
 
 
     <!-- 통계페이지 전용 -->
-    <!-- 최근 7일자별 가입자수 -->
+
+    <!-- 기간별 가입자수 -->
     <select id="getJoinUser" resultType="ApplicantsbyDateVO">
+    WITH RECURSIVE days AS (    
+        SELECT #{ed} - INTERVAL #{day} DAY AS day
+        UNION ALL
+        <![CDATA[ SELECT day + INTERVAL 1 DAY FROM days WHERE day < #{ed} ]]>
+    )
+    SELECT
+        d.day as date,
+        IFNULL(u.count, 0) AS count
+    FROM
+        days d
+    LEFT JOIN (
         SELECT DATE(user_join_date) AS date, COUNT(*) AS count
         FROM user
-        WHERE user_join_date BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
+        WHERE user_join_date BETWEEN DATE_SUB(#{ed}, INTERVAL #{day} DAY) AND #{ed}
         GROUP BY DATE(user_join_date)
-        ORDER BY DATE(user_join_date) DESC
+    ) u ON d.day = u.date
     </select>
+
+    <!-- 기간별 합격자수 -->
+    <select id="getPassUser" resultType="ApplicantsbyDateVO">
+    WITH RECURSIVE days AS (    
+        SELECT #{ed} - INTERVAL #{day} DAY AS day
+        UNION ALL
+        <![CDATA[ SELECT day + INTERVAL 1 DAY FROM days WHERE day < #{ed} ]]>
+    )
+    SELECT
+        d.day as date,
+        IFNULL(u.count, 0) AS count
+    FROM
+        days d
+    LEFT JOIN (
+        SELECT DATE(apply_date) AS date, COUNT(*) AS count
+        FROM user_status
+        WHERE apply_date BETWEEN DATE_SUB(#{ed}, INTERVAL #{day} DAY) AND #{ed} AND status="합격"
+        GROUP BY DATE(apply_date)
+    ) u ON d.day = u.date
+    </select>
+
+    <!-- 기간별 지원자수 -->
+    <select id="getApplyUser" resultType="ApplicantsbyDateVO">
+    WITH RECURSIVE days AS (    
+        SELECT #{ed} - INTERVAL #{day} DAY AS day
+        UNION ALL
+        <![CDATA[ SELECT day + INTERVAL 1 DAY FROM days WHERE day < #{ed} ]]>
+    )
+    SELECT
+        d.day as date,
+        IFNULL(u.count, 0) AS count
+    FROM
+        days d
+    LEFT JOIN (
+        SELECT DATE(apply_date) AS date, COUNT(*) AS count
+        FROM user_status
+        WHERE apply_date BETWEEN DATE_SUB(#{ed}, INTERVAL #{day} DAY) AND #{ed}
+        GROUP BY DATE(apply_date)
+    ) u ON d.day = u.date
+    </select>
+
 
 
     <!-- 페이지네이션용 토탈 추출 -->

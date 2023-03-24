@@ -45,6 +45,11 @@ public class EmploymentQnaServiceImpl implements EmploymentQnaService {
         return eqm.getDetailCompany(qa_no, com_id);
     };
 
+    //지원한 회사이름 가져오기
+    public ArrayList<String> getComName(String user_id){
+        return eqm.getComName(user_id);
+    }
+
     //게시글 작성
     public void regist(EmploymentQnaVO vo){
         eqm.regist(vo);
