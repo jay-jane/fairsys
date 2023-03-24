@@ -1,17 +1,17 @@
 <template>
-  <div class="admin_nav">
+  <div class="hw_admin_nav">
     <ul>
-      <li class="sub_menu_toggle">
-        <a class="sub menu select">채용공고</a>
-        <ul class="sub_menu" style="display: block;">
+      <li class="hw_sub_menu_toggle">
+        <a class="hw_sub menu select">채용공고</a>
+        <ul class="hw_sub_menu" style="display: block;">
           <li><router-link to="/4">공고목록</router-link></li>
           <!-- <router-link :to="{name:'page8'}">공고수정</router-link> -->
         </ul>
       </li>
 
-      <li class="sub_menu_toggle">
+      <li class="hw_sub_menu_toggle">
         <a href="#">이력서</a>
-        <ul class="sub_menu">
+        <ul class="hw_sub_menu">
           <li><router-link to="/ResumeRegist">이력서 작성</router-link></li>
 
           <li><router-link to="/UserMypage">이력서 목록</router-link></li>
@@ -21,7 +21,7 @@
         </ul>
       </li>
 
-      <li class="sub_menu_toggle">
+      <li class="hw_sub_menu_toggle">
         <a href="#">쪽지</a>
         <ul class="sub_menu">
           <li><a href="#">쪽지 작성</a></li>
@@ -29,8 +29,9 @@
         </ul>
       </li>
 
-      <li class="sub_menu_toggle">
+      <li class="hw_sub_menu_toggle">
         <a href="#">회사정보수정</a>
+
         <ul class="sub_menu">
           <li><router-link to="/9-1">회원정보수정</router-link></li>
 
@@ -42,27 +43,27 @@
 
 
 
-  <div class="my_content_main">
-    <div class="my_content">
+  <div class="hw_my_content_main">
+    <div class="hw_my_content">
       <table>
-        <div id="my_salary_list_wrap">
-          <div id="my_salary_list_total">
+        <div id="hw_my_salary_list_wrap">
+          <div id="hw_my_salary_list_total">
             <ul>
-              <li class="my_com_info">
-                <div class="my_company_info">
-                  <strong class="my_title">{{user_id}}님 안녕하세요</strong>
+              <li class="hw_my_com_info">
+                <div class="hw_my_company_info">
+                  <strong class="hw_my_title">{{user_id}}님 안녕하세요</strong>
                   <br>
               
-                  <div v-for="(item, index) in list">
-                  <dl class="my_info_item" >
+                  <div v-for="(item, index) in index">
+                  <dl class="hw_my_info_item" >
                     <dt>이름</dt>
                     <dd>{{item.user_name}}</dd>
                   </dl>
-                  <dl class="my_info_item">
+                  <dl class="hw_my_info_item">
                     <dt>이메일</dt>
                     <dd>{{ item.user_email}}</dd>
                   </dl>
-                  <dl class="my_info_item">
+                  <dl class="hw_my_info_item">
                     <dt>전화번호</dt>
                     <dd>{{ item.user_phone}}</dd>
                   </dl>
@@ -79,10 +80,10 @@
       </table>
 
       
-      <table>
+      <table class="table">
 
 
-        <thead class="my_list">
+        <thead class="hw_my_list">
           <tr>
             <th>번호</th>
             <th>진행상황</th>
@@ -91,7 +92,7 @@
             <th>삭제</th>
           </tr>
         </thead>
-        <tbody id="table-body">
+        <tbody id="hw_table-body">
 
           <tr v-for="(item, index) in list" v-bind:key="index">
             <td>{{ item.com_id }}</td>
@@ -100,7 +101,7 @@
             <td><router-link :to="{ name: 'ResumeUpdate', params: { w_no: item.user_no } }">수정</router-link></td>
             -->  
             <td @click.prevent="ResumeModify(item.user_no)">조회</td>
-            <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.user_no}}">수정</router-link></td>
+            <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.com_id}}">수정</router-link></td>
              <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
             </td> 
           </tr>
@@ -223,20 +224,20 @@ export default {
   box-sizing: border-box;
 }
 
-.my_title {
+.hw_my_title {
   float: left;
 }
 
-.admin_account {
+.hw_admin_account {
   margin-right: 20px;
 }
 
-.admin_account span {
+.hw_admin_account span {
   color: white;
   margin-right: 20px;
 }
 
-.admin_nav {
+.hw_admin_nav {
   width: 200px;
   height: 100%;
   position: fixed;
@@ -245,12 +246,12 @@ export default {
   background-color: white;
 }
 
-.admin_nav li {
+.hw_admin_nav li {
   margin-top: 20px;
   list-style: none;
 }
 
-.admin_nav li a {
+.hw_admin_nav li a {
   padding: 8px 20px;
   text-decoration: none;
   font-size: 15px;
@@ -260,30 +261,30 @@ export default {
   font-weight: 600;
 }
 
-.admin_nav .sub_menu {
+.hw_admin_nav .hw_sub_menu {
   margin-left: 25px;
 }
 
-.admin_nav .sub_menu li a {
+.hw_admin_nav .hw_sub_menu li a {
   color: black;
   display: block;
   width: 155px;
   padding: 8px 10px 8px 10px;
 }
 
-.admin_nav .sub_menu li a:hover {
+.hw_admin_nav .hw_sub_menu li a:hover {
   background-color: orange;
 }
 
-.admin_nav .sub_menu li a.on {
+.hw_admin_nav .hw_sub_menu li a.on {
   background-color: orange;
 }
 
-.my_content {
+.hw_my_content {
   width: auto;
 }
 
-table {
+.table {
   width: 80%;
   text-align: center;
   border: 1px solid #fff;
@@ -297,12 +298,12 @@ caption {
   font-weight: bold;
 }
 
-table td {
+.table td {
   padding: 10px;
   background-color: #eee;
 }
 
-table th {
+.table th {
   background-color: #d1cece;
   color: #000;
   padding: 10px;
@@ -320,19 +321,19 @@ table th {
   background-color: #000;
 }
 
-.my_content_main {
+.hw_my_content_main {
   margin-left: 50px;
 }
 
-#my_salary_list_wrap {
+#hw_my_salary_list_wrap {
   padding: 57px 0 65px;
 }
 
-#my_salary_list_wrap #salary_list_total {
+#hw_my_salary_list_wrap #hw_salary_list_total {
   overflow: hidden;
 }
 
-#my_salary_list_wrap #salary_list_total ul li {
+#hw_my_salary_list_wrap #hw_salary_list_total ul li {
   overflow: hidden;
   padding: 8px 19px 6px 30px;
   width: 960px;
@@ -340,7 +341,7 @@ table th {
   box-sizing: border-box;
 }
 
-#my_salary_list_wrap #salary_list_total .logo {
+#hw_my_salary_list_wrap #hw_salary_list_total .logo {
   display: table;
   overflow: hidden;
   float: left;
@@ -352,20 +353,20 @@ table th {
   text-align: center;
 }
 
-#my_salary_list_wrap #my_salary_list_total .my_company_info {
+#hw_my_salary_list_wrap #hw_my_salary_list_total .hw_my_company_info {
   float: left;
   padding: 26px 60px 40px 20px;
   width: 570px;
   box-sizing: border-box;
 }
 
-#my_salary_list_wrap #my_salary_list_total .my_company_info .title {
+#hw_my_salary_list_wrap #hw_my_salary_list_total .hw_my_company_info .hw_title {
   font-size: 18px;
   font-weight: bold;
   line-height: 19px;
 }
 
-#my_salary_list_wrap #my_salary_list_total .mark {
+#hw_my_salary_list_wrap #hw_my_salary_list_total .hw_mark {
   display: inline-block;
   overflow: hidden;
   margin: 2px 0 0 9px;
@@ -379,12 +380,12 @@ table th {
   vertical-align: top;
 }
 
-#my_salary_list_wrap #my_salary_list_total .my_info_item {
+#hw_my_salary_list_wrap #hw_my_salary_list_total .my_info_item {
   overflow: hidden;
   padding-top: 6px;
 }
 
-#my_salary_list_wrap #my_salary_list_total .my_info_item dt {
+#hw_my_salary_list_wrap #hw_my_salary_list_total .hw_my_info_item dt {
   float: left;
   padding: 1px 0 2px;
   width: 80px;
@@ -397,7 +398,7 @@ table th {
   text-align: center;
 }
 
-#my_salary_list_wrap #my_salary_list_total .my_info_item dd {
+#hw_my_salary_list_wrap #hw_my_salary_list_total .hw_my_info_item dd {
   overflow: hidden;
   padding: 0 7px 2px;
   color: #555;
