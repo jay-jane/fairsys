@@ -349,12 +349,10 @@ export default {
 }
 
 .body td:first-child {
-  border-left: 1px solid #ddd;
   border-bottom-left-radius: 10px;
 }
 
 .body td:last-child {
-  border-right: 1px solid #ddd;
   border-bottom-right-radius: 10px;
 }
 

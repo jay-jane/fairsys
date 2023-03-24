@@ -4,8 +4,7 @@
       <li class="sub_menu_toggle">
         <a class="sub menu select">채용공고</a>
         <ul class="sub_menu" style="display: block;">
-          <li><router-link to="/16">공고목록</router-link></li>
-          <li><a href="">공고 수정</a></li>
+          <li><router-link to="/4">공고목록</router-link></li>
           <!-- <router-link :to="{name:'page8'}">공고수정</router-link> -->
         </ul>
       </li>
@@ -35,7 +34,7 @@
         <ul class="sub_menu">
           <li><router-link to="/9">회원정보수정</router-link></li>
 
-          <li><a href="page34">회원탈퇴</a></li>
+          <li><a href="#" @click="deleteUser">회원탈퇴</a></li>
         </ul>
       </li>
     </ul>
@@ -126,7 +125,7 @@ export default {
       user_no: '',
       list: [],
       a: '',
-      user_id:'',
+      user_id:sessionStorage.getItem("user_id"),
       com_id:'',
       user_phone:'',
       user_name:'',
@@ -157,8 +156,33 @@ export default {
         })
         .catch(err => {
           console.log(err);
+          alert("로그인이 필요한 서비스입니다.")
+          sessionStorage.clear();
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/2' })
         });
     },
+
+    deleteUser(){
+      if(confirm('아이디를 삭제하시겠습니까?')){
+        this.axios.get('/UserMyPage/deleteForm',
+        {
+          params: { user_id: sessionStorage.getItem("user_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          }
+        }
+        ).then(res => {
+          alert('아이디가 삭제되었습니다.')
+          sessionStorage.clear();
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/' })
+        })
+      }
+     
+    },
+
 
     ResumeModify(user_no) {
       this.$router.push({

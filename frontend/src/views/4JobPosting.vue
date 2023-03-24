@@ -253,7 +253,6 @@ export default {
       this.searchTitle = this.pages.cri.searchTitle;
       this.searchCareer = this.pages.cri.searchCareer;
       this.searchRegion = this.pages.cri.searchRegion;
-      console.log(this.searchRegion);
       this.prev = this.pages.prev;
       this.pageStart = this.pages.pageStart;
       this.pageEnd = this.pages.pageEnd;

@@ -30,8 +30,13 @@ public class JobPostingVO {
     private String com_id;
     private String com_name;
     private String com_ceo;
+    private String com_category;
     private String com_manager;
     private String com_manager_phone;
     private String com_address;
     private String com_detail_address;
+
+    private String j_img_uuid;
+    private String j_img_fileName;
+    private String j_img_size;
 }

@@ -68,6 +68,12 @@ public class TestServiceImpl implements TestService {
 		mapper.modifyForm(vo);
 	}
 	
+	//회원 탈퇴
+	@Override
+	public void deleteForm(String user_id) {
+		mapper.deleteForm(user_id);
+		
+	}
 
 	//===========================================================================================//
     // 기업 회원 가입
@@ -92,6 +98,16 @@ public class TestServiceImpl implements TestService {
 		
 		return mapper.login2(vo);
 	}
+	
+	//기업 회원 탈퇴
+	@Override
+	public void deleteForm2(String com_id) {
+		System.out.println("매퍼쪽으로 넘어오는가?");
+		mapper.deleteForm2(com_id);
+		
+	}
+
+
 
 
 	

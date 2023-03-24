@@ -3,7 +3,7 @@
       <nav id="top">
         <div id="logo"><router-link to="/">중앙정보 취업 박람회</router-link></div>
         <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용공고</router-link></div>
-        <div id="menu"><router-link to="/" @mouseover="doDropmenu">기업정보</router-link></div>
+        <div id="menu"><router-link to="" @mouseover="doDropmenu">기업정보</router-link></div>
         <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
       </nav>
       <nav id="drop_top" @mouseleave="doHidden">
@@ -14,7 +14,7 @@
         </div>
         <div id="drop">
           <p><router-link to="/#" class="drop_menu">기업정보 수정</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
-          <p><router-link to="/#" class="drop_menu">회원 탈퇴</router-link></p>
+          <p><router-link to="/#" class="drop_menu" @click="companyDelete">회원 탈퇴</router-link></p>
           <p><router-link to="/#" class="drop_menu">문의하기</router-link></p>
         </div>
       </nav>
@@ -31,6 +31,26 @@
       }
     },
     methods: {
+
+      companyDelete(){
+        if(confirm('아이디를 삭제하시겠습니까?')){
+        this.axios.get('/Company/deleteForm',
+        {
+          params: { com_id: sessionStorage.getItem("com_id") },
+          headers: {
+            'content-type': 'application/json',
+            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+          }
+        }
+        ).then(res => {
+          alert('아이디가 삭제되었습니다.')
+          // sessionStorage.clear();
+          // this.$store.commit("setLogInOut","로그인")
+          // this.$router.push({ path: '/' })
+        })
+      }
+      },
+
       gologInOut() {
         if (sessionStorage.length<1) {
           location.href = "/2";

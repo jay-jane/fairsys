@@ -13,7 +13,7 @@
       <div id="field">
         <label class="field_name">담당자 성함</label>
         <div id="">
-          <input type="text" :value="item.com_manager_name" readonly style="border: 0;">
+          <input type="text" :value="item.com_manager" readonly style="border: 0;">
         </div>
       </div>
       <div id="field">

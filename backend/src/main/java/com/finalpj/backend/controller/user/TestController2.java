@@ -51,7 +51,7 @@ public class TestController2 {
 		
 		//페이지네이션 처리
 		int total =  testService.getTotal();
-		JobPageVO pageVO = new JobPageVO(jcri, total);
+		JobPageVO pageVO = new JobPageVO(jcri, 15);
 		//게시글 처리
 		List<JobPostingVO> list = testService.getList(jcri);
 		System.out.println(list.size());
@@ -170,6 +170,15 @@ public class TestController2 {
 		testService.modifyForm(vo);
 		return "success";
 	}
+	
+	//회원 탈퇴
+	@GetMapping("/UserMyPage/deleteForm")
+	public String deleteForm(HttpServletRequest request, HttpServletResponse response) {
+		String user_id = request.getParameter("user_id");
+		System.out.println("여기 들어오는가?");
+		testService.deleteForm(user_id);
+		return "success";
+	}
 
 
 
@@ -248,5 +257,14 @@ public class TestController2 {
 			return new ResponseEntity( resultMap, header, HttpStatus.ACCEPTED);
 		}
 		return new ResponseEntity (HttpStatus.UNAUTHORIZED);
+	}
+	
+	//회원 탈퇴
+	@GetMapping("/Company/deleteForm")
+	public String deleteForm2(HttpServletRequest request, HttpServletResponse response) {
+		String com_id = request.getParameter("com_id");
+		System.out.println("여기 들어오는가?2");
+		testService.deleteForm2(com_id);
+		return "success";
 	}
 }

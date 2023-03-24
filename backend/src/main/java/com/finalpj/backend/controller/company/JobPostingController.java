@@ -1,6 +1,10 @@
 package com.finalpj.backend.controller.company;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
@@ -98,6 +103,28 @@ public class JobPostingController {
     public String getJno(HttpServletRequest request, HttpServletResponse response) {
         String com_id = request.getParameter("com_id");
         return service.getJno(com_id);
+    }
+    // MultipartFile file
+    @PostMapping("/uploadImg")
+    public void upload(HttpServletRequest request, MultipartFile file) {
+        String uploadPath = "C:\\Users\\sk223\\Desktop\\course\\Final_Project_FairSys\\frontend\\src\\img\\";
+        String originalName = file.getOriginalFilename();
+        String fileName = originalName.substring(originalName.lastIndexOf("\\") + 1);
+        String uuid = UUID.randomUUID().toString();
+        String savefileName = uploadPath + File.separator + uuid + "_" + fileName;
+        Path savePath = Paths.get(savefileName);
+        String com_id = request.getParameter("com_id");
+        System.out.println(uuid);
+        System.out.println(fileName);
+        System.out.println(com_id);
+        try {
+            file.transferTo(savePath);
+            service.uploadImg(uuid, fileName, com_id);
+            System.out.println("업로드, db작업 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("이미지 DB 업로드 실패");
+        }
     }
 
 }

@@ -21,5 +21,6 @@ public class UserVO {
     private String user_detail_address;
     private String ut_no;
     private String u_no;
+    private String user_join_date;
     
 }
