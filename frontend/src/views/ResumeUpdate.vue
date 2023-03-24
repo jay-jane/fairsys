@@ -44,7 +44,10 @@
             <tr>
               <th><label for="user_level">최종학력</label></th>
               <td>
-                <input v-model="user_level" required type="text">
+                <select class="select-graduation" v-model="user_level">
+                    <option value="대졸">대졸</option>
+                    <option value="고졸">고졸</option>
+                  </select>
               </td>
               <th class="pl-15"><label for="user_finish">졸업여부</label></th>
               <td>
@@ -71,8 +74,7 @@
 
           </table>
         </div>
-
-
+        
         <!-- /// -->
         <h3 style="text-align: left;">경력</h3>
         <div class="resume-part2-box">
@@ -231,7 +233,7 @@ export default {
         }
       ).then(res => {
         console.log(this.user_id)
-        alert('작성이 완료되었습니다.!');
+        alert('수정이 완료되었습니다.!');
         console.log(res)
         this.$router.push('/UserMyPage');
       }).catch(err => {

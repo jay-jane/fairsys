@@ -72,29 +72,29 @@
 		user_major = #{user_major}, user_fndate = #{user_fndate}, user_com = #{user_com},
 		user_position = #{user_position}, user_join = #{user_join}, user_leave = #{user_leave},
 		user_subject = #{user_subject}, user_score = #{user_score}, user_get = #{user_get},
-		user_license = #{user_license}, user_getlicense = #{user_getlicense} where user_no = #{user_no}
+		user_license = #{user_license}, user_getlicense = #{user_getlicense} where user_id = #{user_id}
 	
 	</update>
 
-	<select id="UserMyPage"  resultType="ResumeWriteVO">
-			select * from resume_write where user_id=#{user_id}
+	<select id="UserMyPage"  resultType="UserStatusVO">
+			select * from user_status where user_id= #{user_id}
 	</select>
 
 
-	<delete id="delete" parameterType="ResumeWriteVO">
-		delete from resume_write where user_no = #{user_no};
+	<delete id="delete" parameterType="UserStatusVO">
+		delete from user_status where user_no = #{user_no};
 	</delete>
 
 
 	<select id="getList" resultType="UserStatusVO">
 		select * from user_status where com_id = #{com_id}
 		<if test="cri.searchTitle != null and cri.searchTitle !='' "> <![CDATA[ 
-			where user_name like concat('%', #{cri.searchTitle}, '%')]]> </if>
+			and user_name like concat('%', #{cri.searchTitle}, '%')]]> </if>
 
 		<if test="cri.searchStatus != null and cri.searchStatus !='' "> <![CDATA[ 
-			where status like concat('%', #{cri.searchStatus}, '%')]]> </if>
-	
-		limit #{cri.pageStart}, #{cri.amount}
+			and status like concat('%', #{cri.searchStatus}, '%')]]> </if>
+	order by com_id desc
+		limit #{cri.pageStart}, #{cri.amount};
 	</select>
 
 	<select id="getTotal" resultType="int">
