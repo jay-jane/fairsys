@@ -8,7 +8,7 @@
         <h3 style="text-align: left;">기본정보</h3>
         <div class="resume-part2-box">
           <table class="resume-part2-input">
-
+            
             <tr>
               <th><label for="user_name">이름</label></th>
               <td>

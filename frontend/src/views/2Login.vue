@@ -301,7 +301,7 @@ a {
 .login-form .group .input,
 .login-form .group .button {
   width: 100%;
-  color: #fff;
+  color: black;
   display: block;
 }
 
