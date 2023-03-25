@@ -1,93 +1,88 @@
 <!-- 재윤 - 채용 공고 상세 -->
 <template>
-  <section id="section">
-    <div id="detail_wrap" v-for="item in list">
-      <div id="banner_wrap">
+  <section id="jy_section">
+    <div id="jy_detail_wrap" v-for="item in list">
+      <div id="jy_banner_wrap">
         <img src="https://picsum.photos/1000/100" alt="배너" width="100%" height="200px">
-        <div class="bannerImg"></div>
-        <div id="company_logo"><img src="https://picsum.photos/150/150" alt="로고" class="logoImg"></div>
-        <div id="company_name">
+        <div class="jy_bannerImg"></div>
+        <div id="jy_company_logo"><img src="https://picsum.photos/150/150" alt="로고" class="jy_logoImg"></div>
+        <div id="jy_company_name">
           <h3>{{ item.com_name }}</h3>
         </div>
       </div>
-      <article id="article_top">
-        <div id="top">
-          <div id="top_bottom">
-            <div id="company_title">
-              <div class="title">
-                <h2>{{ item.j_title }}</h2>
+      <article id="jy_article_top">
+        <div id="jy_top">
+          <div id="jy_top_bottom">
+            <div id="jy_company_title">
+              <div class="jy_title">
+                <h3>{{ item.j_title }}</h3>
               </div>
             </div>
           </div>
         </div>
 
-        <div id="mid">
-          <div id="bottom_left">
+        <div id="jy_mid">
+          <div id="jy_bottom_left">
             <h4>지원자격</h4>
-            <div id="qualify">
-              <span id="q_left">경력</span> <span id="q_right">{{ item.j_career }}</span><br>
-              <span id="q_left">학력</span> <span id="q_right">{{ item.j_graduation }}</span>
-            </div>
-          </div>
-          <div id="bottom_left">
+            <div id="jy_qualify">
+              <span id="jy_q_left">경력</span> <span id="jy_q_right">{{ item.j_career }}</span><br>
+              <span id="jy_q_left">학력</span> <span id="jy_q_right">{{ item.j_graduation }}</span>
+            </div><br><br>
             <h4>근무조건</h4>
-            <div id="qualify">
-              <span id="q_left">고용형태</span> <span id="q_right">{{ item.j_type }}</span><br>
-              <span id="q_left">급여</span> <span id="q_right">{{ item.j_salary }}</span><br>
-              <span id="q_left">근무지역</span> <span id="q_right"> {{ item.com_address }} </span>
+            <div id="jy_qualify">
+              <span id="jy_q_left">고용형태</span> <span id="jy_q_right">{{ item.j_type }}</span><br>
+              <span id="jy_q_left">급여</span> <span id="jy_q_right">{{ item.j_salary }}</span><br>
+              <span id="jy_q_left">근무지역</span> <span id="jy_q_right"> {{ item.com_address }} </span>
             </div>
           </div>
-        </div>
-        <div id="mid">
-          <div id="bottom_left">
+          <div id="jy_bottom_left">
             <h4>기업정보</h4>
-            <div id="qualify">
-              <span id="q_left">대표자</span> <span id="q_right">{{ item.com_ceo }}</span><br>
-              <span id="q_left">산업(업종)</span> <span id="q_right">{{ item.com_category }}</span><br>
-              <span id="q_left">주소</span> <span id="q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
-            </div>
-          </div>
-          <div id="bottom_left">
+            <div id="jy_qualify">
+              <span id="jy_q_left">대표자</span> <span id="jy_q_right">{{ item.com_ceo }}</span><br>
+              <span id="jy_q_left">산업(업종)</span> <span id="jy_q_right">{{ item.com_category }}</span><br>
+              <span id="jy_q_left">주소</span> <span id="jy_q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
+            </div><br><br>
             <h4>채용정보</h4>
-            <div id="qualify">
-              <span id="q_left">채용 분야</span> <span id="q_right" v-for="item in j_department">{{ item
+            <div id="jy_qualify">
+              <span id="jy_q_left">채용 분야</span> <span id="jy_q_right" v-for="item in j_department">{{ item
               }}&nbsp;&nbsp;</span><br>
-              <span id="q_left">마감 일자</span> <span id="q_right">{{ j_end_date }}</span><br>
-              <span id="q_left">전형 절차</span> <span id="q_right">서류 심사 > {{ item.j_schedule }} 최종 합격</span><br>
-            </div><br>
+              <span id="jy_q_left">마감 일자</span> <span id="jy_q_right">{{ j_end_date }}</span><br>
+              <span id="jy_q_left">전형 절차</span> <span id="jy_q_right">서류 심사 > {{ item.j_schedule }} 최종 합격</span><br>
+            </div><br><br>
             <h4>채용 담당자</h4>
             <div id="qualify">
-              <span id="q_left">담당자</span> <span id="q_right">{{ item.com_manager }}</span><br>
-              <span id="q_left">핸드폰 번호</span> <span id="q_right">{{ item.com_manager_phone }}</span><br>
-              <span id="q_left">이메일</span> <span id="q_right">{{ item.j_email }}</span><br>
+              <span id="jy_q_left">담당자</span> <span id="jy_q_right">{{ item.com_manager }}</span><br>
+              <span id="jy_q_left">핸드폰 번호</span> <span id="jy_q_right">{{ item.com_manager_phone }}</span><br>
+              <span id="jy_q_left">이메일</span> <span id="jy_q_right">{{ item.j_email }}</span><br>
             </div>
           </div>
         </div>
         <hr>
       </article>
 
-      <article id="article_bottom">
-        <div id="section_bottom">
+      <article id="jy_article_bottom">
+        <div id="jy_section_bottom">
           <h3>상세 내용</h3>
           <p>{{ item.j_content }}</p>
-          <div id="posting_container">
-            <img v-if="!this.imgUrl.includes('null')" :src="require(`@/img/${this.imgUrl}`)" :alt="item.j_img_fileName" id="detailImg" />
+          <div id="jy_posting_container">
+            <img v-if="!this.imgUrl.includes('null')" :src="require(`@/img/${this.imgUrl}`)" :alt="item.j_img_fileName"
+              id="jy_detailImg" />
           </div>
         </div>
       </article>
-      <div id="location_wrap">
+      <div id="jy_location_wrap">
         <span>기업 위치</span><br>
         <span>{{ item.j_address }} {{ item.j_detail_address }}</span>
-        <div id="kakao">
+        <div id="jy_kakao">
           (카카오맵api)
         </div>
       </div>
 
-      <div id="button_wrap"
+      <div id="jy_button_wrap"
         style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
-        <button type="button" v-if="ut_no == '1'" class="btnApply" @click="apply"
+        <button type="button" v-if="ut_no == '1'" class="jy_btnApply" @click="apply"
           style="border: 0; width: 120px; height: 40px; line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px; font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
-        <button v-if="ut_no == '2'" class="btnModify" @click="checkComId"
+        <button v-if="ut_no == '2'" class="jy_btnModify" @click="checkComId"
           style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</button>
         <router-link to="/4"
           style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">목록</router-link>
@@ -184,19 +179,12 @@ export default {
         })
         .catch(err => console.log(err));
     },
-    displayBtn() {
-      if (sessionStorage.getItem("ut_no") != '1') {
-        console.log(1234);
-        console.log(this.$refs.btnApply);
-      }
-    },
     checkComId() {
-      if(sessionStorage.getItem("com_id") != this.list[0].com_id) {
+      if (sessionStorage.getItem("com_id") != this.list[0].com_id) {
         alert('권한이 없습니다.');
         return;
       } else {
-        this.$router.push({name: 'jobPostingModify', params: { j_no: this.list[0].j_no } });
-        // :to="{ name: 'jobPostingModify', params: { j_no: item.j_no } }
+        this.$router.push({ name: 'jobPostingModify', params: { j_no: this.list[0].j_no } });
       }
     }
   },
@@ -207,58 +195,51 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   list-style: none;
-  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
-body {
-  font-family: Arial, sans-serif;
-}
-
-#info_wrap ul {
+#jy_info_wrap ul {
   display: flex;
 }
 
-#info_wrap ul li {
+#jy_info_wrap ul li {
   display: inline-block;
   margin-right: 15px;
 }
 
-#menu li {
+#jy_menu li {
   display: inline;
   padding-left: 20px;
 }
 
-#top .title {
-  padding-top: 50px;
+#jy_top {
+  margin-bottom: 300px;
+}
+
+#jy_top .jy_title {
+  padding-top: 250px;
   text-align: left;
   position: absolute;
-  left: 300px;
-
+  left: 250px;
 }
 
-#article_top {
-  padding-top: 120px;
-}
-
-#top_bottom {
-  margin-top: 80px;
-}
-
-#company_name {
+#jy_company_name {
   position: absolute;
   top: 200px;
   left: 330px;
 }
 
-#banner_wrap {
+#jy_banner_wrap {
   position: relative;
 }
 
-#banner_wrap .bannerImg {
+#jy_banner_wrap .jy_bannerImg {
   position: absolute;
   top: 0;
   left: 0;
@@ -268,53 +249,65 @@ body {
   opacity: 0.5;
   z-index: 9;
   margin-top: -25px;
-  margin-bottom: 200px;
 }
 
-#company_logo {
+#jy_company_logo {
   position: absolute;
   top: 100px;
-  left: 10%;
+  left: 150px;
   z-index: 998;
   border: 2px solid #fff;
 }
 
-#top_bottom {
+#jy_top_bottom {
   display: flex;
 }
 
-#company_title .title {
+#jy_bottom_left h4 {
+  border-bottom: 1px solid orangered;
+}
+
+#jy_company_title .jy_title {
   color: #333;
 }
 
-#mid {
+#jy_mid {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding-top: 30px;
+  padding-bottom: 20px;
 }
 
-#qualify {
+#jy_bottom_left {
+  float: right;
+}
+
+#jy_qualify {
   overflow: hidden;
 }
 
-#q_left {
+#jy_q_left {
   float: left;
   color: gray;
   padding-right: 20px;
 }
 
-#q_right {
+#jy_q_right {
   float: right;
-  color: orangered;
+  color: #333;
+  font-weight: bold;
 }
 
-#article_bottom {
+#jy_article_bottom {
   padding-top: 40px;
+  text-align: center;
 }
 
-/* 푸터 스타일링 */
-footer {
-  background-color: #f2f2f2;
-  padding: 10px;
-  font-size: 14px;
-}</style>
+#jy_location_wrap {
+  text-align: center;
+}
+
+#jy_button_wrap {
+  text-align: center;
+}
+</style>
