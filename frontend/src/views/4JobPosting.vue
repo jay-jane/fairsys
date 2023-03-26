@@ -43,7 +43,7 @@
         <div id="jy_search_salary" class="jy_option_box" style="overflow: hidden;">
           <strong class="jy_option_title" style="float: left;">지역<br><br>
             <span @click="" style="font-size: 8px; font-weight: normal; cursor: pointer;">
-              <img src="https://picsum.photos/10/10" alt="r"> 초기화
+              <img src="@/img/return-icon.jpg" alt="r"> 초기화
             </span>
           </strong>
           <ul class="jy_category-list-left" style="float: left;">
@@ -100,6 +100,9 @@
 
         </div>
         <div id="jy_salary_list_total">
+          <div v-if="list.length == 0" style="text-align: center; margin-top: 30px;">
+            <span style="text-align: center;">결과가 없습니다.</span>
+          </div>
           <ul>
             <div v-for="item in list">
               <li>
@@ -321,8 +324,6 @@ export default {
       this.searchTitle = this.companyName;
       this.searchCareer = this.career;
       this.searchRegion = this.category;
-      console.log(this.searchCareer);
-      console.log(this.searchRegion);
       this.get();
     },
     addPosting() {

@@ -38,7 +38,7 @@
       </div>
       <div id="jy_field">
         <label class="jy_field_name">모집 분야</label>
-        <div id="jy_job_type">
+        <div id="jy_job_type" style="margin-top: 5px;">
           <Hashtags></Hashtags>
         </div>
         <div id="jy_recruit_type" style="display: inline-block;">
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div id="jy_field">
-        <label class="jy_field_name">경력 여부</label>
+        <label class="jy_field_name">경력 여부</label><br>
         <div id="jy_career" style="display: inline-block;">
           <input type="radio" name="career_type" v-model="j_career" value="신입">신입
           <input type="radio" name="career_type" v-model="j_career" value="경력">경력
@@ -95,7 +95,7 @@
       <div id="jy_field">
         <label class="jy_field_name">상세 내용</label>
         <div class="jy_content" style="margin-top: 10px;">
-          <textarea class="jy_textarea" cols="69" rows="10" v-model="j_content"></textarea>
+          <textarea class="jy_textarea" cols="70" rows="10" v-model="j_content"></textarea>
           <div class="jy_main-container">
             <div class="room-deal-information-container">
               <div class="room-deal-information-title">사진 등록</div>
@@ -161,7 +161,7 @@
           </div>
           <div id="jy_process_wrap" ref="interview1" style="display: none;">
             <input type="text" class="jy_text" id="jy_process" value="1차면접" readonly>
-            <img class="jy_deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
+            <img class="jy_deleteBtn" @click="deleteItem" name="interview1" src="@/img/delete-icon.png" alt="삭제">
           </div>
           <div id="jy_process_add">
             <button type="button" class="jy_add_btn" name="interview2" style="display: none;" @click="addBtn" ref="btn2">
@@ -171,7 +171,7 @@
           </div>
           <div id="jy_process_wrap" ref="interview2" style="display: none;">
             <input type="text" class="jy_text" id="jy_process" value="2차면접" readonly>
-            <img class="jy_deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
+            <img class="jy_deleteBtn" @click="deleteItem" name="interview2" src="@/img/delete-icon.png" alt="삭제">
           </div>
           <div id="jy_process_wrap">
             <input type="text" class="jy_text" id="jy_process" value="최종합격" readonly>
@@ -191,8 +191,8 @@
           </table>
         </div>
       </div>
-      <div>
-        <button type="button" value="등록" @click="submitForm">등록</button>
+      <div id="jy_reg-btn-wrap">
+        <button type="button" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
         <button type="button" value="취소" @click="goMain">취소</button>
       </div>
     </form>
@@ -278,16 +278,16 @@ export default {
         if (this.$refs.interview2.style.display == "block") {
           this.j_schedule = "1차 면접 > 2차 면접 >";
         }
-        if (this.j_title == '') {
-          alert('글 제목은 필수 입력 항목입니다');
-          document.getElementById("j_title").focus();
-          return;
-        }
-        const now = new Date();
-        if (now > this.endDate) {
-          alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
-          return;
-        }
+        // if (this.j_title == '') {
+        //   alert('글 제목은 필수 입력 항목입니다');
+        //   document.getElementById("j_title").focus();
+        //   return;
+        // }
+        // const now = new Date();
+        // if (now > this.endDate) {
+        //   alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
+        //   return;
+        // }
         this.axios.post('/jobPostingRegist',
           {
             j_recruitNum: this.j_recruitNum,
@@ -305,7 +305,6 @@ export default {
             j_postcode: this.j_postcode,
             j_address: this.j_address,
             j_detail_address: this.j_detail_address,
-
           }
         ).then(() => {
           this.uploadImg(sessionStorage.getItem("com_id"));
@@ -533,15 +532,11 @@ input[type="radio"] {
   width: 150px;
 }
 
-#jy_field {
-  margin-top: 10px;
-}
-
-#jy_field #jy_process_wrap {
+#jy_process_wrap {
   position: relative;
 }
 
-#jy_field #jy_process_wrap .jy_deleteBtn {
+#jy_process_wrap .jy_deleteBtn {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -576,6 +571,8 @@ input[type="radio"] {
   font-weight: bold;
   color: orangered;
   cursor: default;
+  text-align: center;
+  position: relative;
 }
 
 #jy_process_add {
@@ -898,5 +895,23 @@ input[type="radio"] {
 
 #jy_field_process {
   margin-top: 180px;
+}
+
+#jy_reg-btn-wrap {
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+#jy_reg-btn-wrap button {
+  display: inline-block;
+  border: 0;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background-color: orangered;
+  border-radius: 2px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #efefef;
+  letter-spacing: 1px;
 }
 </style>

@@ -13,19 +13,19 @@
       <div id="jy_field">
         <label class="jy_field_name">담당자 성함</label>
         <div id="">
-          <input type="text" class="jy_text jy_f" :value="item.com_manager" readonly>
+          <input type="text" class="jy_text jy_f" :value="item.companyVO.com_manager" readonly>
         </div>
       </div>
       <div id="jy_field">
         <label class="jy_field_name">기업명</label>
         <div id="">
-          <input type="text" class="jy_text jy_f" :value="item.com_name" readonly>
+          <input type="text" class="jy_text jy_f" :value="item.companyVO.com_name" readonly>
         </div>
       </div>
       <div class="jy_field tel-number">
         <label class="jy_field_name">휴대폰 번호</label>
         <div class="jy_tel_number_input">
-          <input type="text" class="jy_text jy_f" id="jy_tel_number" :value="item.com_manager_phone" readonly>
+          <input type="text" class="jy_text jy_f" id="jy_tel_number" :value="item.companyVO.com_manager_phone" readonly>
         </div>
       </div>
       <div id="jy_field">
@@ -83,7 +83,7 @@
           <input type="text" class="jy_text jy_f" :value="'서류심사 > ' + item.j_schedule + '합격'" readonly>
         </div>
       </div>
-      <div>
+      <div id="jy_modi-btn-wrap">
         <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
         <button type="button" value="삭제" @click="deleteForm" style="margin-right: 10px;">삭제</button>
         <button type="button" value="취소" @click="goMain">취소</button>
@@ -298,6 +298,25 @@ button[type="submit"]:hover {
 #jy_sal_wrap input[type=text] {
   width: 80%;
   margin-right: 10px;
+}
+
+#jy_modi-btn-wrap {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#jy_modi-btn-wrap button {
+  display: inline-block;
+  border: 0;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background-color: orangered;
+  border-radius: 2px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #efefef;
+  letter-spacing: 1px;
 }
 
 </style>

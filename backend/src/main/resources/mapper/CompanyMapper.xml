@@ -17,14 +17,45 @@
            #{j_postcode}, #{j_address}, #{j_detail_address})
   </insert>
 
-  <select id="getJobDetail" resultType="JobPostingVO">
-    <!-- select * from job_posting where j_no = #{j_no} -->
+  <select id="getJobDetail" resultMap="jobPostingResultMap">
     select j.*, c.com_name, c.com_ceo, c.com_manager, c.com_manager_phone, c.com_category, c.com_address, c.com_detail_address
-
     from job_posting j
     left join company c on j.com_id = c.com_id
     where j_no = #{j_no}
   </select>
+  <resultMap id="jobPostingResultMap" type="JobPostingVO">
+    <id column="j_no" property="j_no"/>
+    <result column="j_regdate" property="j_regdate"/>
+    <result column="j_recruitNum" property="j_recruitNum"/>
+    <result column="j_email" property="j_email"/>
+    <result column="j_title" property="j_title"/>
+    <result column="j_content" property="j_content"/>
+    <result column="j_end_date" property="j_end_date"/>
+    <result column="j_salary" property="j_salary"/>
+    <result column="j_department" property="j_department"/>
+    <result column="j_schedule" property="j_schedule"/>
+    <result column="j_graduation" property="j_graduation"/>
+    <result column="j_career" property="j_career"/>
+    <result column="j_type" property="j_type"/>
+    <result column="j_postcode" property="j_postcode"/>
+    <result column="j_address" property="j_address"/>
+    <result column="j_detail_address" property="j_detail_address"/>
+    <result column="j_img_uuid" property="j_img_uuid"/>
+    <result column="j_img_fileName" property="j_img_fileName"/>
+    <result column="com_id" property="com_id"/>
+    <association property="companyVO" resultMap="companyResultMap"/>
+  </resultMap>
+  <resultMap id="companyResultMap" type="CompanyVO">
+    <id column="com_id" property="com_id"/>
+    <result column="com_name" property="com_name"/>
+    <result column="com_ceo" property="com_ceo"/>
+    <result column="com_category" property="com_category"/>
+    <result column="com_manager" property="com_manager"/>
+    <result column="com_manager_phone" property="com_manager_phone"/>
+    <result column="com_manager_phone" property="com_manager_phone"/>
+    <result column="com_address" property="com_address"/>
+    <result column="com_detail_address" property="com_detail_address"/>
+  </resultMap>
 
   <update id="update" parameterType="JobPostingVO">
     update job_posting set j_title = #{j_title}, j_email = #{j_email}, j_recruitNum = #{j_recruitNum}, j_content = #{j_content}

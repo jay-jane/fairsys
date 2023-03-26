@@ -3,11 +3,11 @@
   <section id="jy_section">
     <div id="jy_detail_wrap" v-for="item in list">
       <div id="jy_banner_wrap">
-        <img src="https://picsum.photos/1000/100" alt="배너" width="100%" height="200px">
+        <img src="@/img/c8d7cf7b-e0c7-459f-91a0-3862082908f7_duck2.jpg" alt="배너" style="width: 100%; height: 200px; margin-top: -25px;">
         <div class="jy_bannerImg"></div>
         <div id="jy_company_logo"><img src="https://picsum.photos/150/150" alt="로고" class="jy_logoImg"></div>
         <div id="jy_company_name">
-          <h3>{{ item.com_name }}</h3>
+          <h3>{{ item.companyVO.com_name }}</h3>
         </div>
       </div>
       <article id="jy_article_top">
@@ -38,8 +38,8 @@
           <div id="jy_bottom_left">
             <h4>기업정보</h4>
             <div id="jy_qualify">
-              <span id="jy_q_left">대표자</span> <span id="jy_q_right">{{ item.com_ceo }}</span><br>
-              <span id="jy_q_left">산업(업종)</span> <span id="jy_q_right">{{ item.com_category }}</span><br>
+              <span id="jy_q_left">대표자</span> <span id="jy_q_right">{{ item.companyVO.com_ceo }}</span><br>
+              <span id="jy_q_left">산업(업종)</span> <span id="jy_q_right">{{ item.companyVO.com_category }}</span><br>
               <span id="jy_q_left">주소</span> <span id="jy_q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
             </div><br><br>
             <h4>채용정보</h4>
@@ -51,8 +51,8 @@
             </div><br><br>
             <h4>채용 담당자</h4>
             <div id="qualify">
-              <span id="jy_q_left">담당자</span> <span id="jy_q_right">{{ item.com_manager }}</span><br>
-              <span id="jy_q_left">핸드폰 번호</span> <span id="jy_q_right">{{ item.com_manager_phone }}</span><br>
+              <span id="jy_q_left">담당자</span> <span id="jy_q_right">{{ item.companyVO.com_manager }}</span><br>
+              <span id="jy_q_left">핸드폰 번호</span> <span id="jy_q_right">{{ item.companyVO.com_manager_phone }}</span><br>
               <span id="jy_q_left">이메일</span> <span id="jy_q_right">{{ item.j_email }}</span><br>
             </div>
           </div>
@@ -78,9 +78,8 @@
         </div>
       </div>
 
-      <div id="jy_button_wrap"
-        style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
-        <button type="button" v-if="ut_no == '1'" class="jy_btnApply" @click="apply"
+      <div id="jy_button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+        <button v-if="ut_no == '1'" class="jy_btnApply" @click="apply"
           style="border: 0; width: 120px; height: 40px; line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px; font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
         <button v-if="ut_no == '2'" class="jy_btnModify" @click="checkComId"
           style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</button>
@@ -127,7 +126,7 @@ export default {
         });
     },
     apply() {
-      this.axios.get("/checkApply", { params: { "user_id": sessionStorage.getItem("user_id"), "com_id": this.list[0].com_id } })
+      this.axios.get("/checkApply", { params: { "user_id": sessionStorage.getItem("user_id"), "com_id": this.list[0].companyVO.com_id } })
         .then(res => {
           console.log(res.data);
           if (res.data == 1) {
@@ -180,7 +179,7 @@ export default {
         .catch(err => console.log(err));
     },
     checkComId() {
-      if (sessionStorage.getItem("com_id") != this.list[0].com_id) {
+      if (sessionStorage.getItem("com_id") != this.list[0].companyVO.com_id) {
         alert('권한이 없습니다.');
         return;
       } else {
@@ -237,6 +236,8 @@ export default {
 
 #jy_banner_wrap {
   position: relative;
+  width: 100%;
+  height: 200px;
 }
 
 #jy_banner_wrap .jy_bannerImg {
