@@ -36,5 +36,9 @@ public interface ResumeMapper {
     public List<UserVO> getUserVO(String user_id);  
 
 
+
+
+    
+    public ArrayList<ResumeWriteVO> ApplyStatus1(String user_id);
     
 }

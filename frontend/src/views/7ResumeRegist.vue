@@ -4,7 +4,17 @@
     <div class="hw_resume">
 
       <div class="hw_resume-main">
-        <div class="hw_resume-part-title">이력서 작성</div>
+        <div class="hw_resume-part-title">
+          <tr>
+              <th><label for="resume_title">이력서 제목</label></th>
+              <td>
+                <input v-model="resume_title" required type="text">
+              </td>
+            </tr>
+
+          <hr/>
+
+        </div>
         <h3 style="text-align: left;">기본정보</h3>
         <div class="hw_resume-part2-box">
           <table class="hw_resume-part2-input">
@@ -159,7 +169,8 @@
           </table>
         </div>
 
-        <button type="button" @click="submitForm">이력서 등록</button>
+        <!-- <button type="button" @click="submitForm">이력서 등록</button> -->
+        <button v-bind:disabled="submitting" v-on:click="submitForm">제출</button>
       </div>
 
     </div>
@@ -200,6 +211,7 @@ export default {
       userInfo:'',
       user_join: "",
       user_leave: "",
+      resume_title: "",
     };
   },
   methods: {
@@ -236,7 +248,8 @@ export default {
           user_license: this.user_license,
           user_getlicense: this.user_getlicense,
           user_id: this.user_id,
-          com_id: this.com_id
+          com_id: this.com_id,
+          resume_title: this.resume_title
         },
         {
           params: { user_id: sessionStorage.getItem("user_id") },
@@ -249,13 +262,13 @@ export default {
         console.log(this.user_id)
         alert('작성이 완료되었습니다.!');
         console.log(res)
-        this.$router.push('/UserMyPage');
+        this.$router.push('/ApplyStatus1');
       }).catch(err => {
         console.log(err)
       })
     },
+    
     async get() {
-
       this.axios.get('/ResumeRegist',
         {
           params: { user_id: sessionStorage.getItem("user_id") },
@@ -305,11 +318,18 @@ export default {
 
 /* 본문 */
 .hw_resume-part-title {
-  font-size: 40px;
+  font-size: 25px;
   color: black;
   font-weight: bold;
 }
 
+.hw_resume-part-title input {
+    width: 10vw;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 2px 3px;
+}
 .hw_resume-part-box {
   display: flex;
   text-align: left;

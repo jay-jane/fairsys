@@ -22,7 +22,7 @@ public class ResumeWriteVO {
     private String user_finish;
     private String user_major;
     
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     private Date user_fndate;
     private String user_com;
     private String user_position;
@@ -35,4 +35,7 @@ public class ResumeWriteVO {
     private Date user_getlicense;
     private String user_id;
     private String com_id;
+    private String resume_title;
+ 
+    private Date resume_date;
 }
