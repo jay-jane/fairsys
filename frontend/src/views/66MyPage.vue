@@ -159,8 +159,8 @@ export default {
           console.log(err);
           alert("로그인이 필요한 서비스입니다.")
           sessionStorage.clear();
-          this.$store.commit("setLogInOut","로그인")
-          this.$router.push({ path: '/2' })
+          // this.$store.commit("setLogInOut","로그인")
+          // this.$router.push({ path: '/2' })
         });
     },
 

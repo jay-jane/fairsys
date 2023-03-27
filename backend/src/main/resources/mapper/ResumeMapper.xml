@@ -72,12 +72,12 @@
 		user_major = #{user_major}, user_fndate = #{user_fndate}, user_com = #{user_com},
 		user_position = #{user_position}, user_join = #{user_join}, user_leave = #{user_leave},
 		user_subject = #{user_subject}, user_score = #{user_score}, user_get = #{user_get},
-		user_license = #{user_license}, user_getlicense = #{user_getlicense} where user_id = #{user_id}
+		user_license = #{user_license}, user_getlicense = #{user_getlicense} where user_id1 = #{user_id}
 	
 	</update>
 
 	<select id="UserMyPage"  resultType="UserStatusVO"> 
-			select * from user_status where user_id= #{user_id}
+			select * from user_status where user_id1= #{user_id}
 	</select>
 
 

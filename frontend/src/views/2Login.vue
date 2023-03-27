@@ -85,7 +85,7 @@ export default {
         //sessionStorage에 id / auth 추가
         // sessionStorage.setItem('user_id',JSON.stringify(res.data.user_id))
         // sessionStorage.setItem('user_auth',JSON.stringify(res.data.mg_auth))
-
+        console.log("개인 회원 로그인 들어옴?")
         console.log(res.headers.authorization)
 
         sessionStorage.setItem('user_auth', res.headers.authorization.substr(7))
