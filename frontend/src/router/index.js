@@ -160,6 +160,11 @@ const routes = [
     name: 'userMyPage',
     component: () => import('../views/66MyPage.vue')
   },
+  {
+    path: '/UserMyPage1',
+    name: 'userMyPage1',
+    component: () => import('../views/67MyPage.vue')
+  },
 
   {
     path: "/26",

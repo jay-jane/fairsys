@@ -96,14 +96,14 @@
               <th style="padding-top:10px"><label for="user_join">입사일</label></th>
               <td>
 
-                <input v-model="user_join" required type="date">
+                <input v-model="user_join" required type="date" :max="user_leave">
 
               </td>
 
               <th style="padding-top:10px"><label for="user_leave">퇴사일</label></th>
               <td>
 
-                <input v-model="user_leave" required type="date">
+                <input v-model="user_leave" required type="date"  @change="checkDate">
 
               </td>
             </tr>
@@ -198,11 +198,18 @@ export default {
       user_id: "",
       com_id: "",
       userInfo:'',
+      user_join: "",
+      user_leave: "",
     };
   },
   methods: {
     btn_view() {
       location.href = "page1";
+    },checkDate() {
+      if (this.user_join > this.user_leave) {
+        alert("퇴사일은 입사일보다 빠를 수 없습니다.");
+        this.user_leave = "";
+      }
     },
 
     async submitForm() {
