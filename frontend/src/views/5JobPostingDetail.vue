@@ -128,6 +128,7 @@ export default {
     apply() {
       this.axios.get("/checkApply", { params: { "user_id": sessionStorage.getItem("user_id"), "com_id": this.list[0].companyVO.com_id } })
         .then(res => {
+          console.log(sessionStorage.getItem("user_id"));
           console.log(res.data);
           if (res.data == 1) {
             alert('해당 공고에 이미 지원하셨습니다.');

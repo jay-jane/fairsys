@@ -21,7 +21,7 @@
         </li>
       </ul>
     </div>
-    </section> -->
+        </section> -->
   <section id="jy_salary_wrap">
     <h3 class="jy_title">채용 정보</h3>
     <hr>
@@ -37,19 +37,22 @@
           <strong class="jy_option_title">
             <label for="company_name">기업명</label>
           </strong>
-          <input type="text" v-model="companyName" @keydown.enter="getComName" @focusout="getComName"
-            placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
+          <input type="text" class="input_com" v-model="companyName" @keydown.enter="getComName" @focusout="getComName"
+          placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요" style="width: 300px; margin-right: 20px;">
+          <span @click="resetComName" style="font-size: 8px; font-weight: normal; cursor: pointer;">
+            <img src="@/img/return-icon.jpg" alt="r"> 초기화
+          </span>
         </div>
         <div id="jy_search_salary" class="jy_option_box" style="overflow: hidden;">
           <strong class="jy_option_title" style="float: left;">지역<br><br>
-            <span @click="" style="font-size: 8px; font-weight: normal; cursor: pointer;">
+            <span @click="resetCategory" style="font-size: 8px; font-weight: normal; cursor: pointer;">
               <img src="@/img/return-icon.jpg" alt="r"> 초기화
             </span>
           </strong>
           <ul class="jy_category-list-left" style="float: left;">
-            <li><a href="#" @click.prevent="getCategory_List" name="1">서울</a></li>
-            <li><a href="#" @click.prevent="getCategory_List" name="2">경기</a></li>
-            <li><a href="#" @click.prevent="getCategory_List" name="3">인천</a></li>
+            <li><a href="#" class="" @click.prevent="getCategory_List" name="1">서울</a></li>
+            <li><a href="#" class="" @click.prevent="getCategory_List" name="2">경기</a></li>
+            <li><a href="#" class="" @click.prevent="getCategory_List" name="3">인천</a></li>
           </ul>
           <ul class="jy_category-list-right" style="float: left;">
             <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 서울 전체</a></li>
@@ -68,15 +71,20 @@
           </ul>
         </div>
         <div id="jy_search_type" class="jy_option_box">
-          <strong class="option_title">근무형태</strong>
+          <strong class="option_title" style="margin-right: 120px;">근무형태</strong>
+          <span @click="resetCareer" style="font-size: 8px; font-weight: normal; cursor: pointer;">
+            <img src="@/img/return-icon.jpg" alt="r"> 초기화
+          </span>
           <div id="jy_job_type">
-            <input @click="getCareer" type="radio" name="job_type" value="신입">신입
-            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력">경력
-            <input @click="getCareer" type="radio" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
+            <input @click="getCareer" type="radio" class="input_jobType" name="job_type" value="신입">신입
+            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type" value="경력">경력
+            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
           </div>
         </div>
         <div id="jy_search_btn">
-          <span>{{ com_name }}&nbsp;/&nbsp;{{ category }}&nbsp;/&nbsp;{{ career }}</span>
+          <span v-if="com_name != ''">{{ com_name }}&nbsp;&nbsp;</span>
+          <span v-if="category != ''">/&nbsp;&nbsp;{{ category }}&nbsp;&nbsp;</span>
+          <span v-if="career != ''">/&nbsp;&nbsp;{{ career }}</span>
           <p class="jy_search_total">검색 결과 : <strong class="jy_num_total" style="color: orangered;">{{ total }}</strong> 건
           </p>
           <button type="button" class="jy_search_btn" @click="searchItem">검색하기</button>
@@ -363,6 +371,23 @@ export default {
           this.$router.push({ path: '/' });
         })
       }
+    },
+    resetComName() {
+      this.com_name = '';
+      document.getElementsByClassName("input_com")[0].value = '';
+    },
+    resetCategory() {
+      this.category = '';
+      this.mid_category1 = false;
+      this.mid_category2 = false;
+      this.mid_category3 = false;
+    },
+    resetCareer() {
+      this.career = '';
+      let list = document.getElementsByClassName("input_jobType");
+      list[0].checked = false;
+      list[1].checked = false;
+      list[2].checked = false;
     },
   },
   mounted() {

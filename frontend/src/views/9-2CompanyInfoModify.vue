@@ -1,66 +1,68 @@
 <template>
-  <form action="">
+  <form action="" id="form_modi">
 
     <section>
       <div class="cont_division">
         <h3>기업정보수정</h3>
-        <div>
-          <label for="com_id">아이디 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_id">아이디 </label>
           <input v-model="com_id" required type="text" disabled>
 
         </div>
-        <div>
-          <label for="com_pw">비밀번호 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_pw">비밀번호 </label>
           <input v-model="com_pw" required type="password" placeholder="비밀번호">
           <span v-if="!passwordValidFlag && this.com_pw !== ''" :style="{ color: ['red'] }">유효하지 않은 비밀번호 입니다.</span>
           <span v-if="passwordValidFlag && this.com_pw !== ''" :style="{ color: ['green'] }">유효한 비밀번호 입니다.</span>
         </div>
-        <div>
-          <label for="com_pw_re">비밀번호 확인 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_pw_re">비밀번호 확인 </label>
           <input v-model="com_pw_re" required type="password" placeholder="비밀번호 재확인">
           <span v-if="!passwordCheckFlag && this.com_pw_re !== ''" :style="{ color: ['red'] }">비밀번호가 다릅니다.</span>
           <span v-if="passwordCheckFlag && this.com_pw_re !== ''" :style="{ color: ['green'] }">비밀번호가 일치합니다.</span>
         </div>
-        <div>
-          <label for="com_num">사업자등록번호 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_num">사업자등록번호 </label>
           <input v-model="com_num" required type="text" disabled>
         </div>
-        <div>
-          <label for="com_name">회사명 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_name">회사명 </label>
           <input v-model="com_name" required type="text">
         </div>
-        <div>
-          <label for="com_category">회사분류 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_category">회사분류 </label>
           <input v-model="com_category" required type="text">
         </div>
-        <div>
-          <label for="com_ceo">대표자명 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_ceo">대표자명 </label>
           <input v-model="com_ceo" required type="text">
         </div>
 
-        <div>
-          <label for="address">주소 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="address">주소 </label>
           <input type="text" v-model="com_postcode" placeholder="우편번호">
           <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"><br>
           <input type="text" v-model="com_address" placeholder="주소"><br>
           <input type="text" v-model="com_detail_address" placeholder="상세주소">
         </div>
 
-        <div>
-          <label for="com_manager">담당자명 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_manager">담당자명 </label>
           <input v-model="com_manager" required type="text">
         </div>
-        <div>
-          <label for="com_manager_phone">전화번호 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_manager_phone">전화번호 </label>
           <input v-model="com_manager_phone" required type="text">
         </div>
-        <div>
-          <label for="com_email">이메일 </label>
+        <div class="field_modi">
+          <label class="label_modi" for="com_email">이메일 </label>
           <input v-model="com_email" required type="email">
         </div>
 
-        <button type="button" @click="modifyForm">수정하기</button>
-        <button class="view" @click="companyDelete">회원탈퇴</button>
+        <div class="btn_modi" style="margin-top: 30px; text-align: center;">  
+          <button @click="modifyForm" style="margin-right: 50px;">수정하기</button>
+          <button class="view" @click="companyDelete" style="background-color: red;">회원탈퇴</button>
+        </div>
       </div>
     </section>
 
@@ -269,7 +271,7 @@ export default {
 </script>
 
 <style>
-form {
+#form_modi {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -278,42 +280,20 @@ form {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-
+  
 }
-
-label {
-  font-weight: bold;
-}
-
-input {
+.field_modi input {
   padding: 5px;
   border-radius: 3px;
   border: 1px solid #ccc;
   width: 100%;
 }
 
-button[type="button"] {
-  padding: 10px;
-  font-size: 16px;
-  background-color: orange;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.view {
-  padding: 10px;
-  font-size: 16px;
-  background-color: orange;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: orange;
+.label_modi {
+  display: inline-block;
+  font-weight: bold;
+  border-bottom: 1px solid orangered;
+  margin-bottom: 5px;
 }
 
 .cont_division {
@@ -321,6 +301,25 @@ button:hover {
   width: 360px;
   box-sizing: border-box;
   margin-top: 24px;
+}
+
+.field_modi {
+  margin-top: 10px;
+}
+
+.btn_modi button {
+  display: inline-block;
+  border: 0;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  line-height: 40px;
+  background-color: orangered;
+  border-radius: 2px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #efefef;
+  letter-spacing: 1px;
 }
 </style>
 
