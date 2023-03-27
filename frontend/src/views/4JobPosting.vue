@@ -21,7 +21,7 @@
         </li>
       </ul>
     </div>
-        </section> -->
+          </section> -->
   <section id="jy_salary_wrap">
     <h3 class="jy_title">채용 정보</h3>
     <hr>
@@ -38,7 +38,7 @@
             <label for="company_name">기업명</label>
           </strong>
           <input type="text" class="input_com" v-model="companyName" @keydown.enter="getComName" @focusout="getComName"
-          placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요" style="width: 300px; margin-right: 20px;">
+            placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요" style="width: 300px; margin-right: 20px;">
           <span @click="resetComName" style="font-size: 8px; font-weight: normal; cursor: pointer;">
             <img src="@/img/return-icon.jpg" alt="r"> 초기화
           </span>
@@ -50,21 +50,25 @@
             </span>
           </strong>
           <ul class="jy_category-list-left" style="float: left;">
-            <li><a href="#" class="" @click.prevent="getCategory_List" name="1">서울</a></li>
-            <li><a href="#" class="" @click.prevent="getCategory_List" name="2">경기</a></li>
-            <li><a href="#" class="" @click.prevent="getCategory_List" name="3">인천</a></li>
+            <li><a href="#" class="a_category1" @click.prevent="getCategory_List" name="1">서울</a></li>
+            <li><a href="#" class="a_category2" @click.prevent="getCategory_List" name="2">경기</a></li>
+            <li><a href="#" class="a_category3" @click.prevent="getCategory_List" name="3">인천</a></li>
           </ul>
           <ul class="jy_category-list-right" style="float: left;">
+            <li v-for="r in seoul"><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; {{ r }}</a></li>
+
             <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 서울 전체</a></li>
             <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 강남구</a></li>
             <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 서초구</a></li>
             <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 강서구</a></li>
             <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 마포구</a></li>
+
             <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 경기 전체</a></li>
             <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 수원시</a></li>
             <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 성남시</a></li>
             <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 안산시</a></li>
             <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 화성시</a></li>
+
             <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 인천 전체</a></li>
             <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 연수구</a></li>
             <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 서구</a></li>
@@ -77,8 +81,10 @@
           </span>
           <div id="jy_job_type">
             <input @click="getCareer" type="radio" class="input_jobType" name="job_type" value="신입">신입
-            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type" value="경력">경력
-            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
+            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type"
+              value="경력">경력
+            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type"
+              value="경력무관">경력무관
           </div>
         </div>
         <div id="jy_search_btn">
@@ -232,6 +238,10 @@ export default {
 
       //게시글 리스트
       list: [],
+
+      seoul: ["서울 전체", "강남구", "서초구", "반포구", "마포구"],
+      gyeonggi: [],
+      incheon: [],
     }
   },
   watch: {
@@ -256,14 +266,23 @@ export default {
         this.mid_category1 = true;
         this.mid_category2 = false;
         this.mid_category3 = false;
+        document.getElementsByClassName("a_category1")[0].classList.add("font_orange");
+        document.getElementsByClassName("a_category2")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category3")[0].classList.remove("font_orange");
       } else if (e.target.name == 2) {
         this.mid_category1 = false;
         this.mid_category2 = true;
         this.mid_category3 = false;
+        document.getElementsByClassName("a_category1")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category2")[0].classList.add("font_orange");
+        document.getElementsByClassName("a_category3")[0].classList.remove("font_orange");
       } else if (e.target.name == 3) {
         this.mid_category1 = false;
         this.mid_category2 = false;
         this.mid_category3 = true;
+        document.getElementsByClassName("a_category1")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category2")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category3")[0].classList.add("font_orange");
       }
     },
     getCategory: function (e) {
@@ -381,6 +400,9 @@ export default {
       this.mid_category1 = false;
       this.mid_category2 = false;
       this.mid_category3 = false;
+      document.getElementsByClassName("a_category1")[0].classList.remove("font_orange");
+      document.getElementsByClassName("a_category2")[0].classList.remove("font_orange");
+      document.getElementsByClassName("a_category3")[0].classList.remove("font_orange");
     },
     resetCareer() {
       this.career = '';
@@ -638,6 +660,9 @@ export default {
   float: left;
   width: 100px;
 }
+.jy_category-list-left li {
+  margin-bottom: 20px;
+}
 
 .jy_category-list-right {
   float: left;
@@ -646,7 +671,8 @@ export default {
 
 .jy_category-list-right li {
   float: left;
-  margin-left: 5px;
+  margin-left: 10px;
+  margin-bottom: 2px;
 }
 
 .jy_admin_nav {
@@ -690,5 +716,10 @@ export default {
 
 .jy_admin_nav .jy_sub_menu li a.on {
   background-color: orange;
+}
+
+.font_orange {
+  font-weight: bold;
+  color: orangered;
 }
 </style>

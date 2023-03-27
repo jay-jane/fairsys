@@ -3,7 +3,7 @@
   <section id="jy_section">
     <div id="jy_detail_wrap" v-for="item in list">
       <div id="jy_banner_wrap">
-        <img src="@/img/c8d7cf7b-e0c7-459f-91a0-3862082908f7_duck2.jpg" alt="배너" style="width: 100%; height: 200px; margin-top: -25px;">
+        <!-- <img src="@/img/c8d7cf7b-e0c7-459f-91a0-3862082908f7_duck2.jpg" alt="배너" style="width: 100%; height: 200px; margin-top: -25px;"> -->
         <div class="jy_bannerImg"></div>
         <div id="jy_company_logo"><img src="https://picsum.photos/150/150" alt="로고" class="jy_logoImg"></div>
         <div id="jy_company_name">
@@ -63,7 +63,7 @@
       <article id="jy_article_bottom">
         <div id="jy_section_bottom">
           <h3>상세 내용</h3>
-          <p>{{ item.j_content }}</p>
+          <pre>{{ item.j_content }}</pre>
           <div id="jy_posting_container">
             <img v-if="!this.imgUrl.includes('null')" :src="require(`@/img/${this.imgUrl}`)" :alt="item.j_img_fileName"
               id="jy_detailImg" />
@@ -78,7 +78,7 @@
         </div>
       </div>
 
-      <div id="jy_button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+      <div id="jy_detail_button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
         <button v-if="ut_no == '1'" class="jy_btnApply" @click="apply"
           style="border: 0; width: 120px; height: 40px; line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px; font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
         <button v-if="ut_no == '2'" class="jy_btnModify" @click="checkComId"
@@ -131,6 +131,8 @@ export default {
           console.log(sessionStorage.getItem("user_id"));
           console.log(res.data);
           if (res.data == 1) {
+            console.log("jno" + this.j_no),
+
             alert('해당 공고에 이미 지원하셨습니다.');
             return;
           } else {
@@ -172,9 +174,12 @@ export default {
         user_position: vo.user_position,
         user_score: vo.user_score,
         user_subject: vo.user_subject,
+        j_no: this.j_no
       })
         .then(res => {
           console.log(res);
+          console.log("jno" + this.j_no),
+
           alert('성공적으로 지원되었습니다 !');
         })
         .catch(err => console.log(err));
@@ -219,11 +224,11 @@ export default {
 }
 
 #jy_top {
-  margin-bottom: 300px;
+  margin-bottom: 200px;
 }
 
 #jy_top .jy_title {
-  padding-top: 250px;
+  padding-top: 100px;
   text-align: left;
   position: absolute;
   left: 250px;
@@ -247,7 +252,7 @@ export default {
   left: 0;
   width: 100%;
   height: 200px;
-  background-color: black;
+  background-color: orangered;
   opacity: 0.5;
   z-index: 9;
   margin-top: -25px;
@@ -309,7 +314,7 @@ export default {
   text-align: center;
 }
 
-#jy_button_wrap {
+#jy_detail_button_wrap {
   text-align: center;
 }
 </style>

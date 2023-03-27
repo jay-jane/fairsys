@@ -192,8 +192,8 @@
         </div>
       </div>
       <div id="jy_reg-btn-wrap">
-        <button type="button" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
-        <button type="button" value="취소" @click="goMain">취소</button>
+        <button class="reg_btn" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
+        <button class="reg_btn" value="취소" @click="goMain">취소</button>
       </div>
     </form>
   </section>
@@ -278,16 +278,21 @@ export default {
         if (this.$refs.interview2.style.display == "block") {
           this.j_schedule = "1차 면접 > 2차 면접 >";
         }
-        // if (this.j_title == '') {
-        //   alert('글 제목은 필수 입력 항목입니다');
-        //   document.getElementById("j_title").focus();
-        //   return;
-        // }
-        // const now = new Date();
-        // if (now > this.endDate) {
-        //   alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
-        //   return;
-        // }
+        if (this.j_title == '') {
+          alert('글 제목은 필수 입력 항목입니다');
+          document.getElementById("j_title").focus();
+          return;
+        }
+        if (this.j_title == '') {
+          alert('글 제목은 필수 입력 항목입니다');
+          document.getElementById("j_title").focus();
+          return;
+        }
+        const now = new Date();
+        if (now > this.endDate) {
+          alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
+          return;
+        }
         this.axios.post('/jobPostingRegist',
           {
             j_recruitNum: this.j_recruitNum,
@@ -899,13 +904,14 @@ input[type="radio"] {
 
 #jy_reg-btn-wrap {
   text-align: center;
-  margin: 20px 0 20px 0;
+  margin: 30px 0 30px 0;
 }
-#jy_reg-btn-wrap button {
+#jy_reg-btn-wrap .reg_btn {
   display: inline-block;
   border: 0;
   width: 120px;
   height: 40px;
+  line-height: 40px;
   line-height: 40px;
   background-color: orangered;
   border-radius: 2px;

@@ -142,11 +142,11 @@
     insert into user_status(user_id1, com_id, user_name, user_phone, user_email, user_address,
                             user_gender, user_level, user_finish, user_major, user_fndate, user_com,
                             user_position, user_join, user_leave, user_subject, user_score, user_get,
-                            user_license, user_getlicense)
+                            user_license, user_getlicense, j_no)
     values(#{user_id}, #{com_id}, #{user_name}, #{user_phone}, #{user_email}, #{user_address},
            #{user_gender}, #{user_level}, #{user_finish}, #{user_major}, #{user_fndate}, #{user_com},
            #{user_position}, #{user_join}, #{user_leave}, #{user_subject}, #{user_score}, #{user_get},
-           #{user_license}, #{user_getlicense})
+           #{user_license}, #{user_getlicense}, #{j_no})
   </insert>
   
   <select id="checkApply" resultType="int">
