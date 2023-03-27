@@ -1,6 +1,6 @@
-<template>
 
-  <div class="hw_admin_nav">
+<template>
+    <div class="hw_admin_nav">
     <ul>
       <li class="hw_sub_menu_toggle">
         <a class="hw_sub menu select">채용공고</a>
@@ -37,110 +37,72 @@
   </div>
 
 
-<!-- 
-  <div class="hw_my_content_main">
-    <div class="hw_my_content">
-      <table>
-        <div id="hw_my_salary_list_wrap">
-          <div id="hw_my_salary_list_total">
-            <ul>
-              <li class="hw_my_com_info">
-                <div class="hw_my_company_info">
-                  <strong class="hw_my_title">{{user_id}}님 안녕하세요</strong>
-                  <br>
-               -->
-                  <!-- <div v-for="(item, index) in index">
-                  <dl class="hw_my_info_item" >
-                    <dt>이름</dt>
-                    <dd>{{item.user_name}}</dd>
-                  </dl>
-                  <dl class="hw_my_info_item">
-                    <dt>이메일</dt>
-                    <dd>{{ item.user_email}}</dd>
-                  </dl>
-                  <dl class="hw_my_info_item">
-                    <dt>전화번호</dt>
-                    <dd>{{ item.user_phone}}</dd>
-                  </dl>
-                </div> -->
 
-<!-- 
-
-                </div>
-              </li>
-            </ul>
-
-
-          </div>
-        </div>
-
-
-      </table> -->
-
-
-      <div class="hw_main">
-    <div class="hw_container">
-
-      <h2>지원 이력서</h2>
-
-      <!-- 출력 카테고리 -->
-      <select v-model="amount" class="hw_view" @change="loglist_view">
-        <option value="10">10개 보기</option>
-        <option value="20">20개 보기</option>
-        <option value="30">30개 보기</option>
-      </select>
-      
-      <table class="hw_list">
-        <thead class="hw_head">
-          <tr>
-            <th>번호</th>
-            <th>진행상황</th>
-            <th>조회</th>
-            <th>수정</th>
-            <th>삭제</th>
-          </tr>
-        </thead>
-
-        <tbody class="hw_body">
-
-          <tr v-for="(item, index) in list" v-bind:key="index">
+    <div class="hw_main">
+      <div class="hw_container">
+  
+        <h2>나의 이력서</h2>
+  
+        <!-- 출력 카테고리 -->
+        <select v-model="amount" class="hw_view" @change="loglist_view">
+          <option value="10">10개 보기</option>
+          <option value="20">20개 보기</option>
+          <option value="30">30개 보기</option>
+        </select>
+  
+  
+        <table class="hw_list">
+          <thead class="hw_head">
+            <tr>
+              <th>번호</th>
+              <th>진행상황</th>
+              <th>조회</th>
+              <th>수정</th>
+              <th>삭제</th>
+            </tr>
+          </thead>
+  
+          <tbody class="hw_body">
+  
+            <tr v-for="(item, index) in list" v-bind:key="index">
             <td>{{ item.com_id }}</td>
             <td>{{ item.status}}</td>
-    
+            <!-- <td @click.prevent="ResumeModify(item.w_no)">조회</td>
+            <td><router-link :to="{ name: 'ResumeUpdate', params: { w_no: item.user_no } }">수정</router-link></td>
+            -->  
             <td @click.prevent="ResumeModify(item.user_no)">조회</td>
             <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.com_id}}">수정</router-link></td>
              <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
             </td> 
           </tr>
-
-        </tbody>
-      </table>
-      
-      <div class="hw_serch_box">
+          </tbody>
+        </table>
   
-  <select name="" id="">
-    <option value="title">이름</option>
-    <option value="status">진행상황</option>
-  </select>
-
-  <input type="text">
-  <button @click="search($event.target)">검색</button>
-
-</div>
-
+        <div class="hw_serch_box">
+  
+          <select name="" id="">
+            <option value="title">이름</option>
+            <option value="status">진행상황</option>
+          </select>
+  
+          <input type="text">
+          <button @click="search($event.target)">검색</button>
+  
+        </div>
+  
         <!-- 페이지 이동 -->
         <div class="hw_page">
           <ul>
             <li>
               <!-- 맨앞으로 가기 -->
-              <router-link :to="{ path: '/UserMyPage/?page=1&amount=' + amount }" @click="goFirstPage">
+              <router-link :to="{ path: '/UserMyPage1/?page=1&amount=' + amount }" @click="goFirstPage">
                 <i class="fa fa-angle-double-left" aria-hidden="true">&lt;&lt;</i>
               </router-link>
             </li>
   
             <!-- 앞으로 가기 -->
             <li style="margin-right:5px;">
-              <router-link :to="{ path: '/UserMyPage/?page=' + page + '&amount=' + amount }" @click="goBeforePage">
+              <router-link :to="{ path: '/UserMyPage1/?page=' + page + '&amount=' + amount }" @click="goBeforePage">
                 <i class="fa fa-angle-left" aria-hidden="true">&lt;</i>
               </router-link>
             </li>
@@ -148,7 +110,7 @@
             <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
             <div v-for="(item, index) in pageList" :key="index" class="page_btn">
               <li v-bind:class="{ 'on': item === page }">
-                <router-link :to="{ path: '/UserMyPage/?page=' + page + '&amount=' + amount }"
+                <router-link :to="{ path: '/UserMyPage1/?page=' + page + '&amount=' + amount }"
                   @click="thisPage($event.target)">
                   {{ item }}
                 </router-link>
@@ -157,34 +119,32 @@
   
             <!-- 뒤로 가기 -->
             <li style="margin-left:5px;">
-              <router-link :to="{ path: '/UserMyPage/?page=' + page + '&amount=' + amount }" @click="goNextPage">
+              <router-link :to="{ path: '/UserMyPage1/?page=' + page + '&amount=' + amount }" @click="goNextPage">
                 <i class="fa fa-angle-right" aria-hidden="true">></i>
               </router-link>
             </li>
   
             <!-- 맨뒤로 가기 -->
             <li>
-              <router-link :to="{ path: '/UserMyPage/?page=' + realEnd + '&amount=' + amount }" @click="goLastPage">
+              <router-link :to="{ path: '/UserMyPage1/?page=' + realEnd + '&amount=' + amount }" @click="goLastPage">
                 <i class="fa fa-angle-double-right" aria-hidden="true">>></i>
               </router-link>
             </li>
   
           </ul>
         </div>
-
-
+  
+      </div>
     </div>
-
-  </div>
-</template>
+  </template>
   
-<script>
-
-export default {
+  <script>
+  import Axios from 'axios';
   
-  name: 'App',
-  data() {
-    return {
+  export default {
+    el: '#App',
+    data() {
+      return {
       user_no: '',
       list: [],
       a: '',
@@ -192,12 +152,36 @@ export default {
       com_id:'',
       user_phone:'',
       user_name:'',
-    }
-  },
   
-  methods: {
-    UserMyPage() {
-      this.axios.get('/UserMyPage',
+        //공용
+  
+        pages: '',   //pageVO
+        pageList: '',  //pageVO.pageList 배열값
+        detailNum: '',
+  
+        //페이지이동에 필요한 초기값들
+        page: 1,
+        amount: 10,
+        searchTitle: '',
+        searchStatus: '',
+        searchContent: '',
+        prev: '',
+        pageStart: '',
+        pageEnd: '',
+        realEnd: '',
+  
+        list: [],    //게시글리스트
+      }
+    },
+  
+    watch: {
+      'amount': function () {
+        this.get();
+      }
+    },
+  
+    methods: { UserMyPage() {
+      this.axios.get('/UserMyPage1',
         {
           params: { user_id: sessionStorage.getItem("user_id") },
           headers: {
@@ -226,26 +210,25 @@ export default {
         });
     },
 
-    deleteUser(){
-      if(confirm('아이디를 삭제하시겠습니까?')){
-        this.axios.get('/UserMyPage/deleteForm',
-        {
-          params: { user_id: sessionStorage.getItem("user_id") },
-          headers: {
-            'content-type': 'application/json',
-            'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
-          }
-        }
-        ).then(res => {
-          alert('아이디가 삭제되었습니다.')
-          sessionStorage.clear();
-          this.$store.commit("setLogInOut","로그인")
-          this.$router.push({ path: '/' })
-        })
-      }
+    // deleteUser(){
+    //   if(confirm('아이디를 삭제하시겠습니까?')){
+    //     this.axios.get('/UserMyPage1/deleteForm',
+    //     {
+    //       params: { user_id: sessionStorage.getItem("user_id") },
+    //       headers: {
+    //         'content-type': 'application/json',
+    //         'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
+    //       }
+    //     }
+    //     ).then(res => {
+    //       alert('아이디가 삭제되었습니다.')
+    //       sessionStorage.clear();
+    //       this.$store.commit("setLogInOut","로그인")
+    //       this.$router.push({ path: '/' })
+    //     })
+    //   }
      
-    },
-
+    // },
 
     ResumeModify(user_no) {
       this.$router.push({
@@ -260,18 +243,19 @@ export default {
         this.axios.post('/ResumeDelete', { "user_no": user_no })
           .then(() => {
             alert('삭제되었습니다');
-            this.$router.go('/UserMyPage');
+            this.$router.go('/UserMyPage1');
           })
           .catch(err => console.log(err));
       };
     },
   },
- 
-  async get() {
+
+  
+      async get() {
         //console.log(this.list_view);
   
         //화면에 리스트 출력을 위해 필요한 내용 전달
-        let response = await Axios.get("/UserMyPage/?amount=" + this.amount + "&page=" + this.page + "&searchTitle=" + this.searchTitle + "&searchStatus=" + this.searchStatus + "&searchContent=" + this.searchContent,
+        let response = await Axios.get("/UserMyPage1/?amount=" + this.amount + "&page=" + this.page + "&searchTitle=" + this.searchTitle + "&searchStatus=" + this.searchStatus + "&searchContent=" + this.searchContent,
          
         );
   
@@ -354,17 +338,17 @@ export default {
       
     
     },
-
-  mounted() {
-    this.UserMyPage();
-  },
-}
-
-</script>
+    mounted() {
+      //데이터 출력시키기
+      this.get();
+       this.UserMyPage();
+    }
+  };
+  </script>
   
-  
-<style>
- * {
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+  * {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -596,4 +580,6 @@ export default {
     justify-content: center;
     align-items: center;
   }
-</style>
+  </style>
+  
+  

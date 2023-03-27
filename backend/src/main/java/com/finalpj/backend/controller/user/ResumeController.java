@@ -104,10 +104,6 @@ public class ResumeController {
     //    }
     
       
-
-
-
-
         //지원자 이력서 마이페이지
         @GetMapping("/UserMyPage")
         public ArrayList<UserStatusVO> UserMyPage (HttpServletRequest request, HttpServletResponse response){

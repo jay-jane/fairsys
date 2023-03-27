@@ -66,7 +66,8 @@
 
 
 	<update id="ResumeUpdate" parameterType="UserStatusVO">
-		update user_status set user_name = #{user_name}, user_phone = #{user_phone}, user_email = #{user_email}, user_address = #{user_address},
+		update user_status set user_name = #{user_name}, user_phone = #{user_phone}, user_email = #{user_email},
+		user_address = #{user_address},
 		user_gender = #{user_gender},  user_level = #{user_level},
 		user_finish = #{user_finish},
 		user_major = #{user_major}, user_fndate = #{user_fndate}, user_com = #{user_com},
