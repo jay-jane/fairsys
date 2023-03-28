@@ -94,7 +94,7 @@
         <thead class="hw_head">
           <tr>
             <th>번호</th>
-            <th>제목</th>
+            <th>이름</th>
             <th>작성일자</th>
             <th>삭제</th>
      
@@ -105,7 +105,7 @@
 
           <tr v-for="(item, index) in list" v-bind:key="index">
             <td>{{ index + 1 }}</td>
-            <td>{{ item.resume_title }}</td>
+            <td>{{ item.user_name }}</td>
             <td>{{ item.resume_date }}</td>
             <td>
             <button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px; background-color: orange; color: white; border: none;">삭제</button>
@@ -240,8 +240,8 @@ export default {
           console.log(err);
           alert("로그인이 필요한 서비스입니다.")
           sessionStorage.clear();
-          this.$store.commit("setLogInOut","로그인")
-          this.$router.push({ path: '/2' })
+          // this.$store.commit("setLogInOut","로그인")
+          // this.$router.push({ path: '/2' })
         });
     }, 
      deleteForm(user_no) {

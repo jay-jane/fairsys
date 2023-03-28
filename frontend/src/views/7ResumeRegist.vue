@@ -4,17 +4,7 @@
     <div class="hw_resume">
 
       <div class="hw_resume-main">
-        <div class="hw_resume-part-title">
-          <tr>
-              <th><label for="resume_title">이력서 제목</label></th>
-              <td>
-                <input v-model="resume_title" required type="text">
-              </td>
-            </tr>
 
-          <hr/>
-
-        </div>
         <h3 style="text-align: left;">기본정보</h3>
         <div class="hw_resume-part2-box">
           <table class="hw_resume-part2-input">
@@ -76,7 +66,7 @@
               <td>
                 <input v-model="user_major" required type="text">
               </td>
-              <th style="padding-top:10px"><label for="user_fndate">졸업예정날짜</label></th>
+              <th style="padding-top:10px"><label for="user_fndate">졸업/졸업예정날짜</label></th>
               <td>
 
                 <input v-model="user_fndate" required type="date">
