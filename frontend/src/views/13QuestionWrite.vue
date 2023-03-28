@@ -44,7 +44,6 @@
 
 <script>
 import Axios from 'axios';
-import axios from 'axios';
 
 
 export default {
@@ -55,7 +54,7 @@ export default {
       //공용
       test:'',
       company:0,
-      list:[{ id: '' , name: ''}],
+      list:[],
       
       //전달데이터
       qa_title:'',           //제목 
@@ -75,13 +74,17 @@ export default {
       let res = await Axios.get("/13?user_id=" + this.user_id);
       res = res.data;
       console.log(res);
-      for(var i = 0; i < this.list.length; i++){
-        this.list= [{
+
+      let len = res.length;
+      
+      for(var i = 0; i < len; i++){
+        console.log(i);
+        this.list.push({
           id: res[i].com_id,
           name: res[i].com_name
-        }]
+        })
+      
       }
-
       console.log(this.list);
 
     },  
