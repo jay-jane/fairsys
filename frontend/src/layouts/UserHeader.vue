@@ -1,7 +1,7 @@
 <template>
   <div id="user_menu">
     <nav id="top">
-      <div id="logo"><router-link to="/">중앙정보 취업 박람회</router-link></div>
+      <div id="logo"><router-link to="/"><img src="../img/jobhublogo.png" :style="{ width: ['250px'], position:['relative'], top:['-63px'], left: ['-60px']}"></router-link></div>
       <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용정보</router-link></div>
       <div id="menu"><router-link to="/UserMyPage" @mouseover="doDropmenu">마이페이지</router-link></div>
       <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
