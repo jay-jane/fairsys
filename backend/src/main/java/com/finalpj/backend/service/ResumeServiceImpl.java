@@ -33,6 +33,7 @@ public class ResumeServiceImpl implements ResumeService{
         return resumemapper.ResumeModify(user_no);
        
     }
+  
 
     @Override
     public void ResumeUpdate(ResumeWriteVO vo) {
@@ -89,5 +90,10 @@ public class ResumeServiceImpl implements ResumeService{
     @Override
     public int checkApply(String user_id) {
         return resumemapper.checkApply(user_id);
+    }
+
+    @Override
+    public void delete1(int user_no) {
+        resumemapper.delete1(user_no);
     }
 }

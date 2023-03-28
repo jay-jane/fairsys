@@ -96,6 +96,7 @@
             <th>번호</th>
             <th>제목</th>
             <th>작성일자</th>
+            <th>삭제</th>
      
           </tr>
         </thead>
@@ -106,8 +107,9 @@
             <td>{{ index + 1 }}</td>
             <td>{{ item.resume_title }}</td>
             <td>{{ item.resume_date }}</td>
-      
-    
+            <td>
+            <button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px; background-color: orange; color: white; border: none;">삭제</button>
+            </td>
             <!-- <td @click.prevent="ResumeModify(item.user_no)">조회</td> -->
             <!-- <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.com_id}}">수정</router-link></td> -->
              <!-- <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button> -->
@@ -117,17 +119,7 @@
         </tbody>
       </table>
       
-      <div class="hw_serch_box">
   
-  <select name="" id="">
-    <option value="title">이름</option>
-    <option value="status">진행상황</option>
-  </select>
-
-  <input type="text">
-  <button @click="search($event.target)">검색</button>
-
-</div>
 
       <!-- 페이지 이동 -->
       <div class="hw_page">
@@ -251,6 +243,16 @@ export default {
           // this.$store.commit("setLogInOut","로그인")
           // this.$router.push({ path: '/2' })
         });
+    }, 
+     deleteForm(user_no) {
+      if (confirm('삭제하시겠습니까?')) {
+        this.axios.post('/ResumeDelete1', { "user_no": user_no })
+          .then(() => {
+            alert('삭제되었습니다');
+            this.$router.go('/ApplyStatus1');
+          })
+          .catch(err => console.log(err));
+      };
     },
 
  
@@ -537,6 +539,7 @@ export default {
     font-size: 16px;
   }
   
+
   .hw_page {
     display: flex;
     justify-content: center;

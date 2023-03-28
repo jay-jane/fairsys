@@ -169,7 +169,7 @@
           </table>
         </div>
 
-        <button type="button" @click="submitForm">이력서 등록</button>
+        <button type="button" @click="submitForm" class="button">이력서 등록</button>
        
       </div>
 
@@ -321,7 +321,6 @@ export default {
   border-radius: 5px;
   border: 2px solid #ccc;
   padding: 2px 3px;
-  
 }
 
 /* 본문 */
@@ -380,6 +379,12 @@ export default {
 .hw_graduation {
   display: inline-block;
   margin: 8px;
+}
+
+.button {
+  background-color: orange;
+  border: none;
+  color: white;
 }
 </style>
   

@@ -15,7 +15,7 @@
         <ul class="hw_sub_menu">
           <li><router-link to="/ResumeRegist">이력서 작성</router-link></li>
 
-          <li><router-link to="/UserMypage">이력서 목록</router-link></li>
+          <li><router-link to="/ApplyStatus1">이력서 목록</router-link></li>
 
           <li><a href="#"></a></li>
 
@@ -76,17 +76,7 @@
         </tbody>
       </table>
       
-      <div class="hw_serch_box">
-  
-  <select name="" id="">
-    <option value="title">이름</option>
-    <option value="status">진행상황</option>
-  </select>
-
-  <input type="text">
-  <button @click="search($event.target)">검색</button>
-
-</div>
+ 
 
         <!-- 페이지 이동 -->
         <div class="hw_page">
