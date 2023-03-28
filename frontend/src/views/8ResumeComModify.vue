@@ -136,7 +136,7 @@
                     <td>
                       {{ item.user_subject }}
                     </td>
-                    <th class="text_resume"><label for="user_score">점수</label></th>
+                    <th><label for="user_score">점수</label></th>
                     <td>
                       {{ item.user_score }}
                     </td>
