@@ -84,6 +84,12 @@ const routes = [
     component: () => import("../views/10ApplyStatus.vue"),
   },
   {
+
+    path: "/ApplyStatus1/",
+    name: "ApplyStatus1",
+    component: () => import("../views/10-1ApplyStatus.vue"),
+  },
+  {
     path: "/11",
     name: "questionList",
     component: () => import("../views/11QuestionList.vue"),
@@ -149,11 +155,7 @@ const routes = [
     component: () => import("../views/22Test.vue"),
   },
 
-  {
-    path: "/25",
-    name: "25",
-    component: () => import("../views/25test.vue"),
-  },
+
   {
     path: '/ResumeUpdate:user_no',
     name: 'ResumeUpdate',
@@ -164,6 +166,7 @@ const routes = [
     name: 'userMyPage',
     component: () => import('../views/66MyPage.vue')
   },
+
 
   {
     path: "/26",

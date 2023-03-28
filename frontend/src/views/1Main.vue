@@ -100,10 +100,7 @@ export default {
 </script>
  
 <style>
-html {
-  color: #000;
-  background: #fff
-}
+
 
 html,
 body {

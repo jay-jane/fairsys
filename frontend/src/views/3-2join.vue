@@ -236,7 +236,7 @@ export default {
       ).then(res => {
         console.log(res)
         console.log(res.config.data)
-        // this.$router.push({ path: '/' })
+        this.$router.push({ path: '/' })
       }).catch(err => {
         console.log(err)
       })
@@ -415,7 +415,7 @@ button:hover {
 
 .cont_division .terms_agree {
   font-size: 16px;
-  color: #373f57;
+ 
   margin-bottom: 8px;
   display: inline-block;
 }

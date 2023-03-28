@@ -1,133 +1,127 @@
 <!-- 재윤 - 채용 공고 등록 -->
 <template>
-  <section>
+  <section id="jy_form_sec">
     <h3 style="text-align: center;">채용 공고 등록</h3>
     <form @submit="regist">
-      <div id="field">
-        <label class="field_name">제목</label>
+      <div id="jy_field">
+        <label class="jy_field_name">제목</label>
         <div id="">
           <input type="hidden" v-model="com_id">
-          <input type="text" id="j_title" v-model="j_title">
+          <input type="text" class="jy_text" id="j_title" v-model="j_title">
         </div>
       </div>
       <div v-for="item in com_list">
-        <div id="field">
-          <label class="field_name">담당자 성함</label>
+        <div id="jy_field">
+          <label class="jy_field_name">담당자 성함</label>
           <div id="">
-            <input type="text" :value="item.com_manager_name" style="border: 0;" readonly>
+            <input type="text" class="jy_text jy_f" :value="item.com_manager" style="border: 0;" readonly>
           </div>
         </div>
-        <div id="field">
-          <label class="field_name">기업명</label>
+        <div id="jy_field">
+          <label class="jy_field_name">기업명</label>
           <div id="">
-            <input type="text" :value="item.com_name" style="border: 0;" readonly>
+            <input type="text" class="jy_text jy_f" :value="item.com_name" style="border: 0;" readonly>
           </div>
         </div>
-        <div class="field tel-number">
-          <label class="field_name">휴대폰 번호</label>
-          <div class="tel_number_input">
-            <input type="text" id="tel_number" :value="item.com_manager_phone" style="border: 0;" readonly>
+        <div class="jy_field tel-number">
+          <label class="jy_field_name">휴대폰 번호</label>
+          <div class="jy_tel_number_input">
+            <input type="text" class="jy_text jy_f" id="jy_tel_number" :value="item.com_manager_phone" style="border: 0;"
+              readonly>
           </div>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">이메일 주소</label>
+      <div id="jy_field">
+        <label class="jy_field_name">이메일 주소</label>
         <div id="">
-          <input type="email" v-model="j_email">
+          <input type="email" class="jy_text" v-model="j_email">
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">모집 분야</label>
-        <div id="job_type">
+      <div id="jy_field">
+        <label class="jy_field_name">모집 분야</label>
+        <div id="jy_job_type" style="margin-top: 5px;">
           <Hashtags></Hashtags>
         </div>
-      <!-- <div v-for="item in $route.query.valList">
-          {{ item }}
-                                </div> -->
-        <div id="recruit_type" style="display: inline-block;">
-          <input type="text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
+        <div id="jy_recruit_type" style="display: inline-block;">
+          <input type="text" class="jy_text" style="width: 40px; margin-left: 5px;" v-model="j_recruitNum">
           <span>명 모집</span>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">경력 여부</label>
-        <div id="career" style="display: inline-block;">
+      <div id="jy_field">
+        <label class="jy_field_name">경력 여부</label><br>
+        <div id="jy_career" style="display: inline-block;">
           <input type="radio" name="career_type" v-model="j_career" value="신입">신입
           <input type="radio" name="career_type" v-model="j_career" value="경력">경력
           <input type="radio" name="career_type" v-model="j_career" value="경력무관">경력무관
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">근무지역</label>
-        <div class="postAPI">
+      <div id="jy_field">
+        <label class="jy_field_name">근무지역</label>
+        <div class="jy_postAPI">
           <label for="address" style="font-size: 14px;"> - 주소</label>
-          <input type="text" v-model="j_postcode" placeholder="우편번호">
+          <input type="text" class="jy_text" v-model="j_postcode" placeholder="우편번호">
           <input type="button" @click="execDaumPostcode()" value="우편번호 찾기"
             style="cursor: pointer; border: 0; width: 120px; height: 30px; color: orangered; font-weight: bold; background-color: #efefef;"><br>
-          <input type="text" v-model="j_address" placeholder="주소"><br>
-          <input type="text" v-model="j_detail_address" placeholder="상세주소">
+          <input type="text" class="jy_text" v-model="j_address" placeholder="주소"><br>
+          <input type="text" class="jy_text" v-model="j_detail_address" placeholder="상세주소">
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">급여(연봉)</label>
-        <div id="sal_wrap">
-          <select id="sal_y" v-model="j_salary">
-            <option value="2200~2800">2,200만원 ~ 2,800만원</option>
-            <option value="2800~3200">2,800만원 ~ 3,200만원</option>
-            <option value="3200~3600">3,200만원 ~ 3,600만원</option>
-            <option value="3600~4000">3,600만원 ~ 4,000만원</option>
+      <div id="jy_field">
+        <label class="jy_field_name">급여(연봉)</label>
+        <div id="jy_sal_wrap" style="margin-top: 5px;">
+          <select id="jy_sal_y" v-model="j_salary">
+            <option value="2,200만원 ~ 2,800만원">2,200만원 ~ 2,800만원</option>
+            <option value="2,800만원 ~ 3,200만원">2,800만원 ~ 3,200만원</option>
+            <option value="3,200만원 ~ 3,600만원">3,200만원 ~ 3,600만원</option>
+            <option value="3,600만원 ~ 4,000만원">3,600만원 ~ 4,000만원</option>
           </select>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">근무 형태</label>
+      <div id="jy_field">
+        <label class="jy_field_name">근무 형태</label><br>
         <div style="display: inline-block;">
           <input type="radio" name="work_type" v-model="j_type" value="정규직">정규직
           <input type="radio" name="work_type" v-model="j_type" value="계약직">계약직
           <input type="radio" name="work_type" v-model="j_type" value="인턴">인턴
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">학력</label>
+      <div id="jy_field">
+        <label class="jy_field_name">학력</label><br>
         <div style="display: inline-block;">
           <input type="radio" name="graduation_type" v-model="j_graduation" value="대졸">대졸
           <input type="radio" name="graduation_type" v-model="j_graduation" value="고졸/초대졸">고졸/초대졸
           <input type="radio" name="graduation_type" v-model="j_graduation" value="학력무관">학력무관
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">상세 내용</label>
-        <div class="content">
-          <textarea name="" id="" cols="30" rows="10" v-model="j_content">파일업로드ㅇ해야댐</textarea>
-          <div class="main-container">
+      <div id="jy_field">
+        <label class="jy_field_name">상세 내용</label>
+        <div class="jy_content" style="margin-top: 10px;">
+          <textarea class="jy_textarea" cols="70" rows="10" v-model="j_content"></textarea>
+          <div class="jy_main-container">
             <div class="room-deal-information-container">
               <div class="room-deal-information-title">사진 등록</div>
               <div class="room-picture-notice">
                 <ul class="room-write-wrapper">
-                  <li>
-                    사진은 가로로 찍은 사진을 권장합니다. (가로 사이즈 최소 800px)
-                  </li>
-                  <li>사진 용량은 사진 한 장당 10MB 까지 등록이 가능합니다.</li>
-
+                  <li>사진 한 장당 10MB 까지 등록이 가능합니다.</li>
                 </ul>
               </div>
               <div class="room-file-upload-wrapper">
                 <div v-if="!files.length" class="room-file-upload-example-container">
                   <div class="room-file-upload-example">
                     <div class="room-file-image-example-wrapper">이미지</div>
-                    <div class="room-file-notice-item">
-                      실사진 최소 3장 이상 등록하셔야 하며, 가로사진을 권장합니다.
-                    </div>
-                    <div class="room-file-notice-item room-file-notice-item-red">
+                  <!-- <div class="room-file-notice-item">
                       설명
+                                </div> -->
+                    <div class="room-file-notice-item room-file-notice-item-red">
+                      <!-- 이미지는 최대 3개 까지 첨부하실 수 있습니다. -->
                     </div>
                     <div class="room-file-notice-item room-file-upload-button">
                       <div class="image-box">
                       <!-- <div class="image-profile">
-            <img :src="profileImage" />
-                              </div>-->
-                        <label for="file">일반 사진 등록</label>
-                        <input type="file" id="file" ref="files" @change="imageUpload" multiple />
+                        <img :src="profileImage" />
+                                  </div> -->
+                        <label for="file">사진 등록</label>
+                        <input type="file" id="file" ref="files" @change="imageUpload" accept="image/*" multiple />
                       </div>
                     </div>
                   </div>
@@ -140,12 +134,11 @@
                       </div>
                       <img :src="file.preview" />
                     </div>
-                    <div class="file-preview-wrapper-upload">
+                    <div v-if="files.length < 1" class="file-preview-wrapper-upload">
                       <div class="image-box">
                         <label for="file">추가 사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageAddUpload" multiple />
                       </div>
-                      <!-- <div class="file-close-button" @click="fileDeleteButton" :name="file.number">x</div> -->
                     </div>
                   </div>
                 </div>
@@ -154,41 +147,41 @@
           </div>
         </div>
       </div>
-      <div id="field_process">
-        <label class="field_name">전형 절차</label>
+      <div id="jy_field_process">
+        <label class="jy_field_name">전형 절차</label>
         <div id="">
-          <div id="process_wrap">
-            <input type="text" id="process" value="서류전형" readonly>
+          <div id="jy_process_wrap">
+            <input type="text" class="jy_text" id="jy_process" value="서류전형" readonly>
           </div>
-          <div id="process_add">
-            <button type="button" class="add_btn" name="interview1" @click="addBtn" ref="btn1"
+          <div id="jy_process_add">
+            <button type="button" class="jy_add_btn" name="interview1" @click="addBtn" ref="btn1"
               style="margin-bottom: 15px;">
               1차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
           </div>
-          <div id="process_wrap" ref="interview1" style="display: none;">
-            <input type="text" id="process" value="1차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" name="interview1" src="https://picsum.photos/20/20" alt="삭제">
+          <div id="jy_process_wrap" ref="interview1" style="display: none;">
+            <input type="text" class="jy_text" id="jy_process" value="1차면접" readonly>
+            <img class="jy_deleteBtn" @click="deleteItem" name="interview1" src="@/img/delete-icon.png" alt="삭제">
           </div>
-          <div id="process_add">
-            <button type="button" class="add_btn" name="interview2" style="display: none;" @click="addBtn" ref="btn2">
+          <div id="jy_process_add">
+            <button type="button" class="jy_add_btn" name="interview2" style="display: none;" @click="addBtn" ref="btn2">
               2차면접
               <span style="font-size: 16px; color: orangered; font-weight: bold;">+</span>
             </button>
           </div>
-          <div id="process_wrap" ref="interview2" style="display: none;">
-            <input type="text" id="process" value="2차면접" readonly>
-            <img class="deleteBtn" @click="deleteItem" name="interview2" src="https://picsum.photos/20/20" alt="삭제">
+          <div id="jy_process_wrap" ref="interview2" style="display: none;">
+            <input type="text" class="jy_text" id="jy_process" value="2차면접" readonly>
+            <img class="jy_deleteBtn" @click="deleteItem" name="interview2" src="@/img/delete-icon.png" alt="삭제">
           </div>
-          <div id="process_wrap">
-            <input type="text" id="process" value="최종합격" readonly>
+          <div id="jy_process_wrap">
+            <input type="text" class="jy_text" id="jy_process" value="최종합격" readonly>
           </div>
         </div>
       </div>
-      <div id="field endDate">
-        <label class="field_name">마감일자</label><br>
-        <div class="date_Select">
+      <div id="jy_field endDate">
+        <label class="jy_field_name">마감일자</label><br>
+        <div class="jy_date_Select" style="margin-top: 5px;">
           <table>
             <tbody>
               <td>
@@ -199,9 +192,9 @@
           </table>
         </div>
       </div>
-      <div>
-        <button type="button" value="등록" @click="submitForm">등록</button>
-        <button type="button" value="취소" @click="goMain">취소</button>
+      <div id="jy_reg-btn-wrap">
+        <button class="reg_btn" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
+        <button class="reg_btn" value="취소" @click="goMain">취소</button>
       </div>
     </form>
   </section>
@@ -233,9 +226,13 @@ export default {
       endDate: '',
       com_list: '',
 
+      file: '',
       files: [], //업로드용 파일
       filesPreview: [],
       uploadImageIndex: 0, // 이미지 업로드를 위한 변수
+      j_img_name: '',
+      j_img_size: '',
+      j_img_path: '',
 
       j_postcode: '',
       j_address: '',
@@ -272,6 +269,21 @@ export default {
         this.$refs.btn2.style.display = "none";
       }
     },
+    validation() {
+      const now = new Date();
+      if (this.j_title == '') {
+        alert('글 제목은 필수 입력 항목입니다');
+        document.getElementById("j_title").focus();
+        return;
+      }
+      else if(this.j_email == '') {
+
+      }
+      else if (now > this.endDate) {
+        alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
+        return;
+      }
+    },
     submitForm() {
       if (confirm('등록하시겠습니까?')) {
         if (this.$refs.interview1.style.display == "none") {
@@ -282,16 +294,7 @@ export default {
         if (this.$refs.interview2.style.display == "block") {
           this.j_schedule = "1차 면접 > 2차 면접 >";
         }
-        if (this.j_title == '') {
-          alert('글 제목은 필수 입력 항목입니다');
-          document.getElementById("j_title").focus();
-          return;
-        }
-        const now = new Date();
-        if (now > this.endDate) {
-          alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
-          return;
-        }
+
         this.axios.post('/jobPostingRegist',
           {
             j_recruitNum: this.j_recruitNum,
@@ -311,6 +314,7 @@ export default {
             j_detail_address: this.j_detail_address,
           }
         ).then(() => {
+          this.uploadImg(sessionStorage.getItem("com_id"));
           alert('등록되었습니다!');
           this.$router.push({ path: '/4' });
         }).catch(err => {
@@ -329,8 +333,7 @@ export default {
       }, false);
     },
     imageUpload() {
-      console.log(this.$refs.files.files);
-
+      // console.log(this.$refs.files.files);
       // this.files = [...this.files, this.$refs.files.files];
       //하나의 배열로 넣기
       let num = -1;
@@ -355,14 +358,13 @@ export default {
         // ];
       }
       this.uploadImageIndex = num + 1; //이미지 index의 마지막 값 + 1 저장
-      console.log(this.files);
-      // console.log(this.filesPreview);
+      this.j_img_name = URL.createObjectURL(this.files[0].file);
+      this.j_img_size = this.files[0].file.size;
     },
     imageAddUpload() {
-      console.log(this.$refs.files.files);
-
+      // console.log(this.$refs.files.files);
       // this.files = [...this.files, this.$refs.files.files];
-      //하나의 배열로 넣기c
+      //하나의 배열로 넣기
       let num = -1;
       for (let i = 0; i < this.$refs.files.files.length; i++) {
         console.log(this.uploadImageIndex);
@@ -381,8 +383,6 @@ export default {
         num = i;
       }
       this.uploadImageIndex = this.uploadImageIndex + num + 1;
-
-      console.log(this.files);
       // console.log(this.filesPreview);
     },
     fileDeleteButton(e) {
@@ -450,6 +450,19 @@ export default {
         },
       }).open();
     },
+    uploadImg(com_id) {
+      console.log(this.files[0].file);
+      console.log(com_id);
+      const form = new FormData();
+      form.append('file', this.files[0].file);
+      form.append('com_id', com_id);
+      this.axios.post("/uploadImg", form)
+        .then(() => console.log("imgUp"))
+        .catch(err => {
+          alert('이미지 업로드에 실패하였습니다.');
+          console.log(err);
+        });
+    },
   },
   components: {
     Hashtags,
@@ -478,7 +491,7 @@ export default {
 </script>
 
 <style>
-/* @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 
 * {
   padding: 0;
@@ -486,34 +499,39 @@ export default {
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  /* font-family: 'Noto Sans KR', sans-serif; */
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-form {
+#jy_form_sec {
   max-width: 500px;
   margin: auto;
 }
 
-#field_name {
+.jy_field_name {
   font-weight: bold;
+  border-bottom: 1px solid orangered;
 }
 
-input[type="text"],
-[type="email"] {
+.jy_text {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
   box-sizing: border-box;
+
 }
 
-label {
-  font-weight: bold;
+.jy_text,
+.jy_textarea:focus-within {
+  outline-color: orange;
+}
+
+.jy_f {
+  border: 0;
+  cursor: default;
+}
+
+.jy_f:focus-within {
+  outline: 0;
 }
 
 /* 라디오 버튼 스타일링 */
@@ -521,70 +539,58 @@ input[type="radio"] {
   margin-right: 5px;
 }
 
-/* 버튼 스타일링 */
-button[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.tel_number_input>input {
+.jy_tel_number_input>input {
   width: 150px;
 }
 
-button[type="submit"]:hover {
-  background-color: #45a049;
-}
-
-#field {
-  margin-top: 10px;
-}
-
-#field #process_wrap {
+#jy_process_wrap {
   position: relative;
 }
 
-#field #process_wrap .deleteBtn {
+#jy_process_wrap .jy_deleteBtn {
   position: absolute;
   top: 20px;
   right: 20px;
 }
 
-#process_wrap .deleteBtn:hover {
+#jy_process_wrap .jy_deleteBtn:hover {
   cursor: pointer;
 }
 
-#recruit_type {
+#jy_recruit_type {
   overflow: hidden;
 }
 
-#recruit_type input {
+#jy_recruit_type input {
   float: left;
 }
 
-#recruit_type .recruit_type_input {
+#jy_recruit_type .jy_recruit_type_input {
   width: 200px;
 }
 
-#recruit_type span {
+#jy_recruit_type span {
   line-height: 59px;
 }
 
-#sal_wrap input[type=text] {
+#jy_sal_wrap input[type=text] {
   width: 80%;
   margin-right: 10px;
 }
 
-#process_wrap #process {
+#jy_process_wrap #jy_process {
   font-weight: bold;
   color: orangered;
   cursor: default;
+  text-align: center;
+  position: relative;
 }
 
-#process_add .add_btn {
+#jy_process_add {
+  text-align: center;
+}
+
+#jy_process_add .jy_add_btn {
   width: 80%;
   text-align: center;
   height: 30px;
@@ -597,14 +603,14 @@ button[type="submit"]:hover {
 }
 
 
-.main-container {
+.jy_main-container {
   width: 500px;
   height: 400px;
   margin: 0 auto;
 }
 
 .room-deal-information-container {
-  margin-top: 50px;
+  margin-top: 20px;
   color: #222222;
   border: 1px solid #dddddd;
 }
@@ -819,7 +825,7 @@ button[type="submit"]:hover {
 .image-box label {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #232d4a;
+  background-color: orangered;
   color: #fff;
   vertical-align: middle;
   font-size: 15px;
@@ -899,7 +905,26 @@ button[type="submit"]:hover {
   opacity: 0.8;
 }
 
-#field_process {
-  margin-top: 200px;
+#jy_field_process {
+  margin-top: 180px;
 }
-</style>
+
+#jy_reg-btn-wrap {
+  text-align: center;
+  margin: 30px 0 30px 0;
+}
+
+#jy_reg-btn-wrap .reg_btn {
+  display: inline-block;
+  border: 0;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  line-height: 40px;
+  background-color: orangered;
+  border-radius: 2px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #efefef;
+  letter-spacing: 1px;
+}</style>

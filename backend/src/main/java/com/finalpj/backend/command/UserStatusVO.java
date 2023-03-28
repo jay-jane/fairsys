@@ -26,6 +26,8 @@ public class UserStatusVO {
     private String user_level;
     private String user_finish;
     private String user_major;
+
+    private String j_no;
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date user_fndate;

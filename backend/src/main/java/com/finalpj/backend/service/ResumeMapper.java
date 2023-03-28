@@ -18,7 +18,7 @@ public interface ResumeMapper {
     
    
     // public List<UserStatusVO> ResumeModify(@Param("user_no") int user_no);
-    public ArrayList<ResumeWriteVO> UserMyPage(String user_id);
+    public ArrayList<UserStatusVO> UserMyPage(String user_id);
     
     
     
@@ -35,8 +35,12 @@ public interface ResumeMapper {
     public List<UserStatusVO> ResumeComModify(@Param("user_no") int user_no); //기업에서  지원자 이력서 조회
     public List<UserVO> getUserVO(String user_id);  
 
-    //
-    public List<UserStatusVO> UserStatus(String user_id); // 상태값 변경
 
+
+
+    
+    public ArrayList<ResumeWriteVO> ApplyStatus1(String user_id);
+
+    int checkApply(@Param("user_id") String user_id);
     
 }

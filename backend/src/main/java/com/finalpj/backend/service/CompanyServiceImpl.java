@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
@@ -12,6 +13,7 @@ import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.util.JobCriteria;
 
 @Service
+@Transactional
 public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
@@ -25,6 +27,18 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public List<JobPostingVO> getJobDetail(int j_no) {
         return mapper.getJobDetail(j_no);
+
+        // List<JobPostingVO> jobPostingList = mapper.getJobDetail(j_no);
+        // List<JobPostingResDTO> result = new ArrayList();
+        // for(JobPostingVO job : jobPostingList ) {
+        //     JobPostingResDTO jobPostingResDTO = new JobPostingResDTO();
+        //     BeanUtils.copyProperties(job, jobPostingResDTO);
+        //     ComDTO d = new ComDTO();
+        //     BeanUtils.copyProperties(job.getCompanyVO(), d);
+        //     jobPostingResDTO.setCompanyVO(d);
+        //     result.add(jobPostingResDTO);
+        // }
+        // return result;
     }
 
     @Override
@@ -76,6 +90,11 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public String getJno(String com_id) {
         return mapper.getJno(com_id);
+    }
+
+    @Override
+    public void uploadImg(String j_img_uuid, String j_img_fileName, String com_id) {
+        mapper.uploadImg(j_img_uuid, j_img_fileName, com_id);
     }
     
 }

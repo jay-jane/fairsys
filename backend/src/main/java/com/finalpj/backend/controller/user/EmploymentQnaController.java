@@ -97,14 +97,15 @@ public class EmploymentQnaController {
         return list;
     }
 
+
     @GetMapping("/13")
     public ArrayList<CompanyVO> myCompany(@RequestParam("user_id") String user_id){
 
         System.out.println("문의작성" + user_id);
         ArrayList<CompanyVO> list = eqs.getComName(user_id);
-
         return list;
     }
+
 
     @PostMapping("/13")
     public void write(@RequestBody EmploymentQnaVO vo){

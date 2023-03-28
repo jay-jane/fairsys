@@ -1,14 +1,24 @@
 
 <template>
   <section>
-    <div class="resume">
+    <div class="hw_resume">
 
-      <div class="resume-main">
-        <div class="resume-part-title">이력서 작성</div>
+      <div class="hw_resume-main">
+        <div class="hw_resume-part-title">
+          <tr>
+              <th><label for="resume_title">이력서 제목</label></th>
+              <td>
+                <input v-model="resume_title" required type="text">
+              </td>
+            </tr>
+
+          <hr/>
+
+        </div>
         <h3 style="text-align: left;">기본정보</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
-
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
+            
             <tr>
               <th><label for="user_name">이름</label></th>
               <td>
@@ -40,21 +50,21 @@
         </div>
 
         <h3 style="text-align: left;">학력</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
 
             <tr>
               <th><label for="user_level">최종학력</label></th>
               <td>
-                <select class="select-graduation" v-model="user_level">
+                <select class="hw_select-graduation" v-model="user_level">
                     <option value="대졸">대졸</option>
                     <option value="고졸">고졸</option>
                   </select>
               </td>
               <th class="pl-15"><label for="user_finish">졸업여부</label></th>
               <td>
-                <div class="graduation">
-                  <select class="select-graduation" v-model="user_finish">
+                <div class="hw_graduation">
+                  <select class="hw_select-graduation" v-model="user_finish">
                     <option value="졸업">졸업</option>
                     <option value="졸업예정">졸업예정</option>
                   </select>
@@ -80,8 +90,8 @@
 
         <!-- /// -->
         <h3 style="text-align: left;">경력</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
             <tr>
               <th><label for="user_com">회사명</label></th>
               <td>
@@ -96,14 +106,14 @@
               <th style="padding-top:10px"><label for="user_join">입사일</label></th>
               <td>
 
-                <input v-model="user_join" required type="date">
+                <input v-model="user_join" required type="date" :max="user_leave">
 
               </td>
 
               <th style="padding-top:10px"><label for="user_leave">퇴사일</label></th>
               <td>
 
-                <input v-model="user_leave" required type="date">
+                <input v-model="user_leave" required type="date"  @change="checkDate">
 
               </td>
             </tr>
@@ -112,8 +122,8 @@
         </div>
 
         <h3 style="text-align: left;">어학</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
 
             <tr>
               <th><label for="user_subject">과목</label></th>
@@ -142,8 +152,8 @@
 
         <!-- /// -->
         <h3 style="text-align: left;">자격증</h3>
-        <div class="resume-part2-box">
-          <table class="resume-part2-input">
+        <div class="hw_resume-part2-box">
+          <table class="hw_resume-part2-input">
             <tr>
               <th class="pl-15"><label for="user_license">자격증명</label></th>
               <td>
@@ -160,6 +170,7 @@
         </div>
 
         <button type="button" @click="submitForm">이력서 등록</button>
+       
       </div>
 
     </div>
@@ -198,11 +209,19 @@ export default {
       user_id: "",
       com_id: "",
       userInfo:'',
+      user_join: "",
+      user_leave: "",
+      resume_title: "",
     };
   },
   methods: {
     btn_view() {
       location.href = "page1";
+    },checkDate() {
+      if (this.user_join > this.user_leave) {
+        alert("퇴사일은 입사일보다 빠를 수 없습니다.");
+        this.user_leave = "";
+      }
     },
 
     async submitForm() {
@@ -229,7 +248,8 @@ export default {
           user_license: this.user_license,
           user_getlicense: this.user_getlicense,
           user_id: this.user_id,
-          com_id: this.com_id
+          com_id: this.com_id,
+          resume_title: this.resume_title
         },
         {
           params: { user_id: sessionStorage.getItem("user_id") },
@@ -242,13 +262,13 @@ export default {
         console.log(this.user_id)
         alert('작성이 완료되었습니다.!');
         console.log(res)
-        this.$router.push('/UserMyPage');
+        this.$router.push('/ApplyStatus1');
       }).catch(err => {
         console.log(err)
       })
     },
+    
     async get() {
-
       this.axios.get('/ResumeRegist',
         {
           params: { user_id: sessionStorage.getItem("user_id") },
@@ -278,7 +298,7 @@ export default {
 
   
 <style>
-.resume {
+.hw_resume {
   width: 30vw;
   margin: 0 auto;
   display: grid;
@@ -286,7 +306,7 @@ export default {
   height: 100%;
 }
 
-.resume-wrapper {
+.hw_resume-wrapper {
   margin: 0 auto;
   width: 200px;
   font-size: 14px;
@@ -297,13 +317,20 @@ export default {
 
 
 /* 본문 */
-.resume-part-title {
-  font-size: 40px;
+.hw_resume-part-title {
+  font-size: 25px;
   color: black;
   font-weight: bold;
 }
 
-.resume-part-box {
+.hw_resume-part-title input {
+    width: 10vw;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+    padding: 2px 3px;
+}
+.hw_resume-part-box {
   display: flex;
   text-align: left;
   justify-content: center;
@@ -315,7 +342,7 @@ export default {
   width: 42vw;
 }
 
-.resume-part2-box {
+.hw_resume-part2-box {
   display: flex;
   text-align: left;
   justify-content: center;
@@ -326,12 +353,12 @@ export default {
   width: 42vw;
 }
 
-.resume-part2-input {
+.hw_resume-part2-input {
   border-spacing: 2px 5px;
   width: 90%;
 }
 
-.resume-part2-input tr td input {
+.hw_resume-part2-input tr td input {
   width: 10vw;
   margin: 10px;
   border-radius: 5px;
@@ -340,7 +367,7 @@ export default {
 }
 
 
-.graduation {
+.hw_graduation {
   display: inline-block;
   margin: 8px;
 }

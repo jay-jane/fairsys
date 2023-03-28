@@ -1,18 +1,22 @@
 package com.finalpj.backend.controller.company;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.finalpj.backend.command.CompanyVO;
 import com.finalpj.backend.command.JobPostingVO;
@@ -23,13 +27,15 @@ import com.finalpj.backend.util.JobCriteria;
 import com.finalpj.backend.util.JobOneGate;
 import com.finalpj.backend.util.JobPageVO;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
+@RequiredArgsConstructor
 public class JobPostingController {
 
-    @Autowired
-    private CompanyService service;
+    private final CompanyService service;
 
-    @GetMapping("/4/")
+    @GetMapping("/4")
     public JobOneGate list(JobCriteria jcri) {
         //페이지네이션 처리
         int total =  service.getTotal(jcri);
@@ -50,7 +56,7 @@ public class JobPostingController {
         return service.checkPosting(com_id);
     }
     @PostMapping("/jobPostingRegist")
-    public void regist(@RequestBody JobPostingVO vo) {
+    public void regist(@RequestBody @Validated JobPostingVO vo) {
         service.regist(vo);
     }
 
@@ -73,6 +79,7 @@ public class JobPostingController {
     @GetMapping("/checkApply")
     public int checkApply(@RequestParam("user_id") String user_id, @RequestParam("com_id") String com_id) {
         System.out.println(service.checkApply(user_id, com_id));
+        System.out.println(user_id);
         return service.checkApply(user_id, com_id);
     }
     @GetMapping("/apply")
@@ -83,7 +90,7 @@ public class JobPostingController {
     }
     @PostMapping("/applyInsert")
     public void applyInsert(@RequestBody UserStatusVO vo) {
-        // System.out.println(vo.toString());
+        System.out.println(vo.toString());
         service.applyInsert(vo);
     }
 
@@ -98,6 +105,28 @@ public class JobPostingController {
     public String getJno(HttpServletRequest request, HttpServletResponse response) {
         String com_id = request.getParameter("com_id");
         return service.getJno(com_id);
+    }
+    // MultipartFile file
+    @PostMapping("/uploadImg")
+    public void upload(HttpServletRequest request, MultipartFile file) {
+        String uploadPath = "C:\\Users\\sk223\\Desktop\\course\\Final_Project_FairSys\\frontend\\src\\img\\";
+        String originalName = file.getOriginalFilename();
+        String fileName = originalName.substring(originalName.lastIndexOf("\\") + 1);
+        String uuid = UUID.randomUUID().toString();
+        String savefileName = uploadPath + File.separator + uuid + "_" + fileName;
+        Path savePath = Paths.get(savefileName);
+        String com_id = request.getParameter("com_id");
+        System.out.println(uuid);
+        System.out.println(fileName);
+        System.out.println(com_id);
+        try {
+            file.transferTo(savePath);
+            service.uploadImg(uuid, fileName, com_id);
+            System.out.println("업로드, db작업 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("이미지 DB 업로드 실패");
+        }
     }
 
 }

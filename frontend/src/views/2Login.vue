@@ -85,7 +85,7 @@ export default {
         //sessionStorage에 id / auth 추가
         // sessionStorage.setItem('user_id',JSON.stringify(res.data.user_id))
         // sessionStorage.setItem('user_auth',JSON.stringify(res.data.mg_auth))
-
+        console.log("개인 회원 로그인 들어옴?")
         console.log(res.headers.authorization)
 
         sessionStorage.setItem('user_auth', res.headers.authorization.substr(7))
@@ -199,10 +199,13 @@ export default {
 <style>
 body {
   margin: 0;
-  color: #6a6f8c;
-  background: #c8c8c8;
+
 }
 
+form{
+  background: white;
+  margin-top: -26px;
+}
 *,
 :after,
 :before {
@@ -239,7 +242,8 @@ a {
   height: 100%;
   position: absolute;
   padding: 90px 70px 50px 70px;
-  background: rgba(40, 57, 101, .9);
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .login-html .sign-in-htm,
@@ -272,13 +276,13 @@ a {
   padding-bottom: 5px;
   margin: 0 15px 10px 0;
   display: inline-block;
-  border-bottom: 2px solid transparent;
+  border-bottom: 5px solid transparent;
 }
 
 .login-html .sign-in:checked+.tab,
 .login-html .sign-up:checked+.tab {
-  color: #fff;
-  border-color: #1161ee;
+  color: black;
+  border-color: orange;
 }
 
 .login-form {
@@ -296,7 +300,7 @@ a {
 .login-form .group .input,
 .login-form .group .button {
   width: 100%;
-  color: #fff;
+  color: black;
   display: block;
 }
 
@@ -305,7 +309,7 @@ a {
   border: none;
   padding: 15px 20px;
   border-radius: 25px;
-  background: rgba(255, 255, 255, .1);
+  background: rgba(35, 33, 33, 0.1);
 }
 
 .login-form .group input[data-type="password"] {
@@ -314,12 +318,12 @@ a {
 }
 
 .login-form .group .label {
-  color: #aaa;
+
   font-size: 12px;
 }
 
 .login-form .group .button {
-  background: #1161ee;
+  background: orange
 }
 
 .login-form .group label .icon {
@@ -359,7 +363,7 @@ a {
 }
 
 .login-form .group .check:checked+label .icon {
-  background: #1161ee;
+  background: orange;
 }
 
 .login-form .group .check:checked+label .icon:before {
@@ -404,6 +408,7 @@ a {
   font-weight: bold;
   margin-bottom: 30px;
 }
+
 
 /* .simple_login_btn .login_icon {
   display: inline;

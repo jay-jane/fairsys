@@ -1,99 +1,92 @@
 <!-- 재윤 - 채용 공고 수정 -->
 <template>
   <section>
-    <div id="main_wrap" v-for="item in list">
+    <div id="jy_main_wrap" v-for="item in list">
       <h3 style="text-align: center;">채용 공고 수정</h3>
-      <div id="field">
-        <label class="field_name">제목</label>
+      <div id="jy_field">
+        <label class="jy_field_name">제목</label>
         <div id="">
           <input type="hidden" v-model="com_id">
-          <input type="text" v-bind:value="item.j_title" @change="getTitle">
+          <input type="text" class="jy_text" v-bind:value="item.j_title" @change="getTitle">
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">담당자 성함</label>
+      <div id="jy_field">
+        <label class="jy_field_name">담당자 성함</label>
         <div id="">
-          <input type="text" :value="item.com_manager_name" readonly style="border: 0;">
+          <input type="text" class="jy_text jy_f" :value="item.companyVO.com_manager" readonly>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">기업명</label>
+      <div id="jy_field">
+        <label class="jy_field_name">기업명</label>
         <div id="">
-          <input type="text" :value="item.com_name" readonly style="border: 0;">
+          <input type="text" class="jy_text jy_f" :value="item.companyVO.com_name" readonly>
         </div>
       </div>
-      <div class="field tel-number">
-        <label class="field_name">휴대폰 번호</label>
-        <div class="tel_number_input">
-          <input type="text" id="tel_number" :value="item.com_manager_phone" readonly style="border: 0;">
+      <div class="jy_field tel-number">
+        <label class="jy_field_name">휴대폰 번호</label>
+        <div class="jy_tel_number_input">
+          <input type="text" class="jy_text jy_f" id="jy_tel_number" :value="item.companyVO.com_manager_phone" readonly>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">이메일 주소</label>
+      <div id="jy_field">
+        <label class="jy_field_name">이메일 주소</label>
         <div id="">
-          <input type="email" :value="item.j_email" @change="getEmail">
+          <input type="email" class="jy_text" :value="item.j_email" @change="getEmail">
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">모집 분야</label>
-        <div id="job_type">
-          {{ item.j_department }}
+      <div id="jy_field">
+        <label class="jy_field_name">모집 분야</label>
+        <div id="jy_job_type">
+         <input type="text" class="jy_text jy_f" :value="item.j_department" readonly>
         </div>
-        <div id="recruit_type" style="display: inline-block;">
-          <input type="text" style="width: 40px; margin-left: 5px;" v-bind:value="item.j_recruitNum"
+        <div id="jy_recruit_type" style="display: inline-block;">
+          <input type="text" class="jy_text" style="width: 40px; margin-left: 5px;" v-bind:value="item.j_recruitNum"
             @change="getRecruitNum">
           <span>명 모집</span>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">경력 여부</label>
-        <div id="career">
-          {{ item.j_career }}
+      <div id="jy_field">
+        <label class="jy_field_name">경력 여부</label>
+        <div id="jy_career">
+          <input type="text" class="jy_text jy_f" :value="item.j_career" readonly>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">근무지역</label>
-        <div class="kakaoAPI">
-          {{ item.j_address }} {{ item.j_detail_address }}
+      <div id="jy_field">
+        <label class="jy_field_name">근무지역</label>
+        <div class="jy_kakaoAPI">
+          <input type="text" class="jy_text jy_f" :value="item.j_address + item.j_detail_address" readonly>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">급여(연봉)</label>
-        <div id="sal_wrap">
-          {{ item.j_salary }}
+      <div id="jy_field">
+        <label class="jy_field_name">급여(연봉)</label>
+        <div id="jy_sal_wrap">
+          <input type="text" class="jy_text jy_f" :value="item.j_salary" readonly>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">근무 형태</label>
+      <div id="jy_field">
+        <label class="jy_field_name">근무 형태</label>
         <div>
-          {{ item.j_type }}
+          <input type="text" class="jy_text jy_f" :value="item.j_type" readonly>
         </div>
       </div>
-      <div id="field">
-        <label class="field_name">학력</label><br>
-        {{ item.j_graduation }}
-        <!-- <div>
-          <input type="radio" id="대졸" name="graduation_type" v-bind:value="j_graduation" value="대졸">대졸
-          <input type="radio" id="고졸" name="graduation_type" v-bind:value="j_graduation" value="고졸/초대졸">고졸/초대졸
-          <input type="radio" id="무관" name="graduation_type" v-bind:value="j_graduation" value="학력무관">학력무관
-        </div> -->
+      <div id="jy_field">
+        <label class="jy_field_name">학력</label><br>
+        <input type="text" class="jy_text jy_f" :value="item.j_graduation" readonly>
       </div>
-      <div id="field">
-        <label class="field_name">상세 내용</label>
-
-        <div class="content">{{ item.j_content }}</div>
-
+      <div id="jy_field">
+        <label class="jy_field_name">상세 내용</label>
+          <textarea id="jy_field" class="jy_textarea" cols="70" rows="20" v-bind:value="item.j_content" @change="getContent"></textarea>
       </div>
-      <div id="field">
-        <label class="field_name">전형 절차</label>
+      <div id="jy_field">
+        <label class="jy_field_name">전형 절차</label>
         <div id="">
-          서류 심사 > {{ item.j_schedule }} 합격
+          <input type="text" class="jy_text jy_f" :value="'서류심사 > ' + item.j_schedule + '합격'" readonly>
         </div>
       </div>
-      <div>
-        <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
-        <button type="button" value="삭제" @click="deleteForm" style="margin-right: 10px;">삭제</button>
-        <button type="button" value="취소" @click="goMain">취소</button>
+      <div id="jy_modi-btn-wrap">
+        <button class="modi_btn" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
+        <button class="modi_btn" value="삭제" @click="deleteForm" style="margin-right: 10px;">삭제</button>
+        <button class="modi_btn" value="취소" @click="goMain">취소</button>
       </div>
     </div>
   </section>
@@ -166,10 +159,17 @@ export default {
           this.list = res.data;
           this.j_schedule = this.list[0].j_schedule;
           this.list[0].j_department = this.list[0].j_department.replaceAll("[", "").replaceAll("]", "").replaceAll("\"", "").replaceAll(",", " / ");
+          this.getOriginal();
         })
         .catch(err => {
           console.log(err);
         });
+    },
+    getOriginal() {
+      this.j_title = this.list[0].j_title;
+      this.j_email = this.list[0].j_email;
+      this.j_recruitNum = this.list[0].j_recruitNum;
+      this.j_content = this.list[0].j_content;
     },
     getTitle(e) {
       this.j_title = e.target.value;
@@ -179,6 +179,9 @@ export default {
     },
     getRecruitNum(e) {
       this.j_recruitNum = e.target.value;
+    },
+    getContent(e) {
+      this.j_content = e.target.value;
     },
   },
   mounted() {
@@ -192,35 +195,44 @@ export default {
 </script>
 
 <style>
-/* @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap'); */
-
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 * {
   padding: 0;
   margin: 0;
   list-style: none;
   text-decoration: none;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 
-#main_wrap {
+#jy_main_wrap {
   margin: auto;
   max-width: 500px;
 }
 
-#field_name {
+.jy_field_name {
   font-weight: bold;
+  border-bottom: 1px solid orangered;
 }
 
-input[type="text"],
-[type="email"] {
+.jy_text {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
   box-sizing: border-box;
 }
+.jy_text, .jy_textarea:focus-within {
+  outline-color: orange;
+}
+.jy_f {
+  border: 0;
+  cursor: default;
+}
+.jy_f:focus-within {
+  outline: 0;
+}
 
-#sal_y {
+#jy_sal_y {
   width: 50%;
   padding: 5px;
   margin: 10px 0;
@@ -229,11 +241,6 @@ input[type="text"],
 
 label {
   font-weight: bold;
-}
-
-/* 라디오 버튼 스타일링 */
-input[type="radio"] {
-  margin-right: 5px;
 }
 
 /* 버튼 스타일링 */
@@ -246,7 +253,7 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-.tel_number_input>input {
+.jy_tel_number_input>input {
   width: 200px;
 }
 
@@ -254,60 +261,62 @@ button[type="submit"]:hover {
   background-color: #45a049;
 }
 
-#field {
+#jy_field {
   margin-top: 10px;
 }
 
-#field #process_wrap {
+#jy_field #process_wrap {
   position: relative;
 }
 
-#field #process_wrap .deleteBtn {
+#jy_field #process_wrap .deleteBtn {
   position: absolute;
   top: 20px;
   right: 20px;
 }
 
-#process_wrap .deleteBtn:hover {
+#jy_process_wrap .deleteBtn:hover {
   cursor: pointer;
 }
 
-#recruit_type {
+#jy_recruit_type {
   overflow: hidden;
 }
 
-#recruit_type input {
+#jy_recruit_type input {
   float: left;
 }
 
-#recruit_type .recruit_type_input {
+#jy_recruit_type .recruit_type_input {
   width: 200px;
 }
 
-#recruit_type span {
+#jy_recruit_type span {
   line-height: 59px;
 }
 
-#sal_wrap input[type=text] {
+#jy_sal_wrap input[type=text] {
   width: 80%;
   margin-right: 10px;
 }
 
-#process_wrap #process {
-  font-weight: bold;
-  color: orangered;
-  cursor: default;
+#jy_modi-btn-wrap {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-#process_add .add_btn {
-  width: 80%;
-  text-align: center;
-  height: 30px;
-  background-color: #eee;
+#jy_modi-btn-wrap .modi_btn {
+  display: inline-block;
   border: 0;
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  background-color: orangered;
   border-radius: 2px;
-  color: grey;
-  font-weight: bold;
-  cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  color: #efefef;
+  letter-spacing: 1px;
 }
+
 </style>

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class JobCriteria {
 
-    //SQL에 전달할 page, amount를 가지고 다디는 클래스
+    //SQL에 전달할 page, amount를 가지고 다니는 클래스
 	
 	private int page; //조회하는 페이지 번호
 	private int amount; //데이터 개수
