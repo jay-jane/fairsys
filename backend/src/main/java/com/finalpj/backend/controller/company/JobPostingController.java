@@ -56,7 +56,7 @@ public class JobPostingController {
         return service.checkPosting(com_id);
     }
     @PostMapping("/jobPostingRegist")
-    public void regist(@RequestBody @Validated JobPostingVO vo) {
+    public void regist(@RequestBody JobPostingVO vo) {
         service.regist(vo);
     }
 
