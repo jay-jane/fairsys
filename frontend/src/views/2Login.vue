@@ -26,7 +26,7 @@
             <br><router-link to="/3-1">회원가입</router-link>
 
             <div class="hr"></div>
-            <div class="sns">소셜 계정으로 간편 로그인</div>
+           
 
             <a @click="kakaoLogin()"><img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg"
                 width="222" alt="카카오 로그인 버튼" /></a>
