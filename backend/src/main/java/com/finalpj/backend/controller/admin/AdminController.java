@@ -30,6 +30,7 @@ public class AdminController {
         //전체유저수 
         int total = asi.getTotalUser();
         map.put("totalUser", total);
+        System.out.println("유저수"+total);
 
         //승인된 기업수
         int approveCompany = asi.getApproveCompany();
