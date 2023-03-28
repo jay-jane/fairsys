@@ -102,9 +102,6 @@ public class AdminController {
         ArrayList<ApplicantsbyDateVO> passUser = asi.getPassUser(ed, day);
         smap.put("passUser", passUser);
 
-
-
-
         return smap;
     }
 

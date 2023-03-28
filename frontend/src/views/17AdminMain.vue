@@ -50,6 +50,7 @@
       <div class="date_apply_user">
         <Bar class="barchart"
           :data="chartData"
+          :options="options"
         />
       </div>
 
@@ -152,15 +153,15 @@ export default {
                         datasets: [{
                           label:'일자별 합격자',
                           data:this.count
-                        }]}
+                        }],
+                        options: {responsive: false}}
 
       this.chartData2 = {labels: ['남자', '여자'],
                          datasets: [{
                           label: '합격자 성별비율',
                           data:[this.passerMale, this.passerFemale]
-                         }]}
-          
-
+                         }],
+                         options: {responsive: false}}
     }
   }
 
@@ -171,18 +172,14 @@ export default {
   @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
   * {margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; color: black;}
   
-  
-  h3{color: white;}
-  
   .hy_main{
-    padding: 20px;
-    background-color: #f5f5f5;
+    background-color: aliceblue;
+    margin: 100px 0 0 200px;
+    padding: 50px;
   }
 
-  
   .hy_wrap_top{
     display: flex;
-    justify-content: center;
     gap: 50px;
   }
 
@@ -238,7 +235,7 @@ export default {
   }
 
   .date_apply_user, .date_pass_user{
-    width: 700px;
+    width: 500px;
     padding: 25px;
   }
 
