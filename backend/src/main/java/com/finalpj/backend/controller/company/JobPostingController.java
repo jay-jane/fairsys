@@ -78,19 +78,19 @@ public class JobPostingController {
 
     @GetMapping("/checkApply")
     public int checkApply(@RequestParam("user_id") String user_id, @RequestParam("com_id") String com_id) {
-        System.out.println(service.checkApply(user_id, com_id));
-        System.out.println(user_id);
+        // System.out.println(service.checkApply(user_id, com_id));
+        // System.out.println(user_id);
         return service.checkApply(user_id, com_id);
     }
     @GetMapping("/apply")
     public ResumeWriteVO apply(HttpServletRequest request, HttpServletResponse response) {
         String user_id = request.getParameter("user_id");
-        System.out.println(user_id);
+        // System.out.println(user_id);
         return service.apply(user_id);
     }
     @PostMapping("/applyInsert")
     public void applyInsert(@RequestBody UserStatusVO vo) {
-        System.out.println(vo.toString());
+        // System.out.println(vo.toString());
         service.applyInsert(vo);
     }
 

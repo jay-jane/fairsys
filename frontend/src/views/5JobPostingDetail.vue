@@ -14,7 +14,7 @@
         <div id="jy_top">
           <div id="jy_top_bottom">
             <div id="jy_company_title">
-              <div class="jy_title">
+              <div class="jy_title" style="border-bottom: 3px solid orangered;">
                 <h2>{{ item.j_title }}</h2>
               </div>
             </div>
@@ -32,7 +32,7 @@
             <div id="jy_qualify">
               <span id="jy_q_left">고용형태</span> <span id="jy_q_right">{{ item.j_type }}</span><br>
               <span id="jy_q_left">급여</span> <span id="jy_q_right">{{ item.j_salary }}</span><br>
-              <span id="jy_q_left">근무지역</span> <span id="jy_q_right"> {{ item.com_address }} </span>
+              <span id="jy_q_left">근무지역</span> <span id="jy_q_right" style="text-align: right;"> {{ item.j_address }}<br>{{ item.j_detail_address }}</span>
             </div>
           </div>
           <div id="jy_bottom_left">
@@ -40,7 +40,7 @@
             <div id="jy_qualify">
               <span id="jy_q_left">대표자</span> <span id="jy_q_right">{{ item.companyVO.com_ceo }}</span><br>
               <span id="jy_q_left">산업(업종)</span> <span id="jy_q_right">{{ item.companyVO.com_category }}</span><br>
-              <span id="jy_q_left">주소</span> <span id="jy_q_right" style="text-align: right;">{{ item.j_address }}<br> {{ item.j_detail_address }}</span><br>
+              <span id="jy_q_left">주소</span> <span id="jy_q_right" style="text-align: right;">{{ item.companyVO.com_address }}<br> {{ item.companyVO.com_detail_address }}</span><br>
             </div><br><br>
             <h4>채용정보</h4>
             <div id="jy_qualify">
@@ -62,8 +62,8 @@
 
       <article id="jy_article_bottom">
         <div id="jy_section_bottom">
-          <h3>상세 내용</h3>
-          <pre>{{ item.j_content }}</pre>
+          <!-- <h3>상세 내용</h3> -->
+          <pre style="font-size: 20px;">{{ item.j_content }}</pre>
           <div id="jy_posting_container">
             <img v-if="!this.imgUrl.includes('null')" :src="require(`@/img/${this.imgUrl}`)" :alt="item.j_img_fileName"
               id="jy_detailImg" />
@@ -74,7 +74,6 @@
         <span>기업 위치</span><br>
         <span>{{ item.j_address }} {{ item.j_detail_address }}</span>
         <div id="jy_kakao">
-          (카카오맵api)
         </div>
       </div>
 
@@ -317,6 +316,10 @@ export default {
 
 #jy_detail_button_wrap {
   text-align: center;
+}
+
+#jy_detail_button_wrap button {
+  cursor: pointer;
 }
 
 .jy_logoImg {
