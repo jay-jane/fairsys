@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finalpj.backend.service.UserMapper">
+
+  <!-- 메인 페이지 -->
+  <select id="main2" resultType="JobPostingVO">
+  	    select j.*, c.com_name, c.com_ceo, c.com_manager, c.com_manager_phone, c.com_address, c.com_detail_address
+        from job_posting j
+        left join company c on j.com_id = c.com_id
+        limit 16
+  </select>
+  
+  <select id="getList" resultType="JobPostingVO">
+    select j.*, c.com_name from job_posting j
+    left join company c on j.com_id = c.com_id
+    order by j_no desc
+    limit #{jcri.pageStart}, #{jcri.amount}
+  </select>
+  
+  <select id="getTotal" resultType="int">
+    select count(*) as total from job_posting
+  </select>
+
+  <!-- 개인회원가입  -->
+  <insert id="regist" parameterType="UserVO">
+  		insert into user(user_id,
+  							user_pw,
+  							user_name,
+  							user_birth,
+  							user_email,
+  							user_phone,
+  							user_gender,
+  							user_postcode,
+  							user_address,
+  							user_detail_address
+  							)
+  		values( #{user_id},
+  				#{user_pw},
+  				#{user_name},
+  				#{user_birth},
+  				#{user_email},
+  				#{user_phone},
+  				#{user_gender},
+  				#{user_postcode},
+  				#{user_address},
+  				#{user_detail_address}
+  				)
+  	</insert>
+	
+	<!-- 개인회원 아이디 중복 체크  -->
+	<select id="checkId" resultType="int">
+		select count(*) from user where user_id=#{user_id}
+	</select>
+	
+	<!-- 개인 회원 로그인 -->
+	<select id="login" resultType="UserVO">
+		select * from user where user_id=#{user_id} and user_pw=#{user_pw}
+	</select>
+	
+	<!-- 회원 정보 가져오기  -->
+	<select id="getUserInfo" resultType="UserVO">
+		select user_id,
+  				user_name,
+  				user_birth,
+  				user_email,
+  				user_phone,
+  				user_gender,
+  				user_postcode,
+  				user_address,
+  				user_detail_address,
+  				ut_no,
+  				u_no 
+  				from user where user_id=#{user_id}
+	</select>
+	
+	
+	<!-- 회원 정보 수정하기  -->
+	<update id="modifyForm" parameterType="UserVO">
+		update user set user_pw=#{user_pw},
+						user_phone=#{user_phone},
+						user_email=#{user_email},
+						user_postcode=#{user_postcode},
+						user_address=#{user_address},
+						user_detail_address=#{user_detail_address}
+		where user_id=#{user_id} 
+	</update>
+	
+	<!-- 회원 탈퇴  -->
+	<delete id="deleteForm">
+		delete from user where user_id=#{user_id}
+	</delete>
+	
+	
+	
+	<!-- 아래 부터 기업  --> 
+	
+	<!--기업 회원가입  -->
+  	<insert id="regist2" parameterType="CompanyVO">
+  		   insert into company(com_id,
+  							com_pw,
+  							com_num,
+  							com_name,
+  							com_category,
+  							com_ceo,
+  							com_postcode,
+  							com_address,
+  							com_detail_address,
+  							com_manager,
+  							com_manager_phone,
+  							com_email
+  							)
+  		              values( #{com_id},
+  							  #{com_pw},
+  							  #{com_num},
+  					       	  #{com_name},
+  							  #{com_category},
+  					          #{com_ceo},
+  							  #{com_postcode},
+  							  #{com_address},
+  							  #{com_detail_address},
+  							  #{com_manager},
+  							  #{com_manager_phone},
+  							  #{com_email}
+  							)
+  	</insert>
+
+	<!-- 기업 회원 아이디 중복체크 -->
+	<select id="checkId2" resultType="int">
+		select count(*) from company where com_id=#{com_id}
+	</select>
+
+
+	<!-- 기업 회원 로그인 -->
+	<select id="login2" resultType="CompanyVO">
+		select * from company where com_id=#{com_id} and com_pw=#{com_pw}
+	</select>
+	
+	<!-- 기업 회원 정보 가져오기  -->
+	<select id="getComInfo" resultType="CompanyVO">
+		select com_id,
+  				com_name,
+  				com_num,
+  				com_email,
+  				com_category,
+  				com_ceo,
+  				com_manager,
+  				com_manager_phone,
+  				com_postcode,
+  				com_address,
+  				com_detail_address,
+  				ut_no,
+  				c_no 
+  				from company where com_id=#{com_id}
+	</select>
+	
+	
+	<!--기업 회원 정보 수정하기  -->
+	<update id="modifyForm2" parameterType="CompanyVO">
+		update company set com_pw=#{com_pw},
+						com_name=#{com_name},
+						com_category=#{com_category},
+						com_ceo=#{com_ceo},
+						com_email=#{com_email},
+						com_postcode=#{com_postcode},
+						com_address=#{com_address},
+						com_detail_address=#{com_detail_address},
+						com_manager=#{com_manager},
+						com_manager_phone=#{com_manager_phone}
+		where com_id=#{com_id} 
+	</update>
+	
+	<!-- 회원 탈퇴  -->
+	<delete id="deleteForm2">
+		delete from company where com_id=#{com_id}
+	</delete>
+  
+
+</mapper>
