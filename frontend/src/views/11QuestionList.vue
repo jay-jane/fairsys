@@ -28,7 +28,7 @@
             <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
             <tr v-for="(item, index) in list" v-bind:key="index" @click.prevent="goDetail(item.qa_no)"
               style="cursor: pointer;">
-              <td>{{ item.qa_no }}</td>
+              <td>{{ index+1 }}</td>
               <td>{{ item.qa_title }}</td>
               <td>{{ item.user_id }}</td>
               <td>{{ item.qa_date }}</td>
@@ -178,6 +178,7 @@ export default {
         //ut_no가 기업이라고 한다면
       } else if (this.ut_no ==2) {
         this.com_id = sessionStorage.getItem("com_id");
+        console.log(this.com_id);
 
         //화면에 리스트 출력을 위해 필요한 내용 전달
         let response = await Axios.get("/11/?amount=" + this.amount + "&page=" + this.page + "&searchTitle=" + this.searchTitle + "&searchContent=" + this.searchContent + "&user_id=" + this.user_id + "&com_id=" + this.com_id);
@@ -190,6 +191,10 @@ export default {
         if (this.list.length==0) {
           this.listck = false;
         }
+
+        //버튼숨기기
+        const btn = document.querySelector(".btn_write");
+        btn.style = "display:none";
       }
 
     },
