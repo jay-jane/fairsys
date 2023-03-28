@@ -1,10 +1,12 @@
 <template>
   <div id="user_menu">
     <nav id="top">
-      <div id="logo"><router-link to="/"><img src="../img/jobhublogo.png" :style="{ width: ['250px'], position:['relative'], top:['-63px'], left: ['-60px']}"></router-link></div>
+      <!-- :style="{display:['inline-block'],position:['relative'], top:['-63px'], left: ['-60px']}" -->
+      <div id="logo"><router-link to="/" class="logo_alink"><img src="../img/jobhublogo.png" class="logo_img"
+            :style="{ width: ['100px'] }"></router-link></div>
       <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용정보</router-link></div>
       <div id="menu"><router-link to="ApplyStatus1" @mouseover="doDropmenu">마이페이지</router-link></div>
-      <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
+      <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{ this.$store.state.logInOut }}</button></div>
     </nav>
     <nav id="drop_top" @mouseleave="doHidden">
       <div id="drop">
@@ -19,7 +21,6 @@
       </div>
     </nav>
   </div>
-
 </template>
 <script>
 
@@ -28,14 +29,14 @@ export default {
 
   methods: {
     gologInOut() {
-      if (sessionStorage.length<1) {
+      if (sessionStorage.length < 1) {
         location.href = "/2";
-        
+
       } else {
         sessionStorage.clear();
         alert("로그아웃 되었습니다.")
         this.$router.push({ path: '/' })
-        this.$store.commit("setLogInOut","로그인")
+        this.$store.commit("setLogInOut", "로그인")
       }
       // location.href = "/2";
     },
@@ -48,10 +49,10 @@ export default {
       dropMenu_hidden.style.display = "none";
     },
 
-    
+
 
   },
-  
+
 }
 </script>
 
@@ -83,6 +84,7 @@ export default {
   width: 200px;
   line-height: 100px;
   display: inline-block;
+  margin-left: 100px;
 }
 
 #menu a {
@@ -90,10 +92,17 @@ export default {
 }
 
 #logo {
-  float: left;
-  margin-left: 50px;
-  line-height: 100px;
+  position: absolute;
 }
+
+#logo .logo_alink {
+  display: inline-block;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  height: 100px;
+}
+
 
 /* 헤더 드롭다운 메뉴 */
 
@@ -114,6 +123,7 @@ export default {
   line-height: 60px;
   display: inline-block;
   vertical-align: top;
+  margin-right: 105px;
 }
 
 #drop a {
@@ -124,6 +134,8 @@ export default {
 #drop a:hover {
   color: black;
 }
+
+
 
 /* 로그인버튼 */
 #logInOut {

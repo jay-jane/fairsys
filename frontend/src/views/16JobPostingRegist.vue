@@ -193,8 +193,8 @@
         </div>
       </div>
       <div id="jy_reg-btn-wrap">
-        <button class="reg_btn" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
-        <button class="reg_btn" value="취소" @click="goMain">취소</button>
+        <button type="button" class="reg_btn" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
+        <button type="button" class="reset_btn" value="취소" @click="goMain">취소</button>
       </div>
     </form>
   </section>
@@ -239,11 +239,13 @@ export default {
       j_detail_address: '',
       detailAddress: '',
 
+      upResult: false,
+
     }
   },
   methods: {
-    goMain: () => {
-      location.href = "/";
+    goMain() {
+      this.$router.push("/4");
     },
     deleteItem: function (e) {
       if (e.target.tagName != "IMG") return;
@@ -457,7 +459,7 @@ export default {
       form.append('file', this.files[0].file);
       form.append('com_id', com_id);
       this.axios.post("/uploadImg", form)
-        .then(() => console.log("imgUp"))
+        .then(() => this.upResult = true)
         .catch(err => {
           alert('이미지 업로드에 실패하였습니다.');
           console.log(err);
@@ -914,7 +916,7 @@ input[type="radio"] {
   margin: 30px 0 30px 0;
 }
 
-#jy_reg-btn-wrap .reg_btn {
+#jy_reg-btn-wrap .reg_btn, .reset_btn {
   display: inline-block;
   border: 0;
   width: 120px;

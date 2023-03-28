@@ -79,9 +79,9 @@
       </div>
 
       <div id="jy_detail_button_wrap" style="margin-top: 20px; display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
-        <button v-if="ut_no == '1'" class="jy_btnApply" @click="apply"
+        <button type="button" v-if="ut_no == '1'" class="jy_btnApply" @click="apply"
           style="border: 0; width: 120px; height: 40px; line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px; font-weight: 500; color: #efefef; letter-spacing: 1px;">입사지원</button>
-        <button v-if="ut_no == '2'" class="jy_btnModify" @click="checkComId"
+        <button type="button" v-if="ut_no == '2'" class="jy_btnModify" @click="checkComId"
           style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">수정/삭제</button>
         <router-link to="/4"
           style="display: inline-block; border: 0; width: 120px; height: 40px;line-height: 40px; background-color: orangered; border-radius: 2px; font-size: 20px;font-weight: 500; color: #efefef; letter-spacing: 1px;">목록</router-link>
