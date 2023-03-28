@@ -304,6 +304,9 @@ button[type="submit"]:hover {
   text-align: center;
   margin-bottom: 20px;
 }
+#jy_modi-btn-wrap button {
+  cursor: pointer;
+}
 
 #jy_modi-btn-wrap .modi_btn {
   display: inline-block;

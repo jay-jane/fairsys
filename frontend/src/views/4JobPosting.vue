@@ -81,7 +81,7 @@
       </div>
       <div id="posting_btn" style="min-width: 800px;">
         <button type="button" v-if="ut_no == '2'" @click="addPosting"
-          style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white; margin: 50px 40px 0 0;">
+          style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white; margin: 50px 40px 0 0; cursor: pointer;">
           공고 등록
         </button>
       </div>
