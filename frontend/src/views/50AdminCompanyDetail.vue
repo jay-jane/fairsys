@@ -33,7 +33,7 @@
                 </tbody>
             </table>
 
-            <a class="btnn" @click="bye">목록</a>
+            <button class="btnn" @click="bye">목록</button>
         </div>
     </div>
   </section>
@@ -60,7 +60,11 @@ export default {
                 .catch(err => console.log(err));
     },
    bye() {
-      location.href = "/19/";
+      //location.href = "/19/1";
+
+    this.$router.push("/19").catch(()=>{});
+
+    
     },
 },
 mounted() {
@@ -142,11 +146,11 @@ mounted() {
 }
 
 .btnn {
-    width: 30%;
+    width: 6%;
     background-color: orange;
     border: none;
     color: white;
-    font-size: 20px;
+    font-size: 9px;
 }
 
 

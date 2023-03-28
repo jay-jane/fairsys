@@ -23,7 +23,7 @@
   <section>
     <div class="main">
       <div class="container">
-        <h3>기업관리</h3>
+        <h3 class="qwe">기업관리</h3>
 
         <select v-model="amount" class="view" @change="loglist_view">
           <option value="10">10개씩 보기</option>
@@ -152,12 +152,12 @@ export default {
 
   methods: {
 
-    getCompanydetail(com_id) {
-      this.$router.push({
-        path: '/50/',
-        params: { 'com_id':com_id }
-      })
-    },
+    //  getCompanydetail(com_id) {
+    //    this.$router.push({
+    //     path: '/50/',
+    //     params: { 'com_id':com_id }
+    //   })
+    //  },
 
     logout() {
       location.href = "/3";
@@ -168,7 +168,8 @@ export default {
         Axios.post("/19/2", { com_id: com_id })
           .then((res) => {
             alert("승인되었습니다.");
-            this.$router.go("/19");
+            //this.$router.go("/19");
+             this.$router.push("/19/").catch(()=>{});
           })
           .catch((err) => console.log(err));
       }
@@ -179,7 +180,9 @@ export default {
         Axios.post("/19/3", { com_id: com_id })
           .then((res) => {
             alert("반려되었습니다.");
-            this.$router.go("/19");
+            //this.$router.go("/19");
+             this.$router.push("/19/").catch(()=>{});
+
           })
           .catch((err) => console.log(err));
       }
@@ -286,6 +289,12 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
 }
+
+.qwe{
+  color: #000;
+}
+
+
 
 .main {
   margin: 100px 0 0 200px;

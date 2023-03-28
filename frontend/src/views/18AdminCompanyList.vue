@@ -3,7 +3,7 @@
   <section>
     <div class="main">
       <div class="container">
-        <h1>기업목록</h1>
+        <h1 class="tit">기업목록</h1>
 
         <select v-model="amount" class="view" @change="loglist_view">
           <option value="10">10개씩 보기</option>
@@ -218,6 +218,7 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
 }
+
 
 .main {
   margin: 100px 0 0 0;
