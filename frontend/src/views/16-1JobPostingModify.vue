@@ -84,9 +84,9 @@
         </div>
       </div>
       <div id="jy_modi-btn-wrap">
-        <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
-        <button type="button" value="삭제" @click="deleteForm" style="margin-right: 10px;">삭제</button>
-        <button type="button" value="취소" @click="goMain">취소</button>
+        <button class="modi_btn" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
+        <button class="modi_btn" value="삭제" @click="deleteForm" style="margin-right: 10px;">삭제</button>
+        <button class="modi_btn" value="취소" @click="goMain">취소</button>
       </div>
     </div>
   </section>
@@ -305,7 +305,7 @@ button[type="submit"]:hover {
   margin-bottom: 20px;
 }
 
-#jy_modi-btn-wrap button {
+#jy_modi-btn-wrap .modi_btn {
   display: inline-block;
   border: 0;
   width: 120px;

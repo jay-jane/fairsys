@@ -90,7 +90,7 @@ public class JobPostingController {
     }
     @PostMapping("/applyInsert")
     public void applyInsert(@RequestBody UserStatusVO vo) {
-        // System.out.println(vo.toString());
+        System.out.println(vo.toString());
         service.applyInsert(vo);
     }
 
