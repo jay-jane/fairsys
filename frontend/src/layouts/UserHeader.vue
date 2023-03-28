@@ -97,15 +97,12 @@ export default {
   color: black;
 }
 
-#logo {
-  position: absolute;
-}
+
 
 #logo .logo_alink {
   display: inline-block;
   position: relative;
   top: 10px;
-  left: -500px;
   height: 100px;
 }
 

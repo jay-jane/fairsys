@@ -383,6 +383,7 @@ export default {
   top: 100px;
   left: 0;
   background-color: white;
+  margin-top: 2px;
 }
 
 .hw_admin_nav li {
@@ -429,6 +430,7 @@ export default {
     display: flex;
     justify-content: center;
     height: auto;
+    height: 835px;
   }
   
   .hw_container {
