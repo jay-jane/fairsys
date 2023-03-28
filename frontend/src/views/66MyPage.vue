@@ -69,7 +69,7 @@
     
             <td @click.prevent="ResumeModify(item.user_no)">조회</td>
             <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.com_id}}">수정</router-link></td>
-             <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
+             <td><button type="button" class="button1" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
             </td> 
           </tr>
 
@@ -545,5 +545,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .button1 {
+    background-color: orange;
+    color: white;
+    border: none;
   }
 </style>

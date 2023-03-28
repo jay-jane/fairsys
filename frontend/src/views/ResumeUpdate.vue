@@ -156,9 +156,9 @@
           </table>
         </div>
 
-        <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
+        <button type="button" class="button1" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
 
-        <button type="button" value="취소" @click="cancel">취소</button>
+        <button type="button" class="button1" value="취소" @click="cancel">취소</button>
       </div>
 
     </div>
@@ -341,7 +341,11 @@ this.get()
   display: inline-block;
   margin: 8px;
 }
-
+.button1 {
+    background-color: orange;
+    color: white;
+    border: none;
+  }
 
 </style>
   
