@@ -46,6 +46,7 @@ public class AdminController {
         //전체합격자 중 남성
         int passerMale = asi.getPasserMale();
         map.put("passerMale", passerMale);
+        System.out.println("남자합격자"+passerMale);
 
         //전체합격자 중 여성
         int passerFemale = asi.getPasserFemale();
@@ -72,7 +73,7 @@ public class AdminController {
         OneGate<UserVO> ogate = new OneGate<>(list,pageVO);
  
         //System.out.println(ogate.toString());
-        System.out.println(list.toString());
+        //System.out.println(list.toString());
 
         return ogate;
     };
