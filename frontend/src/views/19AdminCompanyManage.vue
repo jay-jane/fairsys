@@ -43,7 +43,7 @@
           </thead>
           <tbody class="body">
             <tr v-for="(item, index) in list" v-bind:key="index" @click.prevent="goDetail(item.com_id)">
-              <td>{{index + 1}}</td>
+              <td>{{(page-1) * 10 + index + 1 }}</td>
               <td>
                 <!-- <a @click="모달창열렸니 = true">{{ item.com_name }}</a> -->
                 <a>{{ item.com_name }}</a>

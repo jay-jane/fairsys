@@ -23,7 +23,7 @@
           </thead>
           <tbody class="body">
             <tr v-for="(item, index) in list" v-bind:key="index">
-              <td>{{ item.c_no}}</td>
+              <td>{{(page-1) * 10 + index + 1 }}</td>
               <td>{{ item.com_name }}</td>
               <td>{{ item.com_Application_date }}</td>
               <td>{{ item.com_registration_date }}</td>
