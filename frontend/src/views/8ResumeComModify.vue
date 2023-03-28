@@ -14,7 +14,7 @@
               <option value="합격">합격</option>
               <option value="불합격">불합격</option>
             </select>
-            <button type="button" @click="updateStatus">적용</button>
+            <button type="button" @click="updateStatus" class="button">적용</button>
           </div>
           <div v-for="(item, index) in list">
             <div >
@@ -136,7 +136,7 @@
                     <td>
                       {{ item.user_subject }}
                     </td>
-                    <th class="text_resume"><label for="user_score">점수</label></th>
+                    <th><label for="user_score">점수</label></th>
                     <td>
                       {{ item.user_score }}
                     </td>
@@ -316,6 +316,12 @@
   .graduation {
     display: inline-block;
     margin: 8px;
+  }
+ 
+  .button {
+    border: none;
+    background-color: orange;
+    color: white;
   }
   </style>
     

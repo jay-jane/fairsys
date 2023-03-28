@@ -156,9 +156,9 @@
           </table>
         </div>
 
-        <button type="button" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
+        <button type="button" class="button1" value="등록" @click="updateForm" style="margin-right: 10px;">수정 완료</button>
 
-        <button type="button" value="취소" @click="cancel">취소</button>
+        <button type="button" class="button1" value="취소" @click="cancel">취소</button>
       </div>
 
     </div>
@@ -285,7 +285,13 @@ this.get()
   left: 20vw;
   position: fixed;
 }
-
+.hw_select-graduation {
+  width: 10vw;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding: 2px 3px;
+}
 
 /* 본문 */
 .hw_resume-part-title {
@@ -335,6 +341,12 @@ this.get()
   display: inline-block;
   margin: 8px;
 }
+.button1 {
+    background-color: orange;
+    color: white;
+    border: none;
+  }
+
 </style>
   
   

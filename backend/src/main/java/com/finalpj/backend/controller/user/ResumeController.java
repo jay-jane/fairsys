@@ -85,6 +85,8 @@ public class ResumeController {
            System.out.println(list.toString());
            return list;
        }
+
+
        
        //기업에서 볼때  지원자 이력서 상세조회
        @GetMapping("/ResumeComModify/{user_no}")
@@ -134,13 +136,18 @@ public class ResumeController {
       }
 
         
-        //이력서 삭제
+        //지원현황 이력서 삭제
         @PostMapping("/ResumeDelete")
         public void delete(@RequestBody UserStatusVO vo) {
             System.out.println(vo.getUser_no());
-            resumeService.delete(vo.getUser_no());
-                
+            resumeService.delete(vo.getUser_no());     
         }
+
+                //작성 이력서 삭제
+                @PostMapping("/ResumeDelete1")
+                public void delete1(@RequestBody ResumeWriteVO vo) {
+                    resumeService.delete1(vo.getUser_no());     
+                }
 
         //이력서 진행 상황 갱신
         @PostMapping("/updateStatus")

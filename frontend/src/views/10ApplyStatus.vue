@@ -28,7 +28,7 @@
 
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ index }}</td>
+            <td>{{ index + 1 }}</td>
             <td>{{ item.user_name }}</td>
             <td>{{ item.user_gender }}</td>
             <td @click.prevent="ResumeModify(item.user_no)">이력서열람</td>
