@@ -3,7 +3,7 @@
   <div class="hw_main">
     <div class="hw_container">
 
-      <h2>지원자 목록</h2>
+      <h2>지원 현황</h2>
 
       <!-- 출력 카테고리 -->
       <select v-model="amount" class="hw_view" @change="loglist_view">

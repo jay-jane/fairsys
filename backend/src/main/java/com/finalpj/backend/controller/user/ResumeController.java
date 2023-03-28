@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -54,7 +55,7 @@ public class ResumeController {
                 return ogate;
     }
      
-       //지원자 이력서 페이지
+       //지원자 이력서 작성
        @GetMapping("/ResumeRegist")
        public UserVO ResumeGet(HttpServletRequest request, HttpServletResponse response){
    		   String user_id = request.getParameter("user_id");
@@ -62,6 +63,7 @@ public class ResumeController {
    		   System.out.println(userVO.toString());
    		   return userVO;
        }
+
        //지원자 이력서 작성폼
        @PostMapping("/ResumeRegist/submitForm")
        public void ResumeRegist(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
@@ -69,6 +71,7 @@ public class ResumeController {
     	   UserVO userVO = userService.getUserInfo(user_id);
     	   System.out.println(userVO.toString());
     	   vo.setUser_id(user_id);
+           
     	   
 //           System.out.println(vo.toString());
     	   resumeService.ResumeRegist(vo);
@@ -156,4 +159,29 @@ public class ResumeController {
         return list;
     }
 
+
+
+    
+      //지원자 이력서 마이페이지
+      @GetMapping("/ApplyStatus1")
+      public ArrayList<ResumeWriteVO> ApplyStatus1 (HttpServletRequest request, HttpServletResponse response){
+  
+          String user_id = request.getParameter("user_id");
+          System.out.println(user_id);
+
+          ArrayList<ResumeWriteVO> resumeWriteVO = resumeService.ApplyStatus1(user_id);
+          
+          System.out.println(resumeWriteVO.toString());
+       
+          return resumeWriteVO;
+      }
+
+
+
+    //   @GetMapping("/checkApply")
+    //   public int checkApply(@RequestParam("user_id") String user_id) {
+    //       System.out.println(resumeService.checkApply(user_id));
+    //       System.out.println(user_id);
+    //       return resumeService.checkApply(user_id);
+    //   }
 }

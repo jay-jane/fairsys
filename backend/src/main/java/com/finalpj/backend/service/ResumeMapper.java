@@ -36,5 +36,11 @@ public interface ResumeMapper {
     public List<UserVO> getUserVO(String user_id);  
 
 
+
+
+    
+    public ArrayList<ResumeWriteVO> ApplyStatus1(String user_id);
+
+    int checkApply(@Param("user_id") String user_id);
     
 }

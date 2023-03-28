@@ -84,6 +84,12 @@ const routes = [
     component: () => import("../views/10ApplyStatus.vue"),
   },
   {
+
+    path: "/ApplyStatus1/",
+    name: "ApplyStatus1",
+    component: () => import("../views/10-1ApplyStatus.vue"),
+  },
+  {
     path: "/11",
     name: "questionList",
     component: () => import("../views/11QuestionList.vue"),
@@ -160,11 +166,7 @@ const routes = [
     name: 'userMyPage',
     component: () => import('../views/66MyPage.vue')
   },
-  {
-    path: '/UserMyPage1',
-    name: 'userMyPage1',
-    component: () => import('../views/67MyPage.vue')
-  },
+
 
   {
     path: "/26",
