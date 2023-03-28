@@ -105,6 +105,7 @@ export default {
   text-align: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   margin-bottom: 25px;
+  
 }
 
 #top div {
@@ -129,9 +130,9 @@ export default {
 
 #logo .logo_alink {
   display: inline-block;
-  position: fixed;
+  position: relative;
   top: 10px;
-  left: 10px;
+  left: -500px;
   height: 100px;
 }
 

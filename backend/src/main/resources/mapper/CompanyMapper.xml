@@ -71,7 +71,7 @@
     left join company c on j.com_id = c.com_id
     where 1 = 1
     <if test="jcri.searchTitle != '' ">
-			<![CDATA[ and com_name like concat('%', #{jcri.searchTitle}, '%')]]>
+			<![CDATA[ and j_title like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>
     <if test="jcri.searchCareer != '' ">
 			<![CDATA[ and j_career = #{jcri.searchCareer}]]>
@@ -103,7 +103,7 @@
     left join company c on j.com_id = c.com_id
     where 1 = 1
     <if test="jcri.searchTitle != '' ">
-			<![CDATA[ and com_name like concat('%', #{jcri.searchTitle}, '%')]]>
+			<![CDATA[ and j_title like concat('%', #{jcri.searchTitle}, '%')]]>
 		</if>
     <if test="jcri.searchCareer != '' ">
 			<![CDATA[ and j_career = #{jcri.searchCareer}]]>
