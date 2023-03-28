@@ -26,7 +26,8 @@
         <div class="jy_field tel-number">
           <label class="jy_field_name">휴대폰 번호</label>
           <div class="jy_tel_number_input">
-            <input type="text" class="jy_text jy_f" id="jy_tel_number" :value="item.com_manager_phone" style="border: 0;" readonly>
+            <input type="text" class="jy_text jy_f" id="jy_tel_number" :value="item.com_manager_phone" style="border: 0;"
+              readonly>
           </div>
         </div>
       </div>
@@ -110,7 +111,7 @@
                     <div class="room-file-image-example-wrapper">이미지</div>
                   <!-- <div class="room-file-notice-item">
                       설명
-                              </div> -->
+                                </div> -->
                     <div class="room-file-notice-item room-file-notice-item-red">
                       <!-- 이미지는 최대 3개 까지 첨부하실 수 있습니다. -->
                     </div>
@@ -118,7 +119,7 @@
                       <div class="image-box">
                       <!-- <div class="image-profile">
                         <img :src="profileImage" />
-                                </div> -->
+                                  </div> -->
                         <label for="file">사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageUpload" accept="image/*" multiple />
                       </div>
@@ -192,8 +193,8 @@
         </div>
       </div>
       <div id="jy_reg-btn-wrap">
-        <button type="button" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
-        <button type="button" value="취소" @click="goMain">취소</button>
+        <button type="button" class="reg_btn" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
+        <button type="button" class="reset_btn" value="취소" @click="goMain">취소</button>
       </div>
     </form>
   </section>
@@ -238,11 +239,13 @@ export default {
       j_detail_address: '',
       detailAddress: '',
 
+      upResult: false,
+
     }
   },
   methods: {
-    goMain: () => {
-      location.href = "/";
+    goMain() {
+      this.$router.push("/4");
     },
     deleteItem: function (e) {
       if (e.target.tagName != "IMG") return;
@@ -268,6 +271,21 @@ export default {
         this.$refs.btn2.style.display = "none";
       }
     },
+    validation() {
+      const now = new Date();
+      if (this.j_title == '') {
+        alert('글 제목은 필수 입력 항목입니다');
+        document.getElementById("j_title").focus();
+        return;
+      }
+      else if(this.j_email == '') {
+
+      }
+      else if (now > this.endDate) {
+        alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
+        return;
+      }
+    },
     submitForm() {
       if (confirm('등록하시겠습니까?')) {
         if (this.$refs.interview1.style.display == "none") {
@@ -278,16 +296,7 @@ export default {
         if (this.$refs.interview2.style.display == "block") {
           this.j_schedule = "1차 면접 > 2차 면접 >";
         }
-        // if (this.j_title == '') {
-        //   alert('글 제목은 필수 입력 항목입니다');
-        //   document.getElementById("j_title").focus();
-        //   return;
-        // }
-        // const now = new Date();
-        // if (now > this.endDate) {
-        //   alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
-        //   return;
-        // }
+
         this.axios.post('/jobPostingRegist',
           {
             j_recruitNum: this.j_recruitNum,
@@ -450,11 +459,11 @@ export default {
       form.append('file', this.files[0].file);
       form.append('com_id', com_id);
       this.axios.post("/uploadImg", form)
-                .then(() => console.log("imgUp"))
-                .catch(err => {
-                  alert('이미지 업로드에 실패하였습니다.');
-                  console.log(err);
-                });
+        .then(() => this.upResult = true)
+        .catch(err => {
+          alert('이미지 업로드에 실패하였습니다.');
+          console.log(err);
+        });
     },
   },
   components: {
@@ -510,15 +519,19 @@ export default {
   padding: 10px;
   margin: 10px 0;
   box-sizing: border-box;
-  
+
 }
-.jy_text, .jy_textarea:focus-within {
+
+.jy_text,
+.jy_textarea:focus-within {
   outline-color: orange;
 }
+
 .jy_f {
   border: 0;
   cursor: default;
 }
+
 .jy_f:focus-within {
   outline: 0;
 }
@@ -578,6 +591,7 @@ input[type="radio"] {
 #jy_process_add {
   text-align: center;
 }
+
 #jy_process_add .jy_add_btn {
   width: 80%;
   text-align: center;
@@ -899,13 +913,15 @@ input[type="radio"] {
 
 #jy_reg-btn-wrap {
   text-align: center;
-  margin: 20px 0 20px 0;
+  margin: 30px 0 30px 0;
 }
-#jy_reg-btn-wrap button {
+
+#jy_reg-btn-wrap .reg_btn, .reset_btn {
   display: inline-block;
   border: 0;
   width: 120px;
   height: 40px;
+  line-height: 40px;
   line-height: 40px;
   background-color: orangered;
   border-radius: 2px;
@@ -913,5 +929,4 @@ input[type="radio"] {
   font-weight: 500;
   color: #efefef;
   letter-spacing: 1px;
-}
-</style>
+}</style>

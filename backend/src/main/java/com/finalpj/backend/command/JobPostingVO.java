@@ -16,32 +16,30 @@ import lombok.NoArgsConstructor;
 public class JobPostingVO {
     private int j_no;
     private String j_regdate;
-    @NotBlank
+    // @NotBlank(message = "모집 인원은 필수 입력 항목입니다.")
     private String j_recruitNum;
-    @Email
+    // @Email
     private String j_email;
-    @NotBlank
+    // @NotBlank(message = "제목은 필수 입력 항목입니다.")
     private String j_title;
     private String j_content;
-    @Future
+    // @Future
     private LocalDateTime j_end_date;
-    @NotBlank
+    // @NotBlank(message = "급여는 필수 입력 항목입니다.")
     private String j_salary;
-    @NotBlank
     private String j_department;
-    @NotBlank
     private String j_schedule;
-    @NotBlank
+    // @NotBlank(message = "학력은 필수 입력 항목입니다.")
     private String j_graduation;
-    @NotBlank
+    // @NotBlank
     private String j_career;
-    @NotBlank
+    // @NotBlank
     private String j_type;
-    @NotBlank
+    // @NotBlank(message = "필수 입력 항목입니다.")
     private String j_postcode;
-    @NotBlank
+    // @NotBlank(message = "필수 입력 항목입니다.")
     private String j_address;
-    @NotBlank
+    // @NotBlank(message = "필수 입력 항목입니다.")
     private String j_detail_address;
     private String com_id;
     

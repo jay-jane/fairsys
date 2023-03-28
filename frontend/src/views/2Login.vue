@@ -199,8 +199,7 @@ export default {
 <style>
 body {
   margin: 0;
-  color: #6a6f8c;
-  background: #c8c8c8;
+
 }
 
 form{
@@ -319,7 +318,7 @@ a {
 }
 
 .login-form .group .label {
-  color: #aaa;
+
   font-size: 12px;
 }
 
@@ -409,6 +408,7 @@ a {
   font-weight: bold;
   margin-bottom: 30px;
 }
+
 
 /* .simple_login_btn .login_icon {
   display: inline;

@@ -1,18 +1,18 @@
 <template>
     <div id="user_menu">
       <nav id="top">
-        <div id="logo"><router-link to="/">중앙정보 취업 박람회</router-link></div>
+        <div id="logo"><router-link to="/"><img src="../img/jobhublogo.png" :style="{ width: ['250px'], position:['relative'], top:['-63px'], left: ['-60px']}"></router-link></div>
         <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용공고</router-link></div>
         <div id="menu"><router-link to="" @mouseover="doDropmenu">기업정보</router-link></div>
         <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
       </nav>
       <nav id="drop_top" @mouseleave="doHidden">
-        <div id="drop">
+        <div id="drop1">
           <p><router-link to="/4" class="drop_menu">전체 공고 목록</router-link></p>
           <p><a href="#" @click.prevent="getJno" class="drop_menu">내 공고 조회</a></p>
           <p><router-link to="/ApplyStatus" class="drop_menu">지원자 목록</router-link></p>
         </div>
-        <div id="drop">
+        <div id="drop2">
           <p><router-link to="/9-2" class="drop_menu">기업정보 수정</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
           <p><router-link to="/#" class="drop_menu" @click="companyDelete">회원 탈퇴</router-link></p>
           <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
@@ -139,7 +139,25 @@
     background-color: orange;
   }
   
-  #drop {
+  #drop1 {
+    margin-bottom: 20px;
+    width: 200px;
+    line-height: 60px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 93px;
+  }
+  
+  #drop1 a {
+    color: white;
+    font-size: 18px;
+  }
+  
+  #drop1 a:hover {
+    color: black;
+  }
+  
+  #drop2 {
     margin-bottom: 20px;
     width: 200px;
     line-height: 60px;
@@ -147,12 +165,12 @@
     vertical-align: top;
   }
   
-  #drop a {
+  #drop2 a {
     color: white;
     font-size: 18px;
   }
   
-  #drop a:hover {
+  #drop2 a:hover {
     color: black;
   }
   

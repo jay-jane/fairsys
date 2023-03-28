@@ -20,7 +20,7 @@ import com.finalpj.backend.command.ResumeWriteVO;
 import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.command.UserVO;
 import com.finalpj.backend.service.ResumeService;
-import com.finalpj.backend.service.TestService;
+import com.finalpj.backend.service.UserService;
 import com.finalpj.backend.util.ResumeCriteria;
 import com.finalpj.backend.util.ResumeOneGate;
 import com.finalpj.backend.util.ResumePageVO;
@@ -32,8 +32,8 @@ public class ResumeController {
     private ResumeService resumeService;
     
 	@Autowired
-	@Qualifier("TestService")
-	private TestService testService;
+	@Qualifier("UserService")
+	private UserService userService;
 
 
     //기업에  지원한 이력서리스트
@@ -59,7 +59,7 @@ public class ResumeController {
        @GetMapping("/ResumeRegist")
        public UserVO ResumeGet(HttpServletRequest request, HttpServletResponse response){
    		   String user_id = request.getParameter("user_id");
-   		   UserVO userVO = testService.getUserInfo(user_id);
+   		   UserVO userVO = userService.getUserInfo(user_id);
    		   System.out.println(userVO.toString());
    		   return userVO;
        }
@@ -68,7 +68,7 @@ public class ResumeController {
        @PostMapping("/ResumeRegist/submitForm")
        public void ResumeRegist(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
     	   String user_id = request.getParameter("user_id");
-    	   UserVO userVO = testService.getUserInfo(user_id);
+    	   UserVO userVO = userService.getUserInfo(user_id);
     	   System.out.println(userVO.toString());
     	   vo.setUser_id(user_id);
            
@@ -125,7 +125,7 @@ public class ResumeController {
       @PostMapping("/ResumeUpdate/updateForm")
       public void ResumeUpdate(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
           String user_id = request.getParameter("user_id");
-          UserVO userVO = testService.getUserInfo(user_id);
+          UserVO userVO = userService.getUserInfo(user_id);
 //          System.out.println(userVO.toString());
           vo.setUser_id(user_id);
           

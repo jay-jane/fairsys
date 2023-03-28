@@ -21,24 +21,20 @@
         </li>
       </ul>
     </div>
-        </section> -->
+          </section> -->
   <section id="jy_salary_wrap">
     <h3 class="jy_title">채용 정보</h3>
     <hr>
     <div id="jy_content_wrap">
-      <div id="jy_swiper_wrap">
-        <p>메인 공고</p>
-        <div id="jy_swiper">
-          swiperAPI
-        </div>
+      <div id="jy_swiper_wrap" style="margin-top: 20px;">
       </div>
       <div id="jy_search_wrap">
         <div id="jy_search_name" class="jy_option_box">
           <strong class="jy_option_title">
-            <label for="company_name">기업명</label>
+            <label for="company_name" style="line-height: 40px;">기업명</label>
           </strong>
-          <input type="text" class="input_com" v-model="companyName" @keydown.enter="getComName" @focusout="getComName"
-          placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요" style="width: 300px; margin-right: 20px;">
+          <input type="text" class="input_com" v-model="companyName" @change="getComName"
+            placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
           <span @click="resetComName" style="font-size: 8px; font-weight: normal; cursor: pointer;">
             <img src="@/img/return-icon.jpg" alt="r"> 초기화
           </span>
@@ -50,41 +46,34 @@
             </span>
           </strong>
           <ul class="jy_category-list-left" style="float: left;">
-            <li><a href="#" class="" @click.prevent="getCategory_List" name="1">서울</a></li>
-            <li><a href="#" class="" @click.prevent="getCategory_List" name="2">경기</a></li>
-            <li><a href="#" class="" @click.prevent="getCategory_List" name="3">인천</a></li>
+            <li><a href="#" class="a_category1" @click.prevent="getCategory_List" name="1">서울</a></li>
+            <li><a href="#" class="a_category2" @click.prevent="getCategory_List" name="2">경기</a></li>
+            <li><a href="#" class="a_category3" @click.prevent="getCategory_List" name="3">인천</a></li>
           </ul>
           <ul class="jy_category-list-right" style="float: left;">
-            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 서울 전체</a></li>
-            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 강남구</a></li>
-            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 서초구</a></li>
-            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 강서구</a></li>
-            <li><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; 마포구</a></li>
-            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 경기 전체</a></li>
-            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 수원시</a></li>
-            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 성남시</a></li>
-            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 안산시</a></li>
-            <li><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; 화성시</a></li>
-            <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 인천 전체</a></li>
-            <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 연수구</a></li>
-            <li><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; 서구</a></li>
+            <li v-for="r in seoul"><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; {{ r }}</a></li>
+            <li v-for="r in gyeonggi"><a href="#" class="서울" v-if="mid_category2" @click.prevent="getCategory">&gt; {{ r }}</a></li>
+            <li v-for="r in incheon"><a href="#" class="서울" v-if="mid_category3" @click.prevent="getCategory">&gt; {{ r }}</a></li>
           </ul>
         </div>
         <div id="jy_search_type" class="jy_option_box">
-          <strong class="option_title" style="margin-right: 120px;">근무형태</strong>
-          <span @click="resetCareer" style="font-size: 8px; font-weight: normal; cursor: pointer;">
+          <strong class="jy_option_title" style="">근무형태</strong>
+          <div id="jy_job_type" style="display: inline-block;">
+            <input @click="getCareer" type="radio" class="input_jobType" name="job_type" value="신입">신입
+            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type"
+            value="경력">경력
+            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type"
+            value="경력무관">경력무관
+          </div>
+          <span @click="resetCareer" style="font-size: 8px; font-weight: normal; cursor: pointer; margin-left: 40px;">
             <img src="@/img/return-icon.jpg" alt="r"> 초기화
           </span>
-          <div id="jy_job_type">
-            <input @click="getCareer" type="radio" class="input_jobType" name="job_type" value="신입">신입
-            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type" value="경력">경력
-            <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type" value="경력무관">경력무관
-          </div>
         </div>
         <div id="jy_search_btn">
-          <span v-if="com_name != ''">{{ com_name }}&nbsp;&nbsp;</span>
-          <span v-if="category != ''">/&nbsp;&nbsp;{{ category }}&nbsp;&nbsp;</span>
-          <span v-if="career != ''">/&nbsp;&nbsp;{{ career }}</span>
+          검색 키워드 : 
+          <span class="jy_search_category" v-if="com_name != ''">{{ com_name }}&nbsp;&nbsp;</span>
+          <span class="jy_search_category" v-if="category != ''">/&nbsp;&nbsp;{{ category }}&nbsp;&nbsp;</span>
+          <span class="jy_search_category" v-if="career != ''">/&nbsp;&nbsp;{{ career }}</span>
           <p class="jy_search_total">검색 결과 : <strong class="jy_num_total" style="color: orangered;">{{ total }}</strong> 건
           </p>
           <button type="button" class="jy_search_btn" @click="searchItem">검색하기</button>
@@ -114,7 +103,7 @@
           <ul>
             <div v-for="item in list">
               <li>
-                <a href="#" class="jy_logo" @click.prevent="getDetail(item.j_no)"><img src="" alt="로고"></a>
+                <a href="#" class="jy_logo" @click.prevent="getDetail(item.j_no)"><img src="@/img/jobposting_logo.png" alt="로고"></a>
                 <div class="jy_company_info">
                   <strong class="jy_title">
                     <span style="cursor: pointer;" @click.prevent="getDetail(item.j_no)">{{ item.com_name }}</span>
@@ -232,6 +221,10 @@ export default {
 
       //게시글 리스트
       list: [],
+
+      seoul: ["서울 전체", "강남구", "서초구", "반포구", "마포구"],
+      gyeonggi: ["경기 전체", "수원시", "성남시", "안산시", "화성시"],
+      incheon: ["인천 전체", "연수구", "서구"],
     }
   },
   watch: {
@@ -256,14 +249,23 @@ export default {
         this.mid_category1 = true;
         this.mid_category2 = false;
         this.mid_category3 = false;
+        document.getElementsByClassName("a_category1")[0].classList.add("font_orange");
+        document.getElementsByClassName("a_category2")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category3")[0].classList.remove("font_orange");
       } else if (e.target.name == 2) {
         this.mid_category1 = false;
         this.mid_category2 = true;
         this.mid_category3 = false;
+        document.getElementsByClassName("a_category1")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category2")[0].classList.add("font_orange");
+        document.getElementsByClassName("a_category3")[0].classList.remove("font_orange");
       } else if (e.target.name == 3) {
         this.mid_category1 = false;
         this.mid_category2 = false;
         this.mid_category3 = true;
+        document.getElementsByClassName("a_category1")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category2")[0].classList.remove("font_orange");
+        document.getElementsByClassName("a_category3")[0].classList.add("font_orange");
       }
     },
     getCategory: function (e) {
@@ -381,6 +383,9 @@ export default {
       this.mid_category1 = false;
       this.mid_category2 = false;
       this.mid_category3 = false;
+      document.getElementsByClassName("a_category1")[0].classList.remove("font_orange");
+      document.getElementsByClassName("a_category2")[0].classList.remove("font_orange");
+      document.getElementsByClassName("a_category3")[0].classList.remove("font_orange");
     },
     resetCareer() {
       this.career = '';
@@ -638,6 +643,9 @@ export default {
   float: left;
   width: 100px;
 }
+.jy_category-list-left li {
+  margin-bottom: 20px;
+}
 
 .jy_category-list-right {
   float: left;
@@ -646,7 +654,8 @@ export default {
 
 .jy_category-list-right li {
   float: left;
-  margin-left: 5px;
+  margin-left: 10px;
+  margin-bottom: 2px;
 }
 
 .jy_admin_nav {
@@ -690,5 +699,22 @@ export default {
 
 .jy_admin_nav .jy_sub_menu li a.on {
   background-color: orange;
+}
+
+.font_orange {
+  font-weight: bold;
+  color: orangered;
+}
+
+.jy_search_category {
+  font-weight: bold;
+  color: orangered;
+}
+
+.input_com {
+  width: 300px;
+  height: 40px;
+  margin-right: 20px;
+  font-size: 14px;
 }
 </style>

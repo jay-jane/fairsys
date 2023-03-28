@@ -100,82 +100,13 @@ export default {
 </script>
  
 <style>
-html {
-  color: #000;
-  background: #fff
-}
+
 
 html,
 body {
   width: 100%;
   -webkit-text-size-adjust: none
 }
-
-body,
-div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-code,
-form,
-input,
-p,
-button {
-  margin: 0;
-  padding: 0;
-}
-
-table {
-  border-spacing: 0;
-  border-collapse: collapse;
-  font-size: inherit;
-  line-height: 100%
-}
-
-
-
-a {
-  color: inherit;
-  text-decoration: none
-}
-
-header,
-footer,
-section,
-nav,
-article {
-  display: block
-}
-
-
-button {
-  border: 0;
-  background: transparent;
-  cursor: pointer
-}
-
-.hidden,
-.blind {
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-}
-
-
-
-
 
 
 /* ////////////////////////////// 하단부 */

@@ -1,13 +1,13 @@
 
 <template>
 
-  <div class="container">
+  <div class="hy_main">
     
-    <div class="wrap_top">
+    <div class="hy_wrap_top">
       
-      <div class="admin_profile">
+      <div class="hy_admin_profile">
         <h3>관리자 프로필</h3>
-        <div class="admin_account">
+        <div class="hy_admin_account">
           <table>
             <tr>
               <td>ID</td>
@@ -23,21 +23,21 @@
         </div>
       </div>
       
-      <div class="all_user">
+      <div class="hy_all_user">
         <h3>전체 유저</h3>
         <span>명</span>
         <!-- db에서 전체유저 검색해서 값 넣어야함 -->
         <b>{{ totalUser }}</b>
       </div>
       
-      <div class="approved_company">
+      <div class="hy_approved_company">
         <h3>승인완료 기업</h3>
         <span>기업</span>
         <!-- db에서 승인완료된 기업 검색해서 값 넣어야함-->
         <b>{{ approveCompany }}</b>
       </div>
       
-      <div class="waiting_company">
+      <div class="hy_waiting_company">
         <h3>승인대기 기업</h3>
         <span>기업</span>
         <!-- db에서 승인대기 기업 몇개인지 검색해서 값 넣어야함-->
@@ -45,8 +45,7 @@
       </div>
     </div>
 
-    <h1>한눈에 보는 통계</h1>
-    <div class="wrap_middle">
+    <div class="hy_wrap_middle">
 
       <div class="date_apply_user">
         <Bar class="barchart"
@@ -175,31 +174,30 @@ export default {
   
   h3{color: white;}
   
-  .container{
-    margin-top: 100px;
+  .hy_main{
     padding: 20px;
     background-color: #f5f5f5;
   }
+
   
-  .wrap_top{
+  .hy_wrap_top{
     display: flex;
     justify-content: center;
     gap: 50px;
-    margin: 30px 0;
   }
 
-  .admin_profile{
+  .hy_admin_profile{
     background-color: orange;
     width: 300px;
     border-radius: 25px;
     padding: 25px;
   }
 
-  .admin_account{
+  .hy_admin_account{
     padding-top: 15px;
   } 
 
-  .all_user{
+  .hy_all_user{
     background-color: orange;
     width: 300px;
     border-radius: 25px;
@@ -207,30 +205,30 @@ export default {
     box-shadow: black;
   }
 
-  .all_user b{font-size: 48px; float: right; }
-  .all_user span{float: right; font-size: 24px;  font-weight: 500;}
+  .hy_all_user b{font-size: 48px; float: right; }
+  .hy_all_user span{float: right; font-size: 24px;  font-weight: 500;}
 
-  .approved_company{
+  .hy_approved_company{
     background-color: orange;
     width: 300px;
     border-radius: 25px;
     padding: 25px;
   }
 
-  .approved_company b{font-size: 48px; float: right;}
-  .approved_company span{float: right;}
+  .hy_approved_company b{font-size: 48px; float: right;}
+  .hy_approved_company span{float: right;}
 
-  .waiting_company{
+  .hy_waiting_company{
     background-color: orange;
     width: 300px;
     border-radius: 25px;
     padding: 25px;
   }
 
-  .waiting_company b{ font-size: 48px; float: right; }
-  .waiting_company span{ float: right; }
+  .hy_waiting_company b{ font-size: 48px; float: right; }
+  .hy_waiting_company span{ float: right; }
 
-  .wrap_middle{
+  .hy_wrap_middle{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -240,7 +238,6 @@ export default {
   }
 
   .date_apply_user, .date_pass_user{
-    border: 1px solid palevioletred;
     width: 700px;
     padding: 25px;
   }
