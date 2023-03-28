@@ -61,6 +61,7 @@
 		 <!-- select * from user_status where user_no= #{user_no} -->
 	</select>
 
+
 	<select id="ResumeComModify" resultType="UserStatusVO">
 		select * from user_status where user_no= #{user_no}
 		 <!-- select * from user_status where user_no= #{user_no} -->
@@ -86,6 +87,10 @@
 
 	<delete id="delete" parameterType="UserStatusVO">
 		delete from user_status where user_no = #{user_no};
+	</delete>
+
+	<delete id="delete1" parameterType="ResumeWriteVO">
+		delete from resume_write where user_no = #{user_no};
 	</delete>
 
 

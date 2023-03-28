@@ -96,6 +96,7 @@
             <th>번호</th>
             <th>제목</th>
             <th>작성일자</th>
+            <th>삭제</th>
      
           </tr>
         </thead>
@@ -106,8 +107,9 @@
             <td>{{ index + 1 }}</td>
             <td>{{ item.resume_title }}</td>
             <td>{{ item.resume_date }}</td>
-      
-    
+            <td>
+            <button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px; background-color: orange; color: white; border: none;">삭제</button>
+            </td>
             <!-- <td @click.prevent="ResumeModify(item.user_no)">조회</td> -->
             <!-- <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.com_id}}">수정</router-link></td> -->
              <!-- <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button> -->
@@ -117,31 +119,66 @@
         </tbody>
       </table>
       
-      <div class="hw_serch_box">
   
-  <select name="" id="">
-    <option value="title">이름</option>
-    <option value="status">진행상황</option>
-  </select>
 
-  <input type="text">
-  <button @click="search($event.target)">검색</button>
+      <!-- 페이지 이동 -->
+      <div class="hw_page">
+        <ul>
+          <li>
+            <!-- 맨앞으로 가기 -->
+            <router-link :to="{ path: '/ApplyStatus1/?page=1&amount=' + amount }" @click="goFirstPage">
+              <i class="fa fa-angle-double-left" aria-hidden="true">&lt;&lt;</i>
+            </router-link>
+          </li>
 
-</div>
+          <!-- 앞으로 가기 -->
+          <li style="margin-right:5px;">
+            <router-link :to="{ path: '/ApplyStatus1/?page=' + page + '&amount=' + amount }" @click="goBeforePage">
+              <i class="fa fa-angle-left" aria-hidden="true">&lt;</i>
+            </router-link>
+          </li>
+
+          <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
+          <div v-for="(item, index) in pageList" :key="index" class="page_btn">
+            <li v-bind:class="{ 'on': item === page }">
+              <router-link :to="{ path: '/ApplyStatus1/?page=' + page + '&amount=' + amount }"
+                @click="thisPage($event.target)">
+                {{ item }}
+              </router-link>
+            </li>
+          </div>
+
+          <!-- 뒤로 가기 -->
+          <li style="margin-left:5px;">
+            <router-link :to="{ path: '/ApplyStatus1/?page=' + page + '&amount=' + amount }" @click="goNextPage">
+              <i class="fa fa-angle-right" aria-hidden="true">></i>
+            </router-link>
+          </li>
+
+          <!-- 맨뒤로 가기 -->
+          <li>
+            <router-link :to="{ path: '/ApplyStatus1/?page=' + realEnd + '&amount=' + amount }" @click="goLastPage">
+              <i class="fa fa-angle-double-right" aria-hidden="true">>></i>
+            </router-link>
+          </li>
+
+        </ul>
+      </div>
+
+
+
 
       
-
-
     </div>
 
   </div>
 </template>
   
 <script>
-
+import Axios from 'axios';
 export default {
   
-  name: 'App',
+ el: '#App',
   data() {
     return {
       // user_no: '',
@@ -151,6 +188,30 @@ export default {
       com_id:'',
       user_phone:'',
       user_name:'',
+      /////////////////////////
+      //공용
+
+      pages: '',   //pageVO
+      pageList: '',  //pageVO.pageList 배열값
+      detailNum: '',
+
+      //페이지이동에 필요한 초기값들
+      page: 1,
+      amount: 10,
+
+      searchTitle: '',
+      searchStatus: '',
+      searchContent: '',
+      prev: '',
+      pageStart: '',
+      pageEnd: '',
+      realEnd: '',
+
+    }
+  },
+  watch: {
+    'amount': function() {
+      this.get();
     }
   },
   
@@ -165,7 +226,6 @@ export default {
           }
         })
         .then(res => {
-          // this.w_no = this.$route.query.w_no;
           this.user_name = this.$route.query.user_name;
           this.user_phone = this.$route.query.user_phone;
           this.user_id = sessionStorage.getItem("user_id")
@@ -183,54 +243,18 @@ export default {
           // this.$store.commit("setLogInOut","로그인")
           // this.$router.push({ path: '/2' })
         });
+    }, 
+     deleteForm(user_no) {
+      if (confirm('삭제하시겠습니까?')) {
+        this.axios.post('/ResumeDelete1', { "user_no": user_no })
+          .then(() => {
+            alert('삭제되었습니다');
+            this.$router.go('/ApplyStatus1');
+          })
+          .catch(err => console.log(err));
+      };
     },
-    ResumeModify(user_no) {
-      this.$router.push({
-        path: '/ResumeModify/',
-        name: 'ResumeModify',
-        params: { "user_no": user_no }
-      })
-    },
-    // deleteUser(){
-    //   if(confirm('아이디를 삭제하시겠습니까?')){
-    //     this.axios.get('/ApplyStatus1/deleteForm',
-    //     {
-    //       params: { user_id: sessionStorage.getItem("user_id") },
-    //       headers: {
-    //         'content-type': 'application/json',
-    //         'Authorization': "Bearer " + sessionStorage.getItem("user_auth"),
-    //       }
-    //     }
-    //     ).then(res => {
-    //       alert('아이디가 삭제되었습니다.')
-    //       sessionStorage.clear();
-    //       this.$store.commit("setLogInOut","로그인")
-    //       this.$router.push({ path: '/' })
-    //     })
-    //   }
-     
-    // },
 
-
-    // ResumeModify(user_no) {
-    //   this.$router.push({
-    //     path: '/ResumeModify/',
-    //     name: 'ResumeModify',
-    //     params: { "user_no": user_no }
-    //   })
-    // },
-
-    // deleteForm(user_no) {
-    //   if (confirm('삭제하시겠습니까?')) {
-    //     this.axios.post('/ResumeDelete', { "user_no": user_no })
-    //       .then(() => {
-    //         alert('삭제되었습니다');
-    //         this.$router.go('/UserMyPage');
-    //       })
-    //       .catch(err => console.log(err));
-    //   };
-    // },
-  },
  
   async get() {
         //console.log(this.list_view);
@@ -319,7 +343,7 @@ export default {
       
     
     },
-
+  },
   mounted() {
     this.ApplyStatus1();
   },
@@ -515,6 +539,7 @@ export default {
     font-size: 16px;
   }
   
+
   .hw_page {
     display: flex;
     justify-content: center;

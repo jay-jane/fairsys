@@ -15,7 +15,7 @@
         <ul class="hw_sub_menu">
           <li><router-link to="/ResumeRegist">이력서 작성</router-link></li>
 
-          <li><router-link to="/UserMypage">이력서 목록</router-link></li>
+          <li><router-link to="/ApplyStatus1">이력서 목록</router-link></li>
 
           <li><a href="#"></a></li>
 
@@ -36,46 +36,6 @@
     </ul>
   </div>
 
-
-<!-- 
-  <div class="hw_my_content_main">
-    <div class="hw_my_content">
-      <table>
-        <div id="hw_my_salary_list_wrap">
-          <div id="hw_my_salary_list_total">
-            <ul>
-              <li class="hw_my_com_info">
-                <div class="hw_my_company_info">
-                  <strong class="hw_my_title">{{user_id}}님 안녕하세요</strong>
-                  <br>
-               -->
-                  <!-- <div v-for="(item, index) in index">
-                  <dl class="hw_my_info_item" >
-                    <dt>이름</dt>
-                    <dd>{{item.user_name}}</dd>
-                  </dl>
-                  <dl class="hw_my_info_item">
-                    <dt>이메일</dt>
-                    <dd>{{ item.user_email}}</dd>
-                  </dl>
-                  <dl class="hw_my_info_item">
-                    <dt>전화번호</dt>
-                    <dd>{{ item.user_phone}}</dd>
-                  </dl>
-                </div> -->
-
-<!-- 
-
-                </div>
-              </li>
-            </ul>
-
-
-          </div>
-        </div>
-
-
-      </table> -->
 
 
       <div class="hw_main">
@@ -109,24 +69,14 @@
     
             <td @click.prevent="ResumeModify(item.user_no)">조회</td>
             <td><router-link :to="{name: 'ResumeUpdate', params: {user_no: item.com_id}}">수정</router-link></td>
-             <td><button type="button" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
+             <td><button type="button" class="button1" value="삭제" @click="deleteForm(item.user_no)" style="margin-right: 10px;">삭제</button>
             </td> 
           </tr>
 
         </tbody>
       </table>
       
-      <div class="hw_serch_box">
-  
-  <select name="" id="">
-    <option value="title">이름</option>
-    <option value="status">진행상황</option>
-  </select>
-
-  <input type="text">
-  <button @click="search($event.target)">검색</button>
-
-</div>
+ 
 
         <!-- 페이지 이동 -->
         <div class="hw_page">
@@ -265,7 +215,7 @@ export default {
           .catch(err => console.log(err));
       };
     },
-  },
+
  
   async get() {
         //console.log(this.list_view);
@@ -354,7 +304,7 @@ export default {
       
     
     },
-
+  },
   mounted() {
     this.UserMyPage();
   },
@@ -595,5 +545,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .button1 {
+    background-color: orange;
+    color: white;
+    border: none;
   }
 </style>

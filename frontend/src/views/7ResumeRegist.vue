@@ -169,7 +169,7 @@
           </table>
         </div>
 
-        <button type="button" @click="submitForm">이력서 등록</button>
+        <button type="button" @click="submitForm" class="button">이력서 등록</button>
        
       </div>
 
@@ -315,6 +315,13 @@ export default {
   position: fixed;
 }
 
+.hw_select-graduation {
+  width: 10vw;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding: 2px 3px;
+}
 
 /* 본문 */
 .hw_resume-part-title {
@@ -358,6 +365,7 @@ export default {
   width: 90%;
 }
 
+
 .hw_resume-part2-input tr td input {
   width: 10vw;
   margin: 10px;
@@ -367,9 +375,16 @@ export default {
 }
 
 
+
 .hw_graduation {
   display: inline-block;
   margin: 8px;
+}
+
+.button {
+  background-color: orange;
+  border: none;
+  color: white;
 }
 </style>
   

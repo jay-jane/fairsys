@@ -22,5 +22,7 @@ public interface AdminCompanyMapper {
 
     public ArrayList<CompanyVO> Companydetail(String com_id);
 
-    public int getTotal(@Param("cri") Criteria cri);
+    public int getTotal1(@Param("cri") Criteria cri);
+
+    public int getTotal2(@Param("cri") Criteria cri);
 }
