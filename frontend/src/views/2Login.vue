@@ -110,7 +110,7 @@ export default {
 
       }).catch(err => {
         if (err.response.status == 401) {
-          alert("아뒤 비번좀 봐라")
+          alert("아이디/비밀번호를 확인이 필요합니다")
         }
       })
     },
@@ -149,7 +149,7 @@ export default {
 
       }).catch(err => {
         if (err.response.status == 401) {
-          alert("아뒤 비번좀 봐라")
+          alert("아이디/비밀번호를 확인이 필요합니다")
         }else if(err.response.status == 403){
           alert("관리자의 승인이 필요합니다")
         }
