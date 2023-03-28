@@ -5,7 +5,7 @@
       <div id="jy_banner_wrap">
         <!-- <img src="@/img/c8d7cf7b-e0c7-459f-91a0-3862082908f7_duck2.jpg" alt="배너" style="width: 100%; height: 200px; margin-top: -25px;"> -->
         <div class="jy_bannerImg"></div>
-        <div id="jy_company_logo"><img src="https://picsum.photos/150/150" alt="로고" class="jy_logoImg"></div>
+        <div id="jy_company_logo"><img src="@/img/company_logo.png" alt="로고" class="jy_logoImg"></div>
         <div id="jy_company_name">
           <h3>{{ item.companyVO.com_name }}</h3>
         </div>
@@ -15,7 +15,7 @@
           <div id="jy_top_bottom">
             <div id="jy_company_title">
               <div class="jy_title">
-                <h3>{{ item.j_title }}</h3>
+                <h2>{{ item.j_title }}</h2>
               </div>
             </div>
           </div>
@@ -264,6 +264,7 @@ export default {
   left: 150px;
   z-index: 998;
   border: 2px solid #fff;
+  background-color: rgb(252, 187, 66);
 }
 
 #jy_top_bottom {
@@ -316,5 +317,10 @@ export default {
 
 #jy_detail_button_wrap {
   text-align: center;
+}
+
+.jy_logoImg {
+  width: 150px;
+  height: 150px;
 }
 </style>
