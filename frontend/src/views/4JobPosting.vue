@@ -416,7 +416,7 @@ export default {
 
 /* section */
 #jy_salary_wrap {
-  max-width: 800px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 20px;
 }

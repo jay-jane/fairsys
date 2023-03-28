@@ -20,12 +20,13 @@
       <div class="com_item" v-for="(item, index) in jobPostingList">
         <div class="com_line">
           <a class="menu">
-            <ul>
+            <ul style="position: relative;">
               <li><img src="" alt="" width="300px"></li>
-              <li @click.prevent="getDetail(item.j_no)">{{ item.com_name }}</li>
-              <li>{{ item.com_id }}</li>
-              <li>신입/경력채용</li>
+              <li @click.prevent="getDetail(item.j_no)" style="cursor: pointer;">{{ item.com_name }}</li>
+              <li>모집 중</li>
+              <li>{{ item.j_career }}</li>
               <li>{{ item.j_regdate.substr(0, 11) }}</li>
+              <img src="@/img/company_logo.png" alt="com_logo" style="width: 100px; height: 100px; position: absolute; top: 100px; right: 0;" />
             </ul>
           </a>
         </div>

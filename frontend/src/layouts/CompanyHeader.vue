@@ -113,6 +113,8 @@ export default {
   height: 100px;
 }
 
+
+
 #menu {
   width: 200px;
   line-height: 100px;
@@ -124,15 +126,11 @@ export default {
   color: black;
 }
 
-#logo {
-  position: absolute;
-}
 
 #logo .logo_alink {
   display: inline-block;
   position: relative;
   top: 10px;
-  left: -500px;
   height: 100px;
 }
 
