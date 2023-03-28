@@ -62,17 +62,17 @@
 
       <article id="jy_article_bottom">
         <div id="jy_section_bottom">
-          <!-- <h3>상세 내용</h3> -->
-          <pre style="font-size: 20px;">{{ item.j_content }}</pre>
           <div id="jy_posting_container">
             <img v-if="!this.imgUrl.includes('null')" :src="require(`@/img/${this.imgUrl}`)" :alt="item.j_img_fileName"
-              id="jy_detailImg" />
+            id="jy_detailImg" />
           </div>
+          <pre style="font-size: 20px; margin-bottom: 60px;">{{ item.j_content }}</pre>
+          <!-- <h3>상세 내용</h3> -->
         </div>
       </article>
       <div id="jy_location_wrap">
-        <span>기업 위치</span><br>
-        <span>{{ item.j_address }} {{ item.j_detail_address }}</span>
+        <!-- <span>오시는 길</span><br>
+        <span>{{ item.j_address }} {{ item.j_detail_address }}</span> -->
         <div id="jy_kakao">
         </div>
       </div>
