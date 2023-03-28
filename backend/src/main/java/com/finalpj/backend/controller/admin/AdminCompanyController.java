@@ -1,13 +1,8 @@
 package com.finalpj.backend.controller.admin;
 
-import java.io.Console;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +15,6 @@ import com.finalpj.backend.util.Criteria;
 import com.finalpj.backend.util.PageVO;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 
 @RestController
 
@@ -32,7 +26,7 @@ public class AdminCompanyController {
    @GetMapping("/18/")
    public AdminGate list(Criteria cri) {
 
-      int total = admincompanyService.getTotal(cri);
+      int total = admincompanyService.getTotal1(cri);
       PageVO pageVO = new PageVO(cri, total);
 
       ArrayList<CompanyVO> list = admincompanyService.getList(cri);
@@ -44,7 +38,7 @@ public class AdminCompanyController {
    @GetMapping("/19/1/")
    public AdminGate Nlist(Criteria cri) {
 
-      int total = admincompanyService.getTotal(cri);
+      int total = admincompanyService.getTotal2(cri);
       PageVO pageVO = new PageVO(cri, total);
 
       ArrayList<CompanyVO> list = admincompanyService.getNlist(cri);
