@@ -160,11 +160,15 @@
                   <tr>
                     <th class="text_resume"><label for="user_license">자격증명</label></th>
                     <td>
+                      <label for="user_license">
                       {{ item.user_license }}
+                      </label>
                     </td>
                     <th style="padding-top:10px"><label for="user_getlicense">취득일</label></th>
                     <td>
+                      <label for="user_getlicense">
                       {{ item.user_getlicense }}
+                    </label>
                     </td>
                   </tr>
                 </table>

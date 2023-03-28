@@ -125,6 +125,10 @@
 		select * from resume_write where user_id=#{user_id};
 	</select>
 
+
+ <select id="checkApply" resultType="int">
+    select count(*) from resume_write where user_id = #{user_id}; 
+  </select>
 </mapper>
 
 

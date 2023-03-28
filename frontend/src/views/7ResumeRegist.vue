@@ -169,8 +169,8 @@
           </table>
         </div>
 
-        <!-- <button type="button" @click="submitForm">이력서 등록</button> -->
-        <button v-bind:disabled="submitting" v-on:click="submitForm">제출</button>
+        <button type="button" @click="submitForm">이력서 등록</button>
+       
       </div>
 
     </div>

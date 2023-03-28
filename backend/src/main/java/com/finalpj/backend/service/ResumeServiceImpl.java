@@ -84,4 +84,10 @@ public class ResumeServiceImpl implements ResumeService{
     public ArrayList<ResumeWriteVO> ApplyStatus1(String user_id) {
         return resumemapper.ApplyStatus1(user_id);
     }
+
+
+    @Override
+    public int checkApply(String user_id) {
+        return resumemapper.checkApply(user_id);
+    }
 }
