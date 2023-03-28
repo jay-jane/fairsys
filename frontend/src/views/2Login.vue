@@ -229,7 +229,7 @@ a {
 }
 
 .login-box{
-  margin: 95px 0;
+  margin: 70px 0;
 }
 
 .login-wrap {
