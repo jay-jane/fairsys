@@ -7,8 +7,8 @@
   <mapper namespace="com.finalpj.backend.service.AdminCompanyMapper">
   <select id="getList" resultType="CompanyVO">
     select * from Company 
-    where com_status='y'
-    <if test="cri.searchTitle != null and cri.searchTitle !='' ">
+    where com_status='Y'
+     <if test="cri.searchTitle != null and cri.searchTitle !='' ">
 			<![CDATA[ and com_name like concat('%', #{cri.searchTitle}, '%')]]>
 		</if>
     ORDER BY c_no desc
@@ -16,24 +16,26 @@
   </select>
 
 
-      <select id="getTotal" resultType="int">
-     	select count(*) as total from company
-   
-		<if test="cri.searchTitle != null and cri.searchTitle !='' ">
-			<![CDATA[ and com_name like concat('%', #{cri.searchTitle}, '%')]]>
-		</if>
-    </select>
+  <select id="getTotal1" resultType="int">
+    select count(*) as total from company where com_status='Y'
+	</select>
 
 
   <select id="getNlist" resultType="CompanyVO">
-    select * from Company 
-    where com_status='n'
-      <if test="cri.searchTitle != null and cri.searchTitle !='' ">
+    select * from Company  
+    where com_status='N'
+         <if test="cri.searchTitle != null and cri.searchTitle !='' ">
 			<![CDATA[ and com_name like concat('%', #{cri.searchTitle}, '%')]]>
-		</if>
+      	</if>
     ORDER BY c_no desc
     limit #{cri.pageStart}, #{cri.amount}
   </select>
+
+  <select id="getTotal2" resultType="int">
+    select count(*) as total from company where com_status='N'
+	</select>
+
+
 
 	<update id="companyModify" parameterType="String">
 		update company 

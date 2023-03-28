@@ -19,6 +19,8 @@ public interface AdminCompanyService {
 
     public ArrayList<CompanyVO> Companydetail(String com_id);
 
-    public int getTotal(Criteria cri);
+    public int getTotal1(Criteria cri);
+
+    public int getTotal2(Criteria cri);
 
 }

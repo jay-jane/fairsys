@@ -39,8 +39,14 @@ public class AdminCompanyServiceimpl implements AdminCompanyService {
   }
 
   @Override
-  public int getTotal(Criteria cri) {
-    return adminCompanyMapper.getTotal(cri);
+  public int getTotal1(Criteria cri) {
+    return adminCompanyMapper.getTotal1(cri);
+
+  }
+
+  @Override
+  public int getTotal2(Criteria cri) {
+    return adminCompanyMapper.getTotal2(cri);
 
   }
 
