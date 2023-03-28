@@ -37,46 +37,6 @@
   </div>
 
 
-<!-- 
-  <div class="hw_my_content_main">
-    <div class="hw_my_content">
-      <table>
-        <div id="hw_my_salary_list_wrap">
-          <div id="hw_my_salary_list_total">
-            <ul>
-              <li class="hw_my_com_info">
-                <div class="hw_my_company_info">
-                  <strong class="hw_my_title">{{user_id}}님 안녕하세요</strong>
-                  <br>
-               -->
-                  <!-- <div v-for="(item, index) in index">
-                  <dl class="hw_my_info_item" >
-                    <dt>이름</dt>
-                    <dd>{{item.user_name}}</dd>
-                  </dl>
-                  <dl class="hw_my_info_item">
-                    <dt>이메일</dt>
-                    <dd>{{ item.user_email}}</dd>
-                  </dl>
-                  <dl class="hw_my_info_item">
-                    <dt>전화번호</dt>
-                    <dd>{{ item.user_phone}}</dd>
-                  </dl>
-                </div> -->
-
-<!-- 
-
-                </div>
-              </li>
-            </ul>
-
-
-          </div>
-        </div>
-
-
-      </table> -->
-
 
       <div class="hw_main">
     <div class="hw_container">
@@ -265,7 +225,7 @@ export default {
           .catch(err => console.log(err));
       };
     },
-  },
+
  
   async get() {
         //console.log(this.list_view);
@@ -354,7 +314,7 @@ export default {
       
     
     },
-
+  },
   mounted() {
     this.UserMyPage();
   },

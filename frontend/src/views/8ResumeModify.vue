@@ -60,6 +60,38 @@
             </div>
 
 
+            <!-- <h3 style="text-align: left;">학력</h3>
+            <div class="resume-part2-box">
+              <table class="resume-part2-input">
+                <tr>
+                  <th><label for="user_level">최종학력</label></th>
+                  <td>
+                    {{ item.user_level }}
+                  </td>
+                  <th><label for="user_finish">졸업여부</label></th>
+                  <td>
+                    {{ item.user_finish }}
+                  </td>
+                </tr>
+                <tr>
+                  <th style="padding-top:10px"><label for="user_major">전공</label></th>
+                  <td>
+
+                    <label for="user_major">
+                      {{ item.user_major }}
+                    </label>
+                  </td>
+                  <th style="padding-top:10px"><label for="user_fndate">졸업/졸업예정날짜</label></th>
+                  <td>
+
+                    <label for="user_fndate">
+                      {{ item.user_fndate }}
+                    </label>
+                  </td>
+                </tr>
+
+              </table>
+            </div> -->
             <h3 style="text-align: left;">학력</h3>
             <div class="resume-part2-box">
               <table class="resume-part2-input">
@@ -92,6 +124,9 @@
 
               </table>
             </div>
+
+
+
 
             <!-- /// -->
             <h3 style="text-align: left;">경력</h3>
@@ -246,6 +281,7 @@ export default {
 </script>
   
 <style>
+
 .resume {
   width: 30vw;
   margin: 0 auto;

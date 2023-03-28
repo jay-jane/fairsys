@@ -285,7 +285,13 @@ this.get()
   left: 20vw;
   position: fixed;
 }
-
+.hw_select-graduation {
+  width: 10vw;
+  margin: 10px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  padding: 2px 3px;
+}
 
 /* 본문 */
 .hw_resume-part-title {
