@@ -1,25 +1,25 @@
 <template>
 
-  <div class="main">    
-    <div class="container">
+  <div class="hy_main">    
+    <div class="hy_container">
 
       <h1>유저 전체 목록</h1>
 
-      <div class="searchBox">
+      <!-- <div class="searchBox">
         <input type="text">
         <button>검색하기</button>
-      </div>  
+      </div>   -->
 
-      <select v-model="amount" class="list_view">
+      <select v-model="amount" class="hy_list_view">
         <option value="10"> 10개씩 보기</option>
         <option value="30"> 30개씩 보기</option>
         <option value="50"> 50개씩 보기</option>
         <option value="100"> 100개씩 보기</option>
       </select>
 
-      <table class="list">
+      <table class="hy_list">
 
-        <thead class="head">
+        <thead class="hy_head">
           <tr>
             <th>번호</th>
             <th>이름</th>
@@ -29,7 +29,7 @@
           </tr>
         </thead>
 
-        <tbody class="body">
+        <tbody class="hy_body">
  
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <tr v-for="(item,index) in list" v-bind:key="index" @click.prevent="goDetail(item.qa_no)" style="cursor: pointer;">
@@ -45,7 +45,7 @@
       </table>
 
        <!-- 페이지 이동 -->
-       <div class="page">
+       <div class="hy_page">
         <ul>
           <li>
             <!-- 맨앞으로 가기 -->
@@ -123,7 +123,7 @@ export default {
 
   watch: {
     'amount': function(){
-      this.get();
+      this.getList();
     }
   },
 
@@ -133,7 +133,7 @@ export default {
       //console.log(this.list_view);
 
       //화면에 리스트 출력을 위해 필요한 내용 전달
-      let response = await Axios.get("/20?amount="+this.amount+"&page="+this.page+"&searchTitle="+this.searchTitle+"&searchContent="+this.searchContent);
+      let response = await Axios.get("/20?amount="+this.amount+"&page="+this.page);
       console.log(response.data.list);
     
       //필요한 공용 데이터를 담기
@@ -158,7 +158,7 @@ export default {
     //페이지 이동에 필요한 메서드
     goFirstPage(){
       this.page = 1;
-      this.get();
+      this.getList();
     },
 
     goBeforePage(){
@@ -172,7 +172,7 @@ export default {
     thisPage(target){
 
       this.page = target.innerHTML;
-      this.get();
+      this.getList();
 
     },  
 
@@ -180,7 +180,7 @@ export default {
 
       if(this.page < this.realEnd){
         this.page = this.page +1;
-        this.get();
+        this.getList();
       }else{
         alert("마지막 페이지입니다.");
       }
@@ -188,7 +188,7 @@ export default {
 
     goLastPage(){
       this.page=this.realEnd;
-      this.get();
+      this.getList();
     },
 
 
@@ -206,18 +206,18 @@ export default {
 * {padding: 0; margin: 0; font-family: 'Noto Sans KR', sans-serif; text-decoration: none; box-sizing: border-box;}
 
 
-.main {
+.hy_main {
   margin: 100px 0 0 200px;
   padding: 30px;
 }
 
-  .container {
+  .hy_container {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
   }
 
-  .container select{
+  .hy_container select{
     float: left;
     margin: 10px 0;
   }
@@ -227,80 +227,54 @@ export default {
     margin: 10px 0;
   }
 
-  .list {
+  .hy_list {
     width: 100%;
     border-collapse: collapse;
     border-spacing: 0;
   }
 
-  .head {
+  .hy_head {
     background-color: #f5f5f5;
     text-align: center;
   }
 
-  .head th {
+  .hy_head th {
     padding: 1em;
   }
 
-  .body tr:nth-child(even) {
+  .hy_body tr:nth-child(even) {
     background-color: #f9f9f9;
   }
 
-  .body td {
+  .hy_body td {
     padding: 1em;
     text-align: center;
     border-bottom: 1px solid #ddd;
   }
 
-  .body td a {
+  .hy_body td a {
     color: #333;
     text-decoration: none;
   }
 
-  .body td a:hover {
+  .hy_body td a:hover {
     text-decoration: underline;
   }
 
-
-  .serch_box{
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .serch_box select,input,button{
-    padding: 5px;
-    margin: 5px;
-  }
-
-  .serch_box input{
-    width: 50%;
-    border-radius: 35px;
-    border: 1px solid #ddd;
-  }
-
-  .serch_box button {
-    width: 10%;
-    background-color: orange;
-    border: none;
-    color: white;
-    font-size: 16px;
-  }
-
-  .page {
+  .hy_page {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
   }
 
-  .page ul {
+  .hy_page ul {
     display: flex;
     align-items: center;
     list-style: none;
   }
 
-  .page li {
+  .hy_page li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -314,21 +288,21 @@ export default {
     border: 1px solid #ccc;
   }
 
-  .page li.on {
+  .hy_page li.on {
     font-weight: bold;
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
   }
 
-  .page i {
+  .hy_page i {
     font-size: 14px;
     margin: 0;
     padding: 0;
     line-height: 1;
   }
 
-  .page_btn {
+  .hy_page_btn {
     display: flex;
     justify-content: center;
     align-items: center;
