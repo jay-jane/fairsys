@@ -239,6 +239,8 @@ export default {
       j_detail_address: '',
       detailAddress: '',
 
+      upResult: false,
+
     }
   },
   methods: {
@@ -457,7 +459,7 @@ export default {
       form.append('file', this.files[0].file);
       form.append('com_id', com_id);
       this.axios.post("/uploadImg", form)
-        .then(() => console.log("imgUp"))
+        .then(() => this.upResult = true)
         .catch(err => {
           alert('이미지 업로드에 실패하였습니다.');
           console.log(err);
