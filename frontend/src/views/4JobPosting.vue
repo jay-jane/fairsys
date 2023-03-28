@@ -31,7 +31,7 @@
       <div id="jy_search_wrap">
         <div id="jy_search_name" class="jy_option_box">
           <strong class="jy_option_title">
-            <label for="company_name" style="line-height: 40px;">기업명</label>
+            <label for="company_name" style="line-height: 40px;">제목</label>
           </strong>
           <input type="text" class="input_com" v-model="companyName" @change="getComName"
             placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
@@ -239,8 +239,8 @@ export default {
     getCareer: function (e) {
       this.career = e.target.value;
     },
-    getComName: function (e) {
-      this.com_name = e.target.value;
+    getComName: function () {
+      this.com_name = document.getElementsByClassName("input_com")[0].value;
     },
     getCategory_List: function (e) {
       e.preventDefault();
@@ -376,6 +376,7 @@ export default {
     },
     resetComName() {
       this.com_name = '';
+      this.companyName = '';
       document.getElementsByClassName("input_com")[0].value = '';
     },
     resetCategory() {

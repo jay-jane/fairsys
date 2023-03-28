@@ -73,7 +73,6 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public void applyInsert(UserStatusVO vo) {
-        System.out.println(vo.toString());
         mapper.applyInsert(vo);
     }
 
