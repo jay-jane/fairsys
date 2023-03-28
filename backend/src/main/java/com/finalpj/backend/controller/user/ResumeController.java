@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -19,7 +20,7 @@ import com.finalpj.backend.command.ResumeWriteVO;
 import com.finalpj.backend.command.UserStatusVO;
 import com.finalpj.backend.command.UserVO;
 import com.finalpj.backend.service.ResumeService;
-import com.finalpj.backend.service.TestService;
+import com.finalpj.backend.service.UserService;
 import com.finalpj.backend.util.ResumeCriteria;
 import com.finalpj.backend.util.ResumeOneGate;
 import com.finalpj.backend.util.ResumePageVO;
@@ -31,8 +32,8 @@ public class ResumeController {
     private ResumeService resumeService;
     
 	@Autowired
-	@Qualifier("TestService")
-	private TestService testService;
+	@Qualifier("UserService")
+	private UserService userService;
 
 
     //기업에  지원한 이력서리스트
@@ -54,21 +55,23 @@ public class ResumeController {
                 return ogate;
     }
      
-       //지원자 이력서 페이지
+       //지원자 이력서 작성
        @GetMapping("/ResumeRegist")
        public UserVO ResumeGet(HttpServletRequest request, HttpServletResponse response){
    		   String user_id = request.getParameter("user_id");
-   		   UserVO userVO = testService.getUserInfo(user_id);
+   		   UserVO userVO = userService.getUserInfo(user_id);
    		   System.out.println(userVO.toString());
    		   return userVO;
        }
+
        //지원자 이력서 작성폼
        @PostMapping("/ResumeRegist/submitForm")
        public void ResumeRegist(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
     	   String user_id = request.getParameter("user_id");
-    	   UserVO userVO = testService.getUserInfo(user_id);
+    	   UserVO userVO = userService.getUserInfo(user_id);
     	   System.out.println(userVO.toString());
     	   vo.setUser_id(user_id);
+           
     	   
 //           System.out.println(vo.toString());
     	   resumeService.ResumeRegist(vo);
@@ -122,7 +125,7 @@ public class ResumeController {
       @PostMapping("/ResumeUpdate/updateForm")
       public void ResumeUpdate(@RequestBody ResumeWriteVO vo, HttpServletRequest request, HttpServletResponse response){
           String user_id = request.getParameter("user_id");
-          UserVO userVO = testService.getUserInfo(user_id);
+          UserVO userVO = userService.getUserInfo(user_id);
 //          System.out.println(userVO.toString());
           vo.setUser_id(user_id);
           
@@ -156,4 +159,29 @@ public class ResumeController {
         return list;
     }
 
+
+
+    
+      //지원자 이력서 마이페이지
+      @GetMapping("/ApplyStatus1")
+      public ArrayList<ResumeWriteVO> ApplyStatus1 (HttpServletRequest request, HttpServletResponse response){
+  
+          String user_id = request.getParameter("user_id");
+          System.out.println(user_id);
+
+          ArrayList<ResumeWriteVO> resumeWriteVO = resumeService.ApplyStatus1(user_id);
+          
+          System.out.println(resumeWriteVO.toString());
+       
+          return resumeWriteVO;
+      }
+
+
+
+    //   @GetMapping("/checkApply")
+    //   public int checkApply(@RequestParam("user_id") String user_id) {
+    //       System.out.println(resumeService.checkApply(user_id));
+    //       System.out.println(user_id);
+    //       return resumeService.checkApply(user_id);
+    //   }
 }

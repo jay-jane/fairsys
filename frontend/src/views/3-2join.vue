@@ -415,7 +415,7 @@ button:hover {
 
 .cont_division .terms_agree {
   font-size: 16px;
-  color: #373f57;
+ 
   margin-bottom: 8px;
   display: inline-block;
 }

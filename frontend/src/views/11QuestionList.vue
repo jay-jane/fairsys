@@ -1,20 +1,20 @@
 
 <template>
-  <div class="main">
-    <div class="container">
+  <div class="hy_main">
+    <div class="hy_container">
 
       <h2>문의하기</h2>
 
       <!-- 출력 카테고리 -->
-      <select v-model="amount" class="view" @change="loglist_view">
+      <select v-model="amount" class="hy_view" @change="loglist_view">
         <option value="10">10개 보기</option>
         <option value="20">20개 보기</option>
         <option value="30">30개 보기</option>
       </select>
 
       <button @click="inquiry" class="btn btn-primary btn_write">문의작성하기</button>
-        <table class="list">
-          <thead class="head">
+        <table class="hy_list">
+          <thead class="hy_head">
             <tr>
               <th>번호</th>
               <th>제목</th>
@@ -24,7 +24,7 @@
             </tr>
           </thead>
 
-          <tbody v-if="listck" class="body">
+          <tbody v-if="listck" class="hy_body">
             <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
             <tr v-for="(item, index) in list" v-bind:key="index" @click.prevent="goDetail(item.qa_no)"
               style="cursor: pointer;">
@@ -42,11 +42,11 @@
         </table>
     
 
-      <div class="serch_box">
+      <div class="hy_serch_box">
 
         <select name="" id="">
-          <option value="title">제목</option>
-          <option value="content">내용</option>
+          <option value="hy_title">제목</option>
+          <option value="hy_content">내용</option>
         </select>
 
         <input type="text">
@@ -55,7 +55,7 @@
       </div>
 
       <!-- 페이지 이동 -->
-      <div class="page">
+      <div class="hy_page">
         <ul>
           <li>
             <!-- 맨앞으로 가기 -->
@@ -83,14 +83,14 @@
           <!-- 뒤로 가기 -->
           <li style="margin-left:5px;">
             <router-link :to="{ path: '/11/?page=' + page + '&amount=' + amount }" @click="goNextPage">
-              <i class="fa fa-angle-right" aria-hidden="true">r</i>
+              <i class="fa fa-angle-right" aria-hidden="true">&gt;</i>
             </router-link>
           </li>
 
           <!-- 맨뒤로 가기 -->
           <li>
             <router-link :to="{ path: '/11/?page=' + realEnd + '&amount=' + amount }" @click="goLastPage">
-              <i class="fa fa-angle-double-right" aria-hidden="true">>></i>
+              <i class="fa fa-angle-double-right" aria-hidden="true">&gt;&gt;</i>
             </router-link>
           </li>
 
@@ -279,19 +279,19 @@ export default {
 
 /* 문의사항 목록  */
 
-.main {
+.hy_main {
   display: flex;
   justify-content: center;
   height: auto;
 }
 
-.container {
+.hy_container {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.container h2 {
+.hy_container h2 {
   margin: 20px 0;
 }
 
@@ -307,85 +307,85 @@ export default {
   padding: 10px 20px;
 }
 
-.view {
+.hy_view {
   float: left;
   margin: 10px 0;
   padding: 10px 20px;
 }
 
 
-.list {
+.hy_list {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 
-.head {
+.hy_head {
   background-color: #f5f5f5;
   text-align: center;
 }
 
-.head th {
+.hy_head th {
   padding: 1em;
 }
 
-.head th:first-child {
+.hy_head th:first-child {
   border-top-left-radius: 10px;
 }
 
-.head th:last-child {
+.hy_head th:last-child {
   border-top-right-radius: 10px;
 }
 
-.body tr:nth-child(even) {
+.hy_body tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-.body td {
+.hy_body td {
   padding: 1em;
   text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
-.body td:first-child {
+.hy_body td:first-child {
   border-bottom-left-radius: 10px;
 }
 
-.body td:last-child {
+.hy_body td:last-child {
   border-bottom-right-radius: 10px;
 }
 
-.body td a {
+.hy_body td a {
   color: #333;
   text-decoration: none;
 }
 
-.body td a:hover {
+.hy_body td a:hover {
   text-decoration: underline;
 }
 
 
-.serch_box {
+.hy_serch_box {
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
 }
 
-.serch_box select,
+.hy_serch_box select,
 input,
 button {
   padding: 5px;
   margin: 5px;
 }
 
-.serch_box input {
+.hy_serch_box input {
   width: 50%;
   border-radius: 35px;
   border: 1px solid #ddd;
 }
 
-.serch_box button {
+.hy_serch_box button {
   width: 10%;
   background-color: orange;
   border: none;
@@ -393,20 +393,20 @@ button {
   font-size: 16px;
 }
 
-.page {
+.hy_page {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
 }
 
-.page ul {
+.hy_page ul {
   display: flex;
   align-items: center;
   list-style: none;
 }
 
-.page li {
+.hy_page li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -420,14 +420,14 @@ button {
   border: 1px solid #ccc;
 }
 
-.page li.on {
+.hy_page li.on {
   font-weight: bold;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
 
-.page i {
+.hy_page i {
   font-size: 14px;
   margin: 0;
   padding: 0;

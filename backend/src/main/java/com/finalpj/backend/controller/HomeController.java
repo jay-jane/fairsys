@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.finalpj.backend.command.UserVO;
-import com.finalpj.backend.service.TestService;
+import com.finalpj.backend.service.UserService;
 
 @Controller
 public class HomeController {

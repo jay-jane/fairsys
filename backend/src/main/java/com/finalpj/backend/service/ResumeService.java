@@ -28,6 +28,10 @@ public ArrayList<UserStatusVO> UserMyPage(String user_id); //지원자마이페�
 public List<ResumeWriteVO> ResumeModify(int user_no); //지원자 마이페이지 이력서 상세조회  
 public List<UserVO> getUserVO(String user_id);
 
+/////////////////////////////이력서 중복
+
+int checkApply(String user_id); //이력서 중복체크
+
 
 
 
@@ -39,4 +43,9 @@ public List<UserVO> getUserVO(String user_id);
  public void updateStatus(UserStatusVO vo); //진행상황 업데이트
  public List<UserStatusVO> ResumeComModify(int user_no); //기업에서 지원자 이력서 상세조회  
 
+
+
+
+
+ public ArrayList<ResumeWriteVO> ApplyStatus1(String user_id); //지원자마이페이지
 }

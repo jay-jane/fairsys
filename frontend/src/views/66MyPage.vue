@@ -25,7 +25,7 @@
 
 
       <li class="hw_sub_menu_toggle">
-        <a href="#">회사정보수정</a>
+   
 
         <ul class="sub_menu">
           <li><router-link to="/9-1">회원정보수정</router-link></li>
@@ -104,7 +104,7 @@
         <tbody class="hw_body">
 
           <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ item.com_id }}</td>
+            <td>{{ index+1 }}</td>
             <td>{{ item.status}}</td>
     
             <td @click.prevent="ResumeModify(item.user_no)">조회</td>
@@ -221,8 +221,8 @@ export default {
           console.log(err);
           alert("로그인이 필요한 서비스입니다.")
           sessionStorage.clear();
-          // this.$store.commit("setLogInOut","로그인")
-          // this.$router.push({ path: '/2' })
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/2' })
         });
     },
 

@@ -27,7 +27,8 @@
 								 user_get,
 								 user_license,
 								 user_getlicense,
-								 user_id
+								 user_id,
+								 resume_title
 										)
 		values(
 		#{user_name},
@@ -48,7 +49,8 @@
 		#{user_get},
 		#{user_license},
 		#{user_getlicense},
-		#{user_id}
+		#{user_id},
+		#{resume_title}
 )
 
 	</insert>
@@ -112,12 +114,21 @@
 	</update>
 
 
-<select id="getUserVO" resultType="UserVO">
-    select * from user where user_id = #{user_id}
+	<select id="getUserVO" resultType="UserVO">
+    	select * from user where user_id = #{user_id}
+  	</select>
+	
+	
+	<!-- //////////////////////////////////////////////////////////////// -->
+
+	<select id="ApplyStatus1" resultType="ResumeWriteVO">
+		select * from resume_write where user_id=#{user_id};
+	</select>
+
+
+ <select id="checkApply" resultType="int">
+    select count(*) from resume_write where user_id = #{user_id}; 
   </select>
-
-
-
 </mapper>
 
 
