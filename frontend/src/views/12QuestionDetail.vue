@@ -192,22 +192,13 @@ h1 {
   float: left;
 }
 
-table.list {
+table.list, .com_list, .answer_list {
   width: 100%;
   margin-bottom: 2rem;
   border-collapse: collapse;
   border: 1px solid #ccc;
   background-color: white;
 }
-
-.answer_list{
-  width: 100%;
-  margin-bottom: 2rem;
-  border-collapse: collapse;
-  border: 1px solid #ccc;
-  background-color: white;
-}
-  
 
 td {
   padding: 1rem;

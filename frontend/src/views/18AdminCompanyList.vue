@@ -3,7 +3,7 @@
   <section>
     <div class="main">
       <div class="container">
-        <h1>기업목록</h1>
+        <h1 class="tit">기업목록</h1>
 
         <select v-model="amount" class="view" @change="loglist_view">
           <option value="10">10개씩 보기</option>
@@ -23,7 +23,7 @@
           </thead>
           <tbody class="body">
             <tr v-for="(item, index) in list" v-bind:key="index">
-              <td>{{ item.c_no}}</td>
+              <td>{{(page-1) * 10 + index + 1 }}</td>
               <td>{{ item.com_name }}</td>
               <td>{{ item.com_Application_date }}</td>
               <td>{{ item.com_registration_date }}</td>
@@ -218,6 +218,7 @@ export default {
   text-decoration: none;
   box-sizing: border-box;
 }
+
 
 .main {
   margin: 100px 0 0 0;

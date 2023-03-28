@@ -34,7 +34,7 @@
       <div id="jy_field">
         <label class="jy_field_name">이메일 주소</label>
         <div id="">
-          <input type="email" class="jy_text" v-model="j_email">
+          <input type="email" class="jy_text" v-model="j_email" id="j_email">
         </div>
       </div>
       <div id="jy_field">
@@ -111,7 +111,7 @@
                     <div class="room-file-image-example-wrapper">이미지</div>
                   <!-- <div class="room-file-notice-item">
                       설명
-                                </div> -->
+                                              </div> -->
                     <div class="room-file-notice-item room-file-notice-item-red">
                       <!-- 이미지는 최대 3개 까지 첨부하실 수 있습니다. -->
                     </div>
@@ -119,7 +119,7 @@
                       <div class="image-box">
                       <!-- <div class="image-profile">
                         <img :src="profileImage" />
-                                  </div> -->
+                                                </div> -->
                         <label for="file">사진 등록</label>
                         <input type="file" id="file" ref="files" @change="imageUpload" accept="image/*" multiple />
                       </div>
@@ -193,8 +193,8 @@
         </div>
       </div>
       <div id="jy_reg-btn-wrap">
-        <button class="reg_btn" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
-        <button class="reg_btn" value="취소" @click="goMain">취소</button>
+        <button type="button" class="reg_btn" value="등록" @click="submitForm" style="margin-right: 10px;">등록</button>
+        <button type="button" class="reset_btn" value="취소" @click="goMain">취소</button>
       </div>
     </form>
   </section>
@@ -239,11 +239,12 @@ export default {
       j_detail_address: '',
       detailAddress: '',
 
+      upResult: false,
     }
   },
   methods: {
-    goMain: () => {
-      location.href = "/";
+    goMain() {
+      this.$router.push("/4");
     },
     deleteItem: function (e) {
       if (e.target.tagName != "IMG") return;
@@ -276,50 +277,97 @@ export default {
         document.getElementById("j_title").focus();
         return;
       }
-      else if(this.j_email == '') {
-
+      else if (this.j_email == '') {
+        ``
+        alert('이메일은 필수 입력 항목입니다');
+        document.getElementById("j_email").focus();
+        return;
       }
       else if (now > this.endDate) {
         alert('마감일은 오늘 날짜 이후로 설정 가능합니다');
         return;
       }
+      else {
+        this.upResult = true;
+        return;
+      }
     },
     submitForm() {
       if (confirm('등록하시겠습니까?')) {
-        if (this.$refs.interview1.style.display == "none") {
-          this.j_schedule = "";
-        } else if (this.$refs.interview1.style.display == "block" && this.$refs.interview2.style.display == "none") {
-          this.j_schedule = "1차 면접 >";
-        }
-        if (this.$refs.interview2.style.display == "block") {
-          this.j_schedule = "1차 면접 > 2차 면접 >";
-        }
+        this.validation();
+        console.log(this.upResult);
+        if (this.upResult) {
+          if (this.files.length >= 1) {
+            this.uploadImg(sessionStorage.getItem("com_id"));
+            if (this.$refs.interview1.style.display == "none") {
+              this.j_schedule = "";
+            } else if (this.$refs.interview1.style.display == "block" && this.$refs.interview2.style.display == "none") {
+              this.j_schedule = "1차 면접 >";
+            }
+            if (this.$refs.interview2.style.display == "block") {
+              this.j_schedule = "1차 면접 > 2차 면접 >";
+            }
 
-        this.axios.post('/jobPostingRegist',
-          {
-            j_recruitNum: this.j_recruitNum,
-            j_email: this.j_email,
-            j_title: this.j_title,
-            j_content: this.j_content,
-            j_salary: this.j_salary,
-            j_department: JSON.stringify(this.$route.query.valList),
-            j_schedule: this.j_schedule,
-            j_graduation: this.j_graduation,
-            j_end_date: this.endDate,
-            j_career: this.j_career,
-            j_type: this.j_type,
-            com_id: sessionStorage.getItem("com_id"),
-            j_postcode: this.j_postcode,
-            j_address: this.j_address,
-            j_detail_address: this.j_detail_address,
+            this.axios.post('/jobPostingRegist',
+              {
+                j_recruitNum: this.j_recruitNum,
+                j_email: this.j_email,
+                j_title: this.j_title,
+                j_content: this.j_content,
+                j_salary: this.j_salary,
+                j_department: JSON.stringify(this.$route.query.valList),
+                j_schedule: this.j_schedule,
+                j_graduation: this.j_graduation,
+                j_end_date: this.endDate,
+                j_career: this.j_career,
+                j_type: this.j_type,
+                com_id: sessionStorage.getItem("com_id"),
+                j_postcode: this.j_postcode,
+                j_address: this.j_address,
+                j_detail_address: this.j_detail_address,
+              }
+            ).then(() => {
+              alert('등록되었습니다!');
+              this.$router.push({ path: '/4' });
+            }).catch(err => {
+              console.log(err);
+            });
+          } else {
+            if (this.$refs.interview1.style.display == "none") {
+              this.j_schedule = "";
+            } else if (this.$refs.interview1.style.display == "block" && this.$refs.interview2.style.display == "none") {
+              this.j_schedule = "1차 면접 >";
+            }
+            if (this.$refs.interview2.style.display == "block") {
+              this.j_schedule = "1차 면접 > 2차 면접 >";
+            }
+
+            this.axios.post('/jobPostingRegist',
+              {
+                j_recruitNum: this.j_recruitNum,
+                j_email: this.j_email,
+                j_title: this.j_title,
+                j_content: this.j_content,
+                j_salary: this.j_salary,
+                j_department: JSON.stringify(this.$route.query.valList),
+                j_schedule: this.j_schedule,
+                j_graduation: this.j_graduation,
+                j_end_date: this.endDate,
+                j_career: this.j_career,
+                j_type: this.j_type,
+                com_id: sessionStorage.getItem("com_id"),
+                j_postcode: this.j_postcode,
+                j_address: this.j_address,
+                j_detail_address: this.j_detail_address,
+              }
+            ).then(() => {
+              alert('등록되었습니다!');
+              this.$router.push({ path: '/4' });
+            }).catch(err => {
+              console.log(err);
+            });
           }
-        ).then(() => {
-          this.uploadImg(sessionStorage.getItem("com_id"));
-          alert('등록되었습니다!');
-          this.$router.push({ path: '/4' });
-        }).catch(err => {
-          console.log(err);
-        });
+        }
       }
     },
     previewFile(file) {
@@ -914,7 +962,8 @@ input[type="radio"] {
   margin: 30px 0 30px 0;
 }
 
-#jy_reg-btn-wrap .reg_btn {
+#jy_reg-btn-wrap .reg_btn,
+.reset_btn {
   display: inline-block;
   border: 0;
   width: 120px;
@@ -927,4 +976,6 @@ input[type="radio"] {
   font-weight: 500;
   color: #efefef;
   letter-spacing: 1px;
-}</style>
+  cursor: pointer;
+}
+</style>

@@ -30,6 +30,7 @@ public class AdminController {
         //전체유저수 
         int total = asi.getTotalUser();
         map.put("totalUser", total);
+        System.out.println("유저수"+total);
 
         //승인된 기업수
         int approveCompany = asi.getApproveCompany();
@@ -100,9 +101,6 @@ public class AdminController {
         //기간별 합격자수
         ArrayList<ApplicantsbyDateVO> passUser = asi.getPassUser(ed, day);
         smap.put("passUser", passUser);
-
-
-
 
         return smap;
     }
