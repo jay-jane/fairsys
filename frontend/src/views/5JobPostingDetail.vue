@@ -66,7 +66,7 @@
             <img v-if="!this.imgUrl.includes('null')" :src="require(`@/img/${this.imgUrl}`)" :alt="item.j_img_fileName"
             id="jy_detailImg" />
           </div>
-          <pre style="font-size: 20px; margin-bottom: 60px;">{{ item.j_content }}</pre>
+          <pre style="font-size: 20px; margin: 40px 0 60px 0;">{{ item.j_content }}</pre>
           <!-- <h3>상세 내용</h3> -->
         </div>
       </article>

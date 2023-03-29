@@ -377,9 +377,11 @@ export default {
   justify-content: space-around;
 }
 
-.hy_serch_box select,
-input,
-button {
+.hy_serch_box select, input {
+  padding: 5px;
+  margin: 5px;
+}
+.hy_serch_box>button {
   padding: 5px;
   margin: 5px;
 }
@@ -390,7 +392,7 @@ button {
   border: 1px solid #ddd;
 }
 
-.hy_serch_box button {
+.hy_serch_box>button {
   width: 10%;
   background-color: orange;
   border: none;

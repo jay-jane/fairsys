@@ -14,7 +14,7 @@
         <p><router-link to="/4" class="drop_menu">산업별</router-link></p>
         <p><router-link to="/4" class="drop_menu">지역별</router-link></p>
       </div>
-      <div id="drop">
+      <div id="drop" :style="{margin:0}">
         <!-- <p><router-link to="/applystatus" class="drop_menu">지원현황</router-link></p> -->
         <p><router-link to="/UserMyPage" class="drop_menu">지원현황</router-link></p>
         <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
@@ -102,7 +102,8 @@ export default {
 #logo .logo_alink {
   display: inline-block;
   position: relative;
-  top: 10px;
+  top: 20px;
+  left:-400px;
   height: 100px;
 }
 
@@ -126,7 +127,7 @@ export default {
   line-height: 60px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 105px;
+  margin-right: 100px;
 }
 
 #drop a {

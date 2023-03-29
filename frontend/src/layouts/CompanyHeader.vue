@@ -13,7 +13,7 @@
         <p><a href="#" @click.prevent="getJno" class="drop_menu">내 공고 조회</a></p>
         <p><router-link to="/ApplyStatus" class="drop_menu">지원자 목록</router-link></p>
       </div>
-      <div id="drop1">
+      <div id="drop1" :style="{margin:0}">
         <p><router-link to="/9-2" class="drop_menu">기업정보 수정</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
         <p><router-link to="/#" class="drop_menu" @click="companyDelete">회원 탈퇴</router-link></p>
         <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
@@ -130,7 +130,8 @@ export default {
 #logo .logo_alink {
   display: inline-block;
   position: relative;
-  top: 10px;
+  top: 20px;
+  left:-400px;
   height: 100px;
 }
 
@@ -154,7 +155,7 @@ export default {
   line-height: 60px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 105px;
+  margin-right: 100px;
 }
 
 #drop1 a {
