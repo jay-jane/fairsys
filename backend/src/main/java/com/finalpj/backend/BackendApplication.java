@@ -20,7 +20,7 @@ public class BackendApplication implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(jwtInterceptor).addPathPatterns("/UserMyPage") ;// 기본 적용 경로
+		registry.addInterceptor(jwtInterceptor).addPathPatterns("/ApplyStatus1") ;// 기본 적용 경로
 //		.excludePathPatterns(Arrays.asList("[/1,/2,/3,/4,/5]"));// 적용 제외 경로
 	}
 }

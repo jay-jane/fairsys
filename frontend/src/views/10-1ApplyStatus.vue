@@ -240,8 +240,8 @@ export default {
           console.log(err);
           alert("로그인이 필요한 서비스입니다.")
           sessionStorage.clear();
-          // this.$store.commit("setLogInOut","로그인")
-          // this.$router.push({ path: '/2' })
+          this.$store.commit("setLogInOut","로그인")
+          this.$router.push({ path: '/2' })
         });
     }, 
      deleteForm(user_no) {
@@ -383,6 +383,7 @@ export default {
   top: 100px;
   left: 0;
   background-color: white;
+  margin-top: 2px;
 }
 
 .hw_admin_nav li {
@@ -429,6 +430,7 @@ export default {
     display: flex;
     justify-content: center;
     height: auto;
+    height: 835px;
   }
   
   .hw_container {

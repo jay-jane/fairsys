@@ -9,7 +9,7 @@
 
         <div :style="{ display: ['flex'], flexDirection: ['row'], justifyContent: ['space-between'] }">
           <h3><router-link to="/3-1">개인 회원가입</router-link></h3>
-          <h3 :style="{ borderBottom: ['4px solid #777'] }"><router-link to="/3-2">기업 회원가입</router-link></h3>
+          <h3 :style="{ borderBottom: ['4px solid orange'] }"><router-link to="/3-2">기업 회원가입</router-link></h3>
         </div>
         <br><br>
         <div>
@@ -372,7 +372,7 @@ input {
 button[type="button"] {
   padding: 10px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: orange;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -382,7 +382,7 @@ button[type="button"] {
 .view {
   padding: 10px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: orange;
   color: #fff;
   border: none;
   border-radius: 5px;

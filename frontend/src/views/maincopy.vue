@@ -14,7 +14,7 @@
     </div>
     <div class="main_page_middle" v-for="(item, index) in jobList">
         <div class="card_detail">
-            <div class="logo empty"><img src=""></div>
+            <div class="logo empty"><img src="@/img/jobposting_logo.png"></div>
             <div class="box_bubble"><span class="txt">{{ item.j_regdate.substr(0, 11) }}</span>
             </div>
             <div class="box_text"><strong class="tit_type2">{{ item.com_name }}</strong></div>
