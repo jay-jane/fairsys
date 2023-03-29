@@ -52,8 +52,8 @@
           </ul>
           <ul class="jy_category-list-right" style="float: left;">
             <li v-for="r in seoul"><a href="#" class="서울" v-if="mid_category1" @click.prevent="getCategory">&gt; {{ r }}</a></li>
-            <li v-for="r in gyeonggi"><a href="#" class="서울" v-if="mid_category2" @click.prevent="getCategory">&gt; {{ r }}</a></li>
-            <li v-for="r in incheon"><a href="#" class="서울" v-if="mid_category3" @click.prevent="getCategory">&gt; {{ r }}</a></li>
+            <li v-for="r in gyeonggi"><a href="#" class="경기" v-if="mid_category2" @click.prevent="getCategory">&gt; {{ r }}</a></li>
+            <li v-for="r in incheon"><a href="#" class="인천" v-if="mid_category3" @click.prevent="getCategory">&gt; {{ r }}</a></li>
           </ul>
         </div>
         <div id="jy_search_type" class="jy_option_box">

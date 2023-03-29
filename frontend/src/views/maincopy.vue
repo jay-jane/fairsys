@@ -17,7 +17,7 @@
             <div class="logo empty"><img src="@/img/jobposting_logo.png"></div>
             <div class="box_bubble"><span class="txt">{{ item.j_regdate.substr(0, 11) }}</span>
             </div>
-            <div class="box_text"><strong class="tit_type2">{{ item.com_name }}</strong></div>
+            <div class="box_text"><strong class="tit_type2" @click.prevent="getDetail(item.j_no)" style="cursor: pointer;">{{ item.com_name }}</strong></div>
             <div class="box_source">
                 <p class="corp">{{ item.com_name }}</p>
             </div>

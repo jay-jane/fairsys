@@ -340,7 +340,7 @@ export default {
 .hw_admin_nav {
   width: 200px;
   height: 100%;
-  position: fixed;
+  position: absolute;
   top: 100px;
   left: 0;
   background-color: white;
@@ -390,6 +390,7 @@ export default {
     display: flex;
     justify-content: center;
     height: auto;
+    margin-bottom: 300px;
   }
   
   .hw_container {

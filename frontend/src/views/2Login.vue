@@ -16,7 +16,7 @@
             </div>
             <div class="group">
               <input id="check" type="checkbox" class="check" checked>
-              <label for="check"><span class="icon"></span>로그인 정보 저장</label>
+              <label for="check" style="color: black;"><span class="icon"></span> 로그인 정보 저장</label>
             </div>
             <div class="group">
               <button type="button" class="button" @click="loginForm1">login</button>
@@ -45,7 +45,7 @@
             </div>
             <div class="group">
               <input id="check1" type="checkbox" class="check" checked>
-              <label for="check1"><span class="icon"></span>로그인 정보 저장 </label>
+              <label for="check1" style="color: black;"><span class="icon"></span> 로그인 정보 저장 </label>
             </div>
             <div class="group">
               <button value=2 type="button" class="button" @click="loginForm2">로그인</button>
@@ -152,6 +152,8 @@ export default {
           alert("아이디/비밀번호를 확인이 필요합니다")
         }else if(err.response.status == 403){
           alert("관리자의 승인이 필요합니다")
+        }else{
+          alert("아이디/비밀번호를 확인이 필요합니다")
         }
       })
     },
