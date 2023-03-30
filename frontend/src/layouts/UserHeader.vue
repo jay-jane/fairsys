@@ -111,6 +111,7 @@ export default {
 /* 헤더 드롭다운 메뉴 */
 
 #drop_top {
+  margin-top: 20px;
   display: none;
   position: absolute;
   top: 100px;
