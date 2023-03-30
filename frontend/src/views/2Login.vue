@@ -1,5 +1,5 @@
 <template>
-  <form class="login-box">
+  <form>
     <div class="login-wrap">
       <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">개인회원</label>
@@ -228,16 +228,13 @@ a {
   text-decoration: none
 }
 
-.login-box{
-  margin: 70px 0;
-}
-
 .login-wrap {
   width: 100%;
   margin: auto;
   max-width: 525px;
   min-height: 670px;
   position: relative;
+
 }
 
 .login-html {

@@ -52,6 +52,7 @@ export default {
     checkSession(){
       if(sessionStorage.getItem("user_id")==null){
         alert("로그인이 필요한 서비스 입니다.")
+        location.href="/2"
       }else{
         location.href="/ApplyStatus1"
       }

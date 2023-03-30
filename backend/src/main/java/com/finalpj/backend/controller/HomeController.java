@@ -13,7 +13,7 @@ import com.finalpj.backend.service.UserService;
 @Controller
 public class HomeController {
 	
-    @GetMapping("/")
+    @GetMapping({"/", "/2"})
     public String main(){
         return "index";
     }
