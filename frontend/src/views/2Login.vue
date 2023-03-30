@@ -1,5 +1,5 @@
 <template>
-  <form class="login-box">
+  <form>
     <div class="login-wrap">
       <div class="login-html">
         <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">개인회원</label>
@@ -16,7 +16,7 @@
             </div>
             <div class="group">
               <input id="check" type="checkbox" class="check" checked>
-              <label for="check"><span class="icon"></span>로그인 정보 저장</label>
+              <label for="check" style="color: black;"><span class="icon"></span> 로그인 정보 저장</label>
             </div>
             <div class="group">
               <button type="button" class="button" @click="loginForm1">login</button>
@@ -45,7 +45,7 @@
             </div>
             <div class="group">
               <input id="check1" type="checkbox" class="check" checked>
-              <label for="check1"><span class="icon"></span>로그인 정보 저장 </label>
+              <label for="check1" style="color: black;"><span class="icon"></span> 로그인 정보 저장 </label>
             </div>
             <div class="group">
               <button value=2 type="button" class="button" @click="loginForm2">로그인</button>
@@ -152,6 +152,8 @@ export default {
           alert("아이디/비밀번호를 확인이 필요합니다")
         }else if(err.response.status == 403){
           alert("관리자의 승인이 필요합니다")
+        }else{
+          alert("아이디/비밀번호를 확인이 필요합니다")
         }
       })
     },
@@ -228,16 +230,13 @@ a {
   text-decoration: none
 }
 
-.login-box{
-  margin: 70px 0;
-}
-
 .login-wrap {
   width: 100%;
   margin: auto;
   max-width: 525px;
   min-height: 670px;
   position: relative;
+
 }
 
 .login-html {
@@ -321,7 +320,7 @@ a {
 }
 
 .login-form .group .label {
-
+  
   font-size: 12px;
 }
 
@@ -362,7 +361,7 @@ a {
 }
 
 .login-form .group .check:checked+label {
-  color: #fff;
+  color: #000;
 }
 
 .login-form .group .check:checked+label .icon {

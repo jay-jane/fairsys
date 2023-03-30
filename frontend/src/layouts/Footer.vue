@@ -28,7 +28,7 @@ export default {
   justify-content: center;
   align-items: center; /* 속성이 적용된 요소내의 자식들을 수직방향으로 정렬 */
   position: relative;
-  z-index: 9999;
+  z-index:8;
 }
 
 </style>

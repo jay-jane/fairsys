@@ -42,17 +42,17 @@
             </tr>
           </thead>
           <tbody class="body">
-            <tr v-for="(item, index) in list" v-bind:key="index" @click.prevent="goDetail(item.com_id)">
+            <tr v-for="(item, index) in list" v-bind:key="index">
               <td>{{(page-1) * 10 + index + 1 }}</td>
               <td>
                 <!-- <a @click="모달창열렸니 = true">{{ item.com_name }}</a> -->
-                <a>{{ item.com_name }}</a>
+                <a @click.prevent="goDetail(item.com_id)">{{ item.com_name }}</a>
               </td>
               <td class="date">{{ item.com_Application_date }}</td>
               <td>
-                <button class="btn" @click="yesbtn(item.com_id)">승인</button>
+                <button type="button" class="btn" @click="yesbtn(item.com_id)">승인</button>
                 <div class="space"></div>
-                <button @click="nobtn(item.com_id)">거절</button>
+                <button type="button" @click="nobtn(item.com_id)">거절</button>
               </td>
             </tr>
           </tbody>
@@ -169,17 +169,17 @@ export default {
           .then((res) => {
             alert("승인되었습니다.");
             //this.$router.go("/19");
-             this.$router.push("/19/").catch(()=>{});
+            this.$router.push("/19");
           })
           .catch((err) => console.log(err));
       }
     },
 
     nobtn(com_id) {
-      if (confirm("반려?")) {
+      if (confirm("거절하시겠습니까?")) {
         Axios.post("/19/3", { com_id: com_id })
           .then((res) => {
-            alert("반려되었습니다.");
+            alert("승인 거부되었습니다.");
             //this.$router.go("/19");
              this.$router.push("/19/").catch(()=>{});
 
