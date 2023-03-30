@@ -35,13 +35,13 @@
           </strong>
           <input type="text" class="input_com" v-model="companyName" @change="getComName"
             placeholder="(주)와 같은 특수문자를 제외하고 입력해 주세요">
-          <span @click="resetComName" style="font-size: 8px; font-weight: normal; cursor: pointer;">
+          <span @click="resetComName" style="font-size: 8px; font-weight: normal; cursor: pointer; font-weight: bold; color: grey;">
             <img src="@/img/return-icon.jpg" alt="r"> 초기화
           </span>
         </div>
         <div id="jy_search_salary" class="jy_option_box" style="overflow: hidden;">
           <strong class="jy_option_title" style="float: left;">지역<br><br>
-            <span @click="resetCategory" style="font-size: 8px; font-weight: normal; cursor: pointer;">
+            <span @click="resetCategory" style="font-size: 8px; font-weight: normal; cursor: pointer; font-weight: bold; color: grey;">
               <img src="@/img/return-icon.jpg" alt="r"> 초기화
             </span>
           </strong>
@@ -65,7 +65,7 @@
             <input @click="getCareer" type="radio" class="input_jobType" style="margin-left: 5px;" name="job_type"
             value="경력무관">경력무관
           </div>
-          <span @click="resetCareer" style="font-size: 8px; font-weight: normal; cursor: pointer; margin-left: 40px;">
+          <span @click="resetCareer" style="font-size: 8px; font-weight: normal; cursor: pointer; margin-left: 40px; font-weight: bold; color: grey;">
             <img src="@/img/return-icon.jpg" alt="r"> 초기화
           </span>
         </div>
@@ -81,7 +81,7 @@
       </div>
       <div id="posting_btn" style="min-width: 800px;">
         <button type="button" v-if="ut_no == '2'" @click="addPosting"
-          style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white; margin: 50px 40px 0 0; cursor: pointer;">
+          style="border: 0; background-color: orangered; float: right; width: 100px; height: 40px; color: white; margin: 50px 0 0 0; cursor: pointer;">
           공고 등록
         </button>
       </div>
@@ -272,6 +272,7 @@ export default {
       console.log("클래스(도/시) : " + e.target.className);
       console.log("클릭값(시/구) : " + e.target.innerHTML.substr(5));
       this.category = e.target.className + " " + e.target.innerHTML.substr(5);
+      
 
     },
     getDetail(j_no) {
@@ -416,7 +417,7 @@ export default {
 
 /* section */
 #jy_salary_wrap {
-  max-width: 800px;
+  max-width: 1080px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -623,8 +624,8 @@ export default {
 .page li.on {
   font-weight: bold;
   color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: orangered;
+  border-color: orangered;
 }
 
 .page i {
@@ -717,5 +718,8 @@ export default {
   height: 40px;
   margin-right: 20px;
   font-size: 14px;
+}
+.input_com:focus-within {
+  outline-color: orangered;
 }
 </style>

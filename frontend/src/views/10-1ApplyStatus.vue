@@ -379,10 +379,11 @@ export default {
 .hw_admin_nav {
   width: 200px;
   height: 100%;
-  position: fixed;
+  position: absolute;
   top: 100px;
   left: 0;
   background-color: white;
+  margin-top: 30px;
 }
 
 .hw_admin_nav li {
@@ -429,6 +430,7 @@ export default {
     display: flex;
     justify-content: center;
     height: auto;
+    height: 805px;
   }
   
   .hw_container {
@@ -518,9 +520,12 @@ export default {
     margin-top: 20px;
   }
   
-  .hw_serch_box select,
-  input,
-  button {
+  .hw_search_box select, input {
+    padding: 5px;
+    margin: 5px;
+  }
+  
+  .hw_search_box>button {
     padding: 5px;
     margin: 5px;
   }
@@ -531,7 +536,7 @@ export default {
     border: 1px solid #ddd;
   }
   
-  .hw_serch_box button {
+  .hw_serch_box>button {
     width: 10%;
     background-color: orange;
     border: none;

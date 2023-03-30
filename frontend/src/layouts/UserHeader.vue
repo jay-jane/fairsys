@@ -5,7 +5,7 @@
       <div id="logo"><router-link to="/" class="logo_alink"><img src="../img/jobhublogo.png" class="logo_img"
             :style="{ width: ['100px'] }"></router-link></div>
       <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용정보</router-link></div>
-      <div id="menu"><router-link to="ApplyStatus1" @mouseover="doDropmenu">마이페이지</router-link></div>
+      <div id="menu"><router-link to="" @mouseover="doDropmenu" @click="checkSession">마이페이지</router-link></div>
       <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{ this.$store.state.logInOut }}</button></div>
     </nav>
     <nav id="drop_top" @mouseleave="doHidden">
@@ -14,7 +14,7 @@
         <p><router-link to="/4" class="drop_menu">산업별</router-link></p>
         <p><router-link to="/4" class="drop_menu">지역별</router-link></p>
       </div>
-      <div id="drop">
+      <div id="drop" :style="{margin:0}">
         <!-- <p><router-link to="/applystatus" class="drop_menu">지원현황</router-link></p> -->
         <p><router-link to="/UserMyPage" class="drop_menu">지원현황</router-link></p>
         <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
@@ -49,7 +49,13 @@ export default {
       dropMenu_hidden.style.display = "none";
     },
 
-
+    checkSession(){
+      if(sessionStorage.getItem("user_id")==null){
+        alert("로그인이 필요한 서비스 입니다.")
+      }else{
+        location.href="/ApplyStatus1"
+      }
+    }
 
   },
 
@@ -91,15 +97,13 @@ export default {
   color: black;
 }
 
-#logo {
-  position: absolute;
-}
+
 
 #logo .logo_alink {
   display: inline-block;
   position: relative;
-  top: 10px;
-  left: -500px;
+  top: 20px;
+  left:-400px;
   height: 100px;
 }
 
@@ -123,7 +127,7 @@ export default {
   line-height: 60px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 105px;
+  margin-right: 100px;
 }
 
 #drop a {
