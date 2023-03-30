@@ -30,7 +30,7 @@ export default {
   methods: {
     gologInOut() {
       if (sessionStorage.length < 1) {
-        location.href = "/2";
+        this.$router.push({ path: '/2' })
 
       } else {
         sessionStorage.clear();
@@ -52,6 +52,7 @@ export default {
     checkSession(){
       if(sessionStorage.getItem("user_id")==null){
         alert("로그인이 필요한 서비스 입니다.")
+        location.href="/2"
       }else{
         location.href="/ApplyStatus1"
       }
