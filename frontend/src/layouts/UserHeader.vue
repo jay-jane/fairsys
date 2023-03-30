@@ -30,7 +30,7 @@ export default {
   methods: {
     gologInOut() {
       if (sessionStorage.length < 1) {
-        location.href = "/2";
+        this.$router.push({ path: '/2' })
 
       } else {
         sessionStorage.clear();

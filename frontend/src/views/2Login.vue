@@ -318,7 +318,7 @@ a {
 }
 
 .login-form .group .label {
-
+  
   font-size: 12px;
 }
 
@@ -359,7 +359,7 @@ a {
 }
 
 .login-form .group .check:checked+label {
-  color: #fff;
+  color: #000;
 }
 
 .login-form .group .check:checked+label .icon {
