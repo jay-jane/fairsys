@@ -9,12 +9,12 @@
       <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{ this.$store.state.logInOut }}</button></div>
     </nav>
     <nav id="drop_top" @mouseleave="doHidden">
-      <div id="drop">
+      <div id="drop1">
         <p><router-link to="/4" class="drop_menu">직무별</router-link></p>
         <p><router-link to="/4" class="drop_menu">산업별</router-link></p>
         <p><router-link to="/4" class="drop_menu">지역별</router-link></p>
       </div>
-      <div id="drop" :style="{margin:0}">
+      <div id="drop2">
         <!-- <p><router-link to="/applystatus" class="drop_menu">지원현황</router-link></p> -->
         <p><router-link to="/UserMyPage" class="drop_menu">지원현황</router-link></p>
         <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
@@ -87,6 +87,7 @@ export default {
   height: 100px;
 }
 
+
 #menu {
   width: 200px;
   line-height: 100px;
@@ -117,13 +118,21 @@ export default {
   position: absolute;
   top: 100px;
   left: 0;
-  width: 100%;
+  width: 125%;
   text-align: center;
   background-color: orange;
   z-index: 9999;
 }
 
-#drop {
+#drop1 {
+  margin-bottom: 20px;
+  width: 200px;
+  line-height: 60px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 85px;
+}
+#drop2 {
   margin-bottom: 20px;
   width: 200px;
   line-height: 60px;
@@ -132,12 +141,19 @@ export default {
   margin-right: 100px;
 }
 
-#drop a {
+#drop1 a {
+  color: white;
+  font-size: 18px;
+}
+#drop2 a {
   color: white;
   font-size: 18px;
 }
 
-#drop a:hover {
+#drop1 a:hover {
+  color: black;
+}
+#drop2 a:hover {
   color: black;
 }
 

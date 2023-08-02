@@ -1,37 +1,36 @@
 <template>
-  <div id="user_menu">
-    <nav id="top">
-      <div id="logo"><router-link to="/" class="logo_alink"><img src="../img/jobhublogo.png" class="logo_img"
-            :style="{ width: ['100px'] }"></router-link></div>
-      <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용공고</router-link></div>
-      <div id="menu"><router-link to="" @mouseover="doDropmenu">기업정보</router-link></div>
-      <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{ this.$store.state.logInOut }}</button></div>
-    </nav>
-    <nav id="drop_top" @mouseleave="doHidden">
-      <div id="drop1">
-        <p><router-link to="/4" class="drop_menu">전체 공고 목록</router-link></p>
-        <p><a href="#" @click.prevent="getJno" class="drop_menu">내 공고 조회</a></p>
-        <p><router-link to="/ApplyStatus" class="drop_menu">지원자 목록</router-link></p>
-      </div>
-      <div id="drop1" :style="{margin:0}">
-        <p><router-link to="/9-2" class="drop_menu">기업정보 수정</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
-        <p><router-link to="/#" class="drop_menu" @click="companyDelete">회원 탈퇴</router-link></p>
-        <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
-      </div>
-    </nav>
-  </div>
-</template>
-<script>
-
-
-export default {
-
-  data() {
-    return {
-      j_no: '',
-    }
-  },
-  methods: {
+    <div id="user_menu">
+      <nav id="top">
+        <div id="logo"><router-link to="/"><img src="../img/jobhublogo.png" :style="{ width: ['250px'], position:['relative'], top:['-63px'], left: ['-60px']}">></router-link></div>
+        <div id="menu"><router-link to="/4" @mouseover="doDropmenu">채용공고</router-link></div>
+        <div id="menu"><router-link to="" @mouseover="doDropmenu">기업정보</router-link></div>
+        <div id="logInOut"><button class="btn_logInOut " @click="gologInOut">{{this.$store.state.logInOut }}</button></div>
+      </nav>
+      <nav id="drop_top" @mouseleave="doHidden">
+        <div id="drop">
+          <p><router-link to="/4" class="drop_menu">전체 공고 목록</router-link></p>
+          <p><a href="#" @click.prevent="getJno" class="drop_menu">내 공고 조회</a></p>
+          <p><router-link to="/ApplyStatus" class="drop_menu">지원자 목록</router-link></p>
+        </div>
+        <div id="drop">
+          <p><router-link to="/9-2" class="drop_menu">기업정보 수정</router-link></p> <!--나중에 지원현황 css 체크필요 삐뚤어짐-->
+          <p><router-link to="/#" class="drop_menu" @click="companyDelete">회원 탈퇴</router-link></p>
+          <p><router-link to="/11" class="drop_menu">문의하기</router-link></p>
+        </div>
+      </nav>
+    </div>
+  </template>
+  <script>
+  
+  
+  export default {
+  
+    data() {
+      return {
+        j_no: '',
+      }
+    },
+    methods: {
 
     companyDelete() {
       if (confirm('아이디를 삭제하시겠습니까?')) {
@@ -88,25 +87,26 @@ export default {
 }
 </script>
   
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
-
-* {
-  padding: 0;
-  margin: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  text-decoration: none;
-}
-
-/* header 디자인 */
-#top {
-  font-size: 18px;
-  font-weight: 500;
-  text-align: center;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-  margin-bottom: 25px;
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
   
-}
+  * {
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-decoration: none;
+  }
+  
+  /* header 디자인 */
+  #top {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 25px;
+  }
+
+
 
 #top div {
   display: inline-block;

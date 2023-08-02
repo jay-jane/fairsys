@@ -124,7 +124,7 @@ body {
 
 .company .com_item {
   padding: 10px;
-  width: 305px;
+  width: 325px;
 }
 
 .company .com_item ul {
