@@ -130,7 +130,8 @@
 #logo .logo_alink {
   display: inline-block;
   position: relative;
-  top: 10px;
+  top: 20px;
+  left:-400px;
   height: 100px;
 }
 
@@ -138,6 +139,8 @@
 /* 헤더 드롭다운 메뉴 */
 
 #drop_top {
+  margin-top: 20px;
+
   display: none;
   position: absolute;
   top: 100px;
@@ -154,7 +157,7 @@
   line-height: 60px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 105px;
+  margin-right: 100px;
 }
 
 #drop1 a {

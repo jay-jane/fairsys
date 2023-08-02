@@ -30,7 +30,7 @@ export default {
   methods: {
     gologInOut() {
       if (sessionStorage.length < 1) {
-        location.href = "/2";
+        this.$router.push({ path: '/2' })
 
       } else {
         sessionStorage.clear();
@@ -52,6 +52,7 @@ export default {
     checkSession(){
       if(sessionStorage.getItem("user_id")==null){
         alert("로그인이 필요한 서비스 입니다.")
+        location.href="/2"
       }else{
         location.href="/ApplyStatus1"
       }
@@ -103,7 +104,8 @@ export default {
 #logo .logo_alink {
   display: inline-block;
   position: relative;
-  top: 10px;
+  top: 20px;
+  left:-400px;
   height: 100px;
 }
 
@@ -111,6 +113,7 @@ export default {
 /* 헤더 드롭다운 메뉴 */
 
 #drop_top {
+  margin-top: 20px;
   display: none;
   position: absolute;
   top: 100px;
@@ -135,7 +138,7 @@ export default {
   line-height: 60px;
   display: inline-block;
   vertical-align: top;
-  margin-right: 105px;
+  margin-right: 100px;
 }
 
 #drop1 a {

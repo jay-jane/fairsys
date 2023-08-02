@@ -186,7 +186,7 @@
             <tbody>
               <td>
                 <Datepicker v-model="endDate" :locale="locale" :weekStartsOn="0" :inputFormat="inputFormat"
-                  :clearable="true" />
+                  :clearable="true"  style="{z-index: 20;}"/>
               </td>
             </tbody>
           </table>

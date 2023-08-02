@@ -28,7 +28,7 @@
 
           <!-- for문사용 방법 : item >> 각 배열의 값 index >> 배열 현재 index list >> 배열명  -->
           <tr v-for="(item, index) in list" v-bind:key="index">
-            <td>{{ index + 1 }}</td>
+            <td>{{ index+1}}</td>
             <td>{{ item.user_name }}</td>
             <td>{{ item.user_gender }}</td>
             <td @click.prevent="ResumeModify(item.user_no)">이력서열람</td>
@@ -37,7 +37,7 @@
         </tbody>
       </table>
 
-      <div class="hw_serch_box">
+      <div class="hw_search_box">
 
         <select name="" id="">
           <option value="title">이름</option>
@@ -260,7 +260,8 @@ export default {
 .hw_main {
   display: flex;
   justify-content: center;
-  height: auto;
+  height: 805px;
+
 }
 
 .hw_container {
@@ -350,9 +351,12 @@ export default {
   margin-top: 20px;
 }
 
-.hw_serch_box select,
-input,
-button {
+.hw_serch_box select, input {
+  padding: 5px;
+  margin: 5px;
+}
+
+.hw_serch_box>button {
   padding: 5px;
   margin: 5px;
 }
@@ -363,7 +367,7 @@ button {
   border: 1px solid #ddd;
 }
 
-.hw_serch_box button {
+.hw_serch_box>button {
   width: 10%;
   background-color: orange;
   border: none;

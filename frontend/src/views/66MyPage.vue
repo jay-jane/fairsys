@@ -106,9 +106,9 @@
             </div>
   
             <!-- 뒤로 가기 -->
-            <li style="margin-left:5px;">
+            <li style="margin-left:5px; background-color: orange;">
               <router-link :to="{ path: '/UserMyPage/?page=' + page + '&amount=' + amount }" @click="goNextPage">
-                <i class="fa fa-angle-right" aria-hidden="true">></i>
+                <i class="fa fa-angle-right" aria-hidden="true">1</i>
               </router-link>
             </li>
   
@@ -340,7 +340,7 @@ export default {
 .hw_admin_nav {
   width: 200px;
   height: 100%;
-  position: fixed;
+  position: absolute;
   top: 100px;
   left: 0;
   background-color: white;
@@ -390,6 +390,7 @@ export default {
     display: flex;
     justify-content: center;
     height: auto;
+    margin-bottom: 300px;
   }
   
   .hw_container {

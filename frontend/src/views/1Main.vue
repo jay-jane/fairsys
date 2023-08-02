@@ -10,11 +10,12 @@
           </a>
           <a href="" class="area_matching banner03" style="display: none;">
           </a>
-          <div class="area_banner">
-            <a href="" target="_blank"><img src="" alt="배너넣기" width="292"></a>
-          </div>
+
         </div>
       </div>
+    </div>
+    <div class="company_info" style="margin: 50px 0 -50px 300px; width: 1000px; border-bottom: 2px solid orangered;">
+      <h2>진행 중인 공고</h2>
     </div>
     <div class="company">
       <div class="com_item" v-for="(item, index) in jobPostingList">
@@ -26,7 +27,8 @@
               <li>모집 중</li>
               <li>{{ item.j_career }}</li>
               <li>{{ item.j_regdate.substr(0, 11) }}</li>
-              <img src="@/img/company_logo.png" alt="com_logo" style="width: 100px; height: 100px; position: absolute; top: 100px; right: 0;" />
+              <img src="@/img/company_logo.png" alt="com_logo"
+                style="width: 100px; height: 100px; position: absolute; top: 100px; right: 0;" />
             </ul>
           </a>
         </div>
@@ -42,7 +44,7 @@ import child from './maincopy.vue'
 
 export default {
   name: 'App',
-  components : { child },
+  components: { child },
   data() {
     return {
       jobPostingList: '',
@@ -101,8 +103,6 @@ export default {
 </script>
  
 <style>
-
-
 html,
 body {
   width: 100%;
